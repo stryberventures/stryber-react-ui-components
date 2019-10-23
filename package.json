@@ -1,0 +1,67 @@
+{
+  "name": "stryber-react-ui-components",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "private": true,
+  "dependencies": {
+    "@types/classnames": "^2.2.8",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.8",
+    "@types/react": "16.8.4",
+    "@types/react-dom": "16.8.4",
+    "@types/react-helmet": "^5.0.8",
+    "@types/react-jss": "^8.6.4",
+    "@types/react-router-dom": "^4.3.4",
+    "@types/uuid": "^3.4.4",
+    "classnames": "^2.2.6",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
+    "react-helmet": "^5.2.1",
+    "react-jss": "^10.0.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "3.3.3",
+    "uuid": "^3.3.2"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "start": "start-storybook -p 9001 -c .storybook -s ./src/assets",
+    "watch:ts": "tsc -w",
+    "build:ts": "tsc",
+    "build:lib": "yarn run cleanup && yarn run build:ts",
+    "cleanup": "rimraf build",
+    "tslint": "tslint --project tsconfig.json"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/react": "5.1.9",
+    "@types/storybook__react": "4.0.2",
+    "awesome-typescript-loader": "5.2.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "file-loader": "^4.2.0",
+    "react-docgen-typescript-loader": "3.1.0",
+    "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "tsc-watch": "^2.2.1",
+    "url-loader": "^2.2.0"
+  }
+}
