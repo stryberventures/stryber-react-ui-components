@@ -17,14 +17,15 @@ interface InputFieldProps {
   [key: string]: any;
 }
 
-const InputField = ({
-  classes,
-  disabled,
-  placeholder,
-  name,
-  type = 'text',
-  ...rest
-}: InputFieldProps & WithStyles<typeof styles>) => {
+const InputField = (props: InputFieldProps & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    disabled,
+    placeholder,
+    name,
+    type = 'text',
+    ...rest
+  } = props;
   const { onChange } = React.useContext(FormContext);
   return (
     <input

@@ -9,8 +9,8 @@ storiesOf('Form', module)
   .add('Login', () => {
     return (
       <Wrapper>
-        <Form onSubmit={(d: any) => {
-          console.log('onSubmit external', d);
+        <Form onSubmit={(formData: any) => {
+          console.log('onSubmit external', formData);
         }}>
           <InputField
             name="email"
