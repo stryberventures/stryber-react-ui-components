@@ -5,25 +5,18 @@ export default (theme: any) => ({
     paddingLeft: 15,
     marginRight: 'auto',
     marginLeft: 'auto',
-  },
-  [`@media (min-width: ${theme.smBreakpoint || 576}px)`]: {
-    wrapper: {
-      maxWidth: theme.smBreakpointFallback || 540,
+
+    [`@media (min-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+      maxWidth: theme.gridSmBreakpointFallback || 540,
     },
-  },
-  [`@media (min-width: ${theme.mdBreakpoint || 768}px)`]: {
-    wrapper: {
-      maxWidth: theme.mdBreakpointFallback || 720,
+    [`@media (min-width: ${theme.gridMdBreakpoint || 768}px)`]: {
+      maxWidth: theme.gridMdBreakpointFallback || 720,
     },
-  },
-  [`@media (min-width: ${theme.lgBreakpoint || 992}px)`]: {
-    wrapper: {
-      maxWidth: theme.lgBreakpointFallback || 960,
-    }
-  },
-  [`@media (min-width: ${theme.xlBreakpoint || 1200}px)`]: {
-    wrapper: {
-      maxWidth: theme.xlBreakpointFallback || 1140,
-    }
+    [`@media (min-width: ${theme.gridLgBreakpoint || 992}px)`]: {
+      maxWidth: theme.gridLgBreakpointFallback || 960,
+    },
+    [`@media (min-width: ${theme.gridXlBreakpoint || 1200}px)`]: {
+      maxWidth: theme.gridXlBreakpointFallback || 1140,
+    },
   },
 });

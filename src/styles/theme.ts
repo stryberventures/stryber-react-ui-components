@@ -11,8 +11,12 @@ export default {
   gridColumnGap: 20,
   gridColumns: 12,
 
-  gridSmBreakpoint: 600,
-  gridMdBreakpoint: 1024,
-  gridLgBreakpoint: 1440,
-  gridXlBreakpoint: 1920,
+  gridSmBreakpointFallback: 540,
+  gridSmBreakpoint: 576,
+  gridMdBreakpointFallback: 720,
+  gridMdBreakpoint: 768,
+  gridLgBreakpointFallback: 960,
+  gridLgBreakpoint: 992,
+  gridXlBreakpointFallback: 1140,
+  gridXlBreakpoint: 1200,
 };

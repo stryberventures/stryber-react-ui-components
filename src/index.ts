@@ -6,3 +6,5 @@ export * from './components/GlobalStyles';
 export * from './components/Button';
 export * from './components/Card';
 export * from './components/EmptyComponent';
+export * from './components/Container';
+export * from './components/Grid';

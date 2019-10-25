@@ -26,7 +26,8 @@ const InputField = (props: InputFieldProps & WithStyles<typeof styles>) => {
     type = 'text',
     ...rest
   } = props;
-  const { onChange } = React.useContext(FormContext);
+  const { onChange, formValues } = React.useContext(FormContext);
+
   return (
     <input
       onChange={onChange}
@@ -34,6 +35,7 @@ const InputField = (props: InputFieldProps & WithStyles<typeof styles>) => {
       className={ classNames([
         classes.root,
       ]) }
+      value={formValues && formValues[name]}
       name={name}
       type={type}
       placeholder={placeholder}

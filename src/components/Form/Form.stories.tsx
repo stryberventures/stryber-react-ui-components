@@ -9,9 +9,12 @@ storiesOf('Form', module)
   .add('Login', () => {
     return (
       <Wrapper>
-        <Form onSubmit={(formData: any) => {
-          console.log('onSubmit external', formData);
-        }}>
+        <Form
+          onSubmit={(formData: any) => {
+            console.log('onSubmit external', formData);
+          }}
+          validationSchema={{}}
+        >
           <InputField
             name="email"
             placeholder="Email"
@@ -33,4 +36,45 @@ storiesOf('Form', module)
         </Form>
       </Wrapper>
     );
-  });
+  })
+  .add('Initial values', () => {
+    return (
+      <Wrapper>
+        <Form
+          onSubmit={(formData: any) => {
+            console.log('onSubmit external', formData);
+          }}
+          initialValues={{
+            id: 12,
+            gender: 'Male',
+            first_name: 'Elon',
+            last_name: 'Musk'
+          }}
+          validationSchema={{}}
+        >
+          <InputField
+            name="id"
+            placeholder="ID"
+          />
+          <InputField
+            name="first_name"
+            placeholder="First Name"
+          />
+          <InputField
+            name="last_name"
+            placeholder="Last Name"
+          />
+          <InputField
+            name="gender"
+            placeholder="Gender"
+          />
+          <InputField
+            name="Submit"
+            value="Submit"
+            placeholder="Submit"
+            type="submit"
+          />
+        </Form>
+      </Wrapper>
+    );
+  })

@@ -21,21 +21,17 @@ export default (theme: any) => ({
   col: {
     gridColumnEnd: (props: any) => getGridColumnStyle(props.xs || theme.gridColumns),
 
-    [`@media (min-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+    [`@media (min-width: ${theme.gridSmBreakpoint}px)`]: {
       gridColumnEnd: (props: any) => getGridColumnStyle(props.sm),
-      backgroundColor: 'red',
     },
-    [`@media (min-width: ${theme.gridMdBreakpoint || 768}px)`]: {
+    [`@media (min-width: ${theme.gridMdBreakpoint}px)`]: {
       gridColumnEnd: (props: any) => getGridColumnStyle(props.md),
-      backgroundColor: 'blue',
     },
     [`@media (min-width: ${theme.gridLgBreakpoint || 992}px)`]: {
       gridColumnEnd: (props: any) => getGridColumnStyle(props.lg),
-      backgroundColor: 'yellow',
     },
     [`@media (min-width: ${theme.gridXlBreakpoint || 1200}px)`]: {
       gridColumnEnd: (props: any) => getGridColumnStyle(props.xl),
-      backgroundColor: 'pink',
     },
   },
 });
