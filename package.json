@@ -1,9 +1,10 @@
 {
   "name": "stryber-react-ui-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "private": true,
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "dependencies": {
     "@types/classnames": "^2.2.8",
     "@types/jest": "24.0.15",
