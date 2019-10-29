@@ -1,5 +1,4 @@
 const getGridColumnStyle = (breakpointValue: number) => {
-  // console.log('breakpointValue', breakpointValue);
   if (!breakpointValue) return 'span 1';
   return `span ${breakpointValue}`;
 };

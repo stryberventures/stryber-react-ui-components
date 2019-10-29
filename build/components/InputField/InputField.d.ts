@@ -15,24 +15,47 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         position: string;
         borderRadius: number;
         overflow: string;
-    };
-    input: {
-        width: string;
-        height: string;
-        borderRadius: number;
-        padding: number;
         border: string;
         transition: string;
-        '&:focus': {
+        display: string;
+        justifyContent: string;
+        '&:focus-within': {
             border: string;
             outline: string;
         };
     };
-    invalid: {
+    invalidRoot: {
         border: string;
     };
+    input: {
+        flex: number;
+        width: string;
+        height: string;
+        border: number;
+        padding: number;
+        fontFamily: string;
+        fontSize: number;
+        '&:focus': {
+            outline: string;
+        };
+    };
+    prepend: {
+        transition: string;
+        position: string;
+        backgroundColor: string;
+        minWidth: number;
+    };
+    invalidPrepend: {
+        backgroundColor: string;
+    };
+    append: {};
+    errorMessage: {
+        color: string;
+        fontFamily: string;
+        fontSize: number;
+    };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"input" | "root" | "invalid", string>> | undefined;
+    classes?: Partial<Record<"input" | "root" | "invalidRoot" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
 }>;
 export default StyledInputField;
 export { StyledInputField as InputField };

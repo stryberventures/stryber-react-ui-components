@@ -4,6 +4,10 @@ exports.default = (function (theme) { return ({
     '@global': {
         '@font-face': [
             {
+                fontFamily: 'galano-light',
+                src: "url('fonts/Galano-Grotesque-Light.otf')",
+            },
+            {
                 fontFamily: 'galano-regular',
                 src: "url('fonts/Galano-Grotesque.otf')",
             },

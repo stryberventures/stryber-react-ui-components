@@ -16,6 +16,7 @@
     "@types/react-jss": "^8.6.4",
     "@types/react-router-dom": "^4.3.4",
     "@types/uuid": "^3.4.4",
+    "@types/yup": "^0.26.24",
     "classnames": "^2.2.6",
     "react": "16.8.4",
     "react-dom": "16.8.4",
@@ -27,7 +28,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "3.3.3",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "yup": "^0.27.0"
   },
   "files": [
     "build"

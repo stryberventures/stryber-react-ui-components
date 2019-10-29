@@ -4,13 +4,16 @@ import { WithStyles } from 'react-jss';
 export interface IFormContext {
     formValues: any;
     formErrors: any;
+    formTouched: any;
     onChange: (data: any) => void;
+    onBlur: (data: any) => void;
     initialValues?: any;
 }
 export declare const FormContext: React.Context<IFormContext>;
 /** Form props */
 interface FormProps {
     onSubmit: (formData: any) => void;
+    onError?: (errorData: any, formData: any) => void;
     children: any;
     initialValues?: any;
     validationSchema?: any;

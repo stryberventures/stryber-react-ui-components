@@ -23,29 +23,66 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     disabled,
     placeholder,
     name,
+    errorMessage,
     type = 'text',
     ...rest
   } = props;
-  const { onChange, formValues } = React.useContext(FormContext);
+
+  /** Getting values from Form context (if the field is wrapped inside a form */
+  const {
+    onChange,
+    formValues,
+    formErrors,
+    formTouched,
+    onBlur,
+  } = React.useContext(FormContext);
+  const errorMsg = formTouched[name] && formErrors[name];
 
   return (
-    <div
-      className={ classNames([
-        classes.root,
-      ]) }
-    >
-      <input
-        onChange={onChange}
-        { ...rest }
+    <>
+      <div
         className={ classNames([
-          classes.input,
+          errorMsg ? classes.invalidRoot : null,
+          classes.root,
         ]) }
-        value={formValues && formValues[name]}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-      />
-    </div>
+      >
+        <div
+          className={ classNames([
+            errorMsg ? classes.invalidPrepend : null,
+            classes.prepend,
+          ]) }
+        >
+        </div>
+        <input
+          onChange={onChange}
+          onBlur={onBlur}
+          { ...rest }
+          className={ classNames([
+            classes.input,
+          ]) }
+          value={formValues && formValues[name]}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+        />
+        <div
+          className={ classNames([
+            classes.append,
+          ]) }
+        >
+        </div>
+      </div>
+      {
+        errorMsg ?
+          (
+            <div
+              className={classes.errorMessage}
+            >
+              { errorMsg }
+            </div>
+          ) : null
+      }
+    </>
   );
 };
 

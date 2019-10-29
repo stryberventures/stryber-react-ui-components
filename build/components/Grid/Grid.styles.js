@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var getGridColumnStyle = function (breakpointValue) {
-    // console.log('breakpointValue', breakpointValue);
     if (!breakpointValue)
         return 'span 1';
     return "span " + breakpointValue;

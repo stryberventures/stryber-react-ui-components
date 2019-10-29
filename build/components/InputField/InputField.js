@@ -26,14 +26,27 @@ var classnames_1 = require("classnames");
 var InputField_styles_1 = require("./InputField.styles");
 var Form_1 = require("../Form");
 var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "type"]);
-    var _b = React.useContext(Form_1.FormContext), onChange = _b.onChange, formValues = _b.formValues;
-    return (React.createElement("div", { className: classnames_1.default([
-            classes.root,
-        ]) },
-        React.createElement("input", __assign({ onChange: onChange }, rest, { className: classnames_1.default([
-                classes.input,
-            ]), value: formValues && formValues[name], name: name, type: type, placeholder: placeholder }))));
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "type"]);
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _b = React.useContext(Form_1.FormContext), onChange = _b.onChange, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, onBlur = _b.onBlur;
+    var errorMsg = formTouched[name] && formErrors[name];
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: classnames_1.default([
+                errorMsg ? classes.invalidRoot : null,
+                classes.root,
+            ]) },
+            React.createElement("div", { className: classnames_1.default([
+                    errorMsg ? classes.invalidPrepend : null,
+                    classes.prepend,
+                ]) }),
+            React.createElement("input", __assign({ onChange: onChange, onBlur: onBlur }, rest, { className: classnames_1.default([
+                    classes.input,
+                ]), value: formValues && formValues[name], name: name, type: type, placeholder: placeholder })),
+            React.createElement("div", { className: classnames_1.default([
+                    classes.append,
+                ]) })),
+        errorMsg ?
+            (React.createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
 };
 var StyledInputField = react_jss_1.default(InputField_styles_1.default)(InputField);
 exports.InputField = StyledInputField;

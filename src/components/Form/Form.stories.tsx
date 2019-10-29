@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Form from './Form';
 import { InputField } from '../InputField';
+import * as yup from 'yup';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
@@ -13,7 +14,6 @@ storiesOf('Form', module)
           onSubmit={(formData: any) => {
             console.log('onSubmit external', formData);
           }}
-          validationSchema={{}}
         >
           <InputField
             name="email"
@@ -50,7 +50,6 @@ storiesOf('Form', module)
             first_name: 'Elon',
             last_name: 'Musk'
           }}
-          validationSchema={{}}
         >
           <InputField
             name="id"
@@ -78,3 +77,37 @@ storiesOf('Form', module)
       </Wrapper>
     );
   })
+  .add('With Validation', () => {
+    return (
+      <Wrapper>
+        <Form
+          onSubmit={(formData: any) => {
+            console.log('onSubmit external', formData);
+          }}
+          initialValues={{
+            age: '',
+            email: '',
+          }}
+          validationSchema={yup.object({
+            email: yup.string().email().required(),
+            age: yup.number().required(),
+          })}
+        >
+          <InputField
+            name="email"
+            placeholder="Email"
+          />
+          <InputField
+            name="age"
+            placeholder="Age"
+          />
+          <InputField
+            name="Submit"
+            value="Submit"
+            placeholder="Submit"
+            type="submit"
+          />
+        </Form>
+      </Wrapper>
+    );
+  });
