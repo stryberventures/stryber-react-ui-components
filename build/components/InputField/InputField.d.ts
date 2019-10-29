@@ -27,8 +27,11 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
     invalidRoot: {
         border: string;
     };
-    input: {
+    inputWrapper: {
         flex: number;
+        position: string;
+    };
+    input: {
         width: string;
         height: string;
         border: number;
@@ -38,6 +41,30 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         '&:focus': {
             outline: string;
         };
+    };
+    placeholder: {
+        pointerEvents: string;
+        position: string;
+        transition: string;
+        fontSize: number;
+        fontFamily: string;
+        display: string;
+        verticalAlign: string;
+        width: string;
+        height: string;
+        left: number;
+        top: number;
+        padding: number;
+        margin: number;
+        transform: string;
+        transformOrigin: string;
+    };
+    invalidPlaceholder: {
+        color: string;
+    };
+    placeholderCollapsed: {
+        fontSize: number;
+        transform: string;
     };
     prepend: {
         transition: string;
@@ -55,7 +82,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         fontSize: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"input" | "root" | "invalidRoot" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
+    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "inputWrapper" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
 }>;
 export default StyledInputField;
 export { StyledInputField as InputField };

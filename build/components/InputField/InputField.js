@@ -19,6 +19,22 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_jss_1 = require("react-jss");
@@ -26,10 +42,25 @@ var classnames_1 = require("classnames");
 var InputField_styles_1 = require("./InputField.styles");
 var Form_1 = require("../Form");
 var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "type"]);
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, onChange = props.onChange, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "onChange", "type"]);
+    var _b = __read(React.useState(false), 2), isFocused = _b[0], setFocused = _b[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _b = React.useContext(Form_1.FormContext), onChange = _b.onChange, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, onBlur = _b.onBlur;
+    var _c = React.useContext(Form_1.FormContext), formOnChange = _c.onChange, formValues = _c.formValues, formErrors = _c.formErrors, formTouched = _c.formTouched, onBlur = _c.onBlur;
     var errorMsg = formTouched[name] && formErrors[name];
+    var _d = __read(React.useState(formValues && formValues[name]), 2), internalValue = _d[0], setInternalValue = _d[1];
+    var onFocusWrapper = function (e) {
+        setFocused(true);
+    };
+    var onBlurWrapper = function (e) {
+        onBlur && onBlur(e);
+        setFocused(false);
+    };
+    var onChangeWrapper = function (e) {
+        formOnChange && formOnChange(e);
+        onChange && onChange(e);
+        var value = e.target.value;
+        setInternalValue(value);
+    };
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: classnames_1.default([
                 errorMsg ? classes.invalidRoot : null,
@@ -39,9 +70,16 @@ var InputField = function (props) {
                     errorMsg ? classes.invalidPrepend : null,
                     classes.prepend,
                 ]) }),
-            React.createElement("input", __assign({ onChange: onChange, onBlur: onBlur }, rest, { className: classnames_1.default([
-                    classes.input,
-                ]), value: formValues && formValues[name], name: name, type: type, placeholder: placeholder })),
+            React.createElement("div", { className: classes.inputWrapper },
+                placeholder ?
+                    (React.createElement("div", { className: classnames_1.default([
+                            (internalValue || isFocused) ? classes.placeholderCollapsed : null,
+                            errorMsg ? classes.invalidPlaceholder : null,
+                            classes.placeholder,
+                        ]) }, placeholder)) : null,
+                React.createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames_1.default([
+                        classes.input,
+                    ]), value: internalValue, name: name, type: type }))),
             React.createElement("div", { className: classnames_1.default([
                     classes.append,
                 ]) })),

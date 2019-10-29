@@ -24,19 +24,37 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     placeholder,
     name,
     errorMessage,
+    onChange,
     type = 'text',
     ...rest
   } = props;
 
+  const [isFocused, setFocused] = React.useState(false);
+
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
-    onChange,
+    onChange: formOnChange,
     formValues,
     formErrors,
     formTouched,
     onBlur,
   } = React.useContext(FormContext);
   const errorMsg = formTouched[name] && formErrors[name];
+  const [internalValue, setInternalValue] = React.useState(formValues && formValues[name]);
+
+  const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    setFocused(true);
+  };
+  const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+    onBlur && onBlur(e);
+    setFocused(false);
+  };
+  const onChangeWrapper = (e: any) => {
+    formOnChange && formOnChange(e);
+    onChange && onChange(e);
+    const value = e.target.value;
+    setInternalValue(value);
+  };
 
   return (
     <>
@@ -53,18 +71,32 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
           ]) }
         >
         </div>
-        <input
-          onChange={onChange}
-          onBlur={onBlur}
-          { ...rest }
-          className={ classNames([
-            classes.input,
-          ]) }
-          value={formValues && formValues[name]}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-        />
+        <div className={classes.inputWrapper}>
+          {
+            placeholder ?
+              (<div
+                className={ classNames([
+                  (internalValue || isFocused) ? classes.placeholderCollapsed : null,
+                  errorMsg ? classes.invalidPlaceholder : null,
+                  classes.placeholder,
+                ]) }
+              >
+                { placeholder }
+              </div>) : null
+          }
+          <input
+            onChange={onChangeWrapper}
+            onBlur={onBlurWrapper}
+            onFocus={onFocusWrapper}
+            { ...rest }
+            className={ classNames([
+              classes.input,
+            ]) }
+            value={internalValue}
+            name={name}
+            type={type}
+          />
+        </div>
         <div
           className={ classNames([
             classes.append,

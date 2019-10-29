@@ -17,8 +17,11 @@ exports.default = (function (theme) { return ({
     invalidRoot: {
         border: "solid 1px " + '#d0021b' + " !important",
     },
-    input: {
+    inputWrapper: {
         flex: 1,
+        position: 'relative',
+    },
+    input: {
         width: '100%',
         height: '100%',
         border: 0,
@@ -28,6 +31,30 @@ exports.default = (function (theme) { return ({
         '&:focus': {
             outline: 'none',
         },
+    },
+    placeholder: {
+        pointerEvents: 'none',
+        position: 'absolute',
+        transition: '0.5s',
+        fontSize: 14,
+        fontFamily: 'galano-medium',
+        display: 'block',
+        verticalAlign: 'center',
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0,
+        padding: 14,
+        margin: 0,
+        transform: 'translate(0, 0px)',
+        transformOrigin: 'left',
+    },
+    invalidPlaceholder: {
+        color: '#d0021b',
+    },
+    placeholderCollapsed: {
+        fontSize: 10,
+        transform: 'translate(0, -12px) scale(0.75)',
     },
     prepend: {
         transition: '0.5s',
