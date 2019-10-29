@@ -12,14 +12,15 @@ interface ButtonProps {
   [key: string]: any;
 }
 
-const Button = ({
-  classes,
-  children,
-  disabled,
-  onClick,
-  variant = 'primary',
-  ...rest
-}: ButtonProps & WithStyles<typeof styles>) => {
+const Button = (props: ButtonProps & React.HTMLProps<HTMLButtonElement> & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    children,
+    disabled,
+    onClick,
+    variant = 'primary',
+    ...rest
+  } = props;
   const renderContent = () => <span className={ classes.content }>{ children }</span>;
   return (
     <button

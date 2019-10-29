@@ -2,10 +2,12 @@ declare const _default: (theme: any) => {
     root: {
         borderRadius: number;
         padding: number;
-        maxHeight: number;
         border: string;
     };
-    content: {};
+    content: {
+        fontSize: number;
+        fontFamily: string;
+    };
     disabled: {
         backgroundColor: any;
     };

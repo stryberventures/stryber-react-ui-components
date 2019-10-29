@@ -5,18 +5,30 @@ exports.default = (function (theme) { return ({
         '@font-face': [
             {
                 fontFamily: 'galano-regular',
-                src: "url('fonts/Galano-Grotesque.woff') format('woff')",
+                src: "url('fonts/Galano-Grotesque.otf')",
+            },
+            {
+                fontFamily: 'galano-medium',
+                src: "url('fonts/Galano-Grotesque-Medium.otf')",
+            },
+            {
+                fontFamily: 'galano-semibold',
+                src: "url('fonts/Galano-Grotesque-Semi-Bold.otf')",
+            },
+            {
+                fontFamily: 'galano-bold',
+                src: "url('fonts/Galano-Grotesque-Bold.otf')",
             },
         ],
         html: {
             height: '100%',
-            fontSize: '60%',
+            width: '100%',
         },
         body: {
-            fontSize: '1rem',
-            fontWeight: 400,
-            lineHeight: 1.5,
-            textAlign: 'left',
+            // fontSize: '1rem',
+            // fontWeight: 400,
+            // lineHeight: 1.5,
+            // textAlign: 'left',
             fontFamily: 'galano-regular',
             height: '100%',
             width: '100%',
@@ -26,36 +38,38 @@ exports.default = (function (theme) { return ({
             color: theme.textColorPrimary,
         },
         h1: {
-            fontSize: '35px',
-            fontFamily: 'avenir-black',
+            fontSize: 42,
+            fontFamily: 'galano-bold',
         },
         h2: {
-            fontSize: '28px',
-            fontFamily: 'avenir-medium',
+            fontSize: 32,
+            fontFamily: 'galano-bold',
         },
         h3: {
-            fontSize: '21px',
-            fontFamily: 'avenir-medium',
+            fontSize: 28,
+            fontFamily: 'galano-semibold',
         },
         h4: {
-            fontSize: '14px',
-            fontFamily: 'avenir-light',
-        },
-        'h1, h2, h3, h4, h5, h6': {
-            marginTop: 0,
-            marginBottom: '.5rem',
-        },
-        '.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6': {
-            marginBottom: '.5rem',
-            fontWeight: 500,
-            lineHeight: 1.2,
+            fontSize: 14,
+            fontFamily: 'galano-semibold',
         },
         p: {
+            fontSize: 12,
+            fontFamily: 'galano-medium',
             marginTop: 0,
             marginBottom: '1rem',
         },
+        // 'h1, h2, h3, h4, h5, h6': {
+        //   marginTop: 0,
+        //   marginBottom: '.5rem',
+        // },
+        // '.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6': {
+        //   marginBottom: '.5rem',
+        //   fontWeight: 500,
+        //   lineHeight: 1.2,
+        // },
         b: {
-            fontFamily: 'avenir-black',
+            fontFamily: 'galano-bold',
         },
         '#root': {
             height: '100%',

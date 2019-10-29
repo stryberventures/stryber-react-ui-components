@@ -17,7 +17,7 @@ interface InputFieldProps {
   [key: string]: any;
 }
 
-const InputField = (props: InputFieldProps & WithStyles<typeof styles>) => {
+const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     disabled,
@@ -29,17 +29,23 @@ const InputField = (props: InputFieldProps & WithStyles<typeof styles>) => {
   const { onChange, formValues } = React.useContext(FormContext);
 
   return (
-    <input
-      onChange={onChange}
-      { ...rest }
+    <div
       className={ classNames([
         classes.root,
       ]) }
-      value={formValues && formValues[name]}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-    />
+    >
+      <input
+        onChange={onChange}
+        { ...rest }
+        className={ classNames([
+          classes.input,
+        ]) }
+        value={formValues && formValues[name]}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+      />
+    </div>
   );
 };
 

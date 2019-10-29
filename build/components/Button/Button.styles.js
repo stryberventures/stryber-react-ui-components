@@ -4,10 +4,12 @@ exports.default = (function (theme) { return ({
     root: {
         borderRadius: 8,
         padding: 14,
-        maxHeight: 44,
         border: "solid 1px",
     },
-    content: {},
+    content: {
+        fontSize: 16,
+        fontFamily: 'galano-semibold',
+    },
     disabled: {
         backgroundColor: theme.backgroundColorDisabled,
     },

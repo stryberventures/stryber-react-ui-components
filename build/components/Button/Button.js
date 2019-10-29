@@ -24,8 +24,8 @@ var React = require("react");
 var react_jss_1 = require("react-jss");
 var classnames_1 = require("classnames");
 var Button_styles_1 = require("./Button.styles");
-var Button = function (_a) {
-    var classes = _a.classes, children = _a.children, disabled = _a.disabled, onClick = _a.onClick, _b = _a.variant, variant = _b === void 0 ? 'primary' : _b, rest = __rest(_a, ["classes", "children", "disabled", "onClick", "variant"]);
+var Button = function (props) {
+    var classes = props.classes, children = props.children, disabled = props.disabled, onClick = props.onClick, _a = props.variant, variant = _a === void 0 ? 'primary' : _a, rest = __rest(props, ["classes", "children", "disabled", "onClick", "variant"]);
     var renderContent = function () { return React.createElement("span", { className: classes.content }, children); };
     return (React.createElement("button", __assign({}, rest, { className: classnames_1.default([
             classes.root,

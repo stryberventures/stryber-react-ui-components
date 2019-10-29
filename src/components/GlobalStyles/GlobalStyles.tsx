@@ -7,9 +7,8 @@ interface IProps {
   children: any;
 }
 
-const GlobalStyles = ({
-  children,
-}: IProps & WithStyles<typeof styles>) => {
+const GlobalStyles = (props: IProps & WithStyles<typeof styles>) => {
+  const { children } = props;
   return (
     <div>
       { children }

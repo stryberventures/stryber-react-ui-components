@@ -6,5 +6,16 @@ declare const _default: {
     backgroundColorSecondaryHover: string;
     backgroundColorSecondaryClick: string;
     backgroundColorDisabled: string;
+    gridColumnSize: number;
+    gridColumnGap: number;
+    gridColumns: number;
+    gridSmBreakpointFallback: number;
+    gridSmBreakpoint: number;
+    gridMdBreakpointFallback: number;
+    gridMdBreakpoint: number;
+    gridLgBreakpointFallback: number;
+    gridLgBreakpoint: number;
+    gridXlBreakpointFallback: number;
+    gridXlBreakpoint: number;
 };
 export default _default;

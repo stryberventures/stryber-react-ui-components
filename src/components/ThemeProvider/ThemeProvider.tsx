@@ -7,10 +7,8 @@ interface ThemeProviderProps {
   children: any;
 }
 
-const ThemeProvider = ({
-  children,
-  ...rest
-}: ThemeProviderProps) => {
+const ThemeProvider = (props: ThemeProviderProps) => {
+  const { children } = props;
   return (
     <JssThemeProvider theme={theme}>
       { children }

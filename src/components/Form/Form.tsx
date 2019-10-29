@@ -29,7 +29,7 @@ interface FormProps {
   [key: string]: any;
 }
 
-const Form = (props: FormProps & WithStyles<typeof styles>) => {
+const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     children,

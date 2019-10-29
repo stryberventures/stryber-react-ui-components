@@ -6,13 +6,9 @@ declare const _default: (theme: any) => {
         }[];
         html: {
             height: string;
-            fontSize: string;
+            width: string;
         };
         body: {
-            fontSize: string;
-            fontWeight: number;
-            lineHeight: number;
-            textAlign: string;
             fontFamily: string;
             height: string;
             width: string;
@@ -22,31 +18,24 @@ declare const _default: (theme: any) => {
             color: any;
         };
         h1: {
-            fontSize: string;
+            fontSize: number;
             fontFamily: string;
         };
         h2: {
-            fontSize: string;
+            fontSize: number;
             fontFamily: string;
         };
         h3: {
-            fontSize: string;
+            fontSize: number;
             fontFamily: string;
         };
         h4: {
-            fontSize: string;
+            fontSize: number;
             fontFamily: string;
         };
-        'h1, h2, h3, h4, h5, h6': {
-            marginTop: number;
-            marginBottom: string;
-        };
-        '.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6': {
-            marginBottom: string;
-            fontWeight: number;
-            lineHeight: number;
-        };
         p: {
+            fontSize: number;
+            fontFamily: string;
             marginTop: number;
             marginBottom: string;
         };

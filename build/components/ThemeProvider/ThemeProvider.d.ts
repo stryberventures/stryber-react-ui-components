@@ -2,5 +2,5 @@
 interface ThemeProviderProps {
     children: any;
 }
-declare const ThemeProvider: ({ children, ...rest }: ThemeProviderProps) => JSX.Element;
+declare const ThemeProvider: (props: ThemeProviderProps) => JSX.Element;
 export { ThemeProvider };

@@ -5,15 +5,18 @@ interface ButtonProps {
     disabled?: boolean;
     children: any;
     variant?: 'primary' | 'secondary';
+    [key: string]: any;
 }
-declare const StyledButton: React.ComponentType<Pick<ButtonProps & WithStyles<(theme: any) => {
+declare const StyledButton: React.ComponentType<Pick<ButtonProps & React.HTMLProps<HTMLButtonElement> & WithStyles<(theme: any) => {
     root: {
         borderRadius: number;
         padding: number;
-        maxHeight: number;
         border: string;
     };
-    content: {};
+    content: {
+        fontSize: number;
+        fontFamily: string;
+    };
     disabled: {
         backgroundColor: any;
     };
@@ -38,8 +41,8 @@ declare const StyledButton: React.ComponentType<Pick<ButtonProps & WithStyles<(t
             backgroundColor: any;
         };
     };
-}>, "disabled" | "children" | "onClick" | "variant"> & {
-    classes?: Partial<Record<"primary" | "secondary" | "root" | "content" | "disabled", string>> | undefined;
+}>, React.ReactText> & {
+    classes?: Partial<Record<"primary" | "secondary" | "disabled" | "content" | "root", string>> | undefined;
 }>;
 export default StyledButton;
 export { StyledButton as Button };

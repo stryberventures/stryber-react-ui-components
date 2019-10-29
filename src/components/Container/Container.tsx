@@ -9,11 +9,12 @@ interface ContainerProps {
   [key: string]: any;
 }
 
-const Container = ({
-  children,
-  classes,
-  ...rest
-}: ContainerProps & WithStyles<typeof styles>) => {
+const Container = (props: ContainerProps & WithStyles<typeof styles>) => {
+  const {
+    children,
+    classes,
+    ...rest
+  } = props;
   return (
     <div
       { ...rest }

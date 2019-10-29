@@ -58,12 +58,12 @@ interface BodyProps {
   [key: string]: any;
 }
 
-const Body = ({
-   classes,
-   children,
-   ...rest
-}: BodyProps & WithStyles<typeof styles>) => {
-  // const renderContent = () => <span className={ classes.content }>{ children }</span>;
+const Body = (props: BodyProps & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    children,
+    ...rest
+  } = props;
   return (
     <div
       { ...rest }
