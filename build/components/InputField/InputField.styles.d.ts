@@ -5,6 +5,7 @@ declare const _default: (theme: any) => {
         overflow: string;
         border: string;
         transition: string;
+        backgroundColor: string;
         display: string;
         justifyContent: string;
         '&:focus-within': {
@@ -15,6 +16,9 @@ declare const _default: (theme: any) => {
     invalidRoot: {
         border: string;
     };
+    disabledRoot: {
+        backgroundColor: string;
+    };
     inputWrapper: {
         flex: number;
         position: string;
@@ -24,11 +28,20 @@ declare const _default: (theme: any) => {
         height: string;
         border: number;
         padding: number;
+        paddingBottom: number;
+        paddingTop: number;
+        backgroundColor: string;
+        transition: string;
+        color: string;
         fontFamily: string;
         fontSize: number;
         '&:focus': {
+            color: string;
             outline: string;
         };
+    };
+    invalidInput: {
+        color: string;
     };
     placeholder: {
         pointerEvents: string;
@@ -38,6 +51,7 @@ declare const _default: (theme: any) => {
         fontFamily: string;
         display: string;
         verticalAlign: string;
+        color: string;
         width: string;
         height: string;
         left: number;

@@ -12,6 +12,7 @@ declare const StyledButton: React.ComponentType<Pick<ButtonProps & React.HTMLPro
         borderRadius: number;
         padding: number;
         border: string;
+        width: string;
     };
     content: {
         fontSize: number;

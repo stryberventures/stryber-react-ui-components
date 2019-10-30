@@ -17,6 +17,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         overflow: string;
         border: string;
         transition: string;
+        backgroundColor: string;
         display: string;
         justifyContent: string;
         '&:focus-within': {
@@ -27,6 +28,9 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
     invalidRoot: {
         border: string;
     };
+    disabledRoot: {
+        backgroundColor: string;
+    };
     inputWrapper: {
         flex: number;
         position: string;
@@ -36,11 +40,21 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         height: string;
         border: number;
         padding: number;
+        paddingBottom: number;
+        paddingTop: number;
+        backgroundColor: string;
+        transition: string;
+        color: string;
+        /** Getting values from Form context (if the field is wrapped inside a form */
         fontFamily: string;
         fontSize: number;
         '&:focus': {
+            color: string;
             outline: string;
         };
+    };
+    invalidInput: {
+        color: string;
     };
     placeholder: {
         pointerEvents: string;
@@ -50,6 +64,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         fontFamily: string;
         display: string;
         verticalAlign: string;
+        color: string;
         width: string;
         height: string;
         left: number;
@@ -82,7 +97,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         fontSize: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "inputWrapper" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
+    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "disabledRoot" | "inputWrapper" | "invalidInput" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
 }>;
 export default StyledInputField;
 export { StyledInputField as InputField };

@@ -14,6 +14,7 @@ export declare const FormContext: React.Context<IFormContext>;
 interface FormProps {
     onSubmit: (formData: any) => void;
     onError?: (errorData: any, formData: any) => void;
+    onChange?: (newFormData: any) => void;
     children: any;
     initialValues?: any;
     validationSchema?: any;

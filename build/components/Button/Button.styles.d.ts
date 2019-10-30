@@ -3,6 +3,7 @@ declare const _default: (theme: any) => {
         borderRadius: number;
         padding: number;
         border: string;
+        width: string;
     };
     content: {
         fontSize: number;

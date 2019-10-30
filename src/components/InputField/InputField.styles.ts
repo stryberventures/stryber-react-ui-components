@@ -5,6 +5,7 @@ export default (theme: any) => ({
     overflow: 'hidden',
     border: `solid 1px ${'#cfe2f2'}`,
     transition: '0.5s',
+    backgroundColor: '#fff',
 
     display: 'flex',
     justifyContent: 'space-between',
@@ -17,6 +18,9 @@ export default (theme: any) => ({
   invalidRoot: {
     border: `solid 1px ${'#d0021b'} !important`,
   },
+  disabledRoot: {
+    backgroundColor: '#f0f0f0',
+  },
   inputWrapper: {
     flex: 1,
     position: 'relative',
@@ -26,13 +30,25 @@ export default (theme: any) => ({
     height: '100%',
     border: 0,
     padding: 14,
+    paddingBottom: 5,
+    paddingTop: 23,
+    backgroundColor: 'rgba(0,0,0,0)',
+
+    transition: '0.5s',
+
+    color: '#54738c',
 
     fontFamily: 'galano-medium',
     fontSize: 14,
 
     '&:focus': {
+      color: '#007aff',
+
       outline: 'none',
     },
+  },
+  invalidInput: {
+    color: '#54738c !important',
   },
   placeholder: {
     pointerEvents: 'none',
@@ -43,6 +59,8 @@ export default (theme: any) => ({
 
     display: 'block',
     verticalAlign: 'center',
+
+    color: '#95acbf',
 
 
     width: '100%',
@@ -59,7 +77,7 @@ export default (theme: any) => ({
   },
   placeholderCollapsed: {
     fontSize: 10,
-    transform: 'translate(0, -12px) scale(0.75)',
+    transform: 'translate(0, -12px)',
   },
   prepend: {
     transition: '0.5s',

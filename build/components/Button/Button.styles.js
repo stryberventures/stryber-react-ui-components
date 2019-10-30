@@ -5,6 +5,7 @@ exports.default = (function (theme) { return ({
         borderRadius: 8,
         padding: 14,
         border: "solid 1px",
+        width: '100%',
     },
     content: {
         fontSize: 16,

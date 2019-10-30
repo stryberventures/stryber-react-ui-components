@@ -42,12 +42,12 @@ var classnames_1 = require("classnames");
 var InputField_styles_1 = require("./InputField.styles");
 var Form_1 = require("../Form");
 var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, onChange = props.onChange, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "onChange", "type"]);
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onChange = props.onChange, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onChange", "type"]);
     var _b = __read(React.useState(false), 2), isFocused = _b[0], setFocused = _b[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
     var _c = React.useContext(Form_1.FormContext), formOnChange = _c.onChange, formValues = _c.formValues, formErrors = _c.formErrors, formTouched = _c.formTouched, onBlur = _c.onBlur;
     var errorMsg = formTouched[name] && formErrors[name];
-    var _d = __read(React.useState(formValues && formValues[name]), 2), internalValue = _d[0], setInternalValue = _d[1];
+    var _d = __read(React.useState((formValues && formValues[name]) || value), 2), internalValue = _d[0], setInternalValue = _d[1];
     var onFocusWrapper = function (e) {
         setFocused(true);
     };
@@ -64,6 +64,7 @@ var InputField = function (props) {
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: classnames_1.default([
                 errorMsg ? classes.invalidRoot : null,
+                disabled ? classes.disabledRoot : null,
                 classes.root,
             ]) },
             React.createElement("div", { className: classnames_1.default([
@@ -73,13 +74,14 @@ var InputField = function (props) {
             React.createElement("div", { className: classes.inputWrapper },
                 placeholder ?
                     (React.createElement("div", { className: classnames_1.default([
+                            classes.placeholder,
                             (internalValue || isFocused) ? classes.placeholderCollapsed : null,
                             errorMsg ? classes.invalidPlaceholder : null,
-                            classes.placeholder,
                         ]) }, placeholder)) : null,
                 React.createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames_1.default([
                         classes.input,
-                    ]), value: internalValue, name: name, type: type }))),
+                        errorMsg ? classes.invalidInput : null,
+                    ]), disabled: disabled, value: internalValue, name: name, type: type }))),
             React.createElement("div", { className: classnames_1.default([
                     classes.append,
                 ]) })),

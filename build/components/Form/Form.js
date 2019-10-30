@@ -50,7 +50,7 @@ exports.FormContext = React.createContext({
 });
 /** Form component */
 var Form = function (props) {
-    var classes = props.classes, children = props.children, onSubmit = props.onSubmit, onError = props.onError, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["classes", "children", "onSubmit", "onError", "validationSchema", "initialValues"]);
+    var classes = props.classes, children = props.children, onSubmit = props.onSubmit, onChange = props.onChange, onError = props.onError, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["classes", "children", "onSubmit", "onChange", "onError", "validationSchema", "initialValues"]);
     /** State */
     var _a = __read(React.useState(initialValues || {}), 2), formValues = _a[0], setFormValues = _a[1];
     var _b = __read(React.useState({}), 2), formErrors = _b[0], setFormErrors = _b[1];
@@ -77,7 +77,10 @@ var Form = function (props) {
         newFormValues[name] = value;
         /** Validating new values */
         validate(newFormValues);
+        /** Setting new values in state */
         setFormValues(newFormValues);
+        /** Sending on change callback (if it was provided) */
+        onChange && onChange(newFormValues);
     };
     /** Updating field touched status (needed for a correct error display */
     var updateFormTouched = function (e) {

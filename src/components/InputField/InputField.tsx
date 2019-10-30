@@ -24,6 +24,7 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     placeholder,
     name,
     errorMessage,
+    value,
     onChange,
     type = 'text',
     ...rest
@@ -40,7 +41,7 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     onBlur,
   } = React.useContext(FormContext);
   const errorMsg = formTouched[name] && formErrors[name];
-  const [internalValue, setInternalValue] = React.useState(formValues && formValues[name]);
+  const [internalValue, setInternalValue] = React.useState((formValues && formValues[name]) || value);
 
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     setFocused(true);
@@ -61,6 +62,7 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
       <div
         className={ classNames([
           errorMsg ? classes.invalidRoot : null,
+          disabled ? classes.disabledRoot : null,
           classes.root,
         ]) }
       >
@@ -76,9 +78,9 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
             placeholder ?
               (<div
                 className={ classNames([
+                  classes.placeholder,
                   (internalValue || isFocused) ? classes.placeholderCollapsed : null,
                   errorMsg ? classes.invalidPlaceholder : null,
-                  classes.placeholder,
                 ]) }
               >
                 { placeholder }
@@ -91,7 +93,9 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
             { ...rest }
             className={ classNames([
               classes.input,
+              errorMsg ? classes.invalidInput : null,
             ]) }
+            disabled={disabled}
             value={internalValue}
             name={name}
             type={type}

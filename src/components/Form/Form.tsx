@@ -29,6 +29,7 @@ export const FormContext: React.Context<IFormContext> =
 interface FormProps {
   onSubmit: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
+  onChange?: (newFormData: any) => void;
   children: any;
   initialValues?: any;
   validationSchema?: any;
@@ -41,6 +42,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     classes,
     children,
     onSubmit,
+    onChange,
     onError,
     validationSchema,
     initialValues,
@@ -74,7 +76,11 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     /** Validating new values */
     validate(newFormValues);
 
+    /** Setting new values in state */
     setFormValues(newFormValues);
+
+    /** Sending on change callback (if it was provided) */
+    onChange && onChange(newFormValues);
   };
 
   /** Updating field touched status (needed for a correct error display */
