@@ -10,32 +10,25 @@
   },
   "peerDependencies": {
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-jss": "^10.0.0"
   },
   "dependencies": {
     "@types/classnames": "^2.2.8",
     "@types/jest": "24.0.15",
     "@types/node": "12.0.8",
-    "@types/react": "16.8.4",
-    "@types/react-dom": "16.8.4",
     "@types/react-helmet": "^5.0.8",
-    "@types/react-jss": "^8.6.4",
     "@types/react-router-dom": "^4.3.4",
     "@types/uuid": "^3.4.4",
-    "@types/yup": "^0.26.24",
     "classnames": "^2.2.6",
-    "react": "16.8.4",
-    "react-dom": "16.8.4",
     "react-helmet": "^5.2.1",
-    "react-jss": "^10.0.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "3.3.3",
-    "uuid": "^3.3.2",
-    "yup": "^0.27.0"
+    "uuid": "^3.3.2"
   },
   "files": [
     "build"
@@ -45,7 +38,7 @@
     "build": "npm run cleanup && npm run build:rollup",
     "watch:ts": "tsc -w",
     "build:ts": "tsc",
-    "build:rollup":  "rollup -c",
+    "build:rollup": "rollup -c",
     "cleanup": "rimraf build",
     "tslint": "tslint --project tsconfig.json"
   },
@@ -65,6 +58,14 @@
     ]
   },
   "devDependencies": {
+    "@types/react-dom": "16.8.4",
+    "react-dom": "16.8.4",
+    "@types/react": "16.8.4",
+    "react": "16.8.4",
+    "@types/react-jss": "^8.6.4",
+    "react-jss": "^10.0.0",
+    "yup": "^0.27.0",
+    "@types/yup": "^0.26.24",
     "@storybook/react": "5.1.9",
     "@types/storybook__react": "4.0.2",
     "awesome-typescript-loader": "5.2.1",
