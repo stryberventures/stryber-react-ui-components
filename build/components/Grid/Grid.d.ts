@@ -29,7 +29,7 @@ declare const StyledRow: React.ComponentType<Pick<RowProps & WithStyles<(theme: 
         gridColumnEnd: (props: any) => string;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"col" | "row", string>> | undefined;
+    classes?: Partial<Record<"row" | "col", string>> | undefined;
 }>;
 declare const StyledCol: React.ComponentType<Pick<ColProps & WithStyles<(theme: any) => {
     row: {
@@ -45,6 +45,6 @@ declare const StyledCol: React.ComponentType<Pick<ColProps & WithStyles<(theme: 
         gridColumnEnd: (props: any) => string;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"col" | "row", string>> | undefined;
+    classes?: Partial<Record<"row" | "col", string>> | undefined;
 }>;
 export { StyledRow as Row, StyledCol as Col, };

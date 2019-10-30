@@ -1,11 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
+import React__default, { createContext, Component, createElement, useState, useEffect, useContext, Fragment } from 'react';
 
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -1498,7 +1491,7 @@ function createUseTheme(context) {
   return useTheme;
 }
 
-var ThemeContext = React.createContext();
+var ThemeContext = createContext();
 
 function createTheming(context) {
   return {
@@ -6194,7 +6187,7 @@ var withStyles = function withStyles(styles, options) {
       };
 
       return WithStyles;
-    }(React.Component);
+    }(Component);
 
     WithStyles.displayName = "WithStyles(" + displayName + ")";
     WithStyles.defaultProps = _extends({}, InnerComponent.defaultProps);
@@ -6334,7 +6327,7 @@ function (_Component) {
   };
 
   return JssProvider;
-}(React.Component);
+}(Component);
 
 JssProvider.propTypes = {
   registry: propTypes.instanceOf(SheetsRegistry),
@@ -6372,7 +6365,7 @@ var theme = {
 
 var ThemeProvider$1 = function (props) {
     var children = props.children;
-    return (React.createElement(ThemeProvider, { theme: theme }, children));
+    return (createElement(ThemeProvider, { theme: theme }, children));
 };
 
 var styles = (function (theme) { return ({
@@ -6471,7 +6464,7 @@ var styles = (function (theme) { return ({
 
 var GlobalStyles = function (props) {
     var children = props.children;
-    return (React.createElement("div", null, children));
+    return (createElement("div", null, children));
 };
 var WrappedGlobalStyles = withStyles(styles)(GlobalStyles);
 
@@ -6601,8 +6594,8 @@ var styles$1 = (function (theme) { return ({
 
 var Button = function (props) {
     var classes = props.classes, children = props.children, disabled = props.disabled, onClick = props.onClick, _a = props.variant, variant = _a === void 0 ? 'primary' : _a, rest = __rest(props, ["classes", "children", "disabled", "onClick", "variant"]);
-    var renderContent = function () { return React.createElement("span", { className: classes.content }, children); };
-    return (React.createElement("button", __assign({}, rest, { className: classnames([
+    var renderContent = function () { return createElement("span", { className: classes.content }, children); };
+    return (createElement("button", __assign({}, rest, { className: classnames([
             classes.root,
             disabled ? classes.disabled : null,
             classes[variant],
@@ -6631,20 +6624,20 @@ var styles$2 = (function (theme) { return ({
 var Card = function (_a) {
     var classes = _a.classes, children = _a.children, rest = __rest(_a, ["classes", "children"]);
     // const renderContent = () => <span className={ classes.content }>{ children }</span>;
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.root,
         ]) }), children));
 };
 var Title = function (_a) {
     var classes = _a.classes, children = _a.children, rest = __rest(_a, ["classes", "children"]);
     // const renderContent = () => <span className={ classes.content }>{ children }</span>;
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.title,
         ]) }), children));
 };
 var Body = function (props) {
     var classes = props.classes, children = props.children, rest = __rest(props, ["classes", "children"]);
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.body,
         ]) }), children));
 };
@@ -6680,7 +6673,7 @@ var styles$3 = (function (theme) {
 
 var Container = function (props) {
     var children = props.children, classes = props.classes, rest = __rest(props, ["children", "classes"]);
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.root,
         ]) }), children));
 };
@@ -6726,13 +6719,13 @@ var styles$4 = (function (theme) {
 
 var Row = function (props) {
     var children = props.children, classes = props.classes, rest = __rest(props, ["children", "classes"]);
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.row,
         ]) }), children));
 };
 var Col = function (props) {
     var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes"]);
-    return (React.createElement("div", __assign({}, rest, { className: classnames([
+    return (createElement("div", __assign({}, rest, { className: classnames([
             classes.col,
         ]) }), children));
 };
@@ -6747,7 +6740,7 @@ var styles$5 = (function (theme) { return ({
     },
 }); });
 
-var FormContext = React.createContext({
+var FormContext = createContext({
     updateFormValue: function (name, data) { },
     updateFormTouched: function (name, data) { },
     unsetFormValue: function (name) { },
@@ -6760,9 +6753,9 @@ var FormContext = React.createContext({
 var Form = function (props) {
     var classes = props.classes, children = props.children, onSubmit = props.onSubmit, onChange = props.onChange, onError = props.onError, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["classes", "children", "onSubmit", "onChange", "onError", "validationSchema", "initialValues"]);
     /** State */
-    var _a = React.useState(initialValues || {}), formValues = _a[0], setFormValues = _a[1];
-    var _b = React.useState({}), formErrors = _b[0], setFormErrors = _b[1];
-    var _c = React.useState({}), formTouched = _c[0], setFormTouched = _c[1];
+    var _a = useState(initialValues || {}), formValues = _a[0], setFormValues = _a[1];
+    var _b = useState({}), formErrors = _b[0], setFormErrors = _b[1];
+    var _c = useState({}), formTouched = _c[0], setFormTouched = _c[1];
     /** Yup validate function wrapper */
     var validate = function (values) {
         if (validationSchema) {
@@ -6806,11 +6799,11 @@ var Form = function (props) {
         updateFormTouched(name, false);
     };
     /** Mount / unmount logic */
-    React.useEffect(function () {
+    useEffect(function () {
         /** Running first validation on mount */
         validate(formValues);
     }, []);
-    return (React.createElement("form", __assign({}, rest, { onSubmit: function (e) {
+    return (createElement("form", __assign({}, rest, { onSubmit: function (e) {
             e.preventDefault();
             if (Object.keys(formErrors).length > 0) {
                 onError && onError(formErrors, formValues);
@@ -6821,7 +6814,7 @@ var Form = function (props) {
         }, className: classnames([
             classes.root,
         ]) }),
-        React.createElement(FormContext.Provider, { value: {
+        createElement(FormContext.Provider, { value: {
                 updateFormValue: updateFormValue,
                 updateFormTouched: updateFormTouched,
                 unsetFormValue: unsetFormValue,
@@ -6925,11 +6918,11 @@ var styles$6 = (function (theme) { return ({
 var InputField = function (props) {
     var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onFocus = props.onFocus, onBlur = props.onBlur, onChange = props.onChange, _a = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _a === void 0 ? true : _a, _b = props.type, type = _b === void 0 ? 'text' : _b, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onFocus", "onBlur", "onChange", "clearFormValueOnUnmount", "type"]);
     /** Focus status (needed for styles) */
-    var _c = React.useState(false), isFocused = _c[0], setFocused = _c[1];
+    var _c = useState(false), isFocused = _c[0], setFocused = _c[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _d = React.useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
+    var _d = useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
     var errorMsg = formTouched[name] && formErrors[name];
-    var _e = React.useState((formValues && formValues[name]) || value), internalValue = _e[0], setInternalValue = _e[1];
+    var _e = useState((formValues && formValues[name]) || value), internalValue = _e[0], setInternalValue = _e[1];
     /** Wrappers to merge form and props methods */
     var onFocusWrapper = function (e) {
         onFocus && onFocus(e);
@@ -6948,7 +6941,7 @@ var InputField = function (props) {
         setInternalValue(targetValue);
     };
     /** On mount/unmount */
-    React.useEffect(function () {
+    useEffect(function () {
         /** On mount */
         /** Update form with internal value on mount */
         updateFormValue(name, internalValue);
@@ -6957,46 +6950,35 @@ var InputField = function (props) {
             clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
         };
     }, []);
-    return (React.createElement(React.Fragment, null,
-        React.createElement("div", { className: classnames([
+    return (createElement(Fragment, null,
+        createElement("div", { className: classnames([
                 errorMsg ? classes.invalidRoot : null,
                 disabled ? classes.disabledRoot : null,
                 classes.root,
             ]) },
-            React.createElement("div", { className: classnames([
+            createElement("div", { className: classnames([
                     errorMsg ? classes.invalidPrepend : null,
                     classes.prepend,
                 ]) }),
-            React.createElement("div", { className: classes.inputWrapper },
+            createElement("div", { className: classes.inputWrapper },
                 placeholder ?
-                    (React.createElement("div", { className: classnames([
+                    (createElement("div", { className: classnames([
                             classes.placeholder,
                             (internalValue || isFocused) ? classes.placeholderCollapsed : null,
                             errorMsg ? classes.invalidPlaceholder : null,
                         ]) }, placeholder)) : null,
-                React.createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames([
+                createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames([
                         classes.input,
                         placeholder ? classes.inputWithPlaceholder : null,
                         errorMsg ? classes.invalidInput : null,
                     ]), disabled: disabled, value: internalValue, name: name, type: type }))),
-            React.createElement("div", { className: classnames([
+            createElement("div", { className: classnames([
                     classes.append,
                 ]) })),
         errorMsg ?
-            (React.createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
+            (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
 };
 var StyledInputField = withStyles(styles$6)(InputField);
 
-exports.Body = StyledBody;
-exports.Button = StyledButton;
-exports.Col = StyledCol;
-exports.Container = StyledContainer;
-exports.Form = StyledForm;
-exports.FormContext = FormContext;
-exports.GlobalStyles = WrappedGlobalStyles;
-exports.InputField = StyledInputField;
-exports.Row = StyledRow;
-exports.ThemeProvider = ThemeProvider$1;
-exports.Title = StyledTitle;
-exports.Wrapper = StyledCard;
-//# sourceMappingURL=index.js.map
+export { StyledBody as Body, StyledButton as Button, StyledCol as Col, StyledContainer as Container, StyledForm as Form, FormContext, WrappedGlobalStyles as GlobalStyles, StyledInputField as InputField, StyledRow as Row, ThemeProvider$1 as ThemeProvider, StyledTitle as Title, StyledCard as Wrapper };
+//# sourceMappingURL=index.es.js.map

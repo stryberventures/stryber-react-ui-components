@@ -8,6 +8,8 @@ interface InputFieldProps {
     name: string;
     label?: string;
     type?: string;
+    onFocus?: (e: React.BaseSyntheticEvent) => void;
+    onBlur?: (e: React.BaseSyntheticEvent) => void;
     clearFormValueOnUnmount?: boolean;
     [key: string]: any;
 }
@@ -91,7 +93,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
     };
     invalidPrepend: {
         backgroundColor: string;
-    }; /** Update form with internal value on mount */
+    };
     append: {};
     errorMessage: {
         color: string;
@@ -99,7 +101,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         fontSize: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "disabledRoot" | "inputWrapper" | "inputWithPlaceholder" | "invalidInput" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
+    classes?: Partial<Record<"placeholder" | "root" | "invalidRoot" | "disabledRoot" | "inputWrapper" | "input" | "inputWithPlaceholder" | "invalidInput" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
 }>;
 export default StyledInputField;
 export { StyledInputField as InputField };

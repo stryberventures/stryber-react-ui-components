@@ -32,7 +32,7 @@ declare const StyledCard: React.ComponentType<Pick<CardProps & WithStyles<(theme
         flex: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"body" | "title" | "root", string>> | undefined;
+    classes?: Partial<Record<"root" | "title" | "body", string>> | undefined;
 }>;
 declare const StyledTitle: React.ComponentType<Pick<TitleProps & WithStyles<(theme: any) => {
     root: {
@@ -51,7 +51,7 @@ declare const StyledTitle: React.ComponentType<Pick<TitleProps & WithStyles<(the
         flex: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"body" | "title" | "root", string>> | undefined;
+    classes?: Partial<Record<"root" | "title" | "body", string>> | undefined;
 }>;
 declare const StyledBody: React.ComponentType<Pick<BodyProps & WithStyles<(theme: any) => {
     root: {
@@ -70,7 +70,7 @@ declare const StyledBody: React.ComponentType<Pick<BodyProps & WithStyles<(theme
         flex: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"body" | "title" | "root", string>> | undefined;
+    classes?: Partial<Record<"root" | "title" | "body", string>> | undefined;
 }>;
 export default StyledCard;
 export { StyledCard as Wrapper, StyledTitle as Title, StyledBody as Body, };
