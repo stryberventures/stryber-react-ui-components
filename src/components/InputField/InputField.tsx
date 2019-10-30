@@ -3,10 +3,13 @@ import withStyles, { WithStyles } from 'react-jss';
 import classNames from 'classnames';
 
 import styles from './InputField.styles';
+import { PrependBackground } from '../Icons';
 
 import { FormContext } from '../Form';
 
 interface InputFieldProps {
+  prependContent?: any;
+  appendContent?: any;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
   onChange?: (e: React.BaseSyntheticEvent) => void;
@@ -31,6 +34,8 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     onFocus,
     onBlur,
     onChange,
+    prependContent,
+    appendContent,
     clearFormValueOnUnmount = true,
     type = 'text',
     ...rest
@@ -85,17 +90,20 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     <>
       <div
         className={ classNames([
+          classes.root,
           errorMsg ? classes.invalidRoot : null,
           disabled ? classes.disabledRoot : null,
-          classes.root,
         ]) }
       >
         <div
           className={ classNames([
-            errorMsg ? classes.invalidPrepend : null,
             classes.prepend,
+            prependContent ? classes.prependMargin : null,
+            errorMsg ? classes.invalidPrepend : null,
           ]) }
         >
+          { prependContent ? <div className={classes.prependContent}>{ prependContent }</div> : null }
+          { prependContent ? <PrependBackground className={classes.prependBackground} /> : null }
         </div>
         <div className={classes.inputWrapper}>
           {
