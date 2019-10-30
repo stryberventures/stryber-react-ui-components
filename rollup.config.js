@@ -25,11 +25,10 @@ export default {
     external(),
     resolve(),
     typescript({
-      abortOnError: false,
+      abortOnError: true,
       rollupCommonJSResolveHack: true,
       exclude: "**/__tests__/**",
-      clean: true,
-      verbosity: 0
+      clean: true
     }),
     commonjs({
       include: ["node_modules/**"],
