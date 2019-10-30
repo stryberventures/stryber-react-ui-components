@@ -11,6 +11,10 @@ storiesOf('Input field', module)
         <InputField
           variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+        />
+        <InputField
+          variant="primary"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Some text field"
         />
         <InputField

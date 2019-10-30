@@ -2,11 +2,12 @@ import * as React from 'react';
 import { WithStyles } from 'react-jss';
 /** Context used by input fields within the form */
 export interface IFormContext {
+    updateFormValue: (name: string, data: any) => void;
+    updateFormTouched: (name: string, data: any) => void;
+    unsetFormValue: (name: any) => void;
     formValues: any;
     formErrors: any;
     formTouched: any;
-    onChange: (data: any) => void;
-    onBlur: (data: any) => void;
     initialValues?: any;
 }
 export declare const FormContext: React.Context<IFormContext>;

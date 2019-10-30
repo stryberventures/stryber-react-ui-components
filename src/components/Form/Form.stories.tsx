@@ -13,12 +13,8 @@ const ExternalFormControlExample = (props: any) => {
     <Form
       {...props}
       onSubmit={(formData: any) => console.log('onSubmit external', formData)}
-      onChange={(formData: any) => updateFormState(formData)}
+      onChange={(formData: any) => { console.log('onChange external', formData); updateFormState(formData) }}
       onError={(errorData: any, formData: any) => console.log('onError external', errorData, formData)}
-      initialValues={{
-        age: '',
-        email: '',
-      }}
       validationSchema={yup.object({
         email: yup.string().email().required(),
         age: yup.number().required(),

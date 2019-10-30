@@ -3,11 +3,12 @@ import { WithStyles } from 'react-jss';
 interface InputFieldProps {
     disabled?: boolean;
     variant?: 'primary' | 'secondary';
-    onChange?: (e: React.SyntheticEvent) => void;
+    onChange?: (e: React.BaseSyntheticEvent) => void;
     placeholder?: string;
     name: string;
     label?: string;
     type?: string;
+    clearFormValueOnUnmount?: boolean;
     [key: string]: any;
 }
 declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<(theme: any) => {
@@ -40,12 +41,9 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         height: string;
         border: number;
         padding: number;
-        paddingBottom: number;
-        paddingTop: number;
         backgroundColor: string;
         transition: string;
         color: string;
-        /** Getting values from Form context (if the field is wrapped inside a form */
         fontFamily: string;
         fontSize: number;
         '&:focus': {
@@ -53,8 +51,14 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
             outline: string;
         };
     };
+    inputWithPlaceholder: {
+        paddingBottom: number;
+        paddingTop: number;
+    };
     invalidInput: {
-        color: string;
+        '&:focus': {
+            color: string;
+        };
     };
     placeholder: {
         pointerEvents: string;
@@ -74,9 +78,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         transform: string;
         transformOrigin: string;
     };
-    invalidPlaceholder: {
-        color: string;
-    };
+    invalidPlaceholder: {};
     placeholderCollapsed: {
         fontSize: number;
         transform: string;
@@ -89,7 +91,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
     };
     invalidPrepend: {
         backgroundColor: string;
-    };
+    }; /** Update form with internal value on mount */
     append: {};
     errorMessage: {
         color: string;
@@ -97,7 +99,7 @@ declare const StyledInputField: React.ComponentType<Pick<InputFieldProps & React
         fontSize: number;
     };
 }>, React.ReactText> & {
-    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "disabledRoot" | "inputWrapper" | "invalidInput" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
+    classes?: Partial<Record<"input" | "placeholder" | "root" | "invalidRoot" | "disabledRoot" | "inputWrapper" | "inputWithPlaceholder" | "invalidInput" | "invalidPlaceholder" | "placeholderCollapsed" | "prepend" | "invalidPrepend" | "append" | "errorMessage", string>> | undefined;
 }>;
 export default StyledInputField;
 export { StyledInputField as InputField };

@@ -41,8 +41,9 @@ var react_jss_1 = require("react-jss");
 var classnames_1 = require("classnames");
 var Form_styles_1 = require("./Form.styles");
 exports.FormContext = React.createContext({
-    onChange: function (data) { },
-    onBlur: function (data) { },
+    updateFormValue: function (name, data) { },
+    updateFormTouched: function (name, data) { },
+    unsetFormValue: function (name) { },
     formValues: {},
     formErrors: {},
     formTouched: {},
@@ -71,26 +72,35 @@ var Form = function (props) {
         }
     };
     /** Updating form values whenever a change is made within an input field */
-    var updateFormValue = function (e) {
-        var _a = e.target, name = _a.name, value = _a.value;
-        var newFormValues = __assign({}, formValues);
-        newFormValues[name] = value;
-        /** Validating new values */
-        validate(newFormValues);
+    var updateFormValue = function (name, value) {
         /** Setting new values in state */
-        setFormValues(newFormValues);
-        /** Sending on change callback (if it was provided) */
-        onChange && onChange(newFormValues);
+        setFormValues(function (formValues) {
+            var newFormValues = __assign({}, formValues);
+            /** Validating new values */
+            validate(newFormValues);
+            newFormValues[name] = value;
+            /** Sending on change callback (if it was provided) */
+            onChange && onChange(__assign({}, newFormValues));
+            return newFormValues;
+        });
     };
     /** Updating field touched status (needed for a correct error display */
-    var updateFormTouched = function (e) {
-        var name = e.target.name;
-        var newFormTouched = __assign({}, formTouched);
-        newFormTouched[name] = true;
-        setFormTouched(newFormTouched);
+    var updateFormTouched = function (name, touched) {
+        if (touched === void 0) { touched = true; }
+        setFormTouched(function (formTouched) {
+            var newFormTouched = __assign({}, formTouched);
+            newFormTouched[name] = touched;
+            setFormTouched(newFormTouched);
+        });
     };
-    /** Running first validation on mount */
+    /** Un-setting value (clearing it from the form) */
+    var unsetFormValue = function (name) {
+        updateFormValue(name, undefined);
+        updateFormTouched(name, false);
+    };
+    /** Mount / unmount logic */
     React.useEffect(function () {
+        /** Running first validation on mount */
         validate(formValues);
     }, []);
     return (React.createElement("form", __assign({}, rest, { onSubmit: function (e) {
@@ -105,8 +115,9 @@ var Form = function (props) {
             classes.root,
         ]) }),
         React.createElement(exports.FormContext.Provider, { value: {
-                onChange: updateFormValue,
-                onBlur: updateFormTouched,
+                updateFormValue: updateFormValue,
+                updateFormTouched: updateFormTouched,
+                unsetFormValue: unsetFormValue,
                 initialValues: initialValues,
                 formValues: formValues,
                 formErrors: formErrors,

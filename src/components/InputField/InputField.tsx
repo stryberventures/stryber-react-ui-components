@@ -9,11 +9,12 @@ import { FormContext } from '../Form';
 interface InputFieldProps {
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
-  onChange?: (e: React.SyntheticEvent) => void;
+  onChange?: (e: React.BaseSyntheticEvent) => void;
   placeholder?: string;
   name: string;
   label?: string;
   type?: string;
+  clearFormValueOnUnmount?: boolean;
   [key: string]: any;
 }
 
@@ -26,36 +27,53 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     errorMessage,
     value,
     onChange,
+    clearFormValueOnUnmount = true,
     type = 'text',
     ...rest
   } = props;
 
+  /** Focus status (needed for styles) */
   const [isFocused, setFocused] = React.useState(false);
 
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
-    onChange: formOnChange,
+    updateFormValue,
+    updateFormTouched,
+    unsetFormValue,
     formValues,
     formErrors,
     formTouched,
-    onBlur,
   } = React.useContext(FormContext);
   const errorMsg = formTouched[name] && formErrors[name];
   const [internalValue, setInternalValue] = React.useState((formValues && formValues[name]) || value);
 
+  /** Wrappers to merge form and props methods */
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     setFocused(true);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
-    onBlur && onBlur(e);
+    const { name, value: targetValue } = e.target;
+    updateFormTouched && updateFormTouched(name, targetValue);
     setFocused(false);
   };
-  const onChangeWrapper = (e: any) => {
-    formOnChange && formOnChange(e);
+  const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
+    const { name, value: targetValue } = e.target;
+    updateFormValue && updateFormValue(name, targetValue);
     onChange && onChange(e);
-    const value = e.target.value;
-    setInternalValue(value);
+    setInternalValue(targetValue);
   };
+
+  /** On mount/unmount */
+  React.useEffect(() => {
+    /** On mount */
+    /** Update form with internal value on mount */
+    updateFormValue(name, internalValue);
+
+    /** On unmount */
+    return () => {
+      clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+    };
+  }, []);
 
   return (
     <>
@@ -93,6 +111,7 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
             { ...rest }
             className={ classNames([
               classes.input,
+              placeholder ? classes.inputWithPlaceholder : null,
               errorMsg ? classes.invalidInput : null,
             ]) }
             disabled={disabled}

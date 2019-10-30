@@ -7,18 +7,20 @@ import styles from './Form.styles';
 
 /** Context used by input fields within the form */
 export interface IFormContext {
+  updateFormValue: (name: string, data: any) => void;
+  updateFormTouched: (name: string, data: any) => void;
+  unsetFormValue: (name: any) => void,
   formValues: any;
   formErrors: any;
   formTouched: any;
-  onChange: (data: any) => void;
-  onBlur: (data: any) => void;
   initialValues?: any;
 }
 
 export const FormContext: React.Context<IFormContext> =
   React.createContext({
-    onChange: (data: any) => {},
-    onBlur: (data: any) => {},
+    updateFormValue: (name: string, data: any) => {},
+    updateFormTouched: (name: string, data: any) => {},
+    unsetFormValue: (name: any) => {},
     formValues: {},
     formErrors: {},
     formTouched: {},
@@ -68,31 +70,42 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   };
 
   /** Updating form values whenever a change is made within an input field */
-  const updateFormValue = (e: React.BaseSyntheticEvent) => {
-    const { name, value } = e.target;
-    const newFormValues = { ...formValues };
-    newFormValues[name] = value;
-
-    /** Validating new values */
-    validate(newFormValues);
-
+  const updateFormValue = (name: string, value: any) => {
     /** Setting new values in state */
-    setFormValues(newFormValues);
+    setFormValues((formValues: any) => {
+      const newFormValues = { ...formValues };
 
-    /** Sending on change callback (if it was provided) */
-    onChange && onChange(newFormValues);
+      /** Validating new values */
+      validate(newFormValues);
+
+      newFormValues[name] = value;
+
+      /** Sending on change callback (if it was provided) */
+      onChange && onChange({ ...newFormValues });
+
+      return newFormValues;
+    });
+
   };
 
   /** Updating field touched status (needed for a correct error display */
-  const updateFormTouched = (e: React.BaseSyntheticEvent) => {
-    const { name } = e.target;
-    const newFormTouched = { ...formTouched };
-    newFormTouched[name] = true;
-    setFormTouched(newFormTouched);
+  const updateFormTouched = (name: string, touched: boolean = true) => {
+    setFormTouched((formTouched: any) => {
+      const newFormTouched = {...formTouched};
+      newFormTouched[name] = touched;
+      setFormTouched(newFormTouched);
+    });
   };
 
-  /** Running first validation on mount */
+  /** Un-setting value (clearing it from the form) */
+  const unsetFormValue = (name: string) => {
+    updateFormValue(name, undefined);
+    updateFormTouched(name, false);
+  };
+
+  /** Mount / unmount logic */
   React.useEffect(() => {
+    /** Running first validation on mount */
     validate(formValues);
   }, []);
 
@@ -113,8 +126,9 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     >
       <FormContext.Provider
         value={{
-          onChange: updateFormValue,
-          onBlur: updateFormTouched,
+          updateFormValue,
+          updateFormTouched,
+          unsetFormValue,
           initialValues,
           formValues,
           formErrors,

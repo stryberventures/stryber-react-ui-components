@@ -42,25 +42,38 @@ var classnames_1 = require("classnames");
 var InputField_styles_1 = require("./InputField.styles");
 var Form_1 = require("../Form");
 var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onChange = props.onChange, _a = props.type, type = _a === void 0 ? 'text' : _a, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onChange", "type"]);
-    var _b = __read(React.useState(false), 2), isFocused = _b[0], setFocused = _b[1];
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onChange = props.onChange, _a = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _a === void 0 ? true : _a, _b = props.type, type = _b === void 0 ? 'text' : _b, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onChange", "clearFormValueOnUnmount", "type"]);
+    /** Focus status (needed for styles) */
+    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _c = React.useContext(Form_1.FormContext), formOnChange = _c.onChange, formValues = _c.formValues, formErrors = _c.formErrors, formTouched = _c.formTouched, onBlur = _c.onBlur;
+    var _d = React.useContext(Form_1.FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
     var errorMsg = formTouched[name] && formErrors[name];
-    var _d = __read(React.useState((formValues && formValues[name]) || value), 2), internalValue = _d[0], setInternalValue = _d[1];
+    var _e = __read(React.useState((formValues && formValues[name]) || value), 2), internalValue = _e[0], setInternalValue = _e[1];
+    /** Wrappers to merge form and props methods */
     var onFocusWrapper = function (e) {
         setFocused(true);
     };
     var onBlurWrapper = function (e) {
-        onBlur && onBlur(e);
+        var _a = e.target, name = _a.name, targetValue = _a.value;
+        updateFormTouched && updateFormTouched(name, targetValue);
         setFocused(false);
     };
     var onChangeWrapper = function (e) {
-        formOnChange && formOnChange(e);
+        var _a = e.target, name = _a.name, targetValue = _a.value;
+        updateFormValue && updateFormValue(name, targetValue);
         onChange && onChange(e);
-        var value = e.target.value;
-        setInternalValue(value);
+        setInternalValue(targetValue);
     };
+    /** On mount/unmount */
+    React.useEffect(function () {
+        /** On mount */
+        /** Update form with internal value on mount */
+        updateFormValue(name, internalValue);
+        /** On unmount */
+        return function () {
+            clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+        };
+    }, []);
     return (React.createElement(React.Fragment, null,
         React.createElement("div", { className: classnames_1.default([
                 errorMsg ? classes.invalidRoot : null,
@@ -80,6 +93,7 @@ var InputField = function (props) {
                         ]) }, placeholder)) : null,
                 React.createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames_1.default([
                         classes.input,
+                        placeholder ? classes.inputWithPlaceholder : null,
                         errorMsg ? classes.invalidInput : null,
                     ]), disabled: disabled, value: internalValue, name: name, type: type }))),
             React.createElement("div", { className: classnames_1.default([

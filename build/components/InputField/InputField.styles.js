@@ -30,8 +30,6 @@ exports.default = (function (theme) { return ({
         height: '100%',
         border: 0,
         padding: 14,
-        paddingBottom: 5,
-        paddingTop: 23,
         backgroundColor: 'rgba(0,0,0,0)',
         transition: '0.5s',
         color: '#54738c',
@@ -42,13 +40,19 @@ exports.default = (function (theme) { return ({
             outline: 'none',
         },
     },
+    inputWithPlaceholder: {
+        paddingBottom: 5,
+        paddingTop: 23,
+    },
     invalidInput: {
-        color: '#54738c !important',
+        '&:focus': {
+            color: '#d0021b !important',
+        },
     },
     placeholder: {
         pointerEvents: 'none',
         position: 'absolute',
-        transition: '0.5s',
+        transition: '0.2s',
         fontSize: 14,
         fontFamily: 'galano-medium',
         display: 'block',
@@ -63,9 +67,7 @@ exports.default = (function (theme) { return ({
         transform: 'translate(0, 0px)',
         transformOrigin: 'left',
     },
-    invalidPlaceholder: {
-        color: '#d0021b',
-    },
+    invalidPlaceholder: {},
     placeholderCollapsed: {
         fontSize: 10,
         transform: 'translate(0, -12px)',

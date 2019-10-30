@@ -28,8 +28,6 @@ declare const _default: (theme: any) => {
         height: string;
         border: number;
         padding: number;
-        paddingBottom: number;
-        paddingTop: number;
         backgroundColor: string;
         transition: string;
         color: string;
@@ -40,8 +38,14 @@ declare const _default: (theme: any) => {
             outline: string;
         };
     };
+    inputWithPlaceholder: {
+        paddingBottom: number;
+        paddingTop: number;
+    };
     invalidInput: {
-        color: string;
+        '&:focus': {
+            color: string;
+        };
     };
     placeholder: {
         pointerEvents: string;
@@ -61,9 +65,7 @@ declare const _default: (theme: any) => {
         transform: string;
         transformOrigin: string;
     };
-    invalidPlaceholder: {
-        color: string;
-    };
+    invalidPlaceholder: {};
     placeholderCollapsed: {
         fontSize: number;
         transform: string;

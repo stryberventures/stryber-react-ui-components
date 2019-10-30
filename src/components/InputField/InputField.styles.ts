@@ -30,8 +30,6 @@ export default (theme: any) => ({
     height: '100%',
     border: 0,
     padding: 14,
-    paddingBottom: 5,
-    paddingTop: 23,
     backgroundColor: 'rgba(0,0,0,0)',
 
     transition: '0.5s',
@@ -47,13 +45,19 @@ export default (theme: any) => ({
       outline: 'none',
     },
   },
+  inputWithPlaceholder: {
+    paddingBottom: 5,
+    paddingTop: 23,
+  },
   invalidInput: {
-    color: '#54738c !important',
+    '&:focus': {
+      color: '#d0021b !important',
+    },
   },
   placeholder: {
     pointerEvents: 'none',
     position: 'absolute',
-    transition: '0.5s',
+    transition: '0.2s',
     fontSize: 14,
     fontFamily: 'galano-medium',
 
@@ -73,7 +77,6 @@ export default (theme: any) => ({
     transformOrigin: 'left',
   },
   invalidPlaceholder: {
-    color: '#d0021b',
   },
   placeholderCollapsed: {
     fontSize: 10,
