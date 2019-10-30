@@ -75,6 +75,29 @@ declare const _default: (theme: any) => {
         position: string;
         backgroundColor: string;
         minWidth: number;
+        overflow: string;
+        display: string;
+        alignItems: string;
+        justifyContent: string;
+        zIndex: number;
+    };
+    prependMargin: {
+        marginRight: number;
+    };
+    prependContent: {
+        color: string;
+        display: string;
+        alignItems: string;
+        justifyContent: string;
+        padding: number;
+        paddingLeft: number;
+        height: string;
+    };
+    prependBackground: {
+        right: number;
+        zIndex: number;
+        position: string;
+        height: string;
     };
     invalidPrepend: {
         backgroundColor: string;

@@ -566,6 +566,29 @@ var styles$6 = (function (theme) { return ({
         position: 'relative',
         backgroundColor: '#007aff',
         minWidth: 7,
+        overflow: 'visible',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1,
+    },
+    prependMargin: {
+        marginRight: 20,
+    },
+    prependContent: {
+        color: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 8,
+        paddingLeft: 17,
+        height: '100%',
+    },
+    prependBackground: {
+        right: -20,
+        zIndex: -1,
+        position: 'absolute',
+        height: '105%',
     },
     invalidPrepend: {
         backgroundColor: '#d0021b',
@@ -578,8 +601,18 @@ var styles$6 = (function (theme) { return ({
     },
 }); });
 
+var PrependBackground = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 53 44" }, props),
+    createElement("defs", null,
+        createElement("path", { d: "M48.5,3 L48.5,30.6772753 C48.5,33.3843845 47.1309491,35.9078541 44.8615528,37.383754 L31.3615528,46.1634678 C28.7096004,47.8881628 25.2903996,47.8881628 22.6384472,46.1634678 L9.13844716,37.383754 C6.86905092,35.9078541 5.5,33.3843845 5.5,30.6772753 L5.5,3 C5.5,-1.418278 9.081722,-5 13.5,-5 L40.5,-5 C44.918278,-5 48.5,-1.418278 48.5,3 Z", id: "path-1" })),
+    createElement("g", { id: "Page-1", stroke: "none", strokeWidth: "1", fill: "none", fillRule: "evenodd" },
+        createElement("g", { id: "Forms", transform: "translate(-306.000000, -1087.000000)" },
+            createElement("g", { id: "Group", transform: "translate(306.000000, 1087.000000)" },
+                createElement("mask", { id: "mask-2", fill: "white" },
+                    createElement("use", { xlinkHref: "#path-1" })),
+                createElement("use", { id: "Mask", fill: "#007AFF", transform: "translate(27.000000, 22.000000) rotate(-90.000000) translate(-27.000000, -22.000000) ", xlinkHref: "#path-1" })))))); });
+
 var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onFocus = props.onFocus, onBlur = props.onBlur, onChange = props.onChange, _a = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _a === void 0 ? true : _a, _b = props.type, type = _b === void 0 ? 'text' : _b, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onFocus", "onBlur", "onChange", "clearFormValueOnUnmount", "type"]);
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onFocus = props.onFocus, onBlur = props.onBlur, onChange = props.onChange, prependContent = props.prependContent, appendContent = props.appendContent, _a = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _a === void 0 ? true : _a, _b = props.type, type = _b === void 0 ? 'text' : _b, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onFocus", "onBlur", "onChange", "prependContent", "appendContent", "clearFormValueOnUnmount", "type"]);
     /** Focus status (needed for styles) */
     var _c = useState(false), isFocused = _c[0], setFocused = _c[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
@@ -615,14 +648,17 @@ var InputField = function (props) {
     }, []);
     return (createElement(Fragment, null,
         createElement("div", { className: classnames([
+                classes.root,
                 errorMsg ? classes.invalidRoot : null,
                 disabled ? classes.disabledRoot : null,
-                classes.root,
             ]) },
             createElement("div", { className: classnames([
-                    errorMsg ? classes.invalidPrepend : null,
                     classes.prepend,
-                ]) }),
+                    prependContent ? classes.prependMargin : null,
+                    errorMsg ? classes.invalidPrepend : null,
+                ]) },
+                prependContent ? createElement("div", { className: classes.prependContent }, prependContent) : null,
+                prependContent ? createElement(PrependBackground, { className: classes.prependBackground }) : null),
             createElement("div", { className: classes.inputWrapper },
                 placeholder ?
                     (createElement("div", { className: classnames([
