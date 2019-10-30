@@ -14,6 +14,8 @@ interface InputFieldProps {
   name: string;
   label?: string;
   type?: string;
+  onFocus?: (e: React.BaseSyntheticEvent) => void;
+  onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
   [key: string]: any;
 }
@@ -26,6 +28,8 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     name,
     errorMessage,
     value,
+    onFocus,
+    onBlur,
     onChange,
     clearFormValueOnUnmount = true,
     type = 'text',
@@ -49,11 +53,13 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
 
   /** Wrappers to merge form and props methods */
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    onFocus && onFocus(e);
     setFocused(true);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
-    const { name, value: targetValue } = e.target;
-    updateFormTouched && updateFormTouched(name, targetValue);
+    const { name } = e.target;
+    onBlur && onBlur(e);
+    updateFormTouched && updateFormTouched(name, true);
     setFocused(false);
   };
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {

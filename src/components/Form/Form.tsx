@@ -74,11 +74,10 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     /** Setting new values in state */
     setFormValues((formValues: any) => {
       const newFormValues = { ...formValues };
+      newFormValues[name] = value;
 
       /** Validating new values */
       validate(newFormValues);
-
-      newFormValues[name] = value;
 
       /** Sending on change callback (if it was provided) */
       onChange && onChange({ ...newFormValues });
