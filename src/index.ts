@@ -1,10 +1,6 @@
 /**
  * Here we export all of the stuff from the library
  */
-// @ts-ignore
-import React from 'react';
-// @ts-ignore
-import ReactDOM from 'react-dom';
 
 export * from './components/ThemeProvider';
 export * from './components/GlobalStyles';

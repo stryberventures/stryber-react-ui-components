@@ -1,3 +1,6 @@
+/**
+ * Here we export all of the stuff from the library
+ */
 export * from './components/ThemeProvider';
 export * from './components/GlobalStyles';
 export * from './components/Button';
