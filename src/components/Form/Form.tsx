@@ -2,7 +2,6 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import classNames from 'classnames';
 import * as yup from 'yup';
-import { v4 as uuid } from 'uuid';
 
 import styles from './Form.styles';
 
@@ -58,7 +57,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   const [formValues, setFormValues] = React.useState(initialValues || {});
   const [formErrors, setFormErrors] = React.useState({});
   const [formTouched, setFormTouched] = React.useState({});
-  const [formSessionId, setFormSessionId] = React.useState(uuid());
+  const [formSessionId, setFormSessionId] = React.useState(1);
 
   /** Yup validate function wrapper */
   const validate = (values: any) => {
@@ -119,7 +118,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     e.preventDefault();
     onReset && onReset(formValues);
     setFormValues(initialValues || {});
-    setFormSessionId(uuid());
+    setFormSessionId((id) => id + 1);
   };
 
   /** Mount / unmount logic */
