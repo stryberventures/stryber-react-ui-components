@@ -3,20 +3,20 @@ export default (theme: any) => ({
     position: 'relative',
     borderRadius: 8,
     overflow: 'hidden',
-    border: `solid 1px ${'#cfe2f2'}`,
+    border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
     transition: '0.5s',
-    backgroundColor: '#fff',
+    backgroundColor: theme.backgroundColorSecondary || '#fff',
 
     display: 'flex',
     justifyContent: 'space-between',
 
     '&:focus-within': {
-      border: `solid 1px ${'#007aff'}`,
+      border: `solid 1px ${theme.inputColorHighlight || '#007aff'}`,
       outline: 'none',
     },
   },
   invalidRoot: {
-    border: `solid 1px ${'#d0021b'} !important`,
+    border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
   disabledRoot: {
     backgroundColor: '#f0f0f0',
@@ -34,14 +34,13 @@ export default (theme: any) => ({
 
     transition: '0.5s',
 
-    color: '#54738c',
+    color: theme.inputColorIdle || '#54738c',
 
     fontFamily: 'galano-medium',
     fontSize: 14,
 
     '&:focus': {
-      color: '#007aff',
-
+      color: theme.inputColorHighlight || '#007aff',
       outline: 'none',
     },
   },
@@ -51,7 +50,7 @@ export default (theme: any) => ({
   },
   invalidInput: {
     '&:focus': {
-      color: '#d0021b !important',
+      color: `${theme.inputColorError || '#d0021b'} !important`,
     },
   },
   placeholder: {
@@ -64,7 +63,7 @@ export default (theme: any) => ({
     display: 'block',
     verticalAlign: 'center',
 
-    color: '#95acbf',
+    color: theme.inputPlaceholderColorIdle || '#95acbf',
 
 
     width: '100%',
@@ -85,7 +84,7 @@ export default (theme: any) => ({
   prepend: {
     transition: '0.5s',
     position: 'relative',
-    backgroundColor: '#007aff',
+    backgroundColor: theme.inputColorHighlight || '#007aff',
     minWidth: 7,
     overflow: 'visible',
     display: 'flex',
@@ -102,7 +101,7 @@ export default (theme: any) => ({
     alignItems: 'center',
     justifyContent: 'center',
 
-    color: '#fff',
+    color: theme.backgroundColorSecondary || '#fff',
 
     padding: 8,
     paddingLeft: 17,
@@ -115,7 +114,7 @@ export default (theme: any) => ({
     height: '105%',
   },
   invalidPrepend: {
-    backgroundColor: '#d0021b',
+    backgroundColor: theme.inputColorError || '#d0021b',
   },
   append: {
     display: 'flex',
@@ -125,7 +124,7 @@ export default (theme: any) => ({
     paddingLeft: 20,
   },
   errorMessage: {
-    color: '#ea3546',
+    color: theme.inputErrorMessageColor || '#ea3546',
     fontFamily: 'galano-light',
     fontSize: 10,
   },

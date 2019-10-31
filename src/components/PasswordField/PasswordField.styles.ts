@@ -11,10 +11,10 @@ export default (theme: any) => ({
   icon: {
     width: 20,
     transition: '0.3s',
-    fill: '#cfe2f2',
+    fill: theme.inputColorBorderIdle || '#cfe2f2',
 
     '&:hover': {
-      fill: '#007aff',
+      fill: theme.inputColorHighlight || '#007aff',
     },
   }
 });

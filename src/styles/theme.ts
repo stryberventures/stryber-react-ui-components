@@ -1,13 +1,26 @@
 export default {
-  backgroundColorPrimary: '#007aff',
-  backgroundColorPrimaryHover: '#278eff',
-  backgroundColorPrimaryClick: '#62adff',
-  backgroundColorSecondary: '#fff',
-  backgroundColorSecondaryHover: '#f5f5f5',
-  backgroundColorSecondaryClick: '#ebebeb',
-  backgroundColorDisabled: '#d2d2d2',
+  /** Button colors */
+  buttonColorPrimary: '#fff',
+  buttonColorSecondary: '#007aff',
 
-  gridColumnSize: 70,
+  buttonBackgroundColorPrimary: '#007aff',
+  buttonBackgroundColorPrimaryHover: '#278eff',
+  buttonBackgroundColorPrimaryClick: '#62adff',
+  buttonBackgroundColorSecondary: '#fff',
+  buttonBackgroundColorSecondaryHover: '#f5f5f5',
+  buttonBackgroundColorSecondaryClick: '#ebebeb',
+  buttonBackgroundColorDisabled: '#d2d2d2',
+
+  /** Input fields */
+  inputColorIdle: '#54738c',
+  inputColorBorderIdle: '#cfe2f2',
+  inputColorHighlight: '#007aff',
+  inputColorError: '#d0021b',
+  inputPlaceholderColorIdle: '#95acbf',
+  inputErrorMessageColor: '#ea3546',
+  inputBackgroundColorDisabled: '#f0f0f0',
+
+  /** Grid */
   gridColumnGap: 20,
   gridColumns: 12,
 

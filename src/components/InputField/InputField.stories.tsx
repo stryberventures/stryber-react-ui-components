@@ -45,6 +45,14 @@ storiesOf('Input field', module)
           placeholder="Text field with append"
           value="Value"
         />
+          <InputField
+            variant="primary"
+            prependContent={<ProfileIcon />}
+            appendContent={<div>yyy</div>}
+            onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+            placeholder="Text field with append and prepend"
+            value="Value"
+          />
       </Wrapper>
     );
   });

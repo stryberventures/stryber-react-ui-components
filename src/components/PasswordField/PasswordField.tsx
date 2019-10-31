@@ -20,9 +20,7 @@ const PasswordField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElemen
       className={classes.append}
       onClick={() => setShowPassword(currVal => !currVal)}
     >
-      { showPassword ?
-        <Eye className={classes.icon} /> :
-        <EyeDisabled className={classes.icon} /> }
+      { showPassword ? (<Eye className={classes.icon} />) : (<EyeDisabled className={classes.icon} />) }
     </div>
   );
 
