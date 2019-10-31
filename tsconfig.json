@@ -21,7 +21,10 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "build", "**/*.stories.*", "src/storybook"]

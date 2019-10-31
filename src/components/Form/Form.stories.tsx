@@ -37,8 +37,23 @@ const ExternalFormControlExample = (props: any) => {
           (<InputField
             name="age"
             placeholder="Age"
+            type="number"
           />) : null
       }
+      <InputField
+        type="radio"
+        variant="primary"
+        name="select"
+        placeholder="Text field with append"
+        value="option 1"
+      />
+      <InputField
+        type="radio"
+        variant="primary"
+        name="select"
+        placeholder="Text field with append"
+        value="option 2"
+      />
       <Button
         name="Submit"
         value="Submit"

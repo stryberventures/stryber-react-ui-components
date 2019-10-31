@@ -1,43 +1,39 @@
 import * as React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
-import classNames from 'classnames';
-
-import styles from './InputField.styles';
-import { PrependBackground } from '../Icons';
 
 import { FormContext } from '../Form';
+import { TextField } from './Fields/TextField';
 
-interface InputFieldProps {
-  prependContent?: any;
-  appendContent?: any;
-  disabled?: boolean;
-  variant?: 'primary' | 'secondary';
-  onChange?: (e: React.BaseSyntheticEvent) => void;
-  placeholder?: string;
-  name: string;
-  label?: string;
+export interface IInputFieldProps {
+  name?: string;
   type?: string;
+  placeholder?: string;
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+  onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
+  prependContent?: any;
+  appendContent?: any;
+  errorMessage?: string;
   [key: string]: any;
 }
 
-const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
+const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>) => {
   const {
     classes,
-    disabled,
-    placeholder,
-    name,
-    errorMessage,
+    name = 'unnamed',
     value,
+    type = 'text',
+    placeholder,
+    disabled,
+    onChange,
     onFocus,
     onBlur,
-    onChange,
+    clearFormValueOnUnmount = true,
     prependContent,
     appendContent,
-    clearFormValueOnUnmount = true,
-    type = 'text',
+    errorMessage,
     ...rest
   } = props;
 
@@ -53,10 +49,20 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     formErrors,
     formTouched,
   } = React.useContext(FormContext);
-  const errorMsg = formTouched[name] && formErrors[name];
-  const [internalValue, setInternalValue] = React.useState((formValues && formValues[name]) || value);
+
+  /** Getting error message from form errors */
+  const errorMsg = (name && formTouched[name] && formErrors[name]) || errorMessage;
+
+  /** Setting the internal value of the field from form initial values or from value provided to the field */
+  const [internalValue, setInternalValue] = React.useState((name && formValues && formValues[name]) || value);
 
   /** Wrappers to merge form and props methods */
+  const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
+    const { name, value: targetValue } = e.target;
+    updateFormValue && updateFormValue(name, targetValue);
+    onChange && onChange(e);
+    setInternalValue(targetValue);
+  };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     onFocus && onFocus(e);
     setFocused(true);
@@ -67,95 +73,45 @@ const InputField = (props: InputFieldProps & React.HTMLProps<HTMLInputElement> &
     updateFormTouched && updateFormTouched(name, true);
     setFocused(false);
   };
-  const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
-    const { name, value: targetValue } = e.target;
-    updateFormValue && updateFormValue(name, targetValue);
-    onChange && onChange(e);
-    setInternalValue(targetValue);
-  };
 
-  /** On mount/unmount */
+  /** On mount/unmount logic */
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
-    updateFormValue(name, internalValue);
-
-    /** On unmount */
+    name && updateFormValue(name, internalValue);
     return () => {
-      clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+      /** On unmount */
+      /** Clear Form value if needed */
+      name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
     };
   }, []);
 
-  return (
-    <>
-      <div
-        className={ classNames([
-          classes.root,
-          errorMsg ? classes.invalidRoot : null,
-          disabled ? classes.disabledRoot : null,
-        ]) }
-      >
-        <div
-          className={ classNames([
-            classes.prepend,
-            prependContent ? classes.prependMargin : null,
-            errorMsg ? classes.invalidPrepend : null,
-          ]) }
-        >
-          { prependContent ? <div className={classes.prependContent}>{ prependContent }</div> : null }
-          { prependContent ? <PrependBackground className={classes.prependBackground} /> : null }
-        </div>
-        <div className={classes.inputWrapper}>
-          {
-            placeholder ?
-              (<div
-                className={ classNames([
-                  classes.placeholder,
-                  (internalValue || isFocused) ? classes.placeholderCollapsed : null,
-                  errorMsg ? classes.invalidPlaceholder : null,
-                ]) }
-              >
-                { placeholder }
-              </div>) : null
-          }
-          <input
-            onChange={onChangeWrapper}
-            onBlur={onBlurWrapper}
-            onFocus={onFocusWrapper}
-            { ...rest }
-            className={ classNames([
-              classes.input,
-              placeholder ? classes.inputWithPlaceholder : null,
-              errorMsg ? classes.invalidInput : null,
-            ]) }
-            disabled={disabled}
-            value={internalValue}
-            name={name}
-            type={type}
-          />
-        </div>
-        <div
-          className={ classNames([
-            classes.append,
-          ]) }
-        >
-        </div>
-      </div>
-      {
-        errorMsg ?
-          (
-            <div
-              className={classes.errorMessage}
-            >
-              { errorMsg }
-            </div>
-          ) : null
-      }
-    </>
-  );
+  /** Switch depending on the type of the desired input field */
+  switch(type) {
+    case 'text':
+    case 'number':
+    case 'email':
+    case 'password':
+      return (
+        <TextField
+          {...rest}
+          isFocused={isFocused}
+          onFocus={onFocusWrapper}
+          onBlur={onBlurWrapper}
+          onChange={onChangeWrapper}
+          disabled={disabled}
+          placeholder={placeholder}
+          type={type}
+          name={name}
+          errorMsg={errorMsg}
+          value={internalValue}
+          appendContent={appendContent}
+          prependContent={prependContent}
+        />
+      );
+  }
+  return <input {...props}/>;
 };
 
-const StyledInputField = withStyles(styles)(InputField);
-
-export default StyledInputField;
-export { StyledInputField as InputField };
+export default InputField;
+export { InputField };

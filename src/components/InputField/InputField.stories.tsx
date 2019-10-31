@@ -31,13 +31,20 @@ storiesOf('Input field', module)
           value="Some uneditable value"
           disabled
         />
-          <InputField
-            variant="primary"
-            prependContent={<ProfileIcon />}
-            onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-            placeholder="Disabled text field"
-            value="Some uneditable value"
-          />
+        <InputField
+          variant="primary"
+          prependContent={<ProfileIcon />}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with prepend"
+          value="Hello"
+        />
+        <InputField
+          variant="primary"
+          appendContent={<div>yyy</div>}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with append"
+          value="Some uneditable value"
+        />
       </Wrapper>
     );
   });
