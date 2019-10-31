@@ -1,4 +1,4 @@
-import { createElement, createContext, useState, useEffect, useContext, Fragment } from 'react';
+import { createElement, createContext, useState, useEffect, Fragment, useContext } from 'react';
 import withStyles, { ThemeProvider as ThemeProvider$1 } from 'react-jss';
 
 var theme = {
@@ -163,6 +163,23 @@ function __rest(s, e) {
                 t[p[i]] = s[p[i]];
         }
     return t;
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
 }
 
 function createCommonjsModule(fn, module) {
@@ -416,9 +433,9 @@ var FormContext = createContext({
 var Form = function (props) {
     var classes = props.classes, children = props.children, onSubmit = props.onSubmit, onChange = props.onChange, onError = props.onError, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["classes", "children", "onSubmit", "onChange", "onError", "validationSchema", "initialValues"]);
     /** State */
-    var _a = useState(initialValues || {}), formValues = _a[0], setFormValues = _a[1];
-    var _b = useState({}), formErrors = _b[0], setFormErrors = _b[1];
-    var _c = useState({}), formTouched = _c[0], setFormTouched = _c[1];
+    var _a = __read(useState(initialValues || {}), 2), formValues = _a[0], setFormValues = _a[1];
+    var _b = __read(useState({}), 2), formErrors = _b[0], setFormErrors = _b[1];
+    var _c = __read(useState({}), 2), formTouched = _c[0], setFormTouched = _c[1];
     /** Yup validate function wrapper */
     var validate = function (values) {
         if (validationSchema) {
@@ -488,6 +505,16 @@ var Form = function (props) {
             } }, children)));
 };
 var StyledForm = withStyles(styles$5)(Form);
+
+var PrependBackground = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 53 44" }, props),
+    createElement("defs", null,
+        createElement("path", { d: "M48.5,3 L48.5,30.6772753 C48.5,33.3843845 47.1309491,35.9078541 44.8615528,37.383754 L31.3615528,46.1634678 C28.7096004,47.8881628 25.2903996,47.8881628 22.6384472,46.1634678 L9.13844716,37.383754 C6.86905092,35.9078541 5.5,33.3843845 5.5,30.6772753 L5.5,3 C5.5,-1.418278 9.081722,-5 13.5,-5 L40.5,-5 C44.918278,-5 48.5,-1.418278 48.5,3 Z", id: "path-1" })),
+    createElement("g", { id: "Page-1", stroke: "none", strokeWidth: "1", fill: "none", fillRule: "evenodd" },
+        createElement("g", { id: "Forms", transform: "translate(-306.000000, -1087.000000)" },
+            createElement("g", { id: "Group", transform: "translate(306.000000, 1087.000000)" },
+                createElement("mask", { id: "mask-2", fill: "white" },
+                    createElement("use", { xlinkHref: "#path-1" })),
+                createElement("use", { id: "Mask", fill: "#007AFF", transform: "translate(27.000000, 22.000000) rotate(-90.000000) translate(-27.000000, -22.000000) ", xlinkHref: "#path-1" })))))); });
 
 var styles$6 = (function (theme) { return ({
     root: {
@@ -576,10 +603,10 @@ var styles$6 = (function (theme) { return ({
         marginRight: 20,
     },
     prependContent: {
-        color: '#fff',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        color: '#fff',
         padding: 8,
         paddingLeft: 17,
         height: '100%',
@@ -593,7 +620,12 @@ var styles$6 = (function (theme) { return ({
     invalidPrepend: {
         backgroundColor: '#d0021b',
     },
-    append: {},
+    append: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingLeft: 20,
+    },
     errorMessage: {
         color: '#ea3546',
         fontFamily: 'galano-light',
@@ -601,51 +633,8 @@ var styles$6 = (function (theme) { return ({
     },
 }); });
 
-var PrependBackground = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 53 44" }, props),
-    createElement("defs", null,
-        createElement("path", { d: "M48.5,3 L48.5,30.6772753 C48.5,33.3843845 47.1309491,35.9078541 44.8615528,37.383754 L31.3615528,46.1634678 C28.7096004,47.8881628 25.2903996,47.8881628 22.6384472,46.1634678 L9.13844716,37.383754 C6.86905092,35.9078541 5.5,33.3843845 5.5,30.6772753 L5.5,3 C5.5,-1.418278 9.081722,-5 13.5,-5 L40.5,-5 C44.918278,-5 48.5,-1.418278 48.5,3 Z", id: "path-1" })),
-    createElement("g", { id: "Page-1", stroke: "none", strokeWidth: "1", fill: "none", fillRule: "evenodd" },
-        createElement("g", { id: "Forms", transform: "translate(-306.000000, -1087.000000)" },
-            createElement("g", { id: "Group", transform: "translate(306.000000, 1087.000000)" },
-                createElement("mask", { id: "mask-2", fill: "white" },
-                    createElement("use", { xlinkHref: "#path-1" })),
-                createElement("use", { id: "Mask", fill: "#007AFF", transform: "translate(27.000000, 22.000000) rotate(-90.000000) translate(-27.000000, -22.000000) ", xlinkHref: "#path-1" })))))); });
-
-var InputField = function (props) {
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, name = props.name, errorMessage = props.errorMessage, value = props.value, onFocus = props.onFocus, onBlur = props.onBlur, onChange = props.onChange, prependContent = props.prependContent, appendContent = props.appendContent, _a = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _a === void 0 ? true : _a, _b = props.type, type = _b === void 0 ? 'text' : _b, rest = __rest(props, ["classes", "disabled", "placeholder", "name", "errorMessage", "value", "onFocus", "onBlur", "onChange", "prependContent", "appendContent", "clearFormValueOnUnmount", "type"]);
-    /** Focus status (needed for styles) */
-    var _c = useState(false), isFocused = _c[0], setFocused = _c[1];
-    /** Getting values from Form context (if the field is wrapped inside a form */
-    var _d = useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
-    var errorMsg = formTouched[name] && formErrors[name];
-    var _e = useState((formValues && formValues[name]) || value), internalValue = _e[0], setInternalValue = _e[1];
-    /** Wrappers to merge form and props methods */
-    var onFocusWrapper = function (e) {
-        onFocus && onFocus(e);
-        setFocused(true);
-    };
-    var onBlurWrapper = function (e) {
-        var name = e.target.name;
-        onBlur && onBlur(e);
-        updateFormTouched && updateFormTouched(name, true);
-        setFocused(false);
-    };
-    var onChangeWrapper = function (e) {
-        var _a = e.target, name = _a.name, targetValue = _a.value;
-        updateFormValue && updateFormValue(name, targetValue);
-        onChange && onChange(e);
-        setInternalValue(targetValue);
-    };
-    /** On mount/unmount */
-    useEffect(function () {
-        /** On mount */
-        /** Update form with internal value on mount */
-        updateFormValue(name, internalValue);
-        /** On unmount */
-        return function () {
-            clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
-        };
-    }, []);
+var TextField = function (props) {
+    var classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isFocused = props.isFocused, value = props.value, rest = __rest(props, ["classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isFocused", "value"]);
     return (createElement(Fragment, null,
         createElement("div", { className: classnames([
                 classes.root,
@@ -663,21 +652,70 @@ var InputField = function (props) {
                 placeholder ?
                     (createElement("div", { className: classnames([
                             classes.placeholder,
-                            (internalValue || isFocused) ? classes.placeholderCollapsed : null,
+                            ((typeof value !== 'undefined' && value !== '') || isFocused) ? classes.placeholderCollapsed : null,
                             errorMsg ? classes.invalidPlaceholder : null,
                         ]) }, placeholder)) : null,
-                createElement("input", __assign({ onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper }, rest, { className: classnames([
+                createElement("input", __assign({}, rest, { className: classnames([
                         classes.input,
                         placeholder ? classes.inputWithPlaceholder : null,
                         errorMsg ? classes.invalidInput : null,
-                    ]), disabled: disabled, value: internalValue, name: name, type: type }))),
+                    ]), disabled: disabled, value: value || '' }))),
             createElement("div", { className: classnames([
                     classes.append,
-                ]) })),
+                ]) }, appendContent)),
         errorMsg ?
             (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
 };
-var StyledInputField = withStyles(styles$6)(InputField);
+var StyledTextField = withStyles(styles$6)(TextField);
 
-export { StyledBody as Body, StyledButton as Button, StyledCol as Col, StyledContainer as Container, StyledForm as Form, FormContext, WrappedGlobalStyles as GlobalStyles, StyledInputField as InputField, StyledRow as Row, ThemeProvider, StyledTitle as Title, StyledCard as Wrapper };
+var InputField = function (props) {
+    var classes = props.classes, _a = props.name, name = _a === void 0 ? 'unnamed' : _a, value = props.value, _b = props.type, type = _b === void 0 ? 'text' : _b, placeholder = props.placeholder, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent, errorMessage = props.errorMessage, rest = __rest(props, ["classes", "name", "value", "type", "placeholder", "disabled", "onChange", "onFocus", "onBlur", "clearFormValueOnUnmount", "prependContent", "appendContent", "errorMessage"]);
+    /** Focus status (needed for styles) */
+    var _d = __read(useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _e = useContext(FormContext), updateFormValue = _e.updateFormValue, updateFormTouched = _e.updateFormTouched, unsetFormValue = _e.unsetFormValue, formValues = _e.formValues, formErrors = _e.formErrors, formTouched = _e.formTouched;
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched[name] && formErrors[name]) || errorMessage;
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _f = __read(useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (e) {
+        var _a = e.target, name = _a.name, targetValue = _a.value;
+        updateFormValue && updateFormValue(name, targetValue);
+        onChange && onChange(e);
+        setInternalValue(targetValue);
+    };
+    var onFocusWrapper = function (e) {
+        onFocus && onFocus(e);
+        setFocused(true);
+    };
+    var onBlurWrapper = function (e) {
+        var name = e.target.name;
+        onBlur && onBlur(e);
+        updateFormTouched && updateFormTouched(name, true);
+        setFocused(false);
+    };
+    /** On mount/unmount logic */
+    useEffect(function () {
+        /** On mount */
+        /** Update form with internal value on mount */
+        name && updateFormValue(name, internalValue);
+        return function () {
+            /** On unmount */
+            /** Clear Form value if needed */
+            name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+        };
+    }, []);
+    /** Switch depending on the type of the desired input field */
+    switch (type) {
+        case 'text':
+        case 'number':
+        case 'email':
+        case 'password':
+            return (createElement(StyledTextField, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, disabled: disabled, placeholder: placeholder, type: type, name: name, errorMsg: errorMsg, value: internalValue, appendContent: appendContent, prependContent: prependContent })));
+    }
+    return createElement("input", __assign({}, props));
+};
+
+export { StyledBody as Body, StyledButton as Button, StyledCol as Col, StyledContainer as Container, StyledForm as Form, FormContext, WrappedGlobalStyles as GlobalStyles, InputField, StyledRow as Row, ThemeProvider, StyledTitle as Title, StyledCard as Wrapper };
 //# sourceMappingURL=index.es.js.map
