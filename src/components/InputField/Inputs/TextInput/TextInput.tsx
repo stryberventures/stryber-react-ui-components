@@ -2,7 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 import { PrependBackground } from "../../../Icons";
 import withStyles, { WithStyles } from 'react-jss';
-import styles from './TextField.styles';
+import styles from './TextInput.styles';
 
 interface ITextFieldProps {
   name: string;
@@ -19,7 +19,7 @@ interface ITextFieldProps {
   appendContent?: any;
 }
 
-const TextField = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
+const TextInput = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     errorMsg,
@@ -96,8 +96,8 @@ const TextField = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & 
   );
 };
 
-const StyledTextField = withStyles(styles)(TextField);
-export default StyledTextField;
+const StyledTextInput = withStyles(styles)(TextInput);
+export default StyledTextInput;
 export {
-  StyledTextField as TextField
+  StyledTextInput as TextInput
 };

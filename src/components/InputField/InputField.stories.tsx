@@ -43,7 +43,7 @@ storiesOf('Input field', module)
           appendContent={<div>yyy</div>}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Text field with append"
-          value="Some uneditable value"
+          value="Value"
         />
       </Wrapper>
     );

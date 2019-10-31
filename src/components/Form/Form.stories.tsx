@@ -40,24 +40,7 @@ const ExternalFormControlExample = (props: any) => {
             type="number"
           />) : null
       }
-      <InputField
-        type="radio"
-        variant="primary"
-        name="select"
-        placeholder="Text field with append"
-        value="option 1"
-      />
-      <InputField
-        type="radio"
-        variant="primary"
-        name="select"
-        placeholder="Text field with append"
-        value="option 2"
-      />
       <Button
-        name="Submit"
-        value="Submit"
-        placeholder="Submit"
         type="submit"
       >
         Submit
@@ -87,14 +70,12 @@ storiesOf('Form', module)
               type="password"
             />
           </div>
-          <Button
+          <InputField
             name="Submit"
             value="Submit"
             placeholder="Submit"
             type="submit"
-          >
-            Submit
-          </Button>
+          />
         </Form>
       </Wrapper>
     );
@@ -105,6 +86,9 @@ storiesOf('Form', module)
         <Form
           onSubmit={(formData: any) => {
             console.log('onSubmit external', formData);
+          }}
+          onReset={(formData: any) => {
+            console.log('onReset external', formData);
           }}
           initialValues={{
             id: 12,
@@ -129,10 +113,26 @@ storiesOf('Form', module)
             name="gender"
             placeholder="Gender"
           />
+          <InputField
+            type="radio"
+            variant="primary"
+            name="select"
+            placeholder="Text field with append"
+            value="option 1"
+          />
+          <InputField
+            type="radio"
+            variant="primary"
+            name="select"
+            placeholder="Text field with append"
+            value="option 2"
+          />
           <Button
-            name="Submit"
-            value="Submit"
-            placeholder="Submit"
+            type="reset"
+          >
+            Reset
+          </Button>
+          <Button
             type="submit"
           >
             Submit
@@ -165,14 +165,12 @@ storiesOf('Form', module)
             name="age"
             placeholder="Age"
           />
-          <Button
+          <InputField
             name="Submit"
             value="Submit"
             placeholder="Submit"
             type="submit"
-          >
-            Submit
-          </Button>
+          />
         </Form>
       </Wrapper>
     );

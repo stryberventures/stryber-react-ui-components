@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import { FormContext } from '../Form';
-import { TextField } from './Fields/TextField';
+import { TextInput } from './Inputs/TextInput';
+import { Button } from '../Button';
 
 export interface IInputFieldProps {
   name?: string;
@@ -88,12 +89,21 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
 
   /** Switch depending on the type of the desired input field */
   switch(type) {
+    case 'submit':
+    case 'reset':
+      return (
+        <Button
+          type={type}
+        >
+          { value || type }
+        </Button>
+      );
     case 'text':
     case 'number':
     case 'email':
     case 'password':
       return (
-        <TextField
+        <TextInput
           {...rest}
           isFocused={isFocused}
           onFocus={onFocusWrapper}

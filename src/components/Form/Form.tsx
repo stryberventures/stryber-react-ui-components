@@ -2,6 +2,7 @@ import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import classNames from 'classnames';
 import * as yup from 'yup';
+import { v4 as uuid } from 'uuid';
 
 import styles from './Form.styles';
 
@@ -29,7 +30,8 @@ export const FormContext: React.Context<IFormContext> =
 
 /** Form props */
 interface FormProps {
-  onSubmit: (formData: any) => void;
+  onSubmit?: (formData: any) => void;
+  onReset?: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
   onChange?: (newFormData: any) => void;
   children: any;
@@ -44,6 +46,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     classes,
     children,
     onSubmit,
+    onReset,
     onChange,
     onError,
     validationSchema,
@@ -55,6 +58,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   const [formValues, setFormValues] = React.useState(initialValues || {});
   const [formErrors, setFormErrors] = React.useState({});
   const [formTouched, setFormTouched] = React.useState({});
+  const [formSessionId, setFormSessionId] = React.useState(uuid());
 
   /** Yup validate function wrapper */
   const validate = (values: any) => {
@@ -102,6 +106,22 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     updateFormTouched(name, false);
   };
 
+  /** Wrappers */
+  const onSubmitFormWrapper = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    if (Object.keys(formErrors).length > 0) {
+      onError && onError(formErrors, formValues);
+    } else {
+      onSubmit && onSubmit(formValues);
+    }
+  };
+  const onResetFormWrapper = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    onReset && onReset(formValues);
+    setFormValues(initialValues || {});
+    setFormSessionId(uuid());
+  };
+
   /** Mount / unmount logic */
   React.useEffect(() => {
     /** Running first validation on mount */
@@ -111,17 +131,12 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   return (
     <form
       { ...rest }
-      onSubmit={(e: React.SyntheticEvent) => {
-        e.preventDefault();
-        if (Object.keys(formErrors).length > 0) {
-          onError && onError(formErrors, formValues);
-        } else {
-          onSubmit(formValues);
-        }
-      }}
+      onSubmit={onSubmitFormWrapper}
+      onReset={onResetFormWrapper}
       className={ classNames([
         classes.root,
       ]) }
+      key={formSessionId}
     >
       <FormContext.Provider
         value={{
