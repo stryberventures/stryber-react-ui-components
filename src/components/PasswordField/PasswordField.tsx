@@ -4,15 +4,20 @@ import { InputField, IInputFieldProps } from '../InputField';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './PasswordField.styles';
 
-const PasswordField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
+export interface IPasswordFieldProps {
+  showPasswordByDefault?: boolean;
+}
+
+const PasswordField = (props: IPasswordFieldProps & IInputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
+    showPasswordByDefault = false,
     classes,
     type,
     ...rest
   } = props;
 
   /** Toggle show password state */
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(showPasswordByDefault);
 
   /** Toggle show password Icons */
   const appendContent = (

@@ -1,4 +1,5 @@
 export default (theme: any) => ({
+  /** Root Wrapper */
   root: {
     position: 'relative',
     borderRadius: 8,
@@ -18,9 +19,10 @@ export default (theme: any) => ({
   invalidRoot: {
     border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
-  disabledRoot: {
+  rootDisabled: {
     backgroundColor: '#f0f0f0',
   },
+  /** Input Wrapper */
   inputWrapper: {
     flex: 1,
     position: 'relative',
@@ -48,11 +50,12 @@ export default (theme: any) => ({
     paddingBottom: 5,
     paddingTop: 23,
   },
-  invalidInput: {
+  inputInvalid: {
     '&:focus': {
       color: `${theme.inputColorError || '#d0021b'} !important`,
     },
   },
+  /** Placeholder */
   placeholder: {
     pointerEvents: 'none',
     position: 'absolute',
@@ -60,16 +63,10 @@ export default (theme: any) => ({
     fontSize: 14,
     fontFamily: 'galano-medium',
 
-    display: 'block',
-    verticalAlign: 'center',
-
     color: theme.inputPlaceholderColorIdle || '#95acbf',
-
 
     width: '100%',
     height: '100%',
-    left: 0,
-    top: 0,
     padding: 14,
     margin: 0,
     transform: 'translate(0, 0px)',
@@ -81,10 +78,12 @@ export default (theme: any) => ({
     fontSize: 10,
     transform: 'translate(0, -12px)',
   },
+  /** Prepend */
   prepend: {
     transition: '0.5s',
     position: 'relative',
     backgroundColor: theme.inputColorHighlight || '#007aff',
+    fill: theme.inputColorHighlight || '#007aff',
     minWidth: 7,
     overflow: 'visible',
     display: 'flex',
@@ -93,8 +92,16 @@ export default (theme: any) => ({
 
     zIndex: 1,
   },
+  prependDisabled: {
+    fill: theme.inputPlaceholderColorIdle || '#95acbf',
+    backgroundColor: theme.inputPlaceholderColorIdle || '#95acbf',
+  },
   prependMargin: {
     marginRight: 20,
+  },
+  prependInvalid: {
+    fill: theme.inputColorError || '#d0021b',
+    backgroundColor: theme.inputColorError || '#d0021b',
   },
   prependContent: {
     display: 'flex',
@@ -113,9 +120,7 @@ export default (theme: any) => ({
     position: 'absolute',
     height: '105%',
   },
-  invalidPrepend: {
-    backgroundColor: theme.inputColorError || '#d0021b',
-  },
+  /** Append */
   append: {
     display: 'flex',
     alignItems: 'center',
@@ -123,6 +128,7 @@ export default (theme: any) => ({
 
     paddingLeft: 20,
   },
+  /** Error message */
   errorMessage: {
     color: theme.inputErrorMessageColor || '#ea3546',
     fontFamily: 'galano-light',

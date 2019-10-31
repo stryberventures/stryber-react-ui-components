@@ -28,8 +28,30 @@ storiesOf('Input field', module)
           variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Disabled text field"
+          disabled
+        />
+        <InputField
+          variant="primary"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Disabled text field"
           value="Some uneditable value"
           disabled
+        />
+        <InputField
+          variant="primary"
+          prependContent={<ProfileIcon />}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Disabled text field"
+          value="Some uneditable value"
+          disabled
+        />
+        <InputField
+          variant="primary"
+          prependContent={<ProfileIcon />}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Error text field"
+          value="Error value"
+          errorMessage="Error message"
         />
         <InputField
           variant="primary"

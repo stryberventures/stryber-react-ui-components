@@ -37,14 +37,15 @@ const TextInput = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & 
         className={classNames([
           classes.root,
           errorMsg ? classes.invalidRoot : null,
-          disabled ? classes.disabledRoot : null,
+          disabled ? classes.rootDisabled : null,
         ])}
       >
         <div
           className={classNames([
             classes.prepend,
+            disabled ? classes.prependDisabled : null,
             prependContent ? classes.prependMargin : null,
-            errorMsg ? classes.invalidPrepend : null,
+            errorMsg ? classes.prependInvalid : null,
           ])}
         >
           { prependContent ? <div className={classes.prependContent}>{prependContent}</div> : null}
@@ -68,7 +69,7 @@ const TextInput = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & 
             className={classNames([
               classes.input,
               placeholder ? classes.inputWithPlaceholder : null,
-              errorMsg ? classes.invalidInput : null,
+              errorMsg ? classes.inputInvalid : null,
             ])}
             disabled={disabled}
             value={value || ''}
@@ -88,7 +89,7 @@ const TextInput = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & 
             <div
               className={classes.errorMessage}
             >
-              {errorMsg}
+              { errorMsg }
             </div>
           ) : null
       }

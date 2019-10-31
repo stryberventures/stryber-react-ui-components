@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import * as yup from 'yup';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
+import {Profile as ProfileIcon} from "../Icons";
 
 const ExternalFormControlExample = (props: any) => {
   const [currentFormState, updateFormState]: [any, any] = React.useState({});
@@ -158,10 +159,12 @@ storiesOf('Form', module)
           })}
         >
           <InputField
+            prependContent={<ProfileIcon />}
             name="email"
             placeholder="Email"
           />
           <InputField
+            prependContent={<ProfileIcon />}
             name="age"
             placeholder="Age"
           />
