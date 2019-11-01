@@ -2,37 +2,32 @@ export default (theme: any) => ({
   '@global': {
     '@font-face': [
       {
-        fontFamily: 'galano-light',
-        src: "url('fonts/Galano-Grotesque-Light.otf')",
+        fontFamily: theme.fontLight,
+        src: `url('${theme.fontLightUrl}')`,
       },
       {
-        fontFamily: 'galano-regular',
-        src: `url('fonts/Galano-Grotesque.otf')`,
+        fontFamily: theme.fontRegular,
+        src: `url('${theme.fontRegularUrl}')`,
       },
       {
-        fontFamily: 'galano-medium',
-        src: `url('fonts/Galano-Grotesque-Medium.otf')`,
+        fontFamily: theme.fontMedium,
+        src: `url('${theme.fontMediumUrl}')`,
       },
       {
-        fontFamily: 'galano-semibold',
-        src: `url('fonts/Galano-Grotesque-Semi-Bold.otf')`,
+        fontFamily: theme.fontSemiBold,
+        src: `url('${theme.fontSemiBoldUrl}')`,
       },
       {
-        fontFamily: 'galano-bold',
-        src: `url('fonts/Galano-Grotesque-Bold.otf')`,
+        fontFamily: theme.fontBold,
+        src: `url('${theme.fontBoldUrl}')`,
       },
     ],
     html: {
       height: '100%',
       width: '100%',
-      // fontSize: '60%',
     },
     body: {
-      // fontSize: '1rem',
-      // fontWeight: 400,
-      // lineHeight: 1.5,
-      // textAlign: 'left',
-      fontFamily: 'galano-regular',
+      fontFamily: theme.fontRegular,
       height: '100%',
       width: '100%',
       padding: 0,
@@ -42,26 +37,26 @@ export default (theme: any) => ({
     },
     h1: {
       fontSize: 42,
-      fontFamily: 'galano-bold',
+      fontFamily: theme.fontBold,
     },
     h2: {
       fontSize: 32,
-      fontFamily: 'galano-bold',
+      fontFamily: theme.fontBold,
     },
     h3: {
       fontSize: 28,
-      fontFamily: 'galano-semibold',
+      fontFamily: theme.fontSemiBold,
     },
     h4: {
       fontSize: 14,
-      fontFamily: 'galano-semibold',
+      fontFamily: theme.fontSemiBold,
     },
     p: {
       fontSize: 12,
-      fontFamily: 'galano-medium',
-
-      marginTop: 0,
-      marginBottom: '1rem',
+      fontFamily: theme.fontMedium,
+    },
+    b: {
+      fontFamily: theme.fontBold,
     },
     // 'h1, h2, h3, h4, h5, h6': {
     //   marginTop: 0,
@@ -72,9 +67,6 @@ export default (theme: any) => ({
     //   fontWeight: 500,
     //   lineHeight: 1.2,
     // },
-    b: {
-      fontFamily: 'galano-bold',
-    },
 
     '#root': {
       height: '100%',
@@ -89,7 +81,7 @@ export default (theme: any) => ({
     },
 
     a: {
-      color: '#007bff',
+      color: theme.buttonColorSecondary,
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',

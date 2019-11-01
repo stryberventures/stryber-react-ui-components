@@ -7,7 +7,7 @@ export default (theme: any) => ({
   },
   content: {
     fontSize: 16,
-    fontFamily: 'galano-semibold',
+    fontFamily: theme.fontSemiBold,
   },
   disabled: {
     backgroundColor: theme.buttonBackgroundColorDisabled,

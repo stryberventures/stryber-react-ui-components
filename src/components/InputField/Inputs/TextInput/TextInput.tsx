@@ -4,7 +4,7 @@ import { PrependBackground } from "../../../Icons";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './TextInput.styles';
 
-interface ITextFieldProps {
+interface ITextInputProps {
   name: string;
   type: string;
   placeholder?: string;
@@ -19,7 +19,7 @@ interface ITextFieldProps {
   appendContent?: any;
 }
 
-const TextInput = (props: ITextFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
+const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     errorMsg,

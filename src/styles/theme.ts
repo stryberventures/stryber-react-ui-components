@@ -1,4 +1,16 @@
 export default {
+  /** Fonts */
+  fontLight: 'galano-light',
+  fontLightUrl: 'fonts/Galano-Grotesque-Light.otf',
+  fontRegular: 'galano-regular',
+  fontRegularUrl: 'fonts/Galano-Grotesque.otf',
+  fontMedium: 'galano-medium',
+  fontMediumUrl: 'fonts/Galano-Grotesque-Medium.otf',
+  fontSemiBold: 'galano-semibold',
+  fontSemiBoldUrl: 'fonts/Galano-Grotesque-Semi-Bold.otf',
+  fontBold: 'galano-bold',
+  fontBoldUrl: 'fonts/Galano-Grotesque-Bold.otf',
+
   /** Button colors */
   buttonColorPrimary: '#fff',
   buttonColorSecondary: '#007aff',

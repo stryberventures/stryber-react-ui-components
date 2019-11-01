@@ -38,7 +38,7 @@ export default (theme: any) => ({
 
     color: theme.inputColorIdle || '#54738c',
 
-    fontFamily: 'galano-medium',
+    fontFamily: theme.fontMedium,
     fontSize: 14,
 
     '&:focus': {
@@ -61,7 +61,7 @@ export default (theme: any) => ({
     position: 'absolute',
     transition: '0.2s',
     fontSize: 14,
-    fontFamily: 'galano-medium',
+    fontFamily: theme.fontMedium,
 
     color: theme.inputPlaceholderColorIdle || '#95acbf',
 
@@ -131,7 +131,7 @@ export default (theme: any) => ({
   /** Error message */
   errorMessage: {
     color: theme.inputErrorMessageColor || '#ea3546',
-    fontFamily: 'galano-light',
+    fontFamily: theme.fontLight,
     fontSize: 10,
   },
 });
