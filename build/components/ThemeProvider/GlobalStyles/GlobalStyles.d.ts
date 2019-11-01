@@ -6,7 +6,7 @@ interface IProps {
 declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<(theme: any) => {
     '@global': {
         '@font-face': {
-            fontFamily: string;
+            fontFamily: any;
             src: string;
         }[];
         html: {
@@ -14,7 +14,7 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
             width: string;
         };
         body: {
-            fontFamily: string;
+            fontFamily: any;
             height: string;
             width: string;
             padding: number;
@@ -24,28 +24,26 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
         };
         h1: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h2: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h3: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h4: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         p: {
             fontSize: number;
-            fontFamily: string;
-            marginTop: number;
-            marginBottom: string;
+            fontFamily: any;
         };
         b: {
-            fontFamily: string;
+            fontFamily: any;
         };
         '#root': {
             height: string;
@@ -57,7 +55,7 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
             boxSizing: string;
         };
         a: {
-            color: string;
+            color: any;
             textDecoration: string;
             '&:hover': {
                 textDecoration: string;

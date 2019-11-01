@@ -7,7 +7,7 @@ declare const _default: (theme: any) => {
     };
     content: {
         fontSize: number;
-        fontFamily: string;
+        fontFamily: any;
     };
     disabled: {
         backgroundColor: any;

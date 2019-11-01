@@ -1,7 +1,7 @@
 declare const _default: (theme: any) => {
     '@global': {
         '@font-face': {
-            fontFamily: string;
+            fontFamily: any;
             src: string;
         }[];
         html: {
@@ -9,7 +9,7 @@ declare const _default: (theme: any) => {
             width: string;
         };
         body: {
-            fontFamily: string;
+            fontFamily: any;
             height: string;
             width: string;
             padding: number;
@@ -19,28 +19,26 @@ declare const _default: (theme: any) => {
         };
         h1: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h2: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h3: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         h4: {
             fontSize: number;
-            fontFamily: string;
+            fontFamily: any;
         };
         p: {
             fontSize: number;
-            fontFamily: string;
-            marginTop: number;
-            marginBottom: string;
+            fontFamily: any;
         };
         b: {
-            fontFamily: string;
+            fontFamily: any;
         };
         '#root': {
             height: string;
@@ -52,7 +50,7 @@ declare const _default: (theme: any) => {
             boxSizing: string;
         };
         a: {
-            color: string;
+            color: any;
             textDecoration: string;
             '&:hover': {
                 textDecoration: string;

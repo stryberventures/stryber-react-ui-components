@@ -1,11 +1,12 @@
 declare const _default: (theme: any) => {
+    /** Root Wrapper */
     root: {
         position: string;
         borderRadius: number;
         overflow: string;
         border: string;
         transition: string;
-        backgroundColor: string;
+        backgroundColor: any;
         display: string;
         justifyContent: string;
         '&:focus-within': {
@@ -13,12 +14,13 @@ declare const _default: (theme: any) => {
             outline: string;
         };
     };
-    invalidRoot: {
+    rootInvalid: {
         border: string;
     };
-    disabledRoot: {
+    rootDisabled: {
         backgroundColor: string;
     };
+    /** Input Wrapper */
     inputWrapper: {
         flex: number;
         position: string;
@@ -30,11 +32,11 @@ declare const _default: (theme: any) => {
         padding: number;
         backgroundColor: string;
         transition: string;
-        color: string;
-        fontFamily: string;
+        color: any;
+        fontFamily: any;
         fontSize: number;
         '&:focus': {
-            color: string;
+            color: any;
             outline: string;
         };
     };
@@ -42,53 +44,64 @@ declare const _default: (theme: any) => {
         paddingBottom: number;
         paddingTop: number;
     };
-    invalidInput: {
+    inputInvalid: {
         '&:focus': {
             color: string;
         };
     };
+    /** Placeholder */
     placeholder: {
         pointerEvents: string;
         position: string;
         transition: string;
         fontSize: number;
-        fontFamily: string;
-        display: string;
-        verticalAlign: string;
-        color: string;
+        fontFamily: any;
+        color: any;
         width: string;
         height: string;
-        left: number;
-        top: number;
         padding: number;
         margin: number;
         transform: string;
         transformOrigin: string;
     };
-    invalidPlaceholder: {};
+    placeholderInvalid: {};
     placeholderCollapsed: {
         fontSize: number;
         transform: string;
     };
+    /** Prepend */
     prepend: {
         transition: string;
         position: string;
-        backgroundColor: string;
+        backgroundColor: any;
+        fill: any;
         minWidth: number;
         overflow: string;
         display: string;
         alignItems: string;
         justifyContent: string;
         zIndex: number;
+        '& + $input:disabled': {
+            fill: any;
+            backgroundColor: any;
+        };
+    };
+    prependDisabled: {
+        fill: any;
+        backgroundColor: any;
     };
     prependMargin: {
         marginRight: number;
+    };
+    prependInvalid: {
+        fill: any;
+        backgroundColor: any;
     };
     prependContent: {
         display: string;
         alignItems: string;
         justifyContent: string;
-        color: string;
+        color: any;
         padding: number;
         paddingLeft: number;
         height: string;
@@ -99,18 +112,17 @@ declare const _default: (theme: any) => {
         position: string;
         height: string;
     };
-    invalidPrepend: {
-        backgroundColor: string;
-    };
+    /** Append */
     append: {
         display: string;
         alignItems: string;
         justifyContent: string;
         paddingLeft: number;
     };
+    /** Error message */
     errorMessage: {
-        color: string;
-        fontFamily: string;
+        color: any;
+        fontFamily: any;
         fontSize: number;
     };
 };

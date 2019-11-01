@@ -16,7 +16,7 @@ declare const StyledButton: React.ComponentType<Pick<ButtonProps & React.HTMLPro
     };
     content: {
         fontSize: number;
-        fontFamily: string;
+        fontFamily: any;
     };
     disabled: {
         backgroundColor: any;

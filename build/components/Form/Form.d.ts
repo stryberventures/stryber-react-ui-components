@@ -13,7 +13,8 @@ export interface IFormContext {
 export declare const FormContext: React.Context<IFormContext>;
 /** Form props */
 interface FormProps {
-    onSubmit: (formData: any) => void;
+    onSubmit?: (formData: any) => void;
+    onReset?: (formData: any) => void;
     onError?: (errorData: any, formData: any) => void;
     onChange?: (newFormData: any) => void;
     children: any;

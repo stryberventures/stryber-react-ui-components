@@ -3,6 +3,7 @@ export interface IInputFieldProps {
     name?: string;
     type?: string;
     placeholder?: string;
+    value?: any;
     variant?: 'primary' | 'secondary';
     disabled?: boolean;
     onChange?: (e: React.BaseSyntheticEvent) => void;
