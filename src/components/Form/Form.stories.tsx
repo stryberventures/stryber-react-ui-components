@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Form from './Form';
 import { InputField } from '../InputField';
+import { RadioField } from '../RadioField';
 import { Button } from '../Button';
 import * as yup from 'yup';
 
@@ -95,7 +96,8 @@ storiesOf('Form', module)
             id: 12,
             gender: 'Male',
             first_name: 'Elon',
-            last_name: 'Musk'
+            last_name: 'Musk',
+            select: 'option 1',
           }}
         >
           <InputField
@@ -114,18 +116,14 @@ storiesOf('Form', module)
             name="gender"
             placeholder="Gender"
           />
-          <InputField
-            type="radio"
-            variant="primary"
+          <RadioField
             name="select"
-            placeholder="Text field with append"
+            placeholder="Option 1"
             value="option 1"
           />
-          <InputField
-            type="radio"
-            variant="primary"
+          <RadioField
             name="select"
-            placeholder="Text field with append"
+            placeholder="Option 2"
             value="option 2"
           />
           <Button

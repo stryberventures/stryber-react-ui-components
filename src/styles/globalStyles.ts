@@ -32,7 +32,7 @@ export default (theme: any) => ({
       width: '100%',
       padding: 0,
       margin: 0,
-      backgroundColor: theme.backgroundColorSecondary,
+      backgroundColor: theme.backgroundColorPrimary,
       color: theme.textColorPrimary,
     },
     h1: {

@@ -1,4 +1,11 @@
 export default {
+  /** Text color */
+  textColorPrimary: '#1d1d1b',
+  textColorSecondary: '#54738c',
+
+  /** Background colors */
+  backgroundColorPrimary: '#fff',
+
   /** Fonts */
   fontLight: 'galano-light',
   fontLightUrl: 'fonts/Galano-Grotesque-Light.otf',
@@ -27,9 +34,14 @@ export default {
   inputColorIdle: '#54738c',
   inputColorBorderIdle: '#cfe2f2',
   inputColorHighlight: '#007aff',
+  inputColorHighlightHover: '#278eff',
+  inputColorHighlightClick: '#62adff',
   inputColorError: '#d0021b',
   inputPlaceholderColorIdle: '#95acbf',
   inputErrorMessageColor: '#ea3546',
+  inputBackgroundColor: '#fff',
+  inputBackgroundColorHover: '#f5f5f5',
+  inputBackgroundColorClick: '#ebebeb',
   inputBackgroundColorDisabled: '#f0f0f0',
 
   /** Grid */

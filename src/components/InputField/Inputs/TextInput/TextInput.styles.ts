@@ -6,7 +6,7 @@ export default (theme: any) => ({
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
     transition: '0.5s',
-    backgroundColor: theme.backgroundColorSecondary || '#fff',
+    backgroundColor: theme.inputBackgroundColor || '#fff',
 
     display: 'flex',
     justifyContent: 'space-between',
@@ -108,7 +108,7 @@ export default (theme: any) => ({
     alignItems: 'center',
     justifyContent: 'center',
 
-    color: theme.backgroundColorSecondary || '#fff',
+    color: theme.inputBackgroundColor || '#fff',
 
     padding: 8,
     paddingLeft: 17,

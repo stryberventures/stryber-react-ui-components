@@ -117,7 +117,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   const onResetFormWrapper = (e: React.SyntheticEvent) => {
     e.preventDefault();
     onReset && onReset(formValues);
-    setFormValues(initialValues || {});
+    setFormValues(() => initialValues || {});
     setFormSessionId((id) => id + 1);
   };
 

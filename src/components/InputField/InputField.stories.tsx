@@ -6,7 +6,7 @@ import { Profile as ProfileIcon } from '../Icons';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
 storiesOf('Input field', module)
-  .add('Text field', () => {
+  .add('Text input', () => {
     return (
       <Wrapper>
         <InputField
@@ -75,6 +75,25 @@ storiesOf('Input field', module)
             placeholder="Text field with append and prepend"
             value="Value"
           />
+      </Wrapper>
+    );
+  })
+  .add('Radio Input', () => {
+    return (
+      <Wrapper>
+        <InputField
+          type="radio"
+          placeholder="A"
+          value="a"
+          name="answer"
+        />
+        <InputField
+          type="radio"
+          placeholder="B"
+          checked
+          value="b"
+          name="answer"
+        />
       </Wrapper>
     );
   });
