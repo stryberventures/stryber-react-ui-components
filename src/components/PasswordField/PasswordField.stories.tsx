@@ -11,7 +11,14 @@ storiesOf('Password field', module)
         <PasswordField
           variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          key={1}
+        />
+        <PasswordField
+          variant="primary"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+        />
+        <PasswordField
+          variant="primary"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
       </Wrapper>
     );
