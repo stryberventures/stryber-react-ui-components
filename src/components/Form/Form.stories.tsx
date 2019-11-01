@@ -126,6 +126,12 @@ storiesOf('Form', module)
             placeholder="Option 2"
             value="option 2"
           />
+          <RadioField
+            name="select"
+            placeholder="Option 1"
+            value="option 3"
+            disabled
+          />
           <Button
             type="reset"
           >

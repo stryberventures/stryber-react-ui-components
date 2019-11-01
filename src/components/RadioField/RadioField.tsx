@@ -61,7 +61,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
       />
       <span className={classes.checkmark}>
       </span>
-      <div>
+      <div className={classes.placeholder}>
       { placeholder }
       </div>
     </label>

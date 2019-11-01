@@ -31,12 +31,19 @@ export default (theme: any) => ({
     position: 'absolute',
     opacity: 0,
     cursor: 'pointer',
+    backgroundColor: theme.inputBackgroundColor,
 
+    '&:checked ~ $checkmark': {
+      backgroundColor: theme.inputColorHighlight,
+    },
     '&:checked ~ $checkmark:after': {
       display: 'block',
     },
-    '&:checked ~ $checkmark': {
-      backgroundColor: theme.inputColorHighlight,
+    '&:disabled ~ $placeholder': {
+      color: theme.inputPlaceholderColorIdle,
+    },
+    '&:disabled ~ $checkmark': {
+      backgroundColor: `${theme.inputColorBorderIdle} !important`,
     },
   },
   checkmark: {
@@ -61,5 +68,8 @@ export default (theme: any) => ({
       borderRadius: '50%',
       backgroundColor: 'white',
     },
+  },
+  placeholder: {
+    padding: 10,
   },
 });
