@@ -36,8 +36,8 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
       <div
         className={classNames([
           classes.root,
-          errorMsg ? classes.invalidRoot : null,
           disabled ? classes.rootDisabled : null,
+          errorMsg ? classes.rootInvalid : null,
         ])}
       >
         <div
@@ -58,7 +58,7 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
                 className={classNames([
                   classes.placeholder,
                   ((typeof value !== 'undefined' && value !== '') || isFocused) ? classes.placeholderCollapsed : null,
-                  errorMsg ? classes.invalidPlaceholder : null,
+                  errorMsg ? classes.placeholderInvalid : null,
                 ])}
               >
                 {placeholder}

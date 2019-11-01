@@ -11,3 +11,4 @@ export * from './components/Form';
 export * from './components/InputField';
 export * from './components/PasswordField';
 export * from './components/Icons';
+export * from './components/RadioField';

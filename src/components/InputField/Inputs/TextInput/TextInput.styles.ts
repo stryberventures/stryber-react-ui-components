@@ -16,7 +16,7 @@ export default (theme: any) => ({
       outline: 'none',
     },
   },
-  invalidRoot: {
+  rootInvalid: {
     border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
   rootDisabled: {
@@ -72,7 +72,7 @@ export default (theme: any) => ({
     transform: 'translate(0, 0px)',
     transformOrigin: 'left',
   },
-  invalidPlaceholder: {
+  placeholderInvalid: {
   },
   placeholderCollapsed: {
     fontSize: 10,
@@ -91,6 +91,11 @@ export default (theme: any) => ({
     justifyContent: 'center',
 
     zIndex: 1,
+
+    '& + $input:disabled': {
+      fill: theme.inputPlaceholderColorIdle || '#95acbf',
+      backgroundColor: theme.inputPlaceholderColorIdle || '#95acbf',
+    },
   },
   prependDisabled: {
     fill: theme.inputPlaceholderColorIdle || '#95acbf',

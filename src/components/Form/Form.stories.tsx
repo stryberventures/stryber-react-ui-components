@@ -128,7 +128,7 @@ storiesOf('Form', module)
           />
           <RadioField
             name="select"
-            placeholder="Option 1"
+            placeholder="Option 3"
             value="option 3"
             disabled
           />
