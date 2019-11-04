@@ -34,6 +34,8 @@ interface FormProps {
   onReset?: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
   onChange?: (newFormData: any) => void;
+  onValidate?: (newFormData: any) => any;
+  onValidateAsync?: (newFormData: any) => Promise<any>;
   children: any;
   initialValues?: any;
   validationSchema?: any;
@@ -49,6 +51,8 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
     onReset,
     onChange,
     onError,
+    onValidate,
+    onValidateAsync,
     validationSchema,
     initialValues,
     ...rest
@@ -62,14 +66,28 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
 
   /** Yup validate function wrapper */
   const validate = (values: any) => {
+    /** Validation schema using Yup library */
     if (validationSchema) {
       validationSchema
         .validate(values, { abortEarly: false })
+        /** No errors from Yup */
         .then(() => setFormErrors({}))
+        /** Errors were caught */
         .catch((errors: yup.ValidationError) => {
           const parsedErrors = errors.inner.reduce((a: any, v: any) => ({ ...a, [v.path]: v.message }), {});
-          setFormErrors(parsedErrors);
+          setFormErrors(() => parsedErrors);
         });
+    }
+    /** External validation methods */
+    if (onValidate) {
+      setFormErrors(() => onValidate(values));
+    }
+    if (onValidateAsync) {
+      onValidateAsync(values)
+        /** No errors from external lib */
+        .then((errors: any) => setFormErrors(() => {}))
+        /** Errors were caught */
+        .catch((errors: any) => setFormErrors(() => errors));
     }
   };
 
