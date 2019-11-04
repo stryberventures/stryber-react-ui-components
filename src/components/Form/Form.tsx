@@ -16,6 +16,7 @@ export interface IFormContext {
   initialValues?: any;
 }
 
+/** Creating form context with default values */
 export const FormContext: React.Context<IFormContext> =
   React.createContext({
     updateFormValue: (name: string, data: any) => {},
@@ -109,7 +110,7 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   const onSubmitFormWrapper = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (Object.keys(formErrors).length > 0) {
-      /** Set everything to "touched" to highlight errors */
+      /** Set everything to "touched" to highlight errors on submit */
       setFormTouched((oldFormTouched: any) => Object.keys(formValues).reduce((acc: any, key: string) => ({ ...acc, [key]: true }), {}));
       /** External callback */
       onError && onError(formErrors, formValues);

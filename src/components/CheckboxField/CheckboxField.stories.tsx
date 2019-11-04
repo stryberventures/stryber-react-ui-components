@@ -12,12 +12,21 @@ storiesOf('Checkbox field', module)
           placeholder="Option A"
           value="a"
           name="answer"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
         <CheckboxField
           placeholder="Option B"
           checked
           value="b"
           name="answer"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
+        <CheckboxField
+          placeholder="Option C"
+          value="c"
+          name="answer"
+          errorMessage="Soemthing is not right"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
       </Wrapper>
     );
@@ -30,6 +39,7 @@ storiesOf('Checkbox field', module)
           value="a"
           name="answer"
           variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
         <CheckboxField
           placeholder="Option B"
@@ -37,6 +47,7 @@ storiesOf('Checkbox field', module)
           value="b"
           name="answer"
           variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
       </Wrapper>
     );

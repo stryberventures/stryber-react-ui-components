@@ -24,10 +24,14 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     checked,
     placeholder,
     errorMessage,
+    onChange,
     onFocus,
     variant,
     ...rest
   } = props;
+
+  /** Ref */
+  const inputRef = React.createRef<HTMLInputElement>();
 
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
@@ -42,27 +46,39 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
   /** Get checked value when using within a form or solo */
-  const checkedValue = formValues ? formValues[name] : checked;
+  const checkedValue = formValues ? formValues[name] : undefined;
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, checked } = e.target;
-    updateFormValue && updateFormValue(name, checked);
+    /** Passthrough to form context */
+    formValues && updateFormValue(name, checked);
+    /** Independent callback */
+    onChange && onChange(e);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
-    updateFormTouched && updateFormTouched(name, true);
+    /** Passthrough to form context */
+    formTouched && updateFormTouched(name, true);
+    /** Independent callback */
     onFocus && onFocus(e);
   };
+
   /** On mount/unmount logic */
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
-    updateFormValue && updateFormValue(name, !!checked);
+    if (formValues) {
+      updateFormValue(name, !!checked);
+    } else {
+      /** Set initial input field checked value */
+      //@ts-ignore
+      inputRef.current.checked = checked;
+    }
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
-      updateFormValue && updateFormValue(name, undefined);
+      formValues && updateFormValue(name, undefined);
     };
   }, []);
 
@@ -71,11 +87,12 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
       <label className={classes.root}>
         <input
           {...rest}
+          ref={inputRef}
           type="checkbox"
           className={classes.input}
           name={name}
           value={value}
-          checked={typeof checkedValue === 'boolean' ? checkedValue : undefined }
+          checked={checkedValue}
           onChange={onChangeWrapper}
           onFocus={onFocusWrapper}
         />

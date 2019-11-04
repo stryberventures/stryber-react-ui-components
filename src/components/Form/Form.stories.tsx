@@ -213,6 +213,11 @@ storiesOf('Form', module)
             value="option 2"
           />
           <CheckboxField
+            variant="switch"
+            name="lights"
+            placeholder="Lights"
+          />
+          <CheckboxField
             name="agree"
             placeholder="Terms and conditions"
           />

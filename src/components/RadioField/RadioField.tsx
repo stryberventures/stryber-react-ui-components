@@ -30,20 +30,32 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     formValues,
   } = React.useContext(FormContext);
 
+  /** Ref */
+  const inputRef = React.createRef<HTMLInputElement>();
+
   /** Get checked value when using within a form or solo */
-  const checkedValue = formValues ? formValues[name] === value : checked;
+  const checkedValue = formValues ? formValues[name] === value : undefined;
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, value: targetValue } = e.target;
-    updateFormValue && updateFormValue(name, targetValue);
+    formValues && updateFormValue(name, targetValue);
     onChange && onChange(e);
   };
   /** On mount/unmount logic */
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
-    checked && updateFormValue && updateFormValue(name, value);
+    if(formValues) {
+
+    } else {
+      /** Set initial checked value when used independently */
+      //@ts-ignore
+      inputRef.current.checked = checked;
+    }
+    checked && formValues && updateFormValue(name, value);
+
+
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
@@ -54,6 +66,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     <label className={classes.root}>
       <input
         {...rest}
+        ref={inputRef}
         type="radio"
         className={classes.input}
         name={name}

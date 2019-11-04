@@ -61,19 +61,27 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, value: targetValue } = e.target;
-    updateFormValue && updateFormValue(name, targetValue);
+    /** Internal value update */
+    setInternalValue(() => targetValue);
+    /** Passthrough to form context */
+    formValues && updateFormValue(name, targetValue);
+    /** Independent callback */
     onChange && onChange(e);
-    setInternalValue(targetValue);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
-    onFocus && onFocus(e);
+    /** Internal value update */
     setFocused(true);
+    /** Independent callback */
+    onFocus && onFocus(e);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
-    onBlur && onBlur(e);
-    updateFormTouched && updateFormTouched(name, true);
+    /** Internal value update */
     setFocused(false);
+    /** Passthrough to form context */
+    formTouched && updateFormTouched(name, true);
+    /** Independent callback */
+    onBlur && onBlur(e);
   };
 
   /** On mount/unmount logic */

@@ -14,38 +14,41 @@ storiesOf('Password field', module)
         />
         <PasswordField
           variant="primary"
+          value="difjsdfs"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <PasswordField
           variant="primary"
+          placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
-      </Wrapper>
-    );
-  })
-  .add('With initial value', () => {
-    return (
-      <Wrapper>
+        <PasswordField
+          variant="primary"
+          placeholder="Password field with placeholder"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          errorMessage="Something is not right"
+        />
         <PasswordField
           variant="primary"
           value="difjsdfs"
+          placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          key={1}
         />
-      </Wrapper>
-    );
-  })
-  .add('With prepend', () => {
-    return (
-      <Wrapper>
         <PasswordField
           variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Password field with prepend"
           value="Hello"
-          key={3}
+        />
+        <PasswordField
+          variant="primary"
+          prependContent={<ProfileIcon />}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Password field with prepend"
+          value="Hello"
+          errorMessage="Something is not right"
         />
       </Wrapper>
     );
-  });
+  })
