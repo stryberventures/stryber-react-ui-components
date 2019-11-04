@@ -1,4 +1,8 @@
 export default (theme: any) => ({
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   /** Root Wrapper */
   root: {
     transition: '0.3s',
@@ -53,10 +57,10 @@ export default (theme: any) => ({
     position: 'relative',
     top: 0,
     left: 0,
-    height: 22,
-    width: 22,
+    height: 19,
+    width: 19,
     backgroundColor: theme.inputBackgroundColor,
-    borderRadius: '50%',
+    borderRadius: 3,
     border: `1px solid ${theme.inputColorBorderIdle}`,
 
     '&:after': {
@@ -64,15 +68,22 @@ export default (theme: any) => ({
       position: 'absolute',
       display: 'none',
 
-      top: 6,
-      left: 6,
-      width: 8,
-      height: 8,
-      borderRadius: '50%',
-      backgroundColor: 'white',
+      left: 5.5,
+      top: 1,
+      width: 6,
+      height: 12,
+      border: 'solid white',
+      borderWidth: '0 2px 2px 0',
+      transform: 'rotate(45deg)',
     },
   },
   placeholder: {
     padding: 10,
+  },
+  /** Error message */
+  errorMessage: {
+    color: theme.inputErrorMessageColor || '#ea3546',
+    fontFamily: theme.fontLight,
+    fontSize: 10,
   },
 });

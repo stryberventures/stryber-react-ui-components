@@ -53,7 +53,7 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
-  const errorMsg = (name && formTouched[name] && formErrors[name]) || errorMessage;
+  const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
   /** Setting the internal value of the field from form initial values or from value provided to the field */
   const [internalValue, setInternalValue] = React.useState((name && formValues && formValues[name]) || value);

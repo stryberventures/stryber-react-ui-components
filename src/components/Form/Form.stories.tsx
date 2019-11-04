@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Form from './Form';
 import { InputField } from '../InputField';
 import { RadioField } from '../RadioField';
+import { CheckboxField } from '../CheckboxField';
 import { Button } from '../Button';
 import * as yup from 'yup';
 
@@ -41,6 +42,31 @@ const ExternalFormControlExample = (props: any) => {
             placeholder="Age"
             type="number"
           />) : null
+      }
+      {
+        currentFormState.age ?
+          (<>
+            <RadioField
+              name="select"
+              placeholder="Option 1"
+              value="option 1"
+            />
+            <RadioField
+              name="select"
+              placeholder="Option 2"
+              value="option 2"
+            />
+            <RadioField
+              name="select"
+              placeholder="Option 3"
+              value="option 3"
+              disabled
+            />
+            <CheckboxField
+              name="agree"
+              placeholder="Terms and conditions"
+            />
+          </>) : null
       }
       <Button
         type="submit"
@@ -132,6 +158,10 @@ storiesOf('Form', module)
             value="option 3"
             disabled
           />
+          <CheckboxField
+            name="agree"
+            placeholder="Terms and conditions"
+          />
           <Button
             type="reset"
           >
@@ -160,6 +190,7 @@ storiesOf('Form', module)
           validationSchema={yup.object({
             email: yup.string().email().required(),
             age: yup.number().required(),
+            agree: yup.boolean().oneOf([true], 'Field must be checked'),
           })}
         >
           <InputField
@@ -171,6 +202,20 @@ storiesOf('Form', module)
             prependContent={<ProfileIcon />}
             name="age"
             placeholder="Age"
+          />
+          <RadioField
+            name="select"
+            placeholder="Option 1"
+            value="option 1"
+          />
+          <RadioField
+            name="select"
+            placeholder="Option 2"
+            value="option 2"
+          />
+          <CheckboxField
+            name="agree"
+            placeholder="Terms and conditions"
           />
           <InputField
             name="Submit"

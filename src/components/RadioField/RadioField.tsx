@@ -41,7 +41,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
-    checked && updateFormValue(name, value);
+    checked && updateFormValue && updateFormValue(name, value);
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
@@ -52,10 +52,10 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     <label className={classes.root}>
       <input
         {...rest}
+        type="radio"
         className={classes.input}
         name={name}
         value={value}
-        type="radio"
         checked={checkedValue}
         onChange={onChangeWrapper}
       />

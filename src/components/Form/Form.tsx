@@ -109,16 +109,21 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   const onSubmitFormWrapper = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (Object.keys(formErrors).length > 0) {
+      /** Set everything to "touched" to highlight errors */
+      setFormTouched((oldFormTouched: any) => Object.keys(formValues).reduce((acc: any, key: string) => ({ ...acc, [key]: true }), {}));
+      /** External callback */
       onError && onError(formErrors, formValues);
     } else {
+      /** External callback */
       onSubmit && onSubmit(formValues);
     }
   };
   const onResetFormWrapper = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    onReset && onReset(formValues);
     setFormValues(() => initialValues || {});
     setFormSessionId((id) => id + 1);
+    /** External callback */
+    onReset && onReset(formValues);
   };
 
   /** Mount / unmount logic */
