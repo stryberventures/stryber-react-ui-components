@@ -11,6 +11,7 @@ interface ICheckboxFieldProps {
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
+  variant?: 'checkmark' | 'switch';
   errorMessage?: string;
 }
 
@@ -24,6 +25,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     placeholder,
     errorMessage,
     onFocus,
+    variant,
     ...rest
   } = props;
 
@@ -73,11 +75,11 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
           className={classes.input}
           name={name}
           value={value}
-          checked={checkedValue || false}
+          checked={typeof checkedValue === 'boolean' ? checkedValue : undefined }
           onChange={onChangeWrapper}
           onFocus={onFocusWrapper}
         />
-        <span className={classes.checkmark}>
+        <span className={ variant === 'switch' ? classes.switch : classes.checkmark }>
         </span>
         <div className={classes.placeholder}>
           { placeholder }

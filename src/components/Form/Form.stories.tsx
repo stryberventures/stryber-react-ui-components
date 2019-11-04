@@ -98,12 +98,11 @@ storiesOf('Form', module)
               type="password"
             />
           </div>
-          <InputField
-            name="Submit"
-            value="Submit"
-            placeholder="Submit"
+          <Button
             type="submit"
-          />
+          >
+            Submit
+          </Button>
         </Form>
       </Wrapper>
     );
@@ -217,12 +216,11 @@ storiesOf('Form', module)
             name="agree"
             placeholder="Terms and conditions"
           />
-          <InputField
-            name="Submit"
-            value="Submit"
-            placeholder="Submit"
+          <Button
             type="submit"
-          />
+          >
+            Submit
+          </Button>
         </Form>
       </Wrapper>
     );

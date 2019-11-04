@@ -18,6 +18,7 @@ export default (theme: any) => ({
     display: 'flex',
     alignItems: 'center',
 
+    /** Checkmark */
     '&:hover $input ~ $checkmark': {
       backgroundColor: theme.inputBackgroundColorHover,
     },
@@ -30,29 +31,56 @@ export default (theme: any) => ({
     '&:active $input:checked ~ $checkmark': {
       backgroundColor: theme.inputColorHighlightClick,
     },
+    /** Switch */
+    '&:hover $input ~ $switch': {
+      backgroundColor: theme.inputColorBorderIdleHover,
+    },
+    '&:active $input ~ $switch': {
+      backgroundColor: theme.inputColorBorderIdleClick,
+    },
+    '&:hover $input:checked ~ $switch': {
+      backgroundColor: theme.inputColorHighlightHover,
+    },
+    '&:active $input:checked ~ $switch': {
+      backgroundColor: theme.inputColorHighlightClick,
+    },
   },
+  /** Input */
   input: {
     position: 'absolute',
     opacity: 0,
     cursor: 'pointer',
     backgroundColor: theme.inputBackgroundColor,
 
-    '&:checked ~ $checkmark': {
-      backgroundColor: theme.inputColorHighlight,
-    },
-    '&:checked ~ $checkmark:after': {
-      display: 'block',
-    },
+    /** Placeholder */
     '&:checked ~ $placeholder': {
       color: theme.inputColorHighlight,
     },
     '&:disabled ~ $placeholder': {
       color: theme.inputPlaceholderColorIdle,
     },
+    /** Checkmark */
+    '&:checked ~ $checkmark': {
+      backgroundColor: theme.inputColorHighlight,
+    },
+    '&:checked ~ $checkmark:after': {
+      display: 'block',
+    },
     '&:disabled ~ $checkmark': {
       backgroundColor: `${theme.inputColorBorderIdle} !important`,
     },
+    /** Switch */
+    '&:checked ~ $switch': {
+      backgroundColor: theme.inputColorHighlight,
+    },
+    '&:checked ~ $switch:after': {
+      left: 15,
+    },
+    '&:disabled ~ $switch': {
+      backgroundColor: `${theme.inputColorBorderIdle} !important`,
+    },
   },
+  /** Checkmark box */
   checkmark: {
     position: 'relative',
     top: 0,
@@ -63,6 +91,7 @@ export default (theme: any) => ({
     borderRadius: 3,
     border: `1px solid ${theme.inputColorBorderIdle}`,
 
+    /** Checkmark */
     '&:after': {
       content: '""',
       position: 'absolute',
@@ -77,6 +106,38 @@ export default (theme: any) => ({
       transform: 'rotate(45deg)',
     },
   },
+
+  /** Switch container */
+  switch: {
+    overflow: 'hidden',
+    position: 'relative',
+    top: 0,
+    left: 0,
+    height: 22,
+    width: 36,
+    backgroundColor: theme.inputColorBorderIdle,
+    borderRadius: 11,
+    border: `1px solid ${theme.inputColorBorderIdle}`,
+
+    /** Switch */
+    '&:after': {
+      transition: '0.3s',
+
+      content: '""',
+      position: 'absolute',
+      display: 'block',
+
+      top: 2,
+      left: 2,
+      width: 16,
+      height: 16,
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)',
+    },
+  },
+
+  /** Placeholder */
   placeholder: {
     padding: 10,
   },

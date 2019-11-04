@@ -21,10 +21,10 @@ export const FormContext: React.Context<IFormContext> =
     updateFormValue: (name: string, data: any) => {},
     updateFormTouched: (name: string, data: any) => {},
     unsetFormValue: (name: any) => {},
-    formValues: {},
-    formErrors: {},
-    formTouched: {},
-    initialValues: {},
+    formValues: undefined,
+    formErrors: undefined,
+    formTouched: undefined,
+    initialValues: undefined,
   });
 
 /** Form props */

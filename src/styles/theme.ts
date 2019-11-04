@@ -33,6 +33,8 @@ export default {
   /** Input fields */
   inputColorIdle: '#54738c',
   inputColorBorderIdle: '#cfe2f2',
+  inputColorBorderIdleHover: '#deebf6',
+  inputColorBorderIdleClick: '#eef5fa',
   inputColorHighlight: '#007aff',
   inputColorHighlightHover: '#278eff',
   inputColorHighlightClick: '#62adff',

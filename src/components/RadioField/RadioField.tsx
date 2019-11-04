@@ -20,6 +20,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     name,
     checked,
     placeholder,
+    onChange,
     ...rest
   } = props;
 
@@ -36,6 +37,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, value: targetValue } = e.target;
     updateFormValue && updateFormValue(name, targetValue);
+    onChange && onChange(e);
   };
   /** On mount/unmount logic */
   React.useEffect(() => {
