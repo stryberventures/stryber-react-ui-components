@@ -34,6 +34,9 @@ declare const _default: (theme: any) => {
         '&:checked ~ $checkmark:after': {
             display: string;
         };
+        '&:checked ~ $placeholder': {
+            color: any;
+        };
         '&:disabled ~ $placeholder': {
             color: any;
         };

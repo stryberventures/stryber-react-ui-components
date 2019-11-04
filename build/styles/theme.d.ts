@@ -28,6 +28,8 @@ declare const _default: {
     /** Input fields */
     inputColorIdle: string;
     inputColorBorderIdle: string;
+    inputColorBorderIdleHover: string;
+    inputColorBorderIdleClick: string;
     inputColorHighlight: string;
     inputColorHighlightHover: string;
     inputColorHighlightClick: string;

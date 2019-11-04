@@ -187,6 +187,8 @@ var defaultTheme = {
     /** Input fields */
     inputColorIdle: '#54738c',
     inputColorBorderIdle: '#cfe2f2',
+    inputColorBorderIdleHover: '#deebf6',
+    inputColorBorderIdleClick: '#eef5fa',
     inputColorHighlight: '#007aff',
     inputColorHighlightHover: '#278eff',
     inputColorHighlightClick: '#62adff',
@@ -458,10 +460,10 @@ var FormContext = React.createContext({
     updateFormValue: function (name, data) { },
     updateFormTouched: function (name, data) { },
     unsetFormValue: function (name) { },
-    formValues: {},
-    formErrors: {},
-    formTouched: {},
-    initialValues: {},
+    formValues: undefined,
+    formErrors: undefined,
+    formTouched: undefined,
+    initialValues: undefined,
 });
 /** Form component */
 var Form = function (props) {
@@ -517,17 +519,25 @@ var Form = function (props) {
     var onSubmitFormWrapper = function (e) {
         e.preventDefault();
         if (Object.keys(formErrors).length > 0) {
+            /** Set everything to "touched" to highlight errors */
+            setFormTouched(function (oldFormTouched) { return Object.keys(formValues).reduce(function (acc, key) {
+                var _a;
+                return (__assign({}, acc, (_a = {}, _a[key] = true, _a)));
+            }, {}); });
+            /** External callback */
             onError && onError(formErrors, formValues);
         }
         else {
+            /** External callback */
             onSubmit && onSubmit(formValues);
         }
     };
     var onResetFormWrapper = function (e) {
         e.preventDefault();
-        onReset && onReset(formValues);
         setFormValues(function () { return initialValues || {}; });
         setFormSessionId(function (id) { return id + 1; });
+        /** External callback */
+        onReset && onReset(formValues);
     };
     /** Mount / unmount logic */
     React.useEffect(function () {
@@ -751,7 +761,7 @@ var InputField = function (props) {
     /** Getting values from Form context (if the field is wrapped inside a form */
     var _e = React.useContext(FormContext), updateFormValue = _e.updateFormValue, updateFormTouched = _e.updateFormTouched, unsetFormValue = _e.unsetFormValue, formValues = _e.formValues, formErrors = _e.formErrors, formTouched = _e.formTouched;
     /** Getting error message from form errors */
-    var errorMsg = (name && formTouched[name] && formErrors[name]) || errorMessage;
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Setting the internal value of the field from form initial values or from value provided to the field */
     var _f = __read(React.useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
     /** Wrappers to merge form and props methods */
@@ -860,6 +870,9 @@ var styles$8 = (function (theme) { return ({
         '&:checked ~ $checkmark:after': {
             display: 'block',
         },
+        '&:checked ~ $placeholder': {
+            color: theme.inputColorHighlight,
+        },
         '&:disabled ~ $placeholder': {
             color: theme.inputPlaceholderColorIdle,
         },
@@ -895,7 +908,7 @@ var styles$8 = (function (theme) { return ({
 
 var RadioField = function (props) {
     /** Get props */
-    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder"]);
+    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, onChange = props.onChange, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder", "onChange"]);
     /** Getting values from Form context (if the field is wrapped inside a form */
     var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, formValues = _a.formValues;
     /** Get checked value when using within a form or solo */
@@ -904,19 +917,20 @@ var RadioField = function (props) {
     var onChangeWrapper = function (e) {
         var _a = e.target, name = _a.name, targetValue = _a.value;
         updateFormValue && updateFormValue(name, targetValue);
+        onChange && onChange(e);
     };
     /** On mount/unmount logic */
     React.useEffect(function () {
         /** On mount */
         /** Update form with internal value on mount */
-        checked && updateFormValue(name, value);
+        checked && updateFormValue && updateFormValue(name, value);
         return function () {
             /** On unmount */
             /** Clear Form value if needed */
         };
     }, []);
     return (React.createElement("label", { className: classes.root },
-        React.createElement("input", __assign({}, rest, { className: classes.input, name: name, value: value, type: "radio", checked: checkedValue, onChange: onChangeWrapper })),
+        React.createElement("input", __assign({}, rest, { type: "radio", className: classes.input, name: name, value: value, checked: checkedValue, onChange: onChangeWrapper })),
         React.createElement("span", { className: classes.checkmark }),
         React.createElement("div", { className: classes.placeholder }, placeholder)));
 };

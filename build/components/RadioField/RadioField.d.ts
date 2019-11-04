@@ -43,10 +43,14 @@ declare const StyledRadioField: React.ComponentType<Pick<IRadioFieldProps & Reac
         '&:checked ~ $checkmark:after': {
             display: string;
         };
+        '&:checked ~ $placeholder': {
+            color: any;
+        };
         '&:disabled ~ $placeholder': {
             color: any;
         };
         '&:disabled ~ $checkmark': {
+            /** Update form with internal value on mount */
             backgroundColor: string;
         };
     };
@@ -54,9 +58,8 @@ declare const StyledRadioField: React.ComponentType<Pick<IRadioFieldProps & Reac
         position: string;
         top: number;
         left: number;
-        height: number;
-        width: number; /** On unmount */
-        /** Clear Form value if needed */
+        height: number; /** On unmount */
+        width: number;
         backgroundColor: any;
         borderRadius: string;
         border: string;
