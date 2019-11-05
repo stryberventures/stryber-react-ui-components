@@ -132,7 +132,7 @@ export default (theme: any) => ({
       width: 16,
       height: 16,
       borderRadius: '50%',
-      backgroundColor: 'white',
+      backgroundColor: theme.inputBackgroundColor,
       boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)',
     },
   },
@@ -140,6 +140,9 @@ export default (theme: any) => ({
   /** Placeholder */
   placeholder: {
     padding: 10,
+  },
+  placeholderInvalid: {
+    color: theme.inputColorError,
   },
   /** Error message */
   errorMessage: {

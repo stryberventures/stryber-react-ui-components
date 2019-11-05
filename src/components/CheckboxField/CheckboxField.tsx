@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './CheckboxField.styles';
 import { FormContext } from "../Form";
@@ -98,7 +99,12 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
         />
         <span className={ variant === 'switch' ? classes.switch : classes.checkmark }>
         </span>
-        <div className={classes.placeholder}>
+        <div
+          className={classNames([
+            classes.placeholder,
+            errorMsg ? classes.placeholderInvalid : null,
+          ])}
+        >
           { placeholder }
         </div>
       </label>
