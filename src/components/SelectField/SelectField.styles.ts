@@ -7,10 +7,20 @@ export default (theme: any) => ({
   },
   /** Dropdown arrow */
   dropdownArrow: {
-
+    transition: '0.3s',
+    border: 'solid',
+    borderColor: theme.inputPlaceholderColorIdle,
+    borderWidth: '0 2px 2px 0',
+    transform: 'rotate(45deg)',
+    width: 10,
+    height: 10,
+    marginRight: 18,
   },
   dropdownArrowOpen: {
-
+    transform: 'rotate(225deg)',
+  },
+  dropdownArrowFocused: {
+    borderColor: theme.inputColorHighlight,
   },
   /** Selected values Wrapper */
   selectElement: {
@@ -84,10 +94,6 @@ export default (theme: any) => ({
     color: theme.textColorSecondary,
     fontFamily: theme.fontRegular,
     fontSize: 14,
-
-    // '&:hover': {
-    //   backgroundColor: '#eceff1',
-    // },
   },
   dropdownItemHover: {
     backgroundColor: '#eceff1',
@@ -103,5 +109,11 @@ export default (theme: any) => ({
     left: 0,
     bottom: 0,
     right: 0,
+  },
+  /** Error message */
+  errorMessage: {
+    color: theme.inputErrorMessageColor || '#ea3546',
+    fontFamily: theme.fontLight,
+    fontSize: 10,
   },
 });

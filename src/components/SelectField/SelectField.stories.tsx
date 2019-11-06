@@ -15,7 +15,7 @@ storiesOf('Select field', module)
             { value: '1', label: 'One' },
             { value: '2', label: 'Two' },
           ]}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={ (d: any) => console.log('SelectField value:', d) }
           value={'1'}
         />
         <SelectField
@@ -25,7 +25,24 @@ storiesOf('Select field', module)
             { value: '1', label: 'One' },
             { value: '2', label: 'Two' },
           ]}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+        <SelectField
+          name="option"
+          choices={[
+            { value: '1', label: 'One' },
+            { value: '2', label: 'Two' },
+          ]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          value={'1'}
+        />
+        <SelectField
+          name="option"
+          choices={[
+            { value: '1', label: 'One' },
+            { value: '2', label: 'Two' },
+          ]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
         />
       </Wrapper>
     );

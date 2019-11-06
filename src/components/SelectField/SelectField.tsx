@@ -17,7 +17,7 @@ export interface ISelectFieldProps {
   choices: IChoiceData[];
   value?: string;
   disabled?: boolean;
-  onChange?: (e: React.BaseSyntheticEvent) => void;
+  onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
@@ -53,9 +53,15 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
+  /** Focus status (needed for styles) */
+  const [isFocused, setFocused] = React.useState(false);
   /** Setting the internal value of the field from form initial values or from value provided to the field */
   const [internalValue, setInternalValue] = React.useState((formValues && formValues[name]) || value);
   const [hoverIndex, setHoverIndex] = React.useState(-1);
+  const changeSelectValue = (newValue: any) => {
+    setInternalValue(() => newValue);
+    setDropdownOpen(() => false);
+  };
 
   /** Selected choice */
   const selectChoiceIndex = choices.findIndex((d) => d.value === internalValue);
@@ -64,23 +70,24 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   /** Select Field State */
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
 
-
   /** Wrappers to merge form and props methods */
-  const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
-    const { name, value: targetValue } = e.target;
+  const onChangeWrapper = (value: any) => {
     /** Internal value update */
-    setInternalValue(() => targetValue);
+    setInternalValue(() => value);
+    setDropdownOpen(() => false);
     /** Passthrough to form context */
-    formValues && updateFormValue(name, targetValue);
+    formValues && updateFormValue(name, value);
     /** Independent callback */
-    onChange && onChange(e);
+    onChange && onChange(value);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    setFocused(true);
     /** Independent callback */
     onFocus && onFocus(e);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
     const { name } = e.target;
+    setFocused(false);
     /** Passthrough to form context */
     formTouched && updateFormTouched(name, true);
     /** Independent callback */
@@ -89,12 +96,14 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   const onKeyDownWrapper = (e: React.KeyboardEvent) => {
     if (e.keyCode === 32 || e.keyCode === 13) {
       if (isDropdownOpen) {
-        setHoverIndex(() => -1);
-        setInternalValue(() => choices[hoverIndex].value);
+        if (hoverIndex > -1) {
+          changeSelectValue(choices[hoverIndex].value);
+        }
+        setHoverIndex(-1);
       } else {
-        setHoverIndex(() => selectChoiceIndex);
+        setHoverIndex(selectChoiceIndex);
+        setDropdownOpen(true);
       }
-      setDropdownOpen(v => !v);
     }
     if (e.keyCode === 38) {
       setHoverIndex(v => v > 0 ? v - 1 : v);
@@ -110,6 +119,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
       className={classNames([
         classes.dropdownArrow,
         isDropdownOpen ? classes.dropdownArrowOpen : null,
+        isFocused ? classes.dropdownArrowFocused : null,
       ])}
     >
     </div>
@@ -144,7 +154,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
           appendContent={appendContent}
           onClick={() => setDropdownOpen(v => !v)}
         >
-          {/** Input filed layout content */}
+          {/** Select wrapper hack */}
           <select
             className={classes.selectElement}
             onChange={onChangeWrapper}
@@ -153,6 +163,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
             onKeyDown={onKeyDownWrapper}
           >
           </select>
+          {/** Input filed layout content */}
           <div
             className={classNames([
               classes.selectLabel,
@@ -176,16 +187,10 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
                     <div
                       className={classNames([
                         classes.dropdownItem,
-                        internalValue === value ? classes.dropdownItemSelected : null,
-                        hoverIndex === i ? classes.dropdownItemHover : null,
+                        hoverIndex === i ? (internalValue === value ? classes.dropdownItemSelected : classes.dropdownItemHover) : null,
                       ])}
-                      onMouseOver={() => {
-                        setHoverIndex(() => i);
-                      }}
-                      onClick={() => {
-                        setInternalValue(() => value);
-                        setDropdownOpen(() => false);
-                      }}
+                      onMouseOver={() => setHoverIndex(() => i)}
+                      onClick={() => onChangeWrapper(value)}
                       key={i}
                     >
                       { label }
@@ -196,6 +201,10 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
             ) : null
         }
       </div>
+      {/** Error message */}
+      {
+        errorMsg ? (<div className={classes.errorMessage}>{errorMsg}</div>) : null
+      }
     </>
   );
 };
