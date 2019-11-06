@@ -1,8 +1,8 @@
 import * as React from "react";
 import classNames from "classnames";
-import { PrependBackground } from "../../../Icons";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './TextInput.styles';
+import { InputFieldLayout } from '../../../InputFieldLayout';
 
 interface ITextInputProps {
   name: string;
@@ -13,7 +13,7 @@ interface ITextInputProps {
   onChange: (e: React.BaseSyntheticEvent) => void;
   onFocus: (e: React.BaseSyntheticEvent) => void;
   onBlur: (e: React.BaseSyntheticEvent) => void;
-  isFocused?: any;
+  isFocused?: boolean;
   errorMsg?: string;
   prependContent?: any;
   appendContent?: any;
@@ -24,76 +24,33 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
     classes,
     errorMsg,
     disabled,
-    prependContent,
-    appendContent,
     placeholder,
     isFocused,
+    prependContent,
+    appendContent,
     value,
     ...rest
   } = props;
   return (
-    <>
-      <div
+    <InputFieldLayout
+      appendContent={appendContent}
+      prependContent={prependContent}
+      isPlaceholderCollapsed={!!((typeof value !== 'undefined' && value !== '') || isFocused)}
+      errorMsg={errorMsg}
+      disabled={disabled}
+      placeholder={placeholder}
+    >
+      <input
+        {...rest}
         className={classNames([
-          classes.root,
-          disabled ? classes.rootDisabled : null,
-          errorMsg ? classes.rootInvalid : null,
+          classes.input,
+          placeholder ? classes.inputWithPlaceholder : null,
+          errorMsg ? classes.inputInvalid : null,
         ])}
-      >
-        <div
-          className={classNames([
-            classes.prepend,
-            disabled ? classes.prependDisabled : null,
-            prependContent ? classes.prependMargin : null,
-            errorMsg ? classes.prependInvalid : null,
-          ])}
-        >
-          { prependContent ? <div className={classes.prependContent}>{prependContent}</div> : null}
-          { prependContent ? <PrependBackground className={classes.prependBackground}/> : null}
-        </div>
-        <div className={classes.inputWrapper}>
-          {
-            placeholder ?
-              (<div
-                className={classNames([
-                  classes.placeholder,
-                  ((typeof value !== 'undefined' && value !== '') || isFocused) ? classes.placeholderCollapsed : null,
-                  errorMsg ? classes.placeholderInvalid : null,
-                ])}
-              >
-                {placeholder}
-              </div>) : null
-          }
-          <input
-            {...rest}
-            className={classNames([
-              classes.input,
-              placeholder ? classes.inputWithPlaceholder : null,
-              errorMsg ? classes.inputInvalid : null,
-            ])}
-            disabled={disabled}
-            value={value || ''}
-          />
-        </div>
-        <div
-          className={classNames([
-            classes.append,
-          ])}
-        >
-          { appendContent }
-        </div>
-      </div>
-      {
-        errorMsg ?
-          (
-            <div
-              className={classes.errorMessage}
-            >
-              { errorMsg }
-            </div>
-          ) : null
-      }
-    </>
+        disabled={disabled}
+        value={value || ''}
+      />
+    </InputFieldLayout>
   );
 };
 

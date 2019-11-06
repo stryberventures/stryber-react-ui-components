@@ -77,23 +77,4 @@ storiesOf('Input field', module)
           />
       </Wrapper>
     );
-  })
-  .add('Radio Input', () => {
-    return (
-      <Wrapper>
-        <InputField
-          type="radio"
-          placeholder="A"
-          value="a"
-          name="answer"
-        />
-        <InputField
-          type="radio"
-          placeholder="B"
-          checked
-          value="b"
-          name="answer"
-        />
-      </Wrapper>
-    );
   });

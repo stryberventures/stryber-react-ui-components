@@ -38,6 +38,7 @@ export default {
   inputColorHighlight: '#007aff',
   inputColorHighlightHover: '#278eff',
   inputColorHighlightClick: '#62adff',
+  inputColorSelected: '#a8d4fd',
   inputColorError: '#d0021b',
   inputPlaceholderColorIdle: '#95acbf',
   inputErrorMessageColor: '#ea3546',
