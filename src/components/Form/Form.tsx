@@ -39,7 +39,7 @@ interface FormProps {
 }
 
 /** Form component */
-const Form = (props: FormProps & React.HTMLProps<HTMLFormElement>) => {
+const Form = (props: FormProps) => {
   const {
     children,
     onSubmit,
