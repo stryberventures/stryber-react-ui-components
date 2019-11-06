@@ -1,9 +1,5 @@
 import * as React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
-import classNames from 'classnames';
 import * as yup from 'yup';
-
-import styles from './Form.styles';
 
 /** Context used by input fields within the form */
 export interface IFormContext {
@@ -43,9 +39,8 @@ interface FormProps {
 }
 
 /** Form component */
-const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<typeof styles>) => {
+const Form = (props: FormProps & React.HTMLProps<HTMLFormElement>) => {
   const {
-    classes,
     children,
     onSubmit,
     onReset,
@@ -156,9 +151,6 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
       { ...rest }
       onSubmit={onSubmitFormWrapper}
       onReset={onResetFormWrapper}
-      className={ classNames([
-        classes.root,
-      ]) }
       key={formSessionId}
     >
       <FormContext.Provider
@@ -178,7 +170,5 @@ const Form = (props: FormProps & React.HTMLProps<HTMLFormElement> & WithStyles<t
   );
 };
 
-const StyledForm = withStyles(styles)(Form);
-
-export default StyledForm;
-export { StyledForm as Form };
+export default Form;
+export { Form };

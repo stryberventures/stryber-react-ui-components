@@ -193,7 +193,7 @@ storiesOf('Form', module)
         <Form
           onSubmit={(formData: any) => console.log('onSubmit external', formData)}
           onChange={(formData: any) => console.log('onChange external', formData)}
-          onError={(errorData: any, formData: any) => console.log('onError external', errorData, formData)}
+          // onError={(errorData: any, formData: any) => console.log('onError external', errorData, formData)}
           initialValues={{
             age: '',
             email: '',
