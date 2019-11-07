@@ -7,7 +7,8 @@ export default (theme: any) => ({
   },
   content: {
     fontSize: 16,
-    fontFamily: theme.fontSemiBold,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightSemiBold,
   },
   disabled: {
     backgroundColor: theme.buttonBackgroundColorDisabled,

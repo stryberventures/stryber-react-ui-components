@@ -34,7 +34,8 @@ export default (theme: any) => ({
 
     color: theme.inputColorIdle || '#54738c',
 
-    fontFamily: theme.fontMedium,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
     fontSize: 14,
 
     '&:focus': {

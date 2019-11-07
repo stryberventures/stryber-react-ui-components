@@ -8,19 +8,17 @@ export default (theme: any) => ({
   /** Dropdown arrow */
   dropdownArrow: {
     transition: '0.3s',
-    border: 'solid',
-    borderColor: theme.inputPlaceholderColorIdle,
-    borderWidth: '0 2px 2px 0',
-    transform: 'rotate(45deg)',
-    width: 10,
-    height: 10,
+
+    fill: theme.inputPlaceholderColorIdle,
+    width: 20,
+    height: 20,
     marginRight: 18,
   },
   dropdownArrowOpen: {
-    transform: 'rotate(225deg)',
+    transform: 'rotate(180deg)',
   },
   dropdownArrowFocused: {
-    borderColor: theme.inputColorHighlight,
+    fill: theme.inputColorHighlight,
   },
   /** Selected values Wrapper */
   selectElement: {
@@ -36,13 +34,18 @@ export default (theme: any) => ({
     },
   },
   selectLabel: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+
     cursor: 'pointer',
     userSelect: 'none',
 
     width: '100%',
     height: '100%',
     border: 0,
-    padding: 14,
+    padding: 8,
+    minHeight: 44,
     backgroundColor: theme.inputBackgroundColor,
 
     transition: '0.5s',
@@ -57,7 +60,6 @@ export default (theme: any) => ({
       color: theme.inputColorHighlight || '#007aff',
       outline: 'none',
     },
-    // ':before': { content: '\00a0' },
     '&:after': {
       content: '"."',
       visibility: 'hidden',
@@ -87,7 +89,8 @@ export default (theme: any) => ({
     backgroundColor: theme.inputBackgroundColor,
   },
   dropdownItem: {
-    padding: '8px 18px',
+    paddingLeft: 18,
+    paddingRight: 18,
     userSelect: 'none',
     cursor: 'pointer',
 
@@ -95,12 +98,10 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightRegular,
     fontSize: 14,
-  },
-  dropdownItemHover: {
-    backgroundColor: '#eceff1',
-  },
-  dropdownItemSelected: {
-    backgroundColor: theme.inputColorSelected,
+
+    '&:hover': {
+      backgroundColor: '#eceff1',
+    },
   },
   /** Clickaway */
   clickaway: {

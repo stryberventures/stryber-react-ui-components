@@ -1,33 +1,15 @@
 export default (theme: any) => ({
   '@global': {
-    '@font-face': [
-      {
-        fontFamily: theme.fontLight,
-        src: `url('${theme.fontLightUrl}')`,
-      },
-      {
-        fontFamily: theme.fontRegular,
-        src: `url('${theme.fontRegularUrl}')`,
-      },
-      {
-        fontFamily: theme.fontMedium,
-        src: `url('${theme.fontMediumUrl}')`,
-      },
-      {
-        fontFamily: theme.fontSemiBold,
-        src: `url('${theme.fontSemiBoldUrl}')`,
-      },
-      {
-        fontFamily: theme.fontBold,
-        src: `url('${theme.fontBoldUrl}')`,
-      },
+    '@import': [
+      ...theme.imports,
     ],
     html: {
       height: '100%',
       width: '100%',
     },
     body: {
-      fontFamily: theme.fontRegular,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightRegular,
       height: '100%',
       width: '100%',
       padding: 0,
@@ -37,26 +19,32 @@ export default (theme: any) => ({
     },
     h1: {
       fontSize: 42,
-      fontFamily: theme.fontBold,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightBold,
     },
     h2: {
       fontSize: 32,
-      fontFamily: theme.fontBold,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightMedium,
     },
     h3: {
       fontSize: 28,
-      fontFamily: theme.fontSemiBold,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightSemiBold,
     },
     h4: {
       fontSize: 14,
-      fontFamily: theme.fontSemiBold,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightSemiBold,
     },
     p: {
       fontSize: 12,
-      fontFamily: theme.fontMedium,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightMedium,
     },
     b: {
-      fontFamily: theme.fontBold,
+      fontFamily: theme.fontFamily,
+      fontWeight: theme.fontWeightBold,
     },
     // 'h1, h2, h3, h4, h5, h6': {
     //   marginTop: 0,

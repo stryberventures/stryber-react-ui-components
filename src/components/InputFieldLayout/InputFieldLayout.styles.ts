@@ -29,10 +29,12 @@ export default (theme: any) => ({
   /** Placeholder */
   placeholder: {
     pointerEvents: 'none',
+    userSelect: 'none',
     position: 'absolute',
     transition: '0.2s',
     fontSize: 14,
-    fontFamily: theme.fontMedium,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
 
     color: theme.inputPlaceholderColorIdle || '#95acbf',
 
@@ -107,7 +109,8 @@ export default (theme: any) => ({
   /** Error message */
   errorMessage: {
     color: theme.inputErrorMessageColor || '#ea3546',
-    fontFamily: theme.fontLight,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
 });

@@ -8,7 +8,8 @@ export default (theme: any) => ({
     userSelect: 'none',
 
     color: theme.textColorSecondary,
-    fontFamily: theme.fontMedium,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
     fontSize: 14,
 
     display: 'flex',

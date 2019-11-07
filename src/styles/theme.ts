@@ -1,22 +1,24 @@
 export default {
+  /** Imports */
+  imports: [
+    `url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap')`,
+  ],
+
   /** Text color */
   textColorPrimary: '#1d1d1b',
   textColorSecondary: '#54738c',
+  textColorHighlight: '#fff',
 
   /** Background colors */
   backgroundColorPrimary: '#fff',
 
   /** Fonts */
-  fontLight: 'galano-light',
-  fontLightUrl: 'fonts/Galano-Grotesque-Light.otf',
-  fontRegular: 'galano-regular',
-  fontRegularUrl: 'fonts/Galano-Grotesque.otf',
-  fontMedium: 'galano-medium',
-  fontMediumUrl: 'fonts/Galano-Grotesque-Medium.otf',
-  fontSemiBold: 'galano-semibold',
-  fontSemiBoldUrl: 'fonts/Galano-Grotesque-Semi-Bold.otf',
-  fontBold: 'galano-bold',
-  fontBoldUrl: 'fonts/Galano-Grotesque-Bold.otf',
+  fontFamily: 'Work Sans',
+  fontWeightLight: 300,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightSemiBold: 600,
+  fontWeightBold: 700,
 
   /** Button colors */
   buttonColorPrimary: '#fff',
@@ -38,6 +40,9 @@ export default {
   inputColorHighlight: '#007aff',
   inputColorHighlightHover: '#278eff',
   inputColorHighlightClick: '#62adff',
+  inputColorSpecial: '#006add',
+  inputColorSpecialHover: '#0073f1',
+  inputColorSpecialClick: '#057dff',
   inputColorSelected: '#a8d4fd',
   inputColorError: '#d0021b',
   inputPlaceholderColorIdle: '#95acbf',

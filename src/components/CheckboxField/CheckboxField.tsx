@@ -20,6 +20,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   /** Get props */
   const {
     classes,
+    className,
     value,
     name,
     checked,
@@ -31,9 +32,6 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     ...rest
   } = props;
 
-  /** Ref */
-  const inputRef = React.createRef<HTMLInputElement>();
-
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
     updateFormValue,
@@ -43,15 +41,20 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     formTouched,
   } = React.useContext(FormContext);
 
+  /** Setting the internal value of the field from form initial values or from value provided to the field */
+  const [internalValue, setInternalValue] = React.useState((formValues && formValues[name]) || checked);
+
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
   /** Get checked value when using within a form or solo */
-  const checkedValue = formValues ? formValues[name] : undefined;
+  // const checkedValue = formValues ? formValues[name] : undefined;
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, checked } = e.target;
+    /** Set intenal value */
+    setInternalValue(checked);
     /** Passthrough to form context */
     formValues && updateFormValue(name, checked);
     /** Independent callback */
@@ -73,8 +76,6 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
       updateFormValue(name, !!checked);
     } else {
       /** Set initial input field checked value */
-      //@ts-ignore
-      inputRef.current.checked = checked;
     }
     return () => {
       /** On unmount */
@@ -84,16 +85,15 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   }, []);
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classNames([classes.wrapper, className])}>
       <label className={classes.root}>
         <input
           {...rest}
-          ref={inputRef}
           type="checkbox"
           className={classes.input}
           name={name}
           value={value}
-          checked={checkedValue}
+          checked={internalValue}
           onChange={onChangeWrapper}
           onFocus={onFocusWrapper}
         />

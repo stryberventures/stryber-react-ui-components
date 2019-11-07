@@ -36,7 +36,7 @@
     "build"
   ],
   "scripts": {
-    "start": "start-storybook -p 9001 -c .storybook -s ./src/assets",
+    "start": "start-storybook -p 9001 -c .storybook",
     "build": "npm run cleanup && npm run build:rollup",
     "watch:ts": "tsc -w",
     "build:ts": "tsc",

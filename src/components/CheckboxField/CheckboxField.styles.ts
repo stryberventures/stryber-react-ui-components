@@ -12,7 +12,8 @@ export default (theme: any) => ({
     userSelect: 'none',
 
     color: theme.textColorSecondary,
-    fontFamily: theme.fontMedium,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
     fontSize: 14,
 
     display: 'flex',
@@ -147,7 +148,8 @@ export default (theme: any) => ({
   /** Error message */
   errorMessage: {
     color: theme.inputErrorMessageColor || '#ea3546',
-    fontFamily: theme.fontLight,
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
 });
