@@ -50,11 +50,28 @@ npm publish
 
 4) Projects that would use
 this internal company's package 
-should have '.npmrc' file located 
+have two options of how to install
+and import the library:
+
+a) Install directly from the git repository's
+URL by typing the following command in the 
+terminal:
+
+```shell script
+npm i git+ssh://git@github.com/stryberventures/stryber-react-ui-components.git#dev
+```
+
+b) (DOESN'T WORK RIGHT NOW) Should have '.npmrc' file located 
 at the root of the project.
 
 '.npmrc' file contents:
 
 ```text
 registry=https://npm.pkg.github.com/stryberventures
+```
+
+After which they can install the package by typing
+the following command in the terminal
+```shell script
+npm i @stryberventures/stryber-react-ui-components
 ```
