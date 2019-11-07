@@ -8,19 +8,17 @@ export default (theme: any) => ({
   /** Dropdown arrow */
   dropdownArrow: {
     transition: '0.3s',
-    border: 'solid',
-    borderColor: theme.inputPlaceholderColorIdle,
-    borderWidth: '0 2px 2px 0',
-    transform: 'rotate(45deg)',
-    width: 10,
-    height: 10,
-    marginRight: 18,
+
+    fill: theme.inputPlaceholderColorIdle,
+    width: 25,
+    height: 25,
+    marginRight: 10,
   },
   dropdownArrowOpen: {
-    transform: 'rotate(225deg)',
+    transform: 'rotate(180deg)',
   },
   dropdownArrowFocused: {
-    borderColor: theme.inputColorHighlight,
+    fill: theme.inputColorHighlight,
   },
   /** Selected values Wrapper */
   selectElement: {

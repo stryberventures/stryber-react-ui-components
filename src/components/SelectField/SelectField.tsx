@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './SelectField.styles';
 import { FormContext } from '../Form';
+import { DownArrow } from '../Icons';
 
 export interface IChoiceData {
   label: any;
@@ -114,14 +115,13 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
 
   /** Append content arrow */
   const appendContent = (
-    <div
+    <DownArrow
       className={classNames([
         classes.dropdownArrow,
         isDropdownOpen ? classes.dropdownArrowOpen : null,
         isFocused ? classes.dropdownArrowFocused : null,
       ])}
-    >
-    </div>
+    />
   );
 
   return (
@@ -153,14 +153,6 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
           appendContent={appendContent}
           onClick={() => setDropdownOpen(v => !v)}
         >
-          {/*/!** Select wrapper hack *!/*/}
-          {/*<select*/}
-          {/*  className={classes.selectElement}*/}
-          {/*  onBlur={onBlurWrapper}*/}
-          {/*  onFocus={onFocusWrapper}*/}
-          {/*  onKeyDown={onKeyDownWrapper}*/}
-          {/*>*/}
-          {/*</select>*/}
           {/** Input filed layout content */}
           <div
             tabIndex={0}

@@ -10,9 +10,9 @@ export default (theme: any) => ({
     transition: '0.3s',
 
     fill: theme.inputPlaceholderColorIdle,
-    width: 20,
-    height: 20,
-    marginRight: 18,
+    width: 25,
+    height: 25,
+    marginRight: 10,
   },
   dropdownArrowOpen: {
     transform: 'rotate(180deg)',

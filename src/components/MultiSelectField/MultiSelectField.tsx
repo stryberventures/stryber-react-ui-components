@@ -3,7 +3,7 @@ import { InputFieldLayout } from '../InputFieldLayout';
 import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './MultiSelectField.styles';
-import { FormContext } from '../Form';
+import { Form, FormContext } from '../Form';
 import { CheckboxField } from '../CheckboxField';
 import { ValueBadge } from './ValueBadge';
 import { DownArrow } from '../Icons';
@@ -62,19 +62,17 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   const [internalValues, setInternalValues] = React.useState(formValues ? formValues[name] : (values || []));
 
   /** Selected choice */
-  const selectedChoices = choices.filter((d: IChoiceData) => (internalValues || []).indexOf(d.value) > -1);
+  const selectedChoices = choices.filter((d: IChoiceData) => (internalValues || []).indexOf(d.value.toString()) > -1);
 
   /** Select Field State */
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
 
-  console.log('selectedChoices', selectedChoices);
-
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (values: any[]) => {
     /** Passthrough to form context */
-    formValues && updateFormValue(name, internalValues);
+    formValues && updateFormValue(name, values);
     /** Independent callback */
-    onChange && onChange(internalValues);
+    onChange && onChange(values);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     setFocused(true);
@@ -95,15 +93,19 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     e.stopPropagation();
     setDropdownOpen(() => false);
   };
+  const removeSelectionLabel = (value: any) => {
+    setDropdownOpen(() => false);
+    setInternalValues((oiv: any[]) => {
+      const newValues = (oiv || []).filter(d => d !== value.toString());
+      onChangeWrapper(newValues);
+      return newValues;
+    });
+  };
   const selectedBadgeOnClose = (value: any) => {
     return (e: React.BaseSyntheticEvent) => {
       e.stopPropagation();
       removeSelectionLabel(value);
     };
-  };
-  const removeSelectionLabel = (value: any) => {
-    setDropdownOpen(() => false);
-    setInternalValues((civ: any[]) => civ.filter(d => d !== value));
   };
   const inputLabelOnClick = (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
@@ -112,11 +114,11 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   const checkboxOnChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, checked } = e.target;
     setInternalValues((oiv: any[]) => {
-        let newValues = [];
+      let newValues = [];
       if (checked) {
-        newValues = oiv.filter((d: any) => d !== name).concat([name]);
+        newValues = (oiv || []).filter((d: any) => d !== name).concat([name]);
       } else {
-        newValues = oiv.filter((d: any) => d !== name);
+        newValues = (oiv || []).filter((d: any) => d !== name);
       }
       onChangeWrapper(newValues);
 
@@ -190,6 +192,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
         {
           isDropdownOpen
             ? (
+              <Form>
               <div
                 className={classes.dropdownWrapper}
               >
@@ -207,6 +210,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                     ))
                 }
               </div>
+              </Form>
             ) : null
         }
       </div>
