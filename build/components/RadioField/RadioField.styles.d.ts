@@ -7,6 +7,7 @@ declare const _default: (theme: any) => {
         userSelect: string;
         color: any;
         fontFamily: any;
+        fontWeight: any;
         fontSize: number;
         display: string;
         alignItems: string;

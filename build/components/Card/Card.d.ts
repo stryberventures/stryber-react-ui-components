@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { WithStyles } from 'react-jss';
 /** Card */
-interface CardProps {
+export interface CardProps {
     children: any;
-    [key: string]: any;
 }
 /** Title */
 interface TitleProps {
@@ -31,7 +30,7 @@ declare const StyledCard: React.ComponentType<Pick<CardProps & WithStyles<(theme
         padding: number;
         flex: number;
     };
-}>, React.ReactText> & {
+}>, "children"> & {
     classes?: Partial<Record<"root" | "title" | "body", string>> | undefined;
 }>;
 declare const StyledTitle: React.ComponentType<Pick<TitleProps & WithStyles<(theme: any) => {

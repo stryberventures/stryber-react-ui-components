@@ -1,20 +1,19 @@
 declare const _default: {
+    /** Imports */
+    imports: string[];
     /** Text color */
     textColorPrimary: string;
     textColorSecondary: string;
+    textColorHighlight: string;
     /** Background colors */
     backgroundColorPrimary: string;
     /** Fonts */
-    fontLight: string;
-    fontLightUrl: string;
-    fontRegular: string;
-    fontRegularUrl: string;
-    fontMedium: string;
-    fontMediumUrl: string;
-    fontSemiBold: string;
-    fontSemiBoldUrl: string;
-    fontBold: string;
-    fontBoldUrl: string;
+    fontFamily: string;
+    fontWeightLight: number;
+    fontWeightRegular: number;
+    fontWeightMedium: number;
+    fontWeightSemiBold: number;
+    fontWeightBold: number;
     /** Button colors */
     buttonColorPrimary: string;
     buttonColorSecondary: string;
@@ -33,6 +32,10 @@ declare const _default: {
     inputColorHighlight: string;
     inputColorHighlightHover: string;
     inputColorHighlightClick: string;
+    inputColorSpecial: string;
+    inputColorSpecialHover: string;
+    inputColorSpecialClick: string;
+    inputColorSelected: string;
     inputColorError: string;
     inputPlaceholderColorIdle: string;
     inputErrorMessageColor: string;

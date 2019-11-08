@@ -9,7 +9,7 @@ import { ValueBadge } from './ValueBadge';
 import { DownArrow } from '../Icons';
 
 /** Interfaces */
-export interface IChoiceData {
+export interface IMultiChoiceData {
   label: any;
   value: any;
 }
@@ -18,7 +18,7 @@ export interface IMultiSelectFieldProps {
   name: string;
   type?: string;
   placeholder?: string;
-  choices: IChoiceData[];
+  choices: IMultiChoiceData[];
   values?: any[];
   disabled?: boolean;
   onChange?: (value: any) => void;
@@ -63,7 +63,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   const [internalValues, setInternalValues] = React.useState(formValues ? formValues[name] : (values || []));
 
   /** Selected choice */
-  const selectedChoices = choices.filter((d: IChoiceData) => (internalValues || []).indexOf(d.value.toString()) > -1);
+  const selectedChoices = choices.filter((d: IMultiChoiceData) => (internalValues || []).indexOf(d.value.toString()) > -1);
 
   /** Select Field State */
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
@@ -178,7 +178,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
             ])}
           >
             {
-              selectedChoices.map(({ label, value }: IChoiceData) => (
+              selectedChoices.map(({ label, value }: IMultiChoiceData) => (
                 <ValueBadge
                   key={value}
                   onClose={selectedBadgeOnClose(value)}
@@ -201,7 +201,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               >
                 {
                   choices
-                    .map((choiceData: IChoiceData, i: number) => (
+                    .map((choiceData: IMultiChoiceData, i: number) => (
                       <CheckboxField
                         className={classes.dropdownItem}
                         key={i}

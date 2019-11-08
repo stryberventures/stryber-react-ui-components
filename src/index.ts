@@ -9,6 +9,8 @@ export * from './components/RadioField';
 export * from './components/PasswordField';
 export * from './components/InputField';
 export * from './components/CheckboxField';
+export * from './components/SelectField';
+export * from './components/MultiSelectField';
 /** Active elements */
 export * from './components/Button';
 /** Layout */

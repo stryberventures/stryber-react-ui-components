@@ -1,15 +1,13 @@
 declare const _default: (theme: any) => {
     '@global': {
-        '@font-face': {
-            fontFamily: any;
-            src: string;
-        }[];
+        '@import': any[];
         html: {
             height: string;
             width: string;
         };
         body: {
             fontFamily: any;
+            fontWeight: any;
             height: string;
             width: string;
             padding: number;
@@ -20,25 +18,31 @@ declare const _default: (theme: any) => {
         h1: {
             fontSize: number;
             fontFamily: any;
+            fontWeight: any;
         };
         h2: {
             fontSize: number;
             fontFamily: any;
+            fontWeight: any;
         };
         h3: {
             fontSize: number;
             fontFamily: any;
+            fontWeight: any;
         };
         h4: {
             fontSize: number;
             fontFamily: any;
+            fontWeight: any;
         };
         p: {
             fontSize: number;
             fontFamily: any;
+            fontWeight: any;
         };
         b: {
             fontFamily: any;
+            fontWeight: any;
         };
         '#root': {
             height: string;

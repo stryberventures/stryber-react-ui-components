@@ -1,12 +1,17 @@
 import * as React from 'react';
 /** Interfaces */
-export interface IInputFieldProps {
-    name?: string;
+export interface IChoiceData {
+    label: any;
+    value: any;
+}
+export interface ISelectFieldProps {
+    name: string;
     type?: string;
     placeholder?: string;
+    choices: IChoiceData[];
     value?: any;
     disabled?: boolean;
-    onChange?: (e: React.BaseSyntheticEvent) => void;
+    onChange?: (value: any) => void;
     onFocus?: (e: React.BaseSyntheticEvent) => void;
     onBlur?: (e: React.BaseSyntheticEvent) => void;
     clearFormValueOnUnmount?: boolean;
@@ -14,8 +19,7 @@ export interface IInputFieldProps {
     appendContent?: any;
     errorMessage?: string;
 }
-/** Main component */
-declare const InputField: (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>) => JSX.Element;
+declare const PropsWrappedStyledSelectField: (props: ISelectFieldProps) => JSX.Element;
 /** Exports */
-export default InputField;
-export { InputField, };
+export default PropsWrappedStyledSelectField;
+export { PropsWrappedStyledSelectField as SelectField, };

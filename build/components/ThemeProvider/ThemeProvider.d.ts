@@ -1,7 +1,11 @@
 /// <reference types="react" />
-interface ThemeProviderProps {
+/** Interfaces */
+export interface IThemeProviderProps {
     theme?: any;
     children: any;
 }
-declare const ThemeProvider: (props: ThemeProviderProps) => JSX.Element;
-export { ThemeProvider };
+/** Main component */
+declare const ThemeProvider: (props: IThemeProviderProps) => JSX.Element;
+/** Exports */
+export default ThemeProvider;
+export { ThemeProvider, };

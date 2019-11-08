@@ -11,6 +11,7 @@ declare const _default: (theme: any) => {
         userSelect: string;
         color: any;
         fontFamily: any;
+        fontWeight: any;
         fontSize: number;
         display: string;
         alignItems: string;
@@ -121,7 +122,7 @@ declare const _default: (theme: any) => {
             width: number;
             height: number;
             borderRadius: string;
-            backgroundColor: string;
+            backgroundColor: any;
             boxShadow: string;
         };
     };
@@ -129,10 +130,14 @@ declare const _default: (theme: any) => {
     placeholder: {
         padding: number;
     };
+    placeholderInvalid: {
+        color: any;
+    };
     /** Error message */
     errorMessage: {
         color: any;
         fontFamily: any;
+        fontWeight: any;
         fontSize: number;
     };
 };

@@ -1,50 +1,18 @@
-import * as React from 'react';
-import { WithStyles } from 'react-jss';
+/// <reference types="react" />
 /** Row */
-interface RowProps {
+export interface IRowProps {
     children?: any;
-    [key: string]: any;
 }
 /** Col */
-interface ColProps {
-    xl: number;
-    lg: number;
-    md: number;
-    sm: number;
-    xs: number;
+export interface IColProps {
+    xl?: number;
+    lg?: number;
+    md?: number;
+    sm?: number;
+    xs?: number;
     children?: any;
-    [key: string]: any;
 }
-declare const StyledRow: React.ComponentType<Pick<RowProps & WithStyles<(theme: any) => {
-    row: {
-        display: string;
-        gridGap: any;
-        gridTemplateColumns: string;
-        width: string;
-    };
-    col: {
-        [x: string]: ((props: any) => string) | {
-            gridColumnEnd: (props: any) => string;
-        };
-        gridColumnEnd: (props: any) => string;
-    };
-}>, React.ReactText> & {
-    classes?: Partial<Record<"row" | "col", string>> | undefined;
-}>;
-declare const StyledCol: React.ComponentType<Pick<ColProps & WithStyles<(theme: any) => {
-    row: {
-        display: string;
-        gridGap: any;
-        gridTemplateColumns: string;
-        width: string;
-    };
-    col: {
-        [x: string]: ((props: any) => string) | {
-            gridColumnEnd: (props: any) => string;
-        };
-        gridColumnEnd: (props: any) => string;
-    };
-}>, React.ReactText> & {
-    classes?: Partial<Record<"row" | "col", string>> | undefined;
-}>;
-export { StyledRow as Row, StyledCol as Col, };
+declare const PropsWrappedStyledRow: (props: IRowProps) => JSX.Element;
+declare const PropsWrappedStyledCol: (props: IColProps) => JSX.Element;
+/** Exports */
+export { PropsWrappedStyledRow as Row, PropsWrappedStyledCol as Col, };
