@@ -4,7 +4,8 @@ import { PrependBackground } from '../Icons';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './InputFieldLayout.styles';
 
-interface IInputFieldLayoutProps {
+/** Interfaces */
+export interface IInputFieldLayoutProps {
   placeholder?: string;
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
@@ -14,6 +15,7 @@ interface IInputFieldLayoutProps {
   children?: any;
 }
 
+/** Main component */
 const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     classes,
@@ -84,8 +86,12 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
   );
 };
 
+/** Wrappers */
 const StyledInputFieldLayout = withStyles(styles)(InputFieldLayout);
-export default StyledInputFieldLayout;
+const PropsWrappedStyledInputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement>) => <StyledInputFieldLayout {...props} />;
+
+/** Exports */
+export default PropsWrappedStyledInputFieldLayout;
 export {
-  StyledInputFieldLayout as InputFieldLayout
+  PropsWrappedStyledInputFieldLayout as InputFieldLayout,
 };

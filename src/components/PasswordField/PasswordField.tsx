@@ -4,10 +4,12 @@ import { InputField, IInputFieldProps } from '../InputField';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './PasswordField.styles';
 
+/** Interfaces */
 export interface IPasswordFieldProps {
   showPasswordByDefault?: boolean;
 }
 
+/** Main component */
 const PasswordField = (props: IPasswordFieldProps & IInputFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
     showPasswordByDefault = false,
@@ -38,7 +40,12 @@ const PasswordField = (props: IPasswordFieldProps & IInputFieldProps & React.HTM
   );
 };
 
+/** Wrappers */
 const StyledPasswordField = withStyles(styles)(PasswordField);
+const PropsWrappedStyledPasswordField = (props: IPasswordFieldProps & IInputFieldProps & React.HTMLProps<HTMLInputElement>) => <StyledPasswordField {...props} />;
 
-export default StyledPasswordField;
-export { StyledPasswordField as PasswordField };
+/** Exports */
+export default PropsWrappedStyledPasswordField;
+export {
+  PropsWrappedStyledPasswordField as PasswordField,
+};

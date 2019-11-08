@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as yup from 'yup';
 
+/** Interfaces */
 /** Context used by input fields within the form */
 export interface IFormContext {
   updateFormValue: (name: string, data: any) => void;
@@ -26,7 +27,7 @@ export const FormContext: React.Context<IFormContext> =
   React.createContext(defaultFormContextValues);
 
 /** Form props */
-interface FormProps {
+export interface IFormProps {
   onSubmit?: (formData: any) => void;
   onReset?: (formData: any) => void;
   onError?: (errorData: any, formData: any) => void;
@@ -36,11 +37,10 @@ interface FormProps {
   children: any;
   initialValues?: any;
   validationSchema?: any;
-  [key: string]: any;
 }
 
 /** Form component */
-const Form = (props: FormProps) => {
+const Form = (props: IFormProps) => {
   const {
     children,
     onSubmit,
@@ -171,5 +171,8 @@ const Form = (props: FormProps) => {
   );
 };
 
+/** Exports */
 export default Form;
-export { Form };
+export {
+  Form,
+};

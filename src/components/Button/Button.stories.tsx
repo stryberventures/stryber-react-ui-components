@@ -6,11 +6,10 @@ import { Wrapper } from '../../storybook/components/Wrapper';
 
 storiesOf('Button', module)
   .add('with text', () => {
-    const fakedClickHandler = () => alert('Hello world');
+    const fakedClickHandler = () => console.log('Button clicked!');
     return (
       <Wrapper>
         <Button type="submit" variant="primary" onClick={ fakedClickHandler }>Primary</Button>
-        <br/>
         <Button variant="secondary" onClick={ fakedClickHandler }>Secondary</Button>
       </Wrapper>
     );

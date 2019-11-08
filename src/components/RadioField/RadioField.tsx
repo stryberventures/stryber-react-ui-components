@@ -3,7 +3,8 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './RadioField.styles';
 import { FormContext } from "../Form";
 
-interface IRadioFieldProps {
+/** Interfaces */
+export interface IRadioFieldProps {
   name: string;
   value: any;
   placeholder?: string;
@@ -12,6 +13,7 @@ interface IRadioFieldProps {
   onChange?: (e: React.BaseSyntheticEvent) => void;
 }
 
+/** Main component */
 const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   /** Get props */
   const {
@@ -83,8 +85,12 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   );
 };
 
+/** Wrappers */
 const StyledRadioField = withStyles(styles)(RadioField);
-export default StyledRadioField;
+const PropsWrappedStyledRadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement>) => <StyledRadioField {...props} />;
+
+/** Exports */
+export default PropsWrappedStyledRadioField;
 export {
-  StyledRadioField as RadioField
+  PropsWrappedStyledRadioField as RadioField,
 };

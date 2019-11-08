@@ -4,12 +4,14 @@ import { GlobalStyles } from './GlobalStyles';
 
 import defaultTheme from '../../styles/theme';
 
-interface ThemeProviderProps {
+/** Interfaces */
+export interface IThemeProviderProps {
   theme?: any;
   children: any;
 }
 
-const ThemeProvider = (props: ThemeProviderProps) => {
+/** Main component */
+const ThemeProvider = (props: IThemeProviderProps) => {
   const { theme, children } = props;
   return (
     <JssThemeProvider theme={{ ...defaultTheme, theme }}>
@@ -20,4 +22,8 @@ const ThemeProvider = (props: ThemeProviderProps) => {
   );
 };
 
-export { ThemeProvider };
+/** Exports */
+export default ThemeProvider;
+export {
+  ThemeProvider,
+};

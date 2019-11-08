@@ -5,12 +5,11 @@ import classNames from 'classnames';
 import styles from './Grid.styles';
 
 /** Row */
-interface RowProps {
+export interface IRowProps {
   children?: any;
-  [key: string]: any;
 }
 
-const Row = (props: RowProps & WithStyles<typeof styles>) => {
+const Row = (props: IRowProps & WithStyles<typeof styles>) => {
   const {
     children,
     classes,
@@ -29,17 +28,16 @@ const Row = (props: RowProps & WithStyles<typeof styles>) => {
 };
 
 /** Col */
-interface ColProps {
-  xl: number;
-  lg: number;
-  md: number;
-  sm: number;
-  xs: number;
+export interface IColProps {
+  xl?: number;
+  lg?: number;
+  md?: number;
+  sm?: number;
+  xs?: number;
   children?: any;
-  [key: string]: any;
 }
 
-const Col = (props: ColProps & WithStyles<typeof styles>) => {
+const Col = (props: IColProps & WithStyles<typeof styles>) => {
   const {
     children,
     xl, lg, md, sm, xs,
@@ -58,10 +56,14 @@ const Col = (props: ColProps & WithStyles<typeof styles>) => {
   );
 };
 
+/** Wrappers */
 const StyledRow = withStyles(styles)(Row);
+const PropsWrappedStyledRow = (props: IRowProps) => <StyledRow {...props} />;
 const StyledCol = withStyles(styles)(Col);
+const PropsWrappedStyledCol = (props: IColProps) => <StyledCol {...props} />;
 
+/** Exports */
 export {
-  StyledRow as Row,
-  StyledCol as Col,
+  PropsWrappedStyledRow as Row,
+  PropsWrappedStyledCol as Col,
 };

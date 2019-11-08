@@ -4,12 +4,12 @@ import { FormContext } from '../Form';
 import { TextInput } from './Inputs/TextInput';
 import { Button } from '../Button';
 
+/** Interfaces */
 export interface IInputFieldProps {
   name?: string;
   type?: string;
   placeholder?: string;
   value?: any;
-  variant?: 'primary' | 'secondary';
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -18,12 +18,11 @@ export interface IInputFieldProps {
   prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
-  [key: string]: any;
 }
 
+/** Main component */
 const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>) => {
   const {
-    classes,
     name = 'unnamed',
     value,
     type = 'text',
@@ -132,5 +131,8 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
   return <input {...props}/>;
 };
 
+/** Exports */
 export default InputField;
-export { InputField };
+export {
+  InputField,
+};

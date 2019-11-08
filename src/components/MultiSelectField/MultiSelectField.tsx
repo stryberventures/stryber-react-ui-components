@@ -8,6 +8,7 @@ import { CheckboxField } from '../CheckboxField';
 import { ValueBadge } from './ValueBadge';
 import { DownArrow } from '../Icons';
 
+/** Interfaces */
 export interface IChoiceData {
   label: any;
   value: any;
@@ -27,9 +28,9 @@ export interface IMultiSelectFieldProps {
   prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
-  [key: string]: any;
 }
 
+/** Main component */
 const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styles>) => {
   const {
     name,
@@ -224,7 +225,12 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   );
 };
 
+/** Wrappers */
 const StyledMultiSelectField = withStyles(styles)(MultiSelectField);
+const PropsWrappedStyledMultiSelectField = (props: IMultiSelectFieldProps) => <StyledMultiSelectField {...props} />;
 
-export default StyledMultiSelectField;
-export { StyledMultiSelectField as MultiSelectField };
+/** Exports */
+export default PropsWrappedStyledMultiSelectField;
+export {
+  PropsWrappedStyledMultiSelectField as MultiSelectField,
+};

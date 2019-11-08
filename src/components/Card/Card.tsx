@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import styles from './Card.styles';
 
 /** Card */
-interface CardProps {
+export interface CardProps {
   children: any;
-  [key: string]: any;
 }
 
 const Card = ({

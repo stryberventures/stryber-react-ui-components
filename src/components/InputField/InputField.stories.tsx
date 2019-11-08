@@ -10,35 +10,29 @@ storiesOf('Input field', module)
     return (
       <Wrapper>
         <InputField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <InputField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Some text field"
         />
         <InputField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Text field with initial value"
           value="Some initial value 123"
         />
         <InputField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Disabled text field"
           disabled
         />
         <InputField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Disabled text field"
           value="Some uneditable value"
           disabled
         />
         <InputField
-          variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Disabled text field"
@@ -46,7 +40,6 @@ storiesOf('Input field', module)
           disabled
         />
         <InputField
-          variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Error text field"
@@ -54,21 +47,18 @@ storiesOf('Input field', module)
           errorMessage="Error message"
         />
         <InputField
-          variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Text field with prepend"
           value="Hello"
         />
         <InputField
-          variant="primary"
           appendContent={<div>yyy</div>}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Text field with append"
           value="Value"
         />
           <InputField
-            variant="primary"
             prependContent={<ProfileIcon />}
             appendContent={<div>yyy</div>}
             onChange={ (d: any) => console.log('InputField value:', d.target.value) }

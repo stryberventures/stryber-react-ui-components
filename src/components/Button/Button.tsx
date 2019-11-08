@@ -4,15 +4,16 @@ import classNames from 'classnames';
 
 import styles from './Button.styles';
 
-interface ButtonProps {
+/** Interfaces */
+export interface IButtonProps {
   onClick?: (e: React.SyntheticEvent) => void;
   disabled?: boolean;
   children: any;
   variant?: 'primary' | 'secondary';
-  [key: string]: any;
 }
 
-const Button = (props: ButtonProps & React.HTMLProps<HTMLButtonElement> & WithStyles<typeof styles>) => {
+/** Main component */
+const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     children,
@@ -36,8 +37,12 @@ const Button = (props: ButtonProps & React.HTMLProps<HTMLButtonElement> & WithSt
   );
 };
 
+/** Wrappings */
 const StyledButton = withStyles(styles)(Button);
+const PropsWrappedStyledButton = (props: IButtonProps & React.HTMLProps<HTMLButtonElement>) => <StyledButton {...props} />;
 
-export default StyledButton;
-
-export { StyledButton as Button };
+/** Exports */
+export default PropsWrappedStyledButton;
+export {
+  PropsWrappedStyledButton as Button,
+};

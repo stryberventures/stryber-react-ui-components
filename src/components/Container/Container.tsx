@@ -1,15 +1,15 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import classNames from 'classnames';
-
 import styles from './Container.styles';
 
-interface ContainerProps {
+/** Interfaces */
+export interface IContainerProps {
   children?: any;
-  [key: string]: any;
 }
 
-const Container = (props: ContainerProps & WithStyles<typeof styles>) => {
+/** Main component */
+const Container = (props: IContainerProps & WithStyles<typeof styles>) => {
   const {
     children,
     classes,
@@ -27,8 +27,12 @@ const Container = (props: ContainerProps & WithStyles<typeof styles>) => {
   );
 };
 
+/** Wrappers */
 const StyledContainer = withStyles(styles)(Container);
+const PropsWrappedStyledContainer = (props: IContainerProps) => <StyledContainer {...props} />;
 
+/** Exports */
+export default PropsWrappedStyledContainer;
 export {
-  StyledContainer as Container,
+  PropsWrappedStyledContainer as Container,
 };

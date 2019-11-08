@@ -4,7 +4,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './CheckboxField.styles';
 import { FormContext } from "../Form";
 
-interface ICheckboxFieldProps {
+export interface ICheckboxFieldProps {
   name: string;
   value?: any;
   placeholder?: string;
@@ -117,8 +117,12 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   );
 };
 
+/** Wrappings */
 const StyledCheckboxField = withStyles(styles)(CheckboxField);
-export default StyledCheckboxField;
+const PropsWrappedStyledCheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputElement>) => <StyledCheckboxField {...props} />;
+
+/** Exports */
+export default PropsWrappedStyledCheckboxField;
 export {
-  StyledCheckboxField as CheckboxField
+  PropsWrappedStyledCheckboxField as CheckboxField,
 };

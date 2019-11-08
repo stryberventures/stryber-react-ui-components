@@ -49,6 +49,14 @@ storiesOf('Checkbox field', module)
           variant="switch"
           onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
+        <CheckboxField
+          placeholder="Option B"
+          checked
+          value="b"
+          name="answer"
+          variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
       </Wrapper>
     );
   });

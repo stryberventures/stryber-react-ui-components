@@ -6,6 +6,7 @@ import styles from './SelectField.styles';
 import { FormContext } from '../Form';
 import { DownArrow } from '../Icons';
 
+/** Interfaces */
 export interface IChoiceData {
   label: any;
   value: any;
@@ -25,9 +26,9 @@ export interface ISelectFieldProps {
   prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
-  [key: string]: any;
 }
 
+/** Main component */
 const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   const {
     name,
@@ -203,7 +204,12 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   );
 };
 
+/** Wrappers */
 const StyledSelectField = withStyles(styles)(SelectField);
+const PropsWrappedStyledSelectField = (props: ISelectFieldProps) => <StyledSelectField {...props} />;
 
-export default StyledSelectField;
-export { StyledSelectField as SelectField };
+/** Exports */
+export default PropsWrappedStyledSelectField;
+export {
+  PropsWrappedStyledSelectField as SelectField,
+};

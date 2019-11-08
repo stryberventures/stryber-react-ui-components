@@ -9,40 +9,33 @@ storiesOf('Password field', module)
     return (
       <Wrapper>
         <PasswordField
-          variant="primary"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <PasswordField
-          variant="primary"
           value="difjsdfs"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <PasswordField
-          variant="primary"
           placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <PasswordField
-          variant="primary"
           placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           errorMessage="Something is not right"
         />
         <PasswordField
-          variant="primary"
           value="difjsdfs"
           placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
         <PasswordField
-          variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Password field with prepend"
           value="Hello"
         />
         <PasswordField
-          variant="primary"
           prependContent={<ProfileIcon />}
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Password field with prepend"

@@ -260,4 +260,4 @@ storiesOf('Form', module)
         <ExternalFormControlExample />
       </Wrapper>
     );
-  })
+  });
