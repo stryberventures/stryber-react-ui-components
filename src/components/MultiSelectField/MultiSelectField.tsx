@@ -3,7 +3,7 @@ import { InputFieldLayout } from '../InputFieldLayout';
 import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './MultiSelectField.styles';
-import { Form, FormContext } from '../Form';
+import { defaultFormContextValues, FormContext} from '../Form';
 import { CheckboxField } from '../CheckboxField';
 import { ValueBadge } from './ValueBadge';
 import { DownArrow } from '../Icons';
@@ -192,7 +192,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
         {
           isDropdownOpen
             ? (
-              <Form>
+              <FormContext.Provider
+                value={defaultFormContextValues}
+              >
               <div
                 className={classes.dropdownWrapper}
               >
@@ -210,7 +212,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                     ))
                 }
               </div>
-              </Form>
+              </FormContext.Provider>
             ) : null
         }
       </div>

@@ -13,16 +13,17 @@ export interface IFormContext {
 }
 
 /** Creating form context with default values */
+export const defaultFormContextValues = {
+  updateFormValue: (name: string, data: any) => {},
+  updateFormTouched: (name: string, data: any) => {},
+  unsetFormValue: (name: any) => {},
+  formValues: undefined,
+  formErrors: undefined,
+  formTouched: undefined,
+  initialValues: undefined,
+};
 export const FormContext: React.Context<IFormContext> =
-  React.createContext({
-    updateFormValue: (name: string, data: any) => {},
-    updateFormTouched: (name: string, data: any) => {},
-    unsetFormValue: (name: any) => {},
-    formValues: undefined,
-    formErrors: undefined,
-    formTouched: undefined,
-    initialValues: undefined,
-  });
+  React.createContext(defaultFormContextValues);
 
 /** Form props */
 interface FormProps {
