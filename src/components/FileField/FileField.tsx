@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import { FormContext } from '../../../Form';
+import { FormContext } from '../Form';
 // import { InputFieldLayout } from '../InputFieldLayout';
 // import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
-import styles from './FileInputField.styles';
-import { InputFieldLayout } from '../../../InputFieldLayout';
+import styles from './FileField.styles';
+import { InputFieldLayout } from '../InputFieldLayout';
 import classNames from "classnames";
 // import { defaultFormContextValues, FormContext} from '../Form';
 // import { CheckboxField } from '../CheckboxField';
 // import { DownArrow } from '../Icons';
 
 /** Interfaces */
-export interface IFileInputFieldProps {
+export interface IFileFieldProps {
   name: string;
   type?: string;
   placeholder?: string;
@@ -28,7 +28,7 @@ export interface IFileInputFieldProps {
 }
 
 /** Main component */
-const FileInputField = (props: IFileInputFieldProps & WithStyles<typeof styles>) => {
+const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   const {
     name,
     classes,
@@ -60,7 +60,6 @@ const FileInputField = (props: IFileInputFieldProps & WithStyles<typeof styles>)
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
   /** Setting the internal value of the field from form initial values or from value provided to the field */
-  console.log('formValues ===>>> ', formValues);
   const [internalValue] = React.useState((name && formValues && formValues[name]) || value);
 
 
@@ -101,12 +100,12 @@ const FileInputField = (props: IFileInputFieldProps & WithStyles<typeof styles>)
 };
 
 /** Wrappers */
-const StyledFileInputField = withStyles(styles)(FileInputField);
-const PropsWrappedStyledStyledFileInputField = (props: IFileInputFieldProps) => <StyledFileInputField {...props} />;
+const StyledFileField = withStyles(styles)(FileField);
+const PropsWrappedStyledStyledFileField = (props: IFileFieldProps) => <StyledFileField {...props} />;
 
 /** Exports */
-export default PropsWrappedStyledStyledFileInputField;
+export default PropsWrappedStyledStyledFileField;
 
 export {
-  PropsWrappedStyledStyledFileInputField as FileInputField,
+  PropsWrappedStyledStyledFileField as FileField,
 };

@@ -4,13 +4,13 @@ import { InputField } from './InputField';
 import { Profile as ProfileIcon } from '../Icons';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
-import { FileInputField } from './Inputs/FileInput';
+import { FileField } from '../FileField';
 
 storiesOf('Input field', module)
   .add('Text input', () => {
     return (
       <Wrapper>
-        <FileInputField
+        <FileField
           name="cv"
           disabled={false}
           placeholder="Attachment"
