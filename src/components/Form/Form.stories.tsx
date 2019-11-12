@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Form from './Form';
 import { InputField } from '../InputField';
+import { FileField } from '../FileField';
 import { RadioField } from '../RadioField';
 import { CheckboxField } from '../CheckboxField';
 import { Button } from '../Button';
@@ -211,11 +212,16 @@ storiesOf('Form', module)
             email: '',
           }}
           validationSchema={yup.object({
+            cv: yup.string().required(),
             email: yup.string().email().required(),
             age: yup.number().required(),
             agree: yup.boolean().oneOf([true], 'Field must be checked'),
           })}
         >
+          <FileField
+            name="cv"
+            placeholder="Attachment"
+          />
           <InputField
             prependContent={<ProfileIcon />}
             name="email"

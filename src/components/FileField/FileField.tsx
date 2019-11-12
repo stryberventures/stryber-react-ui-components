@@ -14,7 +14,7 @@ import { InputFieldLayout } from '../InputFieldLayout';
 export interface IFileFieldProps {
   name: string;
   placeholder?: string;
-  value: string;
+  value?: string;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
