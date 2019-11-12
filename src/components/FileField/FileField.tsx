@@ -15,6 +15,8 @@ export interface IFileFieldProps {
   name: string;
   placeholder?: string;
   value?: string;
+  multiple?: boolean;
+  accept: string;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -32,6 +34,8 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     classes,
     errorMessage,
     disabled,
+    accept,
+    multiple,
     onChange,
     onFocus,
     onBlur,
@@ -75,14 +79,14 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
-    const { name, value: targetValue } = e.target;
-    const filePath = 'C:\\fakepath\\';
-    const fileName = targetValue.replace(filePath, '');
+    const { name, files: targetFiles } = e.target;
+    const fileNames = Object.values(targetFiles)
+      .map((file: any) => file.name);
 
     /** Internal value update */
-    setInternalValue(fileName);
+    setInternalValue(fileNames);
     /** Passthrough to form context */
-    formValues && updateFormValue(name, fileName);
+    formValues && updateFormValue(name, fileNames);
     /** Independent callback */
     onChange && onChange(e);
   };
@@ -114,11 +118,14 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     };
   }, [internalValue]);
 
+  const message = internalValue ? `You selected ${internalValue.map((fileName: string) => `"${fileName}"`).join(', ')}` : '';
+
   return (
     <InputFieldLayout
       appendContent={appendedComponent}
       isPlaceholderCollapsed={!!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused)}
       errorMsg={errorMsg}
+      message={message}
       disabled={disabled}
       placeholder={placeholder}
     >
@@ -129,10 +136,18 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
         className={classes.inputFieldWrapper}
       >
         { internalValue
-          ? <div className={classes.inputWithPlaceholder}>{internalValue}</div>
+          ? <div className={classes.inputWithPlaceholder}>{internalValue.join(', ')}</div>
           : null
         }
-        <input onChange={onChangeWrapper} id="fileInput" className={classes.input} type="file" value={value} />
+        <input
+          id="fileInput"
+          type="file"
+          accept={accept}
+          multiple={multiple}
+          value={value}
+          className={classes.input}
+          onChange={onChangeWrapper}
+        />
       </div>
     </InputFieldLayout>
   );

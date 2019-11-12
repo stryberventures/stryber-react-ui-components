@@ -12,9 +12,17 @@ storiesOf('Input field', module)
       <Wrapper>
         <FileField
           name="cv"
-          placeholder="Attachment"
+          accept=".pdf"
+          placeholder="Single file field"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          // errorMessage="Error message"
+        />
+        <FileField
+          name="cv"
+          accept=".pdf"
+          placeholder="Multiple files field with error"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          errorMessage="Error message"
+          multiple
         />
         <InputField
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }

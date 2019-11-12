@@ -220,7 +220,14 @@ storiesOf('Form', module)
         >
           <FileField
             name="cv"
+            accept=".pdf"
             placeholder="Attachment"
+          />
+          <FileField
+            name="additionalDocuments"
+            accept=".pdf"
+            placeholder="Attachment"
+            multiple
           />
           <InputField
             prependContent={<ProfileIcon />}

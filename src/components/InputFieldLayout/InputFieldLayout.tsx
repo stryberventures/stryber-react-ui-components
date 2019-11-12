@@ -10,6 +10,7 @@ export interface IInputFieldLayoutProps {
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
+  message?: string;
   prependContent?: any;
   appendContent?: any;
   children?: any;
@@ -20,6 +21,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
   const {
     classes,
     errorMsg,
+    message,
     disabled,
     prependContent,
     appendContent,
@@ -81,6 +83,16 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
               { errorMsg }
             </div>
           ) : null
+      }
+      {
+        message ?
+        (
+          <div
+            className={classes.message}
+          >
+            { message }
+          </div>
+        ) : null
       }
     </>
   );
