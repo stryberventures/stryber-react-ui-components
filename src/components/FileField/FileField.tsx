@@ -66,7 +66,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
       htmlFor="fileInput"
       className={classNames([
         classes.append,
-        internalValue ? classes.fileSelected : classes.fileNotSelected
+        internalValue ? 'fileSelected' : 'fileNotSelected'
       ])}>
       {internalValue ? 'Change' : 'Upload'}
     </label>
@@ -126,16 +126,13 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
         tabIndex={0}
         onFocus={onFocusWrapper}
         onBlur={onBlurWrapper}
-        className={classNames([
-          classes.inputFieldWrapper,
-          errorMsg ? classes.inputLabelInvalid : null,
-        ])}
+        className={classes.inputFieldWrapper}
       >
         { internalValue
           ? <div className={classes.inputWithPlaceholder}>{internalValue}</div>
           : null
         }
-        <input onChange={onChangeWrapper} id="fileInput" className={classes.fileInput} type="file" value={value} />
+        <input onChange={onChangeWrapper} id="fileInput" className={classes.input} type="file" value={value} />
       </div>
     </InputFieldLayout>
   );

@@ -1,42 +1,6 @@
 export default (theme: any) => ({
-  fileInput: {
-    display: 'block',
-    // position: 'absolute',
-    width: '100%',
-    height: '100%',
-    padding: 14,
-    opacity: '0',
-    cursor: 'pointer'
-  },
-
   inputFieldWrapper: {
     cursor: 'pointer'
-  },
-
-  fileName: {
-    position: 'absolute',
-  },
-
-  append: {
-    marginRight: 12,
-    padding: '0 24px',
-    borderRadius: 4.4,
-    fontSize: 10,
-    fontWeight: 500,
-    lineHeight: '23px',
-    cursor: 'pointer'
-  },
-
-  fileSelected: {
-    color: '#fff',
-    border: 'solid 1px #007aff',
-    backgroundColor: '#007aff'
-  },
-
-  fileNotSelected: {
-    color: '#007aff',
-    border: 'solid 1px #007aff',
-    backgroundColor: '#fff'
   },
 
   inputWithPlaceholder: {
@@ -60,26 +24,34 @@ export default (theme: any) => ({
     cursor: 'pointer',
   },
 
-  inputLabelInvalid: {
-
+  input: {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    padding: 14,
+    opacity: '0',
+    cursor: 'pointer'
   },
 
-  fileInputLabel: {
-    borderRadius: 8,
-    overflow: 'hidden',
-    border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
-    transition: '0.5s',
-    backgroundColor: theme.inputBackgroundColor || '#fff',
-
-    display: 'flex',
-    justifyContent: 'space-between',
-
-    '&:focus-within': {
-      border: `solid 1px ${theme.inputColorHighlight || '#007aff'}`,
-      outline: 'none',
-    },
-
+  append: {
+    marginRight: 12,
+    padding: '0 24px',
+    borderRadius: 4.4,
+    fontSize: 10,
+    fontWeight: 500,
+    lineHeight: '23px',
     cursor: 'pointer',
 
+    '&.fileNotSelected': {
+      color: '#007aff',
+      border: 'solid 1px #007aff',
+      backgroundColor: '#fff'
+    },
+
+    '&.fileSelected': {
+      color: '#fff',
+      border: 'solid 1px #007aff',
+      backgroundColor: '#007aff'
+    },
   },
 });
