@@ -1,12 +1,11 @@
 import * as React from 'react';
+import classNames from 'classnames';
+import withStyles, { WithStyles } from 'react-jss';
 
 import { FormContext } from '../Form';
 // import { InputFieldLayout } from '../InputFieldLayout';
-// import classNames from 'classnames';
-import withStyles, { WithStyles } from 'react-jss';
 import styles from './FileField.styles';
 import { InputFieldLayout } from '../InputFieldLayout';
-import classNames from "classnames";
 // import { defaultFormContextValues, FormContext} from '../Form';
 // import { CheckboxField } from '../CheckboxField';
 // import { DownArrow } from '../Icons';
@@ -14,17 +13,16 @@ import classNames from "classnames";
 /** Interfaces */
 export interface IFileFieldProps {
   name: string;
-  type?: string;
   placeholder?: string;
-  // choices: IMultiChoiceData[];
-  value?: string;
+  value: string;
   disabled?: boolean;
-  // onFocus?: (e: React.BaseSyntheticEvent) => void;
-  // onBlur?: (e: React.BaseSyntheticEvent) => void;
-  clearFormValueOnUnmount?: boolean;
-  // prependContent: any;
-  appendContent?: any;
+  onChange?: (e: React.BaseSyntheticEvent) => void;
+  onFocus?: (e: React.BaseSyntheticEvent) => void;
+  onBlur?: (e: React.BaseSyntheticEvent) => void;
   errorMessage?: string;
+  prependContent?: any;
+  appendContent?: any;
+  clearFormValueOnUnmount?: boolean;
 }
 
 /** Main component */
@@ -34,66 +32,110 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     classes,
     errorMessage,
     disabled,
-  //   onFocus,
-  //   onBlur,
-    value,
+    onChange,
+    onFocus,
+    onBlur,
     placeholder,
+    value,
     clearFormValueOnUnmount = true,
     appendContent,
   } = props;
 
-  /** Focus status (needed for styles) */
-  const [isFocused] = React.useState(false);
-
-
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
     updateFormValue,
-    //   updateFormTouched,
+    updateFormTouched,
     unsetFormValue,
     formValues,
     formErrors,
     formTouched,
   } = React.useContext(FormContext);
 
+  /** Focus status (needed for styles) */
+  const [isFocused, setFocused] = React.useState(false);
+
+  /** Setting the internal value of the field from form initial values or from value provided to the field */
+  const [internalValue, setInternalValue] = React.useState((name && formValues && formValues[name]) || value);
+
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
-  /** Setting the internal value of the field from form initial values or from value provided to the field */
-  const [internalValue] = React.useState((name && formValues && formValues[name]) || value);
-
-
-  const label = <label htmlFor="fileInput" className={classes.inputLabel}>Upload</label>;
+  /** Getting component to append */
+  const label = (
+    <label
+      htmlFor="fileInput"
+      className={classNames([
+        classes.append,
+        internalValue ? classes.fileSelected : classes.fileNotSelected
+      ])}>
+      {internalValue ? 'Change' : 'Upload'}
+    </label>
+  );
   const appendedComponent = appendContent ? appendContent : label;
+
+  /** Wrappers to merge form and props methods */
+  const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
+    const { name, value: targetValue } = e.target;
+    const filePath = 'C:\\fakepath\\';
+    const fileName = targetValue.replace(filePath, '');
+
+    /** Internal value update */
+    setInternalValue(fileName);
+    /** Passthrough to form context */
+    formValues && updateFormValue(name, fileName);
+    /** Independent callback */
+    onChange && onChange(e);
+  };
+  const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    /** Internal value update */
+    setFocused(true);
+    /** Independent callback */
+    onFocus && onFocus(e);
+  };
+  const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+    const { name } = e.target;
+    /** Internal value update */
+    setFocused(false);
+    /** Passthrough to form context */
+    formTouched && updateFormTouched(name, true);
+    /** Independent callback */
+    onBlur && onBlur(e);
+  };
 
   /** On mount/unmount logic */
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
     name && updateFormValue(name, internalValue);
-    console.log('internalValue ===>>> ', internalValue);
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
       name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
     };
-  }, []);
+  }, [internalValue]);
 
   return (
     <InputFieldLayout
       appendContent={appendedComponent}
-      isPlaceholderCollapsed={!!((typeof value !== 'undefined' && value !== '') || isFocused)}
+      isPlaceholderCollapsed={!!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused)}
       errorMsg={errorMsg}
       disabled={disabled}
       placeholder={placeholder}
     >
       <div
+        tabIndex={0}
+        onFocus={onFocusWrapper}
+        onBlur={onBlurWrapper}
         className={classNames([
           classes.inputFieldWrapper,
           errorMsg ? classes.inputLabelInvalid : null,
         ])}
       >
-        <input id="fileInput" className={classes.fileInput} type="file" value={internalValue} />
+        { internalValue
+          ? <div className={classes.inputWithPlaceholder}>{internalValue}</div>
+          : null
+        }
+        <input onChange={onChangeWrapper} id="fileInput" className={classes.fileInput} type="file" value={value} />
       </div>
     </InputFieldLayout>
   );

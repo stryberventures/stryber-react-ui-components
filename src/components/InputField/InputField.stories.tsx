@@ -12,9 +12,10 @@ storiesOf('Input field', module)
       <Wrapper>
         <FileField
           name="cv"
-          disabled={false}
           placeholder="Attachment"
           value=""
+          disabled={false}
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           // errorMessage="Error message"
         />
         <InputField
