@@ -4,11 +4,19 @@ import { InputField } from './InputField';
 import { Profile as ProfileIcon } from '../Icons';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
+import { FileInputField } from './Inputs/FileInput';
 
 storiesOf('Input field', module)
   .add('Text input', () => {
     return (
       <Wrapper>
+        <FileInputField
+          name="cv"
+          disabled={false}
+          placeholder="Attachment"
+          value=""
+          // errorMessage="Error message"
+        />
         <InputField
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />
