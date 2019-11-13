@@ -113,11 +113,4 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
-
-  message: {
-    color: theme.inputPlaceholderColorIdle || '#95acbf',
-    fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightLight,
-    fontSize: 10,
-  },
 });

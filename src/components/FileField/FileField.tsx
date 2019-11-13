@@ -18,6 +18,7 @@ export interface IFileFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   errorMessage?: string;
+  message: (files: any) => string;
   prependContent?: any;
   appendContent?: any;
   clearFormValueOnUnmount?: boolean;
@@ -29,6 +30,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     name,
     classes,
     errorMessage,
+    message,
     disabled,
     accept,
     multiple,
@@ -130,44 +132,53 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     };
   }, []);
 
-  /** Getting message to display selected files under the input field */
-  const message = internalValue ? `You selected ${internalValue.map((fileName: string) => `"${fileName}"`).join(', ')}` : '';
   /** Set placeholder appearance */
   const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused);
 
   return (
-    <InputFieldLayout
-      prependContent={prependContent}
-      appendContent={appendedComponent}
-      isPlaceholderCollapsed={isPlaceholderCollapsed}
-      errorMsg={errorMsg}
-      message={message}
-      disabled={disabled}
-      placeholder={placeholder}
-    >
-      <div
-        tabIndex={0}
-        onClick={onFileSelect}
-        onFocus={onFocusWrapper}
-        onBlur={onBlurWrapper}
-        className={classes.inputFieldWrapper}
+    <>
+      <InputFieldLayout
+        prependContent={prependContent}
+        appendContent={appendedComponent}
+        isPlaceholderCollapsed={isPlaceholderCollapsed}
+        errorMsg={errorMsg}
+        disabled={disabled}
+        placeholder={placeholder}
       >
-        <div className={classes.inputWithPlaceholder}>
-          {internalValue && internalValue.length ? internalValue.join(', ') : ''}
+        <div
+          tabIndex={0}
+          onClick={onFileSelect}
+          onFocus={onFocusWrapper}
+          onBlur={onBlurWrapper}
+          className={classes.inputFieldWrapper}
+        >
+          <div className={classes.inputWithPlaceholder}>
+            {internalValue && internalValue.length ? internalValue.join(', ') : ''}
+          </div>
+          <input
+            ref={inputRef}
+            name={name}
+            id="fileInput"
+            type="file"
+            accept={accept}
+            multiple={multiple}
+            value={value}
+            className={classes.input}
+            onChange={onChangeWrapper}
+          />
         </div>
-        <input
-          ref={inputRef}
-          name={name}
-          id="fileInput"
-          type="file"
-          accept={accept}
-          multiple={multiple}
-          value={value}
-          className={classes.input}
-          onChange={onChangeWrapper}
-        />
-      </div>
-    </InputFieldLayout>
+      </InputFieldLayout>
+      {
+        internalValue ?
+          (
+            <div
+              className={classes.message}
+            >
+              {message(internalValue)}
+            </div>
+          ) : null
+      }
+    </>
   );
 };
 

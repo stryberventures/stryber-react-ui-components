@@ -223,11 +223,13 @@ storiesOf('Form', module)
             accept=".pdf"
             placeholder="Single file input"
             prependContent={<ProfileIcon />}
+            message={(files: any) => `You selected: ${files}`}
           />
           <FileField
             name="additionalDocuments"
             accept=".pdf"
             placeholder="Multiple files input"
+            message={(files: any) => `You selected: ${files}`}
             multiple
           />
           <InputField

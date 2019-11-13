@@ -63,4 +63,12 @@ export default (theme: any) => ({
       },
     },
   },
+
+  message: {
+    marginTop: 10,
+    color: theme.inputPlaceholderColorIdle || '#95acbf',
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightLight,
+    fontSize: 10,
+  },
 });

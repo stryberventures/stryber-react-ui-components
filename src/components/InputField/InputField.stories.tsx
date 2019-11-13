@@ -15,6 +15,7 @@ storiesOf('Input field', module)
           accept=".pdf"
           placeholder="Single file field"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          message={(files: any) => `You selected: ${files}`}
         />
         <FileField
           name="cv"
@@ -22,6 +23,7 @@ storiesOf('Input field', module)
           placeholder="Multiple files field with error"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           errorMessage="Error message"
+          message={(files: any) => `You selected: ${files}`}
           multiple
         />
         <InputField

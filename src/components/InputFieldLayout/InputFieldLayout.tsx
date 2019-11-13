@@ -84,16 +84,6 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
             </div>
           ) : null
       }
-      {
-        message ?
-        (
-          <div
-            className={classes.message}
-          >
-            { message }
-          </div>
-        ) : null
-      }
     </>
   );
 };
