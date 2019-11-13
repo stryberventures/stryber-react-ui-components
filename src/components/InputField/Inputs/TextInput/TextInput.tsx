@@ -21,6 +21,7 @@ interface ITextInputProps {
 
 const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
   const {
+    className,
     classes,
     errorMsg,
     disabled,

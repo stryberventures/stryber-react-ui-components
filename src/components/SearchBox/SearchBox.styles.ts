@@ -78,6 +78,11 @@ export default (theme: any) => ({
     borderRadius: 6,
     border: `solid 1px #cfd8dc`,
     backgroundColor: theme.inputBackgroundColor,
+
+    display: 'flex',
+    flexDirection: 'column',
+
+    zIndex: 99,
   },
   dropdownItem: {
     padding: '8px 18px',
@@ -88,6 +93,10 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightRegular,
     fontSize: 14,
+
+    '&:hover': {
+      backgroundColor: '#eceff1',
+    },
   },
   dropdownItemHover: {
     backgroundColor: '#eceff1',

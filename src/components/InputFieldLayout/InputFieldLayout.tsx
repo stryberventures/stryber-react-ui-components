@@ -22,6 +22,7 @@ export interface IInputFieldLayoutProps {
 /** Main component */
 const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
+    className,
     classes,
     errorMsg,
     disabled,
@@ -39,6 +40,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
         {...rest}
         className={classNames([
           classes.root,
+          className,
           disabled ? classes.rootDisabled : null,
           errorMsg ? classes.rootInvalid : null,
         ])}

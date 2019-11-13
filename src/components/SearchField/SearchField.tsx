@@ -6,6 +6,7 @@ import styles from './SearchField.styles';
 import { CloseOutline, Search } from '../Icons';
 
 export interface ISearchFieldProps {
+  className?: string;
   placeholder?: string;
   collapsiblePlaceholder?: boolean;
   value?: string;
@@ -18,6 +19,7 @@ export interface ISearchFieldProps {
 /** Main component */
 const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
   const {
+    className,
     classes,
     disabled,
     onChange,
@@ -78,6 +80,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
 
   return (
     <InputFieldLayout
+      className={className}
       isPlaceholderCollapsed={isFocused || inputValue !== ''}
       disabled={disabled}
       placeholder={collapsiblePlaceholder ? placeholder : undefined}

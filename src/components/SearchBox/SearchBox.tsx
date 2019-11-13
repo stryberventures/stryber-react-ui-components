@@ -20,9 +20,9 @@ export interface ISearchBoxProps extends ISearchFieldProps {
 /** Main component */
 const SearchBox = (props: ISearchBoxProps & WithStyles<typeof styles>) => {
   const {
+    className,
     classes,
     value,
-    className,
     onFocus,
     onBlur,
     results = [] as ISearchResult[],
@@ -30,7 +30,6 @@ const SearchBox = (props: ISearchBoxProps & WithStyles<typeof styles>) => {
   } = props;
 
   const [isFocused, setFocused] = React.useState(false);
-  // const [inputValue, setInputValue] = React.useState(value || '');
 
   return (
     <div
