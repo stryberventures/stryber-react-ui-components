@@ -221,12 +221,12 @@ storiesOf('Form', module)
           <FileField
             name="cv"
             accept=".pdf"
-            placeholder="Attachment"
+            placeholder="Single file input"
           />
           <FileField
             name="additionalDocuments"
             accept=".pdf"
-            placeholder="Attachment"
+            placeholder="Multiple files input"
             multiple
           />
           <InputField

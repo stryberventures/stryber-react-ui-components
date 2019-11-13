@@ -80,13 +80,20 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, files: targetFiles } = e.target;
+    const multipleFiles = Object.values(targetFiles).reduce(
+      (acc: any[], file: any) => [ ...acc, file],
+      []
+    );
+    console.log('multipleFiles ===>>> ', multipleFiles);
+    const files = multiple ? multipleFiles : targetFiles[0];
     const fileNames = Object.values(targetFiles)
       .map((file: any) => file.name);
 
     /** Internal value update */
     setInternalValue(fileNames);
     /** Passthrough to form context */
-    formValues && updateFormValue(name, fileNames);
+    console.log('files ========>>>>> ', files);
+    formValues && updateFormValue(name, files);
     /** Independent callback */
     onChange && onChange(e);
   };
@@ -116,14 +123,15 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
       /** Clear Form value if needed */
       name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
     };
-  }, [internalValue]);
+  }, []);
 
   const message = internalValue ? `You selected ${internalValue.map((fileName: string) => `"${fileName}"`).join(', ')}` : '';
+  const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && internalValue.length) || isFocused);
 
   return (
     <InputFieldLayout
       appendContent={appendedComponent}
-      isPlaceholderCollapsed={!!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused)}
+      isPlaceholderCollapsed={isPlaceholderCollapsed}
       errorMsg={errorMsg}
       message={message}
       disabled={disabled}
@@ -140,6 +148,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           : null
         }
         <input
+          name={name}
           id="fileInput"
           type="file"
           accept={accept}
