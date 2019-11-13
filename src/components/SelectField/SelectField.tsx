@@ -14,7 +14,6 @@ export interface IChoiceData {
 
 export interface ISelectFieldProps {
   name: string;
-  type?: string;
   placeholder?: string;
   choices: IChoiceData[];
   value?: any;

@@ -10,8 +10,12 @@ export interface IInputFieldLayoutProps {
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
+
   prependContent?: any;
   appendContent?: any;
+
+  showPrependBackground?: boolean;
+
   children?: any;
 }
 
@@ -26,6 +30,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
     placeholder,
     isPlaceholderCollapsed,
     children,
+    showPrependBackground = true,
     ...rest
   } = props;
   return (
@@ -41,13 +46,14 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
         <div
           className={classNames([
             classes.prepend,
+            showPrependBackground ? classes.prependBackgroundColor: null,
+            (showPrependBackground && prependContent) ? classes.prependMargin : null,
             disabled ? classes.prependDisabled : null,
-            prependContent ? classes.prependMargin : null,
             errorMsg ? classes.prependInvalid : null,
           ])}
         >
           { prependContent ? <div className={classes.prependContent}>{prependContent}</div> : null}
-          { prependContent ? <PrependBackground className={classes.prependBackground}/> : null}
+          { (prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon}/> : null}
         </div>
         <div className={classes.fieldWrapper}>
           {
