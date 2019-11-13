@@ -1,5 +1,4 @@
 import * as React from 'react';
-import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 
 import { FormContext } from '../Form';
@@ -8,6 +7,7 @@ import styles from './FileField.styles';
 
 /** Interfaces */
 export interface IFileFieldProps {
+  id: string;
   name: string;
   placeholder?: string;
   value?: string;
@@ -20,13 +20,14 @@ export interface IFileFieldProps {
   errorMessage?: string;
   message: (files: any) => string;
   prependContent?: any;
-  appendContent?: any;
+  appendContent?: (files: any, errorMsg: string) => any;
   clearFormValueOnUnmount?: boolean;
 }
 
 /** Main component */
 const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   const {
+    id,
     name,
     classes,
     errorMessage,
@@ -68,20 +69,6 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
-
-  /** Getting component to be appended to input */
-  const label = (
-    <label
-      htmlFor="fileInput"
-      className={classNames([
-        classes.append,
-        errorMsg ? 'error' : '',
-        internalValue ? 'fileSelected' : 'fileNotSelected',
-      ])}>
-      {internalValue ? 'Change' : 'Upload'}
-    </label>
-  );
-  const appendedComponent = appendContent ? appendContent : label;
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
@@ -139,7 +126,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     <>
       <InputFieldLayout
         prependContent={prependContent}
-        appendContent={appendedComponent}
+        appendContent={appendContent ? appendContent(internalValue, errorMsg) : null}
         isPlaceholderCollapsed={isPlaceholderCollapsed}
         errorMsg={errorMsg}
         disabled={disabled}
@@ -158,7 +145,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           <input
             ref={inputRef}
             name={name}
-            id="fileInput"
+            id={id}
             type="file"
             accept={accept}
             multiple={multiple}
