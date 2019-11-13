@@ -152,10 +152,9 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
         onBlur={onBlurWrapper}
         className={classes.inputFieldWrapper}
       >
-        { internalValue
-          ? <div className={classes.inputWithPlaceholder}>{internalValue.join(', ')}</div>
-          : null
-        }
+        <div className={classes.inputWithPlaceholder}>
+          {internalValue && internalValue.length ? internalValue.join(', ') : ''}
+        </div>
         <input
           ref={inputRef}
           name={name}
