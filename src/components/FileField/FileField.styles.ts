@@ -1,6 +1,16 @@
 export default (theme: any) => ({
+  input: {
+    display: 'none',
+  },
+
   inputFieldWrapper: {
-    cursor: 'pointer'
+    width: '100%',
+    height: '46px',
+    cursor: 'pointer',
+
+    '&:focus': {
+      outline: 'none',
+    },
   },
 
   inputWithPlaceholder: {
@@ -24,15 +34,6 @@ export default (theme: any) => ({
     cursor: 'pointer',
   },
 
-  input: {
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    padding: 14,
-    opacity: '0',
-    cursor: 'pointer'
-  },
-
   append: {
     marginRight: 12,
     padding: '0 24px',
@@ -45,13 +46,23 @@ export default (theme: any) => ({
     '&.fileNotSelected': {
       color: '#007aff',
       border: 'solid 1px #007aff',
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
+
+      '&.error': {
+        borderColor: theme.inputColorError || '#d0021b',
+        color: theme.inputColorError || '#d0021b',
+      },
     },
 
     '&.fileSelected': {
       color: '#fff',
       border: 'solid 1px #007aff',
-      backgroundColor: '#007aff'
+      backgroundColor: '#007aff',
+
+      '&.error': {
+        borderColor: theme.inputColorError || '#d0021b',
+        backgroundColor: theme.inputColorError || '#d0021b',
+      },
     },
   },
 });

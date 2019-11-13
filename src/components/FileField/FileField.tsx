@@ -3,12 +3,8 @@ import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 
 import { FormContext } from '../Form';
-// import { InputFieldLayout } from '../InputFieldLayout';
-import styles from './FileField.styles';
 import { InputFieldLayout } from '../InputFieldLayout';
-// import { defaultFormContextValues, FormContext} from '../Form';
-// import { CheckboxField } from '../CheckboxField';
-// import { DownArrow } from '../Icons';
+import styles from './FileField.styles';
 
 /** Interfaces */
 export interface IFileFieldProps {
@@ -56,6 +52,12 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     formTouched,
   } = React.useContext(FormContext);
 
+  /** Create input ref and an event to click it */
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const onFileSelect = () => {
+    (inputRef && inputRef.current) && inputRef.current.click();
+  };
+
   /** Focus status (needed for styles) */
   const [isFocused, setFocused] = React.useState(false);
 
@@ -65,13 +67,14 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
-  /** Getting component to append */
+  /** Getting component to be appended to input */
   const label = (
     <label
       htmlFor="fileInput"
       className={classNames([
         classes.append,
-        internalValue ? 'fileSelected' : 'fileNotSelected'
+        errorMsg ? 'error' : '',
+        internalValue ? 'fileSelected' : 'fileNotSelected',
       ])}>
       {internalValue ? 'Change' : 'Upload'}
     </label>
@@ -81,14 +84,17 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, files: targetFiles } = e.target;
+    /** Getting array of multiple files */
     const multipleFiles = Object.values(targetFiles).reduce(
       (acc: any[], file: any) => [ ...acc, file],
       []
     );
+    /** Getting files to be added to formData */
     const files = multiple ? multipleFiles : targetFiles[0];
-    const fileNames = Object.values(targetFiles)
-      .map((file: any) => file.name);
-
+    /** Getting files to be shown in the input filed */
+    const fileNames = targetFiles.length
+      ? Object.values(targetFiles).map((file: any) => file.name)
+      : '';
     /** Internal value update */
     setInternalValue(fileNames);
     /** Passthrough to form context */
@@ -124,8 +130,10 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     };
   }, []);
 
+  /** Getting message to display selected files under the input field */
   const message = internalValue ? `You selected ${internalValue.map((fileName: string) => `"${fileName}"`).join(', ')}` : '';
-  const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && internalValue.length) || isFocused);
+  /** Set placeholder appearance */
+  const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused);
 
   return (
     <InputFieldLayout
@@ -139,6 +147,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     >
       <div
         tabIndex={0}
+        onClick={onFileSelect}
         onFocus={onFocusWrapper}
         onBlur={onBlurWrapper}
         className={classes.inputFieldWrapper}
@@ -148,6 +157,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           : null
         }
         <input
+          ref={inputRef}
           name={name}
           id="fileInput"
           type="file"
