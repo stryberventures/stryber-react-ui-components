@@ -226,7 +226,7 @@ storiesOf('Form', module)
             placeholder="Single file input"
             prependContent={<ProfileIcon />}
             appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-            message={(files: any) => `You selected: ${files}`}
+            inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
           />
           <FileField
             id="additionalDocuments"
@@ -234,7 +234,7 @@ storiesOf('Form', module)
             accept=".pdf"
             placeholder="Multiple files input"
             appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-            message={(files: any) => `You selected: ${files}`}
+            inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
             multiple
           />
           <InputField

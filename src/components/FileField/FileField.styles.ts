@@ -32,8 +32,9 @@ export default (theme: any) => ({
     cursor: 'pointer',
   },
 
-  message: {
-    marginTop: 10,
+  selectedFiles: {
+    margin: 0,
+    padding: '0 21px',
     color: theme.inputPlaceholderColorIdle || '#95acbf',
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightLight,

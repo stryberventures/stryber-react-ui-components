@@ -18,7 +18,7 @@ storiesOf('Input field', module)
           placeholder="Single file field"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-          message={(files: any) => `You selected: ${files}`}
+          inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
         />
         <FileField
           id="additionalFiles"
@@ -26,9 +26,9 @@ storiesOf('Input field', module)
           accept=".pdf"
           placeholder="Multiple files field with error"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          errorMessage="Error message"
-          message={(files: any) => `You selected: ${files}`}
           appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
+          errorMessage="Error message"
+          inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
           multiple
         />
         <InputField

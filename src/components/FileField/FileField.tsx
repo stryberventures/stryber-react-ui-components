@@ -3,6 +3,7 @@ import withStyles, { WithStyles } from 'react-jss';
 
 import { FormContext } from '../Form';
 import { InputFieldLayout } from '../InputFieldLayout';
+import SelectedFile from './SelectedFile';
 import styles from './FileField.styles';
 
 /** Interfaces */
@@ -18,7 +19,7 @@ export interface IFileFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   errorMessage?: string;
-  message: (files: any) => string;
+  inputText: (filesNumber: number) => string;
   prependContent?: any;
   appendContent?: (files: any, errorMsg: string) => any;
   clearFormValueOnUnmount?: boolean;
@@ -31,7 +32,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     name,
     classes,
     errorMessage,
-    message,
+    inputText,
     disabled,
     accept,
     multiple,
@@ -70,14 +71,20 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
+  /** */
+  const removeFile = (fileName: string) => {
+    const fileNames = [ ...internalValue].filter((file: any) => file !== fileName);
+    const files = [ ...formValues[name]].filter((file: any) => file.name !== fileName);
+    setInternalValue(fileNames);
+    /** Passthrough to form context */
+    formValues && updateFormValue(name, files);
+  };
+
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, files: targetFiles } = e.target;
     /** Getting array of multiple files */
-    const multipleFiles = Object.values(targetFiles).reduce(
-      (acc: any[], file: any) => [ ...acc, file],
-      []
-    );
+    const multipleFiles = Array.from(targetFiles);
     /** Getting files to be added to formData */
     const files = multiple ? multipleFiles : targetFiles[0];
     /** Getting files to be shown in the input filed */
@@ -140,7 +147,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           className={classes.inputFieldWrapper}
         >
           <div className={classes.inputWithPlaceholder}>
-            {internalValue && internalValue.length ? internalValue.join(', ') : ''}
+            {internalValue ? inputText(internalValue.length) : null}
           </div>
           <input
             ref={inputRef}
@@ -155,15 +162,15 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           />
         </div>
       </InputFieldLayout>
-      {
-        internalValue ?
-          (
-            <div
-              className={classes.message}
-            >
-              {message(internalValue)}
-            </div>
-          ) : null
+      {internalValue ?
+        (
+          <ul className={classes.selectedFiles}>
+            {internalValue.map((fileName: string) => (
+                <SelectedFile key={fileName} fileName={fileName} removeFile={removeFile} />
+              )
+            )}
+          </ul>
+        ) : null
       }
     </>
   );
