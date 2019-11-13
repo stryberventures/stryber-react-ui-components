@@ -42,6 +42,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     placeholder,
     value,
     clearFormValueOnUnmount = true,
+    prependContent,
     appendContent,
   } = props;
 
@@ -84,7 +85,6 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
       (acc: any[], file: any) => [ ...acc, file],
       []
     );
-    console.log('multipleFiles ===>>> ', multipleFiles);
     const files = multiple ? multipleFiles : targetFiles[0];
     const fileNames = Object.values(targetFiles)
       .map((file: any) => file.name);
@@ -92,7 +92,6 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     /** Internal value update */
     setInternalValue(fileNames);
     /** Passthrough to form context */
-    console.log('files ========>>>>> ', files);
     formValues && updateFormValue(name, files);
     /** Independent callback */
     onChange && onChange(e);
@@ -130,6 +129,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   return (
     <InputFieldLayout
+      prependContent={prependContent}
       appendContent={appendedComponent}
       isPlaceholderCollapsed={isPlaceholderCollapsed}
       errorMsg={errorMsg}

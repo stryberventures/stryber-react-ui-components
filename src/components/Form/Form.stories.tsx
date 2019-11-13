@@ -222,6 +222,7 @@ storiesOf('Form', module)
             name="cv"
             accept=".pdf"
             placeholder="Single file input"
+            prependContent={<ProfileIcon />}
           />
           <FileField
             name="additionalDocuments"
