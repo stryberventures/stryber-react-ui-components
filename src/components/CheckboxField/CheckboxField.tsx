@@ -73,14 +73,14 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     /** On mount */
     /** Update form with internal value on mount */
     if (formValues) {
-      updateFormValue(name, !!checked);
+      updateFormValue(name, !!checked, true);
     } else {
       /** Set initial input field checked value */
     }
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
-      formValues && updateFormValue(name, undefined);
+      formValues && updateFormValue(name, undefined, true);
     };
   }, []);
 

@@ -4,7 +4,7 @@ import * as yup from 'yup';
 /** Interfaces */
 /** Context used by input fields within the form */
 export interface IFormContext {
-  updateFormValue: (name: string, data: any) => void;
+  updateFormValue: (name: string, data: any, init?: boolean) => void;
   updateFormTouched: (name: string, data: any) => void;
   unsetFormValue: (name: any) => void,
   formValues: any;
@@ -15,7 +15,7 @@ export interface IFormContext {
 
 /** Creating form context with default values */
 export const defaultFormContextValues = {
-  updateFormValue: (name: string, data: any) => {},
+  updateFormValue: (name: string, data: any, init?: boolean) => {},
   updateFormTouched: (name: string, data: any) => {},
   unsetFormValue: (name: any) => {},
   formValues: undefined,
@@ -88,7 +88,7 @@ const Form = (props: IFormProps) => {
   };
 
   /** Updating form values whenever a change is made within an input field */
-  const updateFormValue = (name: string, value: any) => {
+  const updateFormValue = (name: string, value: any, init: boolean = false) => {
     /** Setting new values in state */
     setFormValues((formValues: any) => {
       const newFormValues = { ...formValues };
@@ -98,7 +98,7 @@ const Form = (props: IFormProps) => {
       validate(newFormValues);
 
       /** Sending on change callback (if it was provided) */
-      onChange && onChange({ ...newFormValues });
+      !init && onChange && onChange({ ...newFormValues });
 
       return newFormValues;
     });

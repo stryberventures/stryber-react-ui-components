@@ -55,7 +55,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
       //@ts-ignore
       inputRef.current.checked = checked;
     }
-    checked && formValues && updateFormValue(name, value);
+    checked && formValues && updateFormValue(name, value, true);
 
 
     return () => {
