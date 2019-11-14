@@ -5,10 +5,10 @@ import { FormContext } from '../Form';
 import { InputFieldLayout } from '../InputFieldLayout';
 import SelectedFile from './SelectedFile';
 import styles from './FileField.styles';
+import UploadButton from './UploadButton';
 
 /** Interfaces */
 export interface IFileFieldProps {
-  id: string;
   name: string;
   placeholder?: string;
   value?: string;
@@ -19,16 +19,15 @@ export interface IFileFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   errorMessage?: string;
-  inputText: (filesNumber: number) => string;
+  inputText?: (filesNumber: number) => string;
   prependContent?: any;
-  appendContent?: (files: any, errorMsg: string) => any;
+  appendContent?: (files: any, errorMsg: string, clickFileInput: (e: any) => any) => any;
   clearFormValueOnUnmount?: boolean;
 }
 
 /** Main component */
 const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   const {
-    id,
     name,
     classes,
     errorMessage,
@@ -58,7 +57,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Create input ref and an event to click it */
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const onFileSelect = () => {
+  const clickFileInput = () => {
     (inputRef && inputRef.current) && inputRef.current.click();
   };
 
@@ -71,13 +70,15 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Getting error message from form errors */
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
-  /** */
-  const removeFile = (fileName: string) => {
-    const fileNames = [ ...internalValue].filter((file: any) => file !== fileName);
-    const files = [ ...formValues[name]].filter((file: any) => file.name !== fileName);
-    setInternalValue(fileNames);
-    /** Passthrough to form context */
-    formValues && updateFormValue(name, files);
+  /** Getting files names */
+  const getFileNames = (files: any) => {
+    if (files && files.name) {
+      return [files.name];
+    }
+
+    return (files && files.length)
+      ? Object.values(files).map((file: any) => file.name)
+      : [];
   };
 
   /** Wrappers to merge form and props methods */
@@ -87,16 +88,12 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     const multipleFiles = Array.from(targetFiles);
     /** Getting files to be added to formData */
     const files = multiple ? multipleFiles : targetFiles[0];
-    /** Getting files to be shown in the input filed */
-    const fileNames = targetFiles.length
-      ? Object.values(targetFiles).map((file: any) => file.name)
-      : '';
     /** Internal value update */
-    setInternalValue(fileNames);
+    setInternalValue(files);
     /** Passthrough to form context */
     formValues && updateFormValue(name, files);
     /** Independent callback */
-    onChange && onChange(e);
+    onChange && onChange(files);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
     /** Internal value update */
@@ -114,6 +111,15 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     onBlur && onBlur(e);
   };
 
+  /** Remove file from internalValue */
+  const removeFile = (fileName: string) => {
+    const files = multiple ? (internalValue).filter((file: any) => file.name !== fileName) : undefined;
+    setInternalValue(files);
+    /** Passthrough to form context */
+    formValues && updateFormValue(name, files);
+    onChange && onChange(files);
+  };
+
   /** On mount/unmount logic */
   React.useEffect(() => {
     /** On mount */
@@ -127,13 +133,16 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   }, []);
 
   /** Set placeholder appearance */
-  const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '') || isFocused);
+  const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && (internalValue.name || internalValue.length)) || isFocused);
+  /** Default components */
+  const appendContentDefault = <UploadButton files={internalValue} errorMsg={errorMsg} onClick={clickFileInput} />;
+  const inputTextDefault = multiple ? (`${internalValue && internalValue.length} uploaded ${internalValue && internalValue.length > 1 ? 'files' : 'file'}`) : '1 uploaded file';
 
   return (
     <>
       <InputFieldLayout
         prependContent={prependContent}
-        appendContent={appendContent ? appendContent(internalValue, errorMsg) : null}
+        appendContent={appendContent ? appendContent : appendContentDefault}
         isPlaceholderCollapsed={isPlaceholderCollapsed}
         errorMsg={errorMsg}
         disabled={disabled}
@@ -141,22 +150,22 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
       >
         <div
           tabIndex={0}
-          onClick={onFileSelect}
+          onClick={clickFileInput}
           onFocus={onFocusWrapper}
           onBlur={onBlurWrapper}
           className={classes.inputFieldWrapper}
         >
           <div className={classes.inputWithPlaceholder}>
-            {internalValue ? inputText(internalValue.length) : null}
+            {internalValue && internalValue.length ? (inputText ? inputText : inputTextDefault) : null}
           </div>
           <input
             ref={inputRef}
             name={name}
-            id={id}
             type="file"
             accept={accept}
             multiple={multiple}
             value={value}
+            key={internalValue}
             className={classes.input}
             onChange={onChangeWrapper}
           />
@@ -165,7 +174,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
       {internalValue ?
         (
           <ul className={classes.selectedFiles}>
-            {internalValue.map((fileName: string) => (
+            {getFileNames(internalValue).map((fileName: string) => (
                 <SelectedFile key={fileName} fileName={fileName} removeFile={removeFile} />
               )
             )}

@@ -5,30 +5,23 @@ import { Profile as ProfileIcon } from '../Icons';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 import { FileField } from '../FileField';
-import AppendContent from '../FileField/AppendContent';
 
 storiesOf('Input field', module)
   .add('Text input', () => {
     return (
       <Wrapper>
         <FileField
-          id="cv"
           name="cv"
           accept=".pdf"
           placeholder="Single file field"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-          inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
+          onChange={ (d: any) => console.log('InputField value:', d) }
         />
         <FileField
-          id="additionalFiles"
           name="additionalFiles"
           accept=".pdf"
           placeholder="Multiple files field with error"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
+          onChange={ (d: any) => console.log('InputField value:', d) }
           errorMessage="Error message"
-          inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
           multiple
         />
         <InputField

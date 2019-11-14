@@ -1,5 +1,5 @@
 export default (theme: any) => ({
-  label: {
+  uploadButton: {
     marginRight: 12,
     padding: '0 24px',
     borderRadius: 4.4,

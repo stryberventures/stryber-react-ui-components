@@ -12,7 +12,6 @@ import { Wrapper } from '../../storybook/components/Wrapper';
 import { Profile as ProfileIcon } from "../Icons";
 import { SelectField } from '../SelectField';
 import { MultiSelectField } from '../MultiSelectField';
-import AppendContent from '../FileField/AppendContent';
 
 const ExternalFormControlExample = (props: any) => {
   const [currentFormState, updateFormState]: [any, any] = React.useState({});
@@ -220,21 +219,15 @@ storiesOf('Form', module)
           })}
         >
           <FileField
-            id="cv"
             name="cv"
             accept=".pdf"
             placeholder="Single file input"
             prependContent={<ProfileIcon />}
-            appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-            inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
           />
           <FileField
-            id="additionalDocuments"
             name="additionalDocuments"
             accept=".pdf"
             placeholder="Multiple files input"
-            appendContent={(files, errorMsg) => <AppendContent files={files} errorMsg={errorMsg} />}
-            inputText={(filesNumber: number) => `${filesNumber} uploaded ${filesNumber === 1 ? 'file' : 'files'}`}
             multiple
           />
           <InputField
