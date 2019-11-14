@@ -53,10 +53,15 @@ const SearchBox = (props: ISearchBoxProps & WithStyles<typeof styles>) => {
             >
               {
                 results.map((d: ISearchResult, i: number) => {
+                  const onMouseDown = (e: React.BaseSyntheticEvent) => {
+                    e.stopPropagation();
+                    d.onClick && d.onClick(e);
+                    d.href && window.open(d.href, '_self');
+                  };
                   return (
                     <a
                       key={i}
-                      onClick={ d.onClick || undefined }
+                      onMouseDown={ onMouseDown }
                       href={ d.href || undefined }
                       className={classes.dropdownItem}
                     >
