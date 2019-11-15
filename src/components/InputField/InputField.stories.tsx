@@ -4,11 +4,26 @@ import { InputField } from './InputField';
 import { Profile as ProfileIcon } from '../Icons';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
+import { FileField } from '../FileField';
 
 storiesOf('Input field', module)
   .add('Text input', () => {
     return (
       <Wrapper>
+        <FileField
+          name="cv"
+          accept=".pdf"
+          placeholder="Single file field"
+          onChange={ (d: any) => console.log('InputField value:', d) }
+        />
+        <FileField
+          name="additionalFiles"
+          accept=".pdf"
+          placeholder="Multiple files field with error"
+          onChange={ (d: any) => console.log('InputField value:', d) }
+          errorMessage="Error message"
+          multiple
+        />
         <InputField
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
         />

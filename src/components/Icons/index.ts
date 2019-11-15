@@ -7,6 +7,7 @@ import Search from './Search';
 import Close from './Close';
 import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
+import File from './File';
 
 export {
   DownArrow,
@@ -16,6 +17,7 @@ export {
   Search,
   Eye,
   EyeDisabled,
+  File,
   PrependBackground,
   Profile,
 }

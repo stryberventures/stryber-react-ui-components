@@ -726,7 +726,8 @@ var StyledInputFieldLayout = withStyles(styles$3)(InputFieldLayout);
 var PropsWrappedStyledInputFieldLayout = function (props) { return createElement(StyledInputFieldLayout, __assign({}, props)); };
 
 var TextInput = function (props) {
-    var classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
+    var classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused,
+      prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
     return (createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, isPlaceholderCollapsed: !!((typeof value !== 'undefined' && value !== '') || isFocused), errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
         createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
