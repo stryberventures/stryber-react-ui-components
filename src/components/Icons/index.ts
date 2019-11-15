@@ -5,6 +5,7 @@ import EyeDisabled from './EyeDisabled';
 import Check from './Check';
 import Close from './Close';
 import DownArrow from './DownArrow';
+import File from './File';
 
 export {
   DownArrow,
@@ -12,6 +13,7 @@ export {
   Check,
   Eye,
   EyeDisabled,
+  File,
   PrependBackground,
   Profile,
 }
