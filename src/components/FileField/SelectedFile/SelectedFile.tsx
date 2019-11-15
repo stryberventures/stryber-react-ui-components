@@ -3,7 +3,7 @@ import withStyles, {WithStyles} from 'react-jss';
 
 import { Close, File } from '../../Icons';
 import theme from '../../../styles/theme';
-import styles from './styles';
+import styles from './SelectedFile.styles';
 
 interface ISelectedFileProps {
   fileName: string,
@@ -26,4 +26,12 @@ const SelectedFile = ({ classes, fileName, removeFile }: ISelectedFileProps & Wi
   );
 };
 
-export default withStyles(styles)(SelectedFile);
+
+/** Wrappers */
+const StyledSelectedFile = withStyles(styles)(SelectedFile);
+export default StyledSelectedFile;
+
+/** Exports */
+export {
+  StyledSelectedFile as SelectedFile,
+};

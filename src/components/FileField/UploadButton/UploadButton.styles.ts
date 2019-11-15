@@ -19,6 +19,11 @@ export default (theme: any) => ({
       },
     },
 
+    '&.disabled': {
+      borderColor: theme.inputColorBorderIdle,
+      color: theme.inputColorBorderIdle,
+    },
+
     '&.fileSelected': {
       color: '#fff',
       border: 'solid 1px #007aff',
