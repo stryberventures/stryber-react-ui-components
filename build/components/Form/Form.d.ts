@@ -2,7 +2,7 @@ import * as React from 'react';
 /** Interfaces */
 /** Context used by input fields within the form */
 export interface IFormContext {
-    updateFormValue: (name: string, data: any) => void;
+    updateFormValue: (name: string, data: any, init?: boolean) => void;
     updateFormTouched: (name: string, data: any) => void;
     unsetFormValue: (name: any) => void;
     formValues: any;
@@ -12,7 +12,7 @@ export interface IFormContext {
 }
 /** Creating form context with default values */
 export declare const defaultFormContextValues: {
-    updateFormValue: (name: string, data: any) => void;
+    updateFormValue: (name: string, data: any, init?: boolean | undefined) => void;
     updateFormTouched: (name: string, data: any) => void;
     unsetFormValue: (name: any) => void;
     formValues: undefined;

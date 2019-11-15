@@ -50,8 +50,6 @@ declare const _default: (theme: any) => {
     prepend: {
         transition: string;
         position: string;
-        backgroundColor: any;
-        fill: any;
         minWidth: number;
         overflow: string;
         display: string;
@@ -64,15 +62,15 @@ declare const _default: (theme: any) => {
         };
     };
     prependDisabled: {
-        fill: any;
-        backgroundColor: any;
+        fill: string;
+        backgroundColor: string;
     };
     prependMargin: {
         marginRight: number;
     };
     prependInvalid: {
-        fill: any;
-        backgroundColor: any;
+        fill: string;
+        backgroundColor: string;
     };
     prependContent: {
         display: string;
@@ -83,7 +81,11 @@ declare const _default: (theme: any) => {
         paddingLeft: number;
         height: string;
     };
-    prependBackground: {
+    prependBackgroundColor: {
+        backgroundColor: any;
+        fill: any;
+    };
+    prependBackgroundIcon: {
         right: number;
         zIndex: number;
         position: string;
