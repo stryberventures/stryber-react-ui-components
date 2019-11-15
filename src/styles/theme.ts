@@ -1,7 +1,8 @@
 export default {
   /** Imports */
   imports: [
-    `url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap')`,
+    `url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')`,
+    `url('https://fonts.googleapis.com/css?family=Questrial')`,
   ],
 
   /** Text color */
@@ -13,12 +14,12 @@ export default {
   backgroundColorPrimary: '#fff',
 
   /** Fonts */
-  fontFamily: 'Work Sans',
+  fontFamily: 'Open Sans, sans-serif',
   fontWeightLight: 300,
   fontWeightRegular: 400,
-  fontWeightMedium: 500,
-  fontWeightSemiBold: 600,
-  fontWeightBold: 700,
+  fontWeightMedium: 600,
+  fontWeightSemiBold: 700,
+  fontWeightBold: 800,
 
   /** Button colors */
   buttonColorPrimary: '#fff',

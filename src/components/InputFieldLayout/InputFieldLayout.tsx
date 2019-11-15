@@ -80,6 +80,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
           { appendContent }
         </div>
       </div>
+      {/** Error message */}
       {
         errorMsg ?
           (
