@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { ISearchResult , SearchBox} from './SearchBox';
+import { ISearchResult, SearchBox } from './SearchBox';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
@@ -44,12 +44,26 @@ const SearchBoxTestComponent2 = (props: any) => {
   );
 };
 
+const SearchBoxTestComponent3 = (props: any) => {
+  return(
+    <SearchBox
+      placeholder="Search using DuckDuckGo API"
+      requestInfo={(q: string) => q ? `https://api.duckduckgo.com/?q=${q}&format=json&pretty=1&skip_disambig=1` : ''}
+      parseResponse={(data: any) => data.RelatedTopics.map((d: any) => ({
+        label: d.Text,
+        href: d.FirstURL,
+      }))}
+    />
+  );
+};
+
 storiesOf('Search Box', module)
   .add('Normal', () => {
     return (
       <Wrapper>
         <SearchBoxTestComponent1 />
         <SearchBoxTestComponent2 />
+        <SearchBoxTestComponent3 />
       </Wrapper>
     );
   });
