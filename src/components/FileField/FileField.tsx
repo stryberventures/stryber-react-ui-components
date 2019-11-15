@@ -83,6 +83,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     const { name, files: targetFiles } = e.target;
     /** Getting array of multiple files */
     const multipleFiles = Array.from(targetFiles);
@@ -96,12 +97,14 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     onChange && onChange(files);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     /** Internal value update */
     setFocused(true);
     /** Independent callback */
     onFocus && onFocus(e);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     const { name } = e.target;
     /** Internal value update */
     setFocused(false);
@@ -152,11 +155,11 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
         placeholder={placeholder}
       >
         <div
-          tabIndex={0}
           onClick={clickFileInput}
           onFocus={onFocusWrapper}
           onBlur={onBlurWrapper}
           className={classes.inputFieldWrapper}
+          {...(disabled ? {} : { tabIndex: 0 })}
         >
           <div className={classes.inputWithPlaceholder}>
             { isPlaceholderVisible ? (inputText || inputTextDefault) : null}
@@ -170,6 +173,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
             value={value}
             key={internalValue}
             className={classes.input}
+            disabled={disabled}
             onChange={onChangeWrapper}
           />
         </div>
