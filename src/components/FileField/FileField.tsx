@@ -117,6 +117,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     setInternalValue(files);
     /** Passthrough to form context */
     formValues && updateFormValue(name, files);
+    /** Independent callback */
     onChange && onChange(files);
   };
 
