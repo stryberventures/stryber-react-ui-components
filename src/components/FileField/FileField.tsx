@@ -10,10 +10,10 @@ import UploadButton from './UploadButton';
 /** Interfaces */
 export interface IFileFieldProps {
   name: string;
+  accept: string;
   placeholder?: string;
   value?: string;
   multiple?: boolean;
-  accept: string;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -29,12 +29,12 @@ export interface IFileFieldProps {
 const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   const {
     name,
+    accept,
     classes,
     errorMessage,
     inputText,
-    disabled,
-    accept,
-    multiple,
+    disabled = false,
+    multiple = false,
     onChange,
     onFocus,
     onBlur,
@@ -135,6 +135,8 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Set placeholder appearance */
   const isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && (internalValue.name || internalValue.length)) || isFocused);
+  const isPlaceholderVisible = multiple ? !!(internalValue && internalValue.length) : !!internalValue;
+
   /** Default components */
   const appendContentDefault = <UploadButton files={internalValue} errorMsg={errorMsg} onClick={clickFileInput} />;
   const inputTextDefault = multiple ? (`${internalValue && internalValue.length} uploaded ${internalValue && internalValue.length > 1 ? 'files' : 'file'}`) : '1 uploaded file';
@@ -157,7 +159,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
           className={classes.inputFieldWrapper}
         >
           <div className={classes.inputWithPlaceholder}>
-            {internalValue && internalValue.length ? (inputText ? inputText : inputTextDefault) : null}
+            { isPlaceholderVisible ? (inputText || inputTextDefault) : null}
           </div>
           <input
             ref={inputRef}
