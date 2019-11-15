@@ -5,6 +5,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './SearchField.styles';
 import { CloseOutline, Search } from '../Icons';
 
+/** Interfaces */
 export interface ISearchFieldProps {
   className?: string;
   placeholder?: string;
@@ -108,10 +109,10 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
 
 /** Wrappers */
 const StyledSearchField = withStyles(styles)(SearchField);
-const PropsWrappedStyledSearchBoxProps = (props: ISearchFieldProps) => <StyledSearchField {...props} />;
+const PropsWrappedStyledSearchField = (props: ISearchFieldProps) => <StyledSearchField {...props} />;
 
 /** Exports */
-export default PropsWrappedStyledSearchBoxProps;
+export default PropsWrappedStyledSearchField;
 export {
-  PropsWrappedStyledSearchBoxProps as SearchField,
+  PropsWrappedStyledSearchField as SearchField,
 };

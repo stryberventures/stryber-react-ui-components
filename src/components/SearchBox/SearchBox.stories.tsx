@@ -37,6 +37,7 @@ const SearchBoxTestComponent2 = (props: any) => {
 
   return(
     <SearchBox
+      collapsiblePlaceholder={false}
       onChange={ (d: string) => setResults(() => filterResults(d)) }
       results={results}
     />
