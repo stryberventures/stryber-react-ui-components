@@ -35,6 +35,9 @@ export default (theme: any) => ({
     fontSize: 14,
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightMedium,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
 
     color: theme.inputPlaceholderColorIdle || '#95acbf',
 
