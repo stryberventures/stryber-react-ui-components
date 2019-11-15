@@ -7,7 +7,7 @@ import { FormContext } from "../Form";
 export interface ICheckboxFieldProps {
   name: string;
   value?: any;
-  placeholder?: string;
+  placeholder?: any | React.Component;
   checked?: boolean;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
@@ -73,14 +73,14 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     /** On mount */
     /** Update form with internal value on mount */
     if (formValues) {
-      updateFormValue(name, !!checked);
+      updateFormValue(name, !!checked, true);
     } else {
       /** Set initial input field checked value */
     }
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
-      formValues && updateFormValue(name, undefined);
+      formValues && updateFormValue(name, undefined, true);
     };
   }, []);
 

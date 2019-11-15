@@ -55,8 +55,6 @@ export default (theme: any) => ({
   prepend: {
     transition: '0.5s',
     position: 'relative',
-    backgroundColor: theme.inputColorHighlight || '#007aff',
-    fill: theme.inputColorHighlight || '#007aff',
     minWidth: 7,
     overflow: 'visible',
     display: 'flex',
@@ -71,15 +69,15 @@ export default (theme: any) => ({
     },
   },
   prependDisabled: {
-    fill: theme.inputPlaceholderColorIdle || '#95acbf',
-    backgroundColor: theme.inputPlaceholderColorIdle || '#95acbf',
+    fill: `${theme.inputPlaceholderColorIdle || '#95acbf'} !important`,
+    backgroundColor: `${theme.inputPlaceholderColorIdle || '#95acbf'} !important`,
   },
   prependMargin: {
     marginRight: 20,
   },
   prependInvalid: {
-    fill: theme.inputColorError || '#d0021b',
-    backgroundColor: theme.inputColorError || '#d0021b',
+    fill: `${theme.inputColorError || '#d0021b'} !important`,
+    backgroundColor: `${theme.inputColorError || '#d0021b'} !important`,
   },
   prependContent: {
     display: 'flex',
@@ -92,7 +90,11 @@ export default (theme: any) => ({
     paddingLeft: 17,
     height: '100%',
   },
-  prependBackground: {
+  prependBackgroundColor: {
+    backgroundColor: theme.inputColorHighlight || '#007aff',
+    fill: theme.inputColorHighlight || '#007aff',
+  },
+  prependBackgroundIcon: {
     right: -20,
     zIndex: -1,
     position: 'absolute',

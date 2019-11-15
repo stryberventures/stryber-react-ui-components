@@ -10,24 +10,28 @@ export interface IInputFieldLayoutProps {
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
-  message?: string;
+
   prependContent?: any;
   appendContent?: any;
+
+  showPrependBackground?: boolean;
+
   children?: any;
 }
 
 /** Main component */
 const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
+    className,
     classes,
     errorMsg,
-    message,
     disabled,
     prependContent,
     appendContent,
     placeholder,
     isPlaceholderCollapsed,
     children,
+    showPrependBackground = true,
     ...rest
   } = props;
   return (
@@ -36,6 +40,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
         {...rest}
         className={classNames([
           classes.root,
+          className,
           disabled ? classes.rootDisabled : null,
           errorMsg ? classes.rootInvalid : null,
         ])}
@@ -43,13 +48,14 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
         <div
           className={classNames([
             classes.prepend,
+            showPrependBackground ? classes.prependBackgroundColor: null,
+            (showPrependBackground && prependContent) ? classes.prependMargin : null,
             disabled ? classes.prependDisabled : null,
-            prependContent ? classes.prependMargin : null,
             errorMsg ? classes.prependInvalid : null,
           ])}
         >
           { prependContent ? <div className={classes.prependContent}>{prependContent}</div> : null}
-          { prependContent ? <PrependBackground className={classes.prependBackground}/> : null}
+          { (prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon}/> : null}
         </div>
         <div className={classes.fieldWrapper}>
           {
@@ -74,6 +80,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
           { appendContent }
         </div>
       </div>
+      {/** Error message */}
       {
         errorMsg ?
           (

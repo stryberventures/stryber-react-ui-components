@@ -87,11 +87,11 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
   React.useEffect(() => {
     /** On mount */
     /** Update form with internal value on mount */
-    name && updateFormValue(name, internalValue);
+    formValues && updateFormValue(name, internalValue, true);
     return () => {
       /** On unmount */
       /** Clear Form value if needed */
-      name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+      clearFormValueOnUnmount && formValues && unsetFormValue(name);
     };
   }, []);
 

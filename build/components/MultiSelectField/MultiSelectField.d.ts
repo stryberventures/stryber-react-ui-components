@@ -6,7 +6,6 @@ export interface IMultiChoiceData {
 }
 export interface IMultiSelectFieldProps {
     name: string;
-    type?: string;
     placeholder?: string;
     choices: IMultiChoiceData[];
     values?: any[];

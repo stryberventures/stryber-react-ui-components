@@ -7,6 +7,7 @@ export interface IInputFieldLayoutProps {
     errorMsg?: string;
     prependContent?: any;
     appendContent?: any;
+    showPrependBackground?: boolean;
     children?: any;
 }
 declare const PropsWrappedStyledInputFieldLayout: (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement>) => JSX.Element;

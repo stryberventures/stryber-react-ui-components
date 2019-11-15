@@ -1,4 +1,4 @@
-import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef } from 'react';
+import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, useRef } from 'react';
 import withStyles, { ThemeProvider as ThemeProvider$1 } from 'react-jss';
 
 /*! *****************************************************************************
@@ -142,10 +142,11 @@ var GlobalStyles = function (props) {
 };
 var WrappedGlobalStyles = withStyles(styles)(GlobalStyles);
 
-var defaultTheme = {
+var theme = {
     /** Imports */
     imports: [
-        "url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&display=swap')",
+        "url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')",
+        "url('https://fonts.googleapis.com/css?family=Questrial')",
     ],
     /** Text color */
     textColorPrimary: '#1d1d1b',
@@ -154,12 +155,12 @@ var defaultTheme = {
     /** Background colors */
     backgroundColorPrimary: '#fff',
     /** Fonts */
-    fontFamily: 'Work Sans',
+    fontFamily: 'Open Sans, sans-serif',
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 500,
-    fontWeightSemiBold: 600,
-    fontWeightBold: 700,
+    fontWeightMedium: 600,
+    fontWeightSemiBold: 700,
+    fontWeightBold: 800,
     /** Button colors */
     buttonColorPrimary: '#fff',
     buttonColorSecondary: '#007aff',
@@ -204,14 +205,14 @@ var defaultTheme = {
 
 /** Main component */
 var ThemeProvider = function (props) {
-    var theme = props.theme, children = props.children;
-    return (createElement(ThemeProvider$1, { theme: __assign({}, defaultTheme, { theme: theme }) },
+    var theme$1 = props.theme, children = props.children;
+    return (createElement(ThemeProvider$1, { theme: __assign({}, theme, { theme: theme$1 }) },
         createElement(WrappedGlobalStyles, null, children)));
 };
 
 /** Creating form context with default values */
 var defaultFormContextValues = {
-    updateFormValue: function (name, data) { },
+    updateFormValue: function (name, data, init) { },
     updateFormTouched: function (name, data) { },
     unsetFormValue: function (name) { },
     formValues: undefined,
@@ -258,7 +259,8 @@ var Form = function (props) {
         }
     };
     /** Updating form values whenever a change is made within an input field */
-    var updateFormValue = function (name, value) {
+    var updateFormValue = function (name, value, init) {
+        if (init === void 0) { init = false; }
         /** Setting new values in state */
         setFormValues(function (formValues) {
             var newFormValues = __assign({}, formValues);
@@ -266,7 +268,7 @@ var Form = function (props) {
             /** Validating new values */
             validate(newFormValues);
             /** Sending on change callback (if it was provided) */
-            onChange && onChange(__assign({}, newFormValues));
+            !init && onChange && onChange(__assign({}, newFormValues));
             return newFormValues;
         });
     };
@@ -424,7 +426,7 @@ var RadioField = function (props) {
             //@ts-ignore
             inputRef.current.checked = checked;
         }
-        checked && formValues && updateFormValue(name, value);
+        checked && formValues && updateFormValue(name, value, true);
         return function () {
             /** On unmount */
             /** Clear Form value if needed */
@@ -474,11 +476,21 @@ var index$1 = (function (props) { return (createElement("svg", __assign({}, prop
         createElement("g", { transform: "translate(-3.000000, -4.000000)", fillRule: "nonzero" },
             createElement("path", { d: "M3.89188126,9.9653644 L7.16423288,14.3097417 C7.49578779,14.7509044 7.97264341,15 8.48091541,15 C8.49830662,15 8.51681984,15 8.53477205,14.999462 C9.06267928,14.9811699 9.54177893,14.6960281 9.85033257,14.2177431 L15.5899913,5.30571715 C15.8486153,4.90382863 15.7184618,4.37550931 15.2988289,4.12748976 C14.8791959,3.8794702 14.3288484,4.00428698 14.0702244,4.40671351 L8.46240219,13.1094561 L5.34040036,8.96360211 C5.05148195,8.58054371 4.49384137,8.49392516 4.09384365,8.7709969 C3.69384593,9.04806864 3.60296286,9.58230599 3.89188126,9.9653644 Z" }))))); });
 
+var Search = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 20 20", width: 20 }, props),
+    createElement("g", { stroke: "none", strokeWidth: "1", fillRule: "evenodd" },
+        createElement("path", { d: "M13.8571582,7.85714626 C13.8571582,5.10045251 11.6138519,2.85714626 8.85714626,2.85714626 C6.10045251,2.85714626 3.85714626,5.10045251 3.85714626,7.85714626 C3.85714626,10.6138519 6.10045251,12.8571582 8.85714626,12.8571582 C11.6138519,12.8571582 13.8571582,10.6138519 13.8571582,7.85714626 Z M19.5714507,17.1428776 C19.5714507,17.9241285 18.9241285,18.5714507 18.1428776,18.5714507 C17.7634128,18.5714507 17.3951088,18.4152005 17.1384121,18.1473431 L13.3102825,14.3303742 C12.0044774,15.2343932 10.4419755,15.7143044 8.85715222,15.7143044 C4.51562919,15.7143044 1,12.1986753 1,7.85715222 C1,3.51562919 4.51562919,0 8.85715222,0 C13.1986753,0 16.7143044,3.51562919 16.7143044,7.85715222 C16.7143044,9.44197554 16.2343932,11.0044774 15.3303742,12.3102825 L19.1585038,16.1384121 C19.4152005,16.3951088 19.5714507,16.7634128 19.5714507,17.1428776 Z" })))); });
+
 var Close = (function (props) { return (createElement("svg", __assign({ width: 24, viewBox: "0 0 24 24" }, props),
     createElement("path", { d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" }))); });
 
+var CloseOutline = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 24 24" }, props),
+    createElement("path", { d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" }))); });
+
 var DownArrow = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 24 24" }, props),
     createElement("path", { d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" }))); });
+
+var File = (function (props) { return (createElement("svg", __assign({ width: 24, viewBox: "0 0 24 24" }, props),
+    createElement("path", { d: "M13.006 3.443L10.056.494A1.687 1.687 0 0 0 8.865 0H1.687C.756 0 0 .756 0 1.688v14.624C0 17.244.756 18 1.688 18h10.124c.932 0 1.688-.756 1.688-1.688V4.636c0-.447-.178-.876-.494-1.193zm-.796.796a.559.559 0 0 1 .148.261H9V1.142c.099.025.19.076.261.148l2.95 2.949zm-.398 12.636H1.688a.562.562 0 0 1-.563-.563V1.688c0-.31.252-.562.563-.562h6.187v3.656c0 .466.378.844.844.844h3.656v10.688c0 .31-.252.562-.563.562zm-1.211-7.416l-4.739 4.7a.422.422 0 0 1-.596-.001l-2.368-2.375a.422.422 0 0 1 0-.597l.3-.298a.422.422 0 0 1 .597 0l1.773 1.78 4.14-4.108a.422.422 0 0 1 .598.002l.297.3a.422.422 0 0 1-.002.597z" }))); });
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -635,8 +647,6 @@ var styles$3 = (function (theme) { return ({
     prepend: {
         transition: '0.5s',
         position: 'relative',
-        backgroundColor: theme.inputColorHighlight || '#007aff',
-        fill: theme.inputColorHighlight || '#007aff',
         minWidth: 7,
         overflow: 'visible',
         display: 'flex',
@@ -649,15 +659,15 @@ var styles$3 = (function (theme) { return ({
         },
     },
     prependDisabled: {
-        fill: theme.inputPlaceholderColorIdle || '#95acbf',
-        backgroundColor: theme.inputPlaceholderColorIdle || '#95acbf',
+        fill: (theme.inputPlaceholderColorIdle || '#95acbf') + " !important",
+        backgroundColor: (theme.inputPlaceholderColorIdle || '#95acbf') + " !important",
     },
     prependMargin: {
         marginRight: 20,
     },
     prependInvalid: {
-        fill: theme.inputColorError || '#d0021b',
-        backgroundColor: theme.inputColorError || '#d0021b',
+        fill: (theme.inputColorError || '#d0021b') + " !important",
+        backgroundColor: (theme.inputColorError || '#d0021b') + " !important",
     },
     prependContent: {
         display: 'flex',
@@ -668,7 +678,11 @@ var styles$3 = (function (theme) { return ({
         paddingLeft: 17,
         height: '100%',
     },
-    prependBackground: {
+    prependBackgroundColor: {
+        backgroundColor: theme.inputColorHighlight || '#007aff',
+        fill: theme.inputColorHighlight || '#007aff',
+    },
+    prependBackgroundIcon: {
         right: -20,
         zIndex: -1,
         position: 'absolute',
@@ -692,21 +706,23 @@ var styles$3 = (function (theme) { return ({
 
 /** Main component */
 var InputFieldLayout = function (props) {
-    var classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, rest = __rest(props, ["classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children"]);
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, _a = props.showPrependBackground, showPrependBackground = _a === void 0 ? true : _a, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "showPrependBackground"]);
     return (createElement(Fragment, null,
         createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
+                className,
                 disabled ? classes.rootDisabled : null,
                 errorMsg ? classes.rootInvalid : null,
             ]) }),
             createElement("div", { className: classnames([
                     classes.prepend,
+                    showPrependBackground ? classes.prependBackgroundColor : null,
+                    (showPrependBackground && prependContent) ? classes.prependMargin : null,
                     disabled ? classes.prependDisabled : null,
-                    prependContent ? classes.prependMargin : null,
                     errorMsg ? classes.prependInvalid : null,
                 ]) },
                 prependContent ? createElement("div", { className: classes.prependContent }, prependContent) : null,
-                prependContent ? createElement(PrependBackground, { className: classes.prependBackground }) : null),
+                (prependContent && showPrependBackground) ? createElement(PrependBackground, { className: classes.prependBackgroundIcon }) : null),
             createElement("div", { className: classes.fieldWrapper },
                 placeholder ?
                     (createElement("div", { className: classnames([
@@ -726,8 +742,7 @@ var StyledInputFieldLayout = withStyles(styles$3)(InputFieldLayout);
 var PropsWrappedStyledInputFieldLayout = function (props) { return createElement(StyledInputFieldLayout, __assign({}, props)); };
 
 var TextInput = function (props) {
-    var classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused,
-      prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
     return (createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, isPlaceholderCollapsed: !!((typeof value !== 'undefined' && value !== '') || isFocused), errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
         createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
@@ -829,11 +844,11 @@ var InputField = function (props) {
     useEffect(function () {
         /** On mount */
         /** Update form with internal value on mount */
-        name && updateFormValue(name, internalValue);
+        formValues && updateFormValue(name, internalValue, true);
         return function () {
             /** On unmount */
             /** Clear Form value if needed */
-            name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+            clearFormValueOnUnmount && formValues && unsetFormValue(name);
         };
     }, []);
     /** Switch depending on the type of the desired input field */
@@ -1058,12 +1073,12 @@ var CheckboxField = function (props) {
         /** On mount */
         /** Update form with internal value on mount */
         if (formValues) {
-            updateFormValue(name, !!checked);
+            updateFormValue(name, !!checked, true);
         }
         return function () {
             /** On unmount */
             /** Clear Form value if needed */
-            formValues && updateFormValue(name, undefined);
+            formValues && updateFormValue(name, undefined, true);
         };
     }, []);
     return (createElement("div", { className: classnames([classes.wrapper, className]) },
@@ -1561,6 +1576,580 @@ var MultiSelectField = function (props) {
 var StyledMultiSelectField = withStyles(styles$8)(MultiSelectField);
 var PropsWrappedStyledMultiSelectField = function (props) { return createElement(StyledMultiSelectField, __assign({}, props)); };
 
+var styles$a = (function (theme) { return ({
+    input: {
+        display: 'none',
+    },
+    inputFieldWrapper: {
+        width: '100%',
+        padding: '23px 0',
+        cursor: 'pointer',
+        '&:focus': {
+            outline: 'none',
+        },
+    },
+    inputWithPlaceholder: {
+        display: 'block',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        padding: '0 14px',
+        border: '0',
+        backgroundColor: 'rgba(0,0,0,0)',
+        transition: '0.5s',
+        color: '#54738c',
+        fontFamily: 'Work Sans',
+        fontSize: '14px',
+        fontWeight: '500',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        cursor: 'pointer',
+    },
+    selectedFiles: {
+        margin: 0,
+        padding: '0 21px',
+        color: theme.inputPlaceholderColorIdle || '#95acbf',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+}); });
+
+var styles$b = (function (theme) { return ({
+    selectedFile: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'nowrap',
+        justifyContent: 'space-between',
+        padding: '8px 2px 8px 0',
+        borderBottom: "1px solid " + theme.inputColorBorderIdle
+    },
+    file: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'nowrap',
+        overflow: 'hidden',
+    },
+    fileName: {
+        marginLeft: 8,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        fontSize: '10px',
+        letterSpacing: '0.25px',
+        color: theme.inputColorIdle,
+    },
+    closeButton: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: 18,
+        height: 18,
+        marginLeft: 8,
+        backgroundColor: theme.inputColorBorderIdle,
+        borderRadius: '100%',
+        cursor: 'pointer',
+    },
+}); });
+
+var SelectedFile = function (_a) {
+    var classes = _a.classes, fileName = _a.fileName, removeFile = _a.removeFile;
+    return (createElement("li", { className: classes.selectedFile },
+        createElement("span", { className: classes.file },
+            createElement(File, { fill: theme.inputColorIdle, viewBox: "0 0 14 18", width: 14 }),
+            createElement("span", { className: classes.fileName }, fileName)),
+        createElement("span", { className: classes.closeButton, onClick: function () { return removeFile(fileName); } },
+            createElement(Close, { fill: theme.textColorHighlight, width: 10 }))));
+};
+/** Wrappers */
+var StyledSelectedFile = withStyles(styles$b)(SelectedFile);
+
+var styles$c = (function (theme) { return ({
+    uploadButton: {
+        marginRight: 12,
+        padding: '0 24px',
+        borderRadius: 4.4,
+        fontSize: 10,
+        fontWeight: 500,
+        lineHeight: '23px',
+        cursor: 'pointer',
+        '&.fileNotSelected': {
+            color: '#007aff',
+            border: 'solid 1px #007aff',
+            backgroundColor: '#fff',
+            '&.error': {
+                borderColor: theme.inputColorError || '#d0021b',
+                color: theme.inputColorError || '#d0021b',
+            },
+        },
+        '&.disabled': {
+            borderColor: theme.inputColorBorderIdle,
+            color: theme.inputColorBorderIdle,
+        },
+        '&.fileSelected': {
+            color: '#fff',
+            border: 'solid 1px #007aff',
+            backgroundColor: '#007aff',
+            '&.error': {
+                borderColor: theme.inputColorError || '#d0021b',
+                backgroundColor: theme.inputColorError || '#d0021b',
+            },
+        },
+    },
+}); });
+
+/** Component */
+var UploadButton = function (props) {
+    var classes = props.classes, files = props.files, errorMsg = props.errorMsg, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a;
+    var noFilesSelected = !files || (!files.name && !files.length);
+    return (createElement("button", { onClick: onClick, disabled: disabled, className: classnames([
+            classes.uploadButton,
+            errorMsg ? 'error' : '',
+            noFilesSelected ? 'fileNotSelected' : 'fileSelected',
+            disabled ? 'disabled' : null,
+        ]) }, noFilesSelected ? 'Upload' : 'Change'));
+};
+/** Wrappers */
+var StyledUploadButton = withStyles(styles$c)(UploadButton);
+
+/** Main component */
+var FileField = function (props) {
+    var name = props.name, accept = props.accept, classes = props.classes, errorMessage = props.errorMessage, inputText = props.inputText, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.multiple, multiple = _b === void 0 ? false : _b, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, placeholder = props.placeholder, value = props.value, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent;
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _d = useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
+    /** Create input ref and an event to click it */
+    var inputRef = useRef(null);
+    var clickFileInput = function () {
+        (inputRef && inputRef.current) && inputRef.current.click();
+    };
+    /** Focus status (needed for styles) */
+    var _e = __read(useState(false), 2), isFocused = _e[0], setFocused = _e[1];
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _f = __read(useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
+    /** Getting files names */
+    var getFileNames = function (files) {
+        if (files && files.name) {
+            return [files.name];
+        }
+        return (files && files.length)
+            ? Object.values(files).map(function (file) { return file.name; })
+            : [];
+    };
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (e) {
+        if (disabled)
+            return;
+        var _a = e.target, name = _a.name, targetFiles = _a.files;
+        /** Getting array of multiple files */
+        var multipleFiles = Array.from(targetFiles);
+        /** Getting files to be added to formData */
+        var files = multiple ? multipleFiles : targetFiles[0];
+        /** Internal value update */
+        setInternalValue(files);
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, files);
+        /** Independent callback */
+        onChange && onChange(files);
+    };
+    var onFocusWrapper = function (e) {
+        if (disabled)
+            return;
+        /** Internal value update */
+        setFocused(true);
+        /** Independent callback */
+        onFocus && onFocus(e);
+    };
+    var onBlurWrapper = function (e) {
+        if (disabled)
+            return;
+        var name = e.target.name;
+        /** Internal value update */
+        setFocused(false);
+        /** Passthrough to form context */
+        formTouched && updateFormTouched(name, true);
+        /** Independent callback */
+        onBlur && onBlur(e);
+    };
+    /** Remove file from internalValue */
+    var removeFile = function (fileName) {
+        var files = multiple ? (internalValue).filter(function (file) { return file.name !== fileName; }) : undefined;
+        setInternalValue(files);
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, files);
+        /** Independent callback */
+        onChange && onChange(files);
+    };
+    /** On mount/unmount logic */
+    useEffect(function () {
+        /** On mount */
+        /** Update form with internal value on mount */
+        name && updateFormValue(name, internalValue);
+        return function () {
+            /** On unmount */
+            /** Clear Form value if needed */
+            name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+        };
+    }, []);
+    /** Set placeholder appearance */
+    var isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && (internalValue.name || internalValue.length)) || isFocused);
+    var isPlaceholderVisible = multiple ? !!(internalValue && internalValue.length) : !!internalValue;
+    /** Default components */
+    var appendContentDefault = createElement(StyledUploadButton, { files: internalValue, errorMsg: errorMsg, onClick: clickFileInput, disabled: disabled });
+    var inputTextDefault = multiple ? ((internalValue && internalValue.length) + " uploaded " + (internalValue && internalValue.length > 1 ? 'files' : 'file')) : '1 uploaded file';
+    return (createElement(Fragment, null,
+        createElement(PropsWrappedStyledInputFieldLayout, { prependContent: prependContent, appendContent: appendContent ? appendContent(internalValue, errorMsg, clickFileInput, disabled) : appendContentDefault, isPlaceholderCollapsed: isPlaceholderCollapsed, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
+            createElement("div", __assign({ onClick: clickFileInput, onFocus: onFocusWrapper, onBlur: onBlurWrapper, className: classes.inputFieldWrapper }, (disabled ? {} : { tabIndex: 0 })),
+                createElement("div", { className: classes.inputWithPlaceholder }, isPlaceholderVisible ? (inputText || inputTextDefault) : null),
+                createElement("input", { ref: inputRef, name: name, type: "file", accept: accept, multiple: multiple, value: value, key: internalValue, className: classes.input, disabled: disabled, onChange: onChangeWrapper }))),
+        internalValue ?
+            (createElement("ul", { className: classes.selectedFiles }, getFileNames(internalValue).map(function (fileName) { return (createElement(StyledSelectedFile, { key: fileName, fileName: fileName, removeFile: removeFile })); }))) : null));
+};
+/** Wrappers */
+var StyledFileField = withStyles(styles$a)(FileField);
+var PropsWrappedStyledStyledFileField = function (props) { return createElement(StyledFileField, __assign({}, props)); };
+
+var styles$d = (function (theme) { return ({
+    root: {
+        position: 'relative',
+    },
+    rootOpen: {
+        zIndex: 99,
+    },
+    /** Search icon */
+    searchIcon: {
+        fill: theme.inputPlaceholderColorIdle || '#95acbf',
+    },
+    /** Clear icon */
+    clearIcon: {
+        marginRight: 10,
+        width: 18,
+        fill: theme.inputColorBorderIdle || '#95acbf',
+    },
+    /** Selected values Wrapper */
+    selectElement: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0)',
+        border: 0,
+        '-moz-appearance': 'none',
+        '-webkit-appearance': 'none',
+        '&:focus': {
+            outline: 'none',
+        },
+    },
+    inputField: {
+        cursor: 'pointer',
+        userSelect: 'none',
+        width: '100%',
+        height: '100%',
+        border: 0,
+        padding: 14,
+        backgroundColor: theme.inputBackgroundColor,
+        transition: '0.5s',
+        color: theme.inputColorIdle || '#54738c',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        fontSize: 14,
+        '&:focus': {
+            color: theme.inputColorHighlight || '#007aff',
+            outline: 'none',
+        },
+        // ':before': { content: '\00a0' },
+        '&:after': {
+            content: '"."',
+            visibility: 'hidden',
+        },
+        '&::placeholder': {
+            color: theme.inputPlaceholderColorIdle || '#95acbf',
+        }
+    },
+    inputFieldWithPlaceholder: {
+        paddingBottom: 5,
+        paddingTop: 23,
+    },
+    inputFieldInvalid: {
+        '&:focus': {
+            color: (theme.inputColorError || '#d0021b') + " !important",
+        },
+    },
+    /** Dropdown */
+    dropdownWrapper: {
+        position: 'absolute',
+        top: 'calc(100% + 4px)',
+        width: '100%',
+        paddingTop: 10,
+        paddingBottom: 10,
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: 6,
+        border: "solid 1px #cfd8dc",
+        backgroundColor: theme.inputBackgroundColor,
+    },
+    dropdownItem: {
+        padding: '8px 18px',
+        userSelect: 'none',
+        cursor: 'pointer',
+        color: theme.textColorSecondary,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightRegular,
+        fontSize: 14,
+    },
+    dropdownItemHover: {
+        backgroundColor: '#eceff1',
+    },
+    dropdownItemSelected: {
+        backgroundColor: theme.inputColorSelected,
+    },
+    /** Clickaway */
+    clickaway: {
+        zIndex: 98,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    },
+    /** Error message */
+    errorMessage: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+}); });
+
+/** Main component */
+var SearchField = function (props) {
+    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _a = props.placeholder, placeholder = _a === void 0 ? 'Search' : _a, _b = props.collapsiblePlaceholder, collapsiblePlaceholder = _b === void 0 ? true : _b;
+    /** Focus status (needed for styles) */
+    var _c = __read(useState(false), 2), isFocused = _c[0], setFocused = _c[1];
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _d = __read(useState(value || ''), 2), inputValue = _d[0], setInputValue = _d[1];
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (e) {
+        var value = e.target.value;
+        /** Internal value update */
+        setInputValue(function () { return value; });
+        // setDropdownOpen(() => false);
+        /** Independent callback */
+        onChange && onChange(value);
+    };
+    var onFocusWrapper = function (e) {
+        setFocused(true);
+        /** Independent callback */
+        onFocus && onFocus(e);
+    };
+    var onBlurWrapper = function (e) {
+        // const { name } = e.target;
+        setFocused(false);
+        // /** Passthrough to form context */
+        // formTouched && updateFormTouched(name, true);
+        /** Independent callback */
+        onBlur && onBlur(e);
+    };
+    var onClearClickWrapper = function (e) {
+        e.stopPropagation();
+        setInputValue(function () { return ''; });
+    };
+    /** Prepend magnifying lens */
+    var prependContent = (createElement(Search, { className: classes.searchIcon }));
+    /** Append content arrow */
+    var appendContent = inputValue !== '' ?
+        (createElement(CloseOutline, { onClick: onClearClickWrapper, className: classnames([
+                classes.clearIcon,
+            ]) })) : null;
+    return (createElement(PropsWrappedStyledInputFieldLayout, { className: className, isPlaceholderCollapsed: isFocused || inputValue !== '', disabled: disabled, placeholder: collapsiblePlaceholder ? placeholder : undefined, prependContent: prependContent, appendContent: appendContent, showPrependBackground: false },
+        createElement("input", { type: "text", onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper, value: inputValue, placeholder: collapsiblePlaceholder ? undefined : placeholder, 
+            // onKeyDown={onKeyDownWrapper}
+            className: classnames([
+                classes.inputField,
+                (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
+            ]) })));
+};
+/** Wrappers */
+var StyledSearchField = withStyles(styles$d)(SearchField);
+var PropsWrappedStyledSearchField = function (props) { return createElement(StyledSearchField, __assign({}, props)); };
+
+var styles$e = (function (theme) { return ({
+    root: {
+        position: 'relative',
+    },
+    rootOpen: {
+        zIndex: 99,
+    },
+    /** Search icon */
+    searchIcon: {
+        fill: theme.inputPlaceholderColorIdle || '#95acbf',
+    },
+    /** Clear icon */
+    clearIcon: {
+        marginRight: 10,
+        width: 18,
+        fill: theme.inputColorBorderIdle || '#95acbf',
+    },
+    /** Selected values Wrapper */
+    selectElement: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0)',
+        border: 0,
+        '-moz-appearance': 'none',
+        '-webkit-appearance': 'none',
+        '&:focus': {
+            outline: 'none',
+        },
+    },
+    inputField: {
+        cursor: 'pointer',
+        userSelect: 'none',
+        width: '100%',
+        height: '100%',
+        border: 0,
+        padding: 14,
+        backgroundColor: theme.inputBackgroundColor,
+        transition: '0.5s',
+        color: theme.inputColorIdle || '#54738c',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        fontSize: 14,
+        '&:focus': {
+            color: theme.inputColorHighlight || '#007aff',
+            outline: 'none',
+        },
+        // ':before': { content: '\00a0' },
+        '&:after': {
+            content: '"."',
+            visibility: 'hidden',
+        },
+    },
+    inputFieldWithPlaceholder: {
+        paddingBottom: 5,
+        paddingTop: 23,
+    },
+    inputFieldInvalid: {
+        '&:focus': {
+            color: (theme.inputColorError || '#d0021b') + " !important",
+        },
+    },
+    /** Dropdown */
+    dropdownWrapper: {
+        position: 'absolute',
+        top: 'calc(100% + 4px)',
+        width: '100%',
+        paddingTop: 10,
+        paddingBottom: 10,
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: 6,
+        border: "solid 1px #cfd8dc",
+        backgroundColor: theme.inputBackgroundColor,
+        display: 'flex',
+        flexDirection: 'column',
+        zIndex: 99,
+    },
+    dropdownItem: {
+        padding: '8px 18px',
+        userSelect: 'none',
+        cursor: 'pointer',
+        color: theme.textColorSecondary,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightRegular,
+        fontSize: 14,
+        '&:hover': {
+            backgroundColor: '#eceff1',
+        },
+    },
+    dropdownItemHover: {
+        backgroundColor: '#eceff1',
+    },
+    dropdownItemSelected: {
+        backgroundColor: theme.inputColorSelected,
+    },
+    /** Clickaway */
+    clickaway: {
+        zIndex: 98,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    },
+    /** Error message */
+    errorMessage: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+}); });
+
+/** Main component */
+var SearchBox = function (props) {
+    var className = props.className, classes = props.classes, value = props.value, onFocus = props.onFocus, onBlur = props.onBlur, onSelect = props.onSelect, onChange = props.onChange, 
+    /** Fetch */
+    requestInfo = props.requestInfo, parseResponse = props.parseResponse, _a = props.fetchTimeout, fetchTimeout = _a === void 0 ? 500 : _a, 
+    /** External results */
+    results = props.results, rest = __rest(props, ["className", "classes", "value", "onFocus", "onBlur", "onSelect", "onChange", "requestInfo", "parseResponse", "fetchTimeout", "results"]);
+    var _b = __read(useState(''), 2), internalInputValue = _b[0], setInternalInputValue = _b[1];
+    var _c = __read(useState(setTimeout(function () { }, 0)), 2), requestTimeout = _c[0], setRequestTimeout = _c[1];
+    /** Focused state */
+    var _d = __read(useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    /** Internal results */
+    var _e = __read(useState([]), 2), internalResults = _e[0], setInternalResults = _e[1];
+    /** Default functions */
+    var defautParseResponse = function (data) { return data.map(function (d) { return ({
+        label: d.name,
+    }); }); };
+    /** Fetch data function */
+    var fetchData = function (value) {
+        if (typeof requestInfo === 'function') {
+            var generatedRequestInfo = requestInfo(value);
+            if (generatedRequestInfo) {
+                fetch(requestInfo(value))
+                    .then(function (response) { return response.json(); })
+                    .then(parseResponse || defautParseResponse)
+                    .then(function (parsedData) { return setInternalResults(parsedData); });
+            }
+            else {
+                setInternalResults(function () { return []; });
+            }
+        }
+    };
+    /** Function wrapper to update internal input value */
+    var updateInternalValue = function (value) {
+        setInternalInputValue(value);
+        clearTimeout(requestTimeout);
+        setRequestTimeout(function () { return setTimeout(function () { return fetchData(value); }, fetchTimeout); });
+    };
+    /** Mount / unmount */
+    useEffect(function () {
+        fetchData(internalInputValue);
+        return function () {
+        };
+    }, []);
+    return (createElement("div", { className: classnames([
+            className,
+            classes.root,
+        ]) },
+        createElement(PropsWrappedStyledSearchField, __assign({}, rest, { onChange: function (value) { onChange && onChange(value); updateInternalValue(value); }, onFocus: function (e) { onFocus && onFocus(e); setFocused(true); }, onBlur: function (e) { onBlur && onBlur(e); setFocused(false); } })),
+        (isFocused && (results || internalResults).length)
+            ? (createElement("div", { className: classes.dropdownWrapper }, (results || internalResults).map(function (d, i) {
+                var onMouseDown = function (e) {
+                    e.stopPropagation();
+                    onSelect && onSelect(d);
+                    d.onClick && d.onClick(e);
+                    d.href && window.open(d.href, '_self');
+                };
+                return (createElement("a", { key: i, onMouseDown: onMouseDown, href: d.href || undefined, className: classes.dropdownItem }, d.label));
+            }))) : null));
+};
+/** Wrappers */
+var StyledSearchBox = withStyles(styles$e)(SearchBox);
+var PropsWrappedStyledSearchBox = function (props) { return createElement(StyledSearchBox, __assign({}, props)); };
+
 var getGridColumnStyle = function (breakpointValue) {
     if (!breakpointValue)
         return 'span 1';
@@ -1569,7 +2158,7 @@ var getGridColumnStyle = function (breakpointValue) {
 var getGridTemplateColumns = function (columns) {
     return "repeat(" + columns + ", 1fr)";
 };
-var styles$a = (function (theme) {
+var styles$f = (function (theme) {
     var _a;
     return ({
         /** Row */
@@ -1612,12 +2201,12 @@ var Col = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledRow = withStyles(styles$a)(Row);
+var StyledRow = withStyles(styles$f)(Row);
 var PropsWrappedStyledRow = function (props) { return createElement(StyledRow, __assign({}, props)); };
-var StyledCol = withStyles(styles$a)(Col);
+var StyledCol = withStyles(styles$f)(Col);
 var PropsWrappedStyledCol = function (props) { return createElement(StyledCol, __assign({}, props)); };
 
-var styles$b = (function (theme) {
+var styles$g = (function (theme) {
     var _a;
     return ({
         root: (_a = {
@@ -1651,10 +2240,10 @@ var Container = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledContainer = withStyles(styles$b)(Container);
+var StyledContainer = withStyles(styles$g)(Container);
 var PropsWrappedStyledContainer = function (props) { return createElement(StyledContainer, __assign({}, props)); };
 
-var styles$c = (function (theme) { return ({
+var styles$h = (function (theme) { return ({
     root: {
         borderRadius: 8,
         display: 'flex',
@@ -1692,9 +2281,9 @@ var Body = function (props) {
             classes.body,
         ]) }), children));
 };
-var StyledCard = withStyles(styles$c)(Card);
-var StyledTitle = withStyles(styles$c)(Title);
-var StyledBody = withStyles(styles$c)(Body);
+var StyledCard = withStyles(styles$h)(Card);
+var StyledTitle = withStyles(styles$h)(Title);
+var StyledBody = withStyles(styles$h)(Body);
 
-export { StyledBody as Body, PropsWrappedStyledButton as Button, index$1 as Check, PropsWrappedStyledCheckboxField as CheckboxField, Close, PropsWrappedStyledCol as Col, PropsWrappedStyledContainer as Container, DownArrow, Eye, EyeDisabled, Form, FormContext, InputField, PropsWrappedStyledMultiSelectField as MultiSelectField, PropsWrappedStyledPasswordField as PasswordField, PrependBackground, index as Profile, PropsWrappedStyledRadioField as RadioField, PropsWrappedStyledRow as Row, PropsWrappedStyledSelectField as SelectField, ThemeProvider, StyledTitle as Title, StyledCard as Wrapper, defaultFormContextValues };
+export { StyledBody as Body, PropsWrappedStyledButton as Button, index$1 as Check, PropsWrappedStyledCheckboxField as CheckboxField, Close, CloseOutline, PropsWrappedStyledCol as Col, PropsWrappedStyledContainer as Container, DownArrow, Eye, EyeDisabled, File, PropsWrappedStyledStyledFileField as FileField, Form, FormContext, InputField, PropsWrappedStyledMultiSelectField as MultiSelectField, PropsWrappedStyledPasswordField as PasswordField, PrependBackground, index as Profile, PropsWrappedStyledRadioField as RadioField, PropsWrappedStyledRow as Row, Search, PropsWrappedStyledSearchBox as SearchBox, PropsWrappedStyledSearchField as SearchField, PropsWrappedStyledSelectField as SelectField, ThemeProvider, StyledTitle as Title, StyledCard as Wrapper, defaultFormContextValues };
 //# sourceMappingURL=index.es.js.map

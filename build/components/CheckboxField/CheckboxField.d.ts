@@ -2,7 +2,7 @@ import * as React from "react";
 export interface ICheckboxFieldProps {
     name: string;
     value?: any;
-    placeholder?: string;
+    placeholder?: any | React.Component;
     checked?: boolean;
     disabled?: boolean;
     onChange?: (e: React.BaseSyntheticEvent) => void;

@@ -12,6 +12,8 @@ export * from './components/CheckboxField';
 export * from './components/SelectField';
 export * from './components/MultiSelectField';
 export * from './components/FileField';
+export * from './components/SearchField';
+export * from './components/SearchBox';
 /** Active elements */
 export * from './components/Button';
 /** Layout */

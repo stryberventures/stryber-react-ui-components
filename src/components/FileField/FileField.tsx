@@ -1,11 +1,10 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
-
+import styles from './FileField.styles';
 import { FormContext } from '../Form';
 import { InputFieldLayout } from '../InputFieldLayout';
-import SelectedFile from './SelectedFile';
-import styles from './FileField.styles';
-import UploadButton from './UploadButton';
+import { SelectedFile } from './SelectedFile';
+import { UploadButton } from './UploadButton';
 
 /** Interfaces */
 export interface IFileFieldProps {
@@ -21,7 +20,7 @@ export interface IFileFieldProps {
   errorMessage?: string;
   inputText?: (filesNumber: number) => string;
   prependContent?: any;
-  appendContent?: (files: any, errorMsg: string, clickFileInput: (e: any) => any) => any;
+  appendContent?: (files: any, errorMsg: string, clickFileInput: (e: any) => any, disabled: boolean) => any;
   clearFormValueOnUnmount?: boolean;
 }
 
@@ -83,6 +82,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     const { name, files: targetFiles } = e.target;
     /** Getting array of multiple files */
     const multipleFiles = Array.from(targetFiles);
@@ -96,12 +96,14 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     onChange && onChange(files);
   };
   const onFocusWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     /** Internal value update */
     setFocused(true);
     /** Independent callback */
     onFocus && onFocus(e);
   };
   const onBlurWrapper = (e: React.BaseSyntheticEvent) => {
+    if (disabled) return;
     const { name } = e.target;
     /** Internal value update */
     setFocused(false);
@@ -138,25 +140,25 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   const isPlaceholderVisible = multiple ? !!(internalValue && internalValue.length) : !!internalValue;
 
   /** Default components */
-  const appendContentDefault = <UploadButton files={internalValue} errorMsg={errorMsg} onClick={clickFileInput} />;
+  const appendContentDefault = <UploadButton files={internalValue} errorMsg={errorMsg} onClick={clickFileInput} disabled={disabled} />;
   const inputTextDefault = multiple ? (`${internalValue && internalValue.length} uploaded ${internalValue && internalValue.length > 1 ? 'files' : 'file'}`) : '1 uploaded file';
 
   return (
     <>
       <InputFieldLayout
         prependContent={prependContent}
-        appendContent={appendContent ? appendContent : appendContentDefault}
+        appendContent={appendContent ? appendContent(internalValue, errorMsg, clickFileInput, disabled) : appendContentDefault}
         isPlaceholderCollapsed={isPlaceholderCollapsed}
         errorMsg={errorMsg}
         disabled={disabled}
         placeholder={placeholder}
       >
         <div
-          tabIndex={0}
           onClick={clickFileInput}
           onFocus={onFocusWrapper}
           onBlur={onBlurWrapper}
           className={classes.inputFieldWrapper}
+          {...(disabled ? {} : { tabIndex: 0 })}
         >
           <div className={classes.inputWithPlaceholder}>
             { isPlaceholderVisible ? (inputText || inputTextDefault) : null}
@@ -170,6 +172,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
             value={value}
             key={internalValue}
             className={classes.input}
+            disabled={disabled}
             onChange={onChangeWrapper}
           />
         </div>
