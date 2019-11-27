@@ -2,7 +2,6 @@ export default {
   /** Imports */
   imports: [
     `url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')`,
-    `url('https://fonts.googleapis.com/css?family=Questrial')`,
   ],
 
   /** Text color */
@@ -52,6 +51,14 @@ export default {
   inputBackgroundColorHover: '#f5f5f5',
   inputBackgroundColorClick: '#ebebeb',
   inputBackgroundColorDisabled: '#f0f0f0',
+
+  /** Navbar */
+  navbarItemColor: '#90a4ae',
+  navbarItemColorHover: '#a7b7bf',
+  navbarItemColorClick: '#bdc9cf',
+  navbarItemColorHighlight: '#007aff',
+  navbarItemColorHighlightHover: '#278eff',
+  navbarItemColorHighlightClick: '#62adff',
 
   /** Grid */
   gridColumnGap: 20,
