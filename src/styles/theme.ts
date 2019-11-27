@@ -60,6 +60,9 @@ export default {
   navbarItemColorHighlightHover: '#278eff',
   navbarItemColorHighlightClick: '#62adff',
 
+  /** Badges */
+  badgePrimaryBackgroundColor: '#2a5393',
+
   /** Grid */
   gridColumnGap: 20,
   gridColumns: 12,
