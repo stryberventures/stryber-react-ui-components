@@ -35,6 +35,8 @@ export default (theme: any) => ({
     '&:active': {
       color: theme.navbarItemColorHighlightClick,
     },
-    borderBottom: `3px solid ${theme.navbarItemColorHighlight}`
+    '&.underlined': {
+      borderBottom: `3px solid ${theme.navbarItemColorHighlight}`
+    },
   },
 });

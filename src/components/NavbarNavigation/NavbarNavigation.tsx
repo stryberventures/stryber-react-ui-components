@@ -8,6 +8,7 @@ export interface INavigationContainerProps {
   onChange?: (newValue: any) => void;
   initialValue?: any;
   children?: any;
+  variant?: 'normal' | 'underlined';
 }
 
 export interface INavigationItemProps {
@@ -20,12 +21,14 @@ export interface INavigationItemProps {
 export interface INavbarNavigationContext {
   updateSelectedValue: (value: any) => void;
   selectedValue: any;
+  variant: 'normal' | 'underlined';
 }
 
 /** Creating form context with default values */
 export const defaultNavbarNavigationContextValues = {
   updateSelectedValue: () => {},
   selectedValue: undefined,
+  variant: 'normal' as 'normal' | 'underlined',
 };
 export const NavbarNavigationContext: React.Context<INavbarNavigationContext> =
   React.createContext(defaultNavbarNavigationContextValues);
@@ -39,6 +42,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
     initialValue = null,
     onChange,
     classes,
+    variant = 'normal',
     ...rest
   } = props;
 
@@ -53,6 +57,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
     <div className={classNames(classes.container, className)} {...rest}>
       <NavbarNavigationContext.Provider
         value={{
+          variant,
           selectedValue,
           updateSelectedValue,
         }}
@@ -78,6 +83,7 @@ const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivEle
   const {
     updateSelectedValue,
     selectedValue,
+    variant,
   } = React.useContext(NavbarNavigationContext);
 
   /**  */
@@ -93,6 +99,7 @@ const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivEle
         classes.item,
         className,
         (value === selectedValue || selected) ? classes.itemSelected : null,
+        variant,
       )}
       onClick={onClickWrapper}
       {...rest}
