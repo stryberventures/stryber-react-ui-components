@@ -39,6 +39,7 @@ storiesOf('Navbar', module)
           >
             <NavigationItem value="hello">Hello</NavigationItem>
             <NavigationItem value="world">World</NavigationItem>
+            <NavigationItem value="!">!</NavigationItem>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
@@ -55,6 +56,7 @@ storiesOf('Navbar', module)
           >
             <NavigationItem value="hello">Hello</NavigationItem>
             <NavigationItem value="world">World</NavigationItem>
+            <NavigationItem value="!">!</NavigationItem>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
@@ -70,6 +72,7 @@ storiesOf('Navbar', module)
           >
             <NavigationItem value="hello">Hello</NavigationItem>
             <NavigationItem value="world">World</NavigationItem>
+            <NavigationItem value="!">!</NavigationItem>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
