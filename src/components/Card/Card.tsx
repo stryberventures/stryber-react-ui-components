@@ -6,20 +6,23 @@ import styles from './Card.styles';
 
 /** Card */
 export interface CardProps {
+  className?: any;
   children: any;
 }
 
-const Card = ({
-  classes,
-  children,
-  ...rest
-}: CardProps & WithStyles<typeof styles>) => {
-  // const renderContent = () => <span className={ classes.content }>{ children }</span>;
+const Card = (props: CardProps & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    className,
+    children,
+    ...rest
+  } = props;
   return (
     <div
       { ...rest }
       className={ classNames([
         classes.root,
+        className,
       ]) }
     >
       { children }
@@ -30,20 +33,22 @@ const Card = ({
 /** Title */
 interface TitleProps {
   children: any;
-  [key: string]: any;
+  className?: any;
 }
 
-const Title = ({
-  classes,
-  children,
-  ...rest
-}: TitleProps & WithStyles<typeof styles>) => {
-  // const renderContent = () => <span className={ classes.content }>{ children }</span>;
+const Title = (props: TitleProps & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    children,
+    className,
+    ...rest
+  } = props;
   return (
     <div
       { ...rest }
       className={ classNames([
         classes.title,
+        className,
       ]) }
     >
       { children }
@@ -54,12 +59,13 @@ const Title = ({
 /** Body */
 interface BodyProps {
   children: any;
-  [key: string]: any;
+  className?: any;
 }
 
 const Body = (props: BodyProps & WithStyles<typeof styles>) => {
   const {
     classes,
+    className,
     children,
     ...rest
   } = props;
@@ -68,6 +74,7 @@ const Body = (props: BodyProps & WithStyles<typeof styles>) => {
       { ...rest }
       className={ classNames([
         classes.body,
+        className,
       ]) }
     >
       { children }
