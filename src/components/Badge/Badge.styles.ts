@@ -1,12 +1,11 @@
 export default (theme: any) => ({
   root: {
     position: 'relative',
+    overflow: 'visible',
   },
   badge: {
     position: 'absolute',
-    borderRadius: '50%',
-    width: 14,
-    height: 14,
+    borderRadius: 7,
     top: 0,
     right: 0,
     backgroundColor: theme.badgePrimaryBackgroundColor,
@@ -15,6 +14,11 @@ export default (theme: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+
+    marginRight: -3,
+    marginTop: -3,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   badgeContent: {
     fontFamily: theme.fontFamily,
