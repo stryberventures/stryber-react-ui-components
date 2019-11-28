@@ -10,7 +10,7 @@ export interface CardProps {
   children: any;
 }
 
-const Card = (props: CardProps & WithStyles<typeof styles>) => {
+const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     className,
@@ -36,7 +36,7 @@ interface TitleProps {
   className?: any;
 }
 
-const Title = (props: TitleProps & WithStyles<typeof styles>) => {
+const Title = (props: TitleProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     children,
@@ -62,7 +62,7 @@ interface BodyProps {
   className?: any;
 }
 
-const Body = (props: BodyProps & WithStyles<typeof styles>) => {
+const Body = (props: BodyProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     classes,
     className,
