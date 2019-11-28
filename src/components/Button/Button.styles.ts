@@ -4,15 +4,15 @@ export default (theme: any) => ({
     padding: 14,
     border: `solid 1px`,
     width: '100%',
-  },
-  content: {
     fontSize: 16,
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightSemiBold,
   },
   disabled: {
-    backgroundColor: theme.buttonBackgroundColorDisabled,
+    color: theme.buttonColorDisabled,
+    borderColor: theme.buttonColorDisabled,
   },
+  /** Color variants */
   primary: {
     color: theme.buttonBackgroundColorSecondary,
     backgroundColor: theme.buttonBackgroundColorPrimary,
@@ -33,5 +33,14 @@ export default (theme: any) => ({
     '&:active': {
       backgroundColor: theme.buttonBackgroundColorSecondaryClick,
     },
+  },
+  /** Sizes */
+  normal: {
+  },
+  mini: {
+    padding: 7,
+    fontSize: 10,
+    fontWeight: theme.fontWeightMedium,
+    borderRadius: 4,
   },
 });

@@ -31,6 +31,7 @@ export default {
   buttonBackgroundColorSecondaryHover: '#f5f5f5',
   buttonBackgroundColorSecondaryClick: '#ebebeb',
   buttonBackgroundColorDisabled: '#d2d2d2',
+  buttonColorDisabled: '#95acbf',
 
   /** Input fields */
   inputColorIdle: '#54738c',

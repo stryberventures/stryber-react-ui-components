@@ -10,6 +10,7 @@ export interface IButtonProps {
   disabled?: boolean;
   children: any;
   variant?: 'primary' | 'secondary';
+  sizeVariant?: 'normal' | 'mini';
 }
 
 /** Main component */
@@ -17,22 +18,24 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
   const {
     classes,
     children,
-    disabled,
     onClick,
+    disabled = false,
+    sizeVariant = 'normal',
     variant = 'primary',
     ...rest
   } = props;
-  const renderContent = () => <span className={ classes.content }>{ children }</span>;
   return (
     <button
       { ...rest }
+      disabled={disabled}
       className={ classNames([
         classes.root,
+        classes[sizeVariant],
+        !disabled ? classes[variant] : null,
         disabled ? classes.disabled : null,
-        classes[variant],
       ]) }
       onClick={ onClick }>
-      { renderContent() }
+      { children }
     </button>
   );
 };
