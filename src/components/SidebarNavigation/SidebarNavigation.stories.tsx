@@ -33,8 +33,8 @@ storiesOf('Sidebar navigation', module)
               description="Lorem ipsum dolor sit amet"
             >
               <SidebarNavigationItem value="other">Other</SidebarNavigationItem>
-              <SidebarNavigationItem value="world">Stuff</SidebarNavigationItem>
-              <SidebarNavigationItem value="!">Here</SidebarNavigationItem>
+              <SidebarNavigationItem value="stuff">Stuff</SidebarNavigationItem>
+              <SidebarNavigationItem value="here">Here</SidebarNavigationItem>
             </SidebarNavigationSection>
           </SidebarNavigationContainer>
         </Card>
