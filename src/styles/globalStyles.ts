@@ -46,6 +46,9 @@ export default (theme: any) => ({
       fontFamily: theme.fontFamily,
       fontWeight: theme.fontWeightBold,
     },
+    hr: {
+      border: `0.5px solid ${theme.hrColor}`,
+    },
     // 'h1, h2, h3, h4, h5, h6': {
     //   marginTop: 0,
     //   marginBottom: '.5rem',

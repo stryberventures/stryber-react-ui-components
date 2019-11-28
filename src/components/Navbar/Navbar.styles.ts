@@ -1,5 +1,7 @@
 export default (theme: any) => ({
-  root: {
+  navbar: {
+    position: 'relative',
+
     minHeight: 56,
     backgroundColor: theme.backgroundColorPrimary,
     width: '100%',
@@ -7,5 +9,8 @@ export default (theme: any) => ({
 
     display: 'flex',
     alignItems: 'center',
+  },
+  section: {
+
   },
 });

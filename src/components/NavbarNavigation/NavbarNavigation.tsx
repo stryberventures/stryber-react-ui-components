@@ -79,14 +79,14 @@ const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivEle
     ...rest
   } = props;
 
-  /**  */
+  /** Get navigation context */
   const {
     updateSelectedValue,
     selectedValue,
     variant,
   } = React.useContext(NavbarNavigationContext);
 
-  /**  */
+  /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
     updateSelectedValue(value);

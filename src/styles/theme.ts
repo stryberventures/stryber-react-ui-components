@@ -12,6 +12,9 @@ export default {
   /** Background colors */
   backgroundColorPrimary: '#fff',
 
+  /** Horizontal break line */
+  hrColor: '#eceff1',
+
   /** Fonts */
   fontFamily: 'Open Sans, sans-serif',
   fontWeightLight: 300,
@@ -60,6 +63,16 @@ export default {
   navbarItemColorHighlight: '#007aff',
   navbarItemColorHighlightHover: '#278eff',
   navbarItemColorHighlightClick: '#62adff',
+
+  /** Sidebar */
+  sidebarSectionColor: '#1b1b1b',
+  sidebarItemColor: '#90a4ae',
+  sidebarItemColorHover: '#a7b7bf',
+  sidebarItemColorClick: '#bdc9cf',
+  sidebarItemColorSelected: '#1b1b1b',
+  sidebarItemColorHighlight: '#007aff',
+  sidebarItemColorHighlightHover: '#278eff',
+  sidebarItemColorHighlightClick: '#62adff',
 
   /** Badges */
   badgePrimaryBackgroundColor: '#2a5393',
