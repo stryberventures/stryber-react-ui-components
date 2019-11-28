@@ -10,8 +10,7 @@ storiesOf('Sidebar navigation', module)
       <Wrapper>
         <Card>
           <SidebarNavigationContainer
-            // @ts-ignore
-            onChange={(section: any, item: any) => console.log('Route changed!', [section, item])}
+            onRouteChange={(section: any, item: any) => console.log('Route changed!', [section, item])}
           >
             <SidebarNavigationSection
               value="section1"

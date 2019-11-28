@@ -6,7 +6,7 @@ import { DownArrow } from '../Icons';
 
 /** Interfaces */
 export interface ISidebarNavigationContainerProps {
-  onChange?: (section: any, item: any) => void;
+  onRouteChange?: (section: any, item: any) => void;
   initialSection?: any;
   initialItem?: any;
   children?: any;
@@ -50,7 +50,7 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     children,
     initialSection = null,
     initialItem = null,
-    onChange,
+    onRouteChange,
     classes,
     ...rest
   } = props;
@@ -61,11 +61,11 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
   const updateSelectedSection = (section: any) => {
     setSelectedSection(() => section);
     setSelectedItem(() => null);
-    onChange && onChange(section, null);
+    onRouteChange && onRouteChange(section, null);
   };
   const updateSelectedItem = (item: any) => {
     setSelectedItem(() => item);
-    onChange && onChange(selectedSection, item);
+    onRouteChange && onRouteChange(selectedSection, item);
   };
 
   return (

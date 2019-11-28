@@ -35,7 +35,7 @@ storiesOf('Navbar', module)
       <Wrapper>
         <Navbar>
           <NavigationContainer
-            onChange={(value: any) => console.log('Route changed!', value)}
+            onRouteChange={(value: any) => console.log('Route changed!', value)}
           >
             <NavigationItem value="hello">Hello</NavigationItem>
             <NavigationItem value="world">World</NavigationItem>
@@ -51,7 +51,7 @@ storiesOf('Navbar', module)
         <Navbar>
           <NavigationContainer
             variant="underlined"
-            onChange={(value: any) => console.log('Route changed!', value)}
+            onRouteChange={(value: any) => console.log('Route changed!', value)}
             initialValue="hello"
           >
             <NavigationItem value="hello">Hello</NavigationItem>
@@ -67,7 +67,7 @@ storiesOf('Navbar', module)
       <Wrapper>
         <Navbar>
           <NavigationContainer
-            onChange={(value: any) => console.log('Route changed!', value)}
+            onRouteChange={(value: any) => console.log('Route changed!', value)}
             initialValue="hello"
           >
             <NavigationItem value="hello">Hello</NavigationItem>

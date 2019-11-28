@@ -5,7 +5,7 @@ import styles from './NavbarNavigation.styles';
 
 /** Interfaces */
 export interface INavigationContainerProps {
-  onChange?: (newValue: any) => void;
+  onRouteChange?: (newRoute: any) => void;
   initialValue?: any;
   children?: any;
   variant?: 'normal' | 'underlined';
@@ -40,7 +40,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
     className,
     children,
     initialValue = null,
-    onChange,
+    onRouteChange,
     classes,
     variant = 'normal',
     ...rest
@@ -50,7 +50,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
   const [selectedValue, setSelectedValue] = React.useState(initialValue);
   const updateSelectedValue = (value: any) => {
     setSelectedValue(() => value);
-    onChange && onChange(value);
+    onRouteChange && onRouteChange(value);
   };
 
   return (
