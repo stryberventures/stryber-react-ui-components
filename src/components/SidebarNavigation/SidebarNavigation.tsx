@@ -130,7 +130,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
         {
           children ? (
             <DownArrow
-              className={classNames(classes.expandIcon, isExpanded ? null : classes.expandIconCollapsed)}
+              className={classNames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null)}
             />
           ) : null
         }

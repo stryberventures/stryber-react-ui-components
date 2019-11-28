@@ -57,7 +57,7 @@ export default (theme: any) => ({
     color: theme.sidebarSectionColor,
   },
   expandIconContainer: {
-
+    paddingTop: 5,
   },
   expandIcon: {
     transition: '0.3s',
