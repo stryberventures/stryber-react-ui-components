@@ -25,7 +25,7 @@ export default (theme: any) => ({
     h2: {
       fontSize: 32,
       fontFamily: theme.fontFamily,
-      fontWeight: theme.fontWeightMedium,
+      fontWeight: theme.fontWeightBold,
     },
     h3: {
       fontSize: 28,
@@ -35,7 +35,7 @@ export default (theme: any) => ({
     h4: {
       fontSize: 14,
       fontFamily: theme.fontFamily,
-      fontWeight: theme.fontWeightSemiBold,
+      fontWeight: theme.fontWeightBold,
     },
     p: {
       fontSize: 12,

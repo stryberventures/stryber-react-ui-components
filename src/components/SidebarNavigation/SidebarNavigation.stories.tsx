@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { SidebarNavigationContainer, SidebarNavigationSection, SidebarNavigationRoute } from './SidebarNavigation';
-import Card from '../Card';
+import Card, { Body as CardBody  } from '../Card';
+import { Row, Col } from '../Grid';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
 storiesOf('Sidebar navigation', module)
@@ -43,44 +44,61 @@ storiesOf('Sidebar navigation', module)
   .add('Site', () => {
     return (
       <Wrapper>
-        <Card>
-          <SidebarNavigationContainer
-            onRouteChange={(section: any, item: any) => console.log('Route changed!', [section, item])}
-          >
-            <SidebarNavigationSection
-              route="about"
-              title="About Matterhorn"
-              description="Lorem ipsum dolor sit amet"
-            />
-            <SidebarNavigationSection
-              route="elements"
-              title="Elements"
-              description="Lorem Ipsum is simply dummy"
-            >
-              <SidebarNavigationRoute route="button">Button</SidebarNavigationRoute>
-            </SidebarNavigationSection>
-            <SidebarNavigationSection
-              route="personal"
-              title="Personal information"
-              description="Lorem Ipsum is simply dummy"
-            />
-            <SidebarNavigationSection
-              route="payment"
-              title="Payment Details"
-              description="Lorem Ipsum is simply dummy"
-            />
-            <SidebarNavigationSection
-              route="questions"
-              title="Questions"
-              description="Lorem Ipsum is simply dummy"
-            />
-            <SidebarNavigationSection
-              route="Settings"
-              title="General Settings"
-              description="Lorem Ipsum is simply dummy"
-            />
-          </SidebarNavigationContainer>
-        </Card>
+        <Row>
+          {/** Sidebar */}
+          <Col xs={12} sm={12} md={6} lg={4} xl={3}>
+            <Card>
+              <SidebarNavigationContainer
+                onRouteChange={(section: any, item: any) => console.log('Route changed!', [section, item])}
+              >
+                <SidebarNavigationSection
+                  route="about"
+                  title="About Matterhorn"
+                  description="Lorem ipsum dolor sit amet"
+                />
+                <SidebarNavigationSection
+                  route="elements"
+                  title="Elements"
+                  description="Lorem Ipsum is simply dummy"
+                >
+                  <SidebarNavigationRoute route="button">Button</SidebarNavigationRoute>
+                </SidebarNavigationSection>
+                <SidebarNavigationSection
+                  route="personal"
+                  title="Personal information"
+                  description="Lorem Ipsum is simply dummy"
+                />
+                <SidebarNavigationSection
+                  route="payment"
+                  title="Payment Details"
+                  description="Lorem Ipsum is simply dummy"
+                />
+                <SidebarNavigationSection
+                  route="questions"
+                  title="Questions"
+                  description="Lorem Ipsum is simply dummy"
+                />
+                <SidebarNavigationSection
+                  route="Settings"
+                  title="General Settings"
+                  description="Lorem Ipsum is simply dummy"
+                />
+              </SidebarNavigationContainer>
+            </Card>
+          </Col>
+          {/** Main Content */}
+          <Col xs={12} sm={12} md={6} lg={8} xl={9}>
+            <Card>
+              <CardBody>
+                <h2>Matterhorn</h2>
+                <h3>About Matterhorn</h3>
+                <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to </div>
+                <h3>About Matterhorn</h3>
+                <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to </div>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
       </Wrapper>
     );
   });
