@@ -33,6 +33,9 @@ declare const _default: (theme: any) => {
         fontSize: number;
         fontFamily: any;
         fontWeight: any;
+        overflow: string;
+        textOverflow: string;
+        whiteSpace: string;
         color: any;
         width: string;
         height: string;

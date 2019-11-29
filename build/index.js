@@ -94,7 +94,7 @@ var styles = (function (theme) { return ({
         h2: {
             fontSize: 32,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightMedium,
+            fontWeight: theme.fontWeightBold,
         },
         h3: {
             fontSize: 28,
@@ -104,7 +104,7 @@ var styles = (function (theme) { return ({
         h4: {
             fontSize: 14,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightSemiBold,
+            fontWeight: theme.fontWeightBold,
         },
         p: {
             fontSize: 12,
@@ -114,6 +114,9 @@ var styles = (function (theme) { return ({
         b: {
             fontFamily: theme.fontFamily,
             fontWeight: theme.fontWeightBold,
+        },
+        hr: {
+            border: "0.5px solid " + theme.hrColor,
         },
         // 'h1, h2, h3, h4, h5, h6': {
         //   marginTop: 0,
@@ -153,7 +156,6 @@ var theme = {
     /** Imports */
     imports: [
         "url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')",
-        "url('https://fonts.googleapis.com/css?family=Questrial')",
     ],
     /** Text color */
     textColorPrimary: '#1d1d1b',
@@ -161,6 +163,8 @@ var theme = {
     textColorHighlight: '#fff',
     /** Background colors */
     backgroundColorPrimary: '#fff',
+    /** Horizontal break line */
+    hrColor: '#eceff1',
     /** Fonts */
     fontFamily: 'Open Sans, sans-serif',
     fontWeightLight: 300,
@@ -178,6 +182,7 @@ var theme = {
     buttonBackgroundColorSecondaryHover: '#f5f5f5',
     buttonBackgroundColorSecondaryClick: '#ebebeb',
     buttonBackgroundColorDisabled: '#d2d2d2',
+    buttonColorDisabled: '#95acbf',
     /** Input fields */
     inputColorIdle: '#54738c',
     inputColorBorderIdle: '#cfe2f2',
@@ -197,6 +202,35 @@ var theme = {
     inputBackgroundColorHover: '#f5f5f5',
     inputBackgroundColorClick: '#ebebeb',
     inputBackgroundColorDisabled: '#f0f0f0',
+    /** Navbar */
+    navbarItemColor: '#90a4ae',
+    navbarItemColorHover: '#a7b7bf',
+    navbarItemColorClick: '#bdc9cf',
+    navbarItemColorHighlight: '#007aff',
+    navbarItemColorHighlightHover: '#278eff',
+    navbarItemColorHighlightClick: '#62adff',
+    /** Sidebar */
+    sidebarSectionColor: '#1b1b1b',
+    sidebarItemColor: '#90a4ae',
+    sidebarItemColorHover: '#a7b7bf',
+    sidebarItemColorClick: '#bdc9cf',
+    sidebarItemColorSelected: '#1b1b1b',
+    sidebarItemColorHighlight: '#007aff',
+    sidebarItemColorHighlightHover: '#278eff',
+    sidebarItemColorHighlightClick: '#62adff',
+    /** Badges */
+    badgePrimaryBackgroundColor: '#2a5393',
+    /** Table */
+    tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
+    tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
+    tableBackgroundColor: '#eceff1',
+    tableBorderColor: '#eceff1',
+    tableHeaderTextColor: '#37474f',
+    /** Pagination */
+    paginationBackgroundColor: '#eceff1',
+    paginationBackgroundColorActive: '#007aff',
+    paginationTextColor: '#54738c',
+    paginationTextColorActive: '#fff',
     /** Grid */
     gridColumnGap: 20,
     gridColumns: 12,
@@ -637,6 +671,9 @@ var styles$3 = (function (theme) { return ({
         fontSize: 14,
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightMedium,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
         color: theme.inputPlaceholderColorIdle || '#95acbf',
         width: '100%',
         height: '100%',
@@ -765,15 +802,17 @@ var styles$4 = (function (theme) { return ({
         padding: 14,
         border: "solid 1px",
         width: '100%',
-    },
-    content: {
         fontSize: 16,
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightSemiBold,
+        userSelect: 'none',
+        cursor: 'pointer',
     },
     disabled: {
-        backgroundColor: theme.buttonBackgroundColorDisabled,
+        color: theme.buttonColorDisabled,
+        borderColor: theme.buttonColorDisabled,
     },
+    /** Color variants */
     primary: {
         color: theme.buttonBackgroundColorSecondary,
         backgroundColor: theme.buttonBackgroundColorPrimary,
@@ -795,17 +834,25 @@ var styles$4 = (function (theme) { return ({
             backgroundColor: theme.buttonBackgroundColorSecondaryClick,
         },
     },
+    /** Sizes */
+    normal: {},
+    mini: {
+        padding: 7,
+        fontSize: 10,
+        fontWeight: theme.fontWeightMedium,
+        borderRadius: 4,
+    },
 }); });
 
 /** Main component */
 var Button = function (props) {
-    var classes = props.classes, children = props.children, disabled = props.disabled, onClick = props.onClick, _a = props.variant, variant = _a === void 0 ? 'primary' : _a, rest = __rest(props, ["classes", "children", "disabled", "onClick", "variant"]);
-    var renderContent = function () { return React.createElement("span", { className: classes.content }, children); };
-    return (React.createElement("button", __assign({}, rest, { className: classnames([
+    var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant"]);
+    return (React.createElement("button", __assign({}, rest, { disabled: disabled, className: classnames([
             classes.root,
+            classes[sizeVariant],
+            !disabled ? classes[variant] : null,
             disabled ? classes.disabled : null,
-            classes[variant],
-        ]), onClick: onClick }), renderContent()));
+        ]), onClick: onClick }), children));
 };
 /** Wrappings */
 var StyledButton = withStyles__default(styles$4)(Button);
@@ -2157,6 +2204,101 @@ var SearchBox = function (props) {
 var StyledSearchBox = withStyles__default(styles$e)(SearchBox);
 var PropsWrappedStyledSearchBox = function (props) { return React.createElement(StyledSearchBox, __assign({}, props)); };
 
+var styles$f = (function (theme) { return ({
+    root: {
+        userSelect: 'none',
+        display: 'flex',
+    },
+    item: {
+        width: 29,
+        height: 29,
+        backgroundColor: theme.paginationBackgroundColor,
+        fontSize: 12,
+        color: theme.paginationTextColor,
+        borderRadius: 4,
+        margin: 4,
+        textAlign: 'center',
+        lineHeight: '29px',
+        cursor: 'pointer',
+    },
+    active: {
+        backgroundColor: theme.paginationBackgroundColorActive,
+        color: theme.paginationTextColorActive,
+    },
+    disabled: {
+        cursor: 'default',
+        pointerEvents: 'none',
+        '&:before': {
+            opacity: 0.5,
+        }
+    },
+    arrow: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '&:before': {
+            content: '""',
+            display: 'block',
+            width: 8,
+            height: 8,
+            borderLeft: "2px solid " + theme.paginationTextColor,
+            borderBottom: "2px solid " + theme.paginationTextColor,
+            borderRadius: 2,
+        }
+    },
+    leftArrow: {
+        '&:before': {
+            transform: 'rotate(45deg)',
+        }
+    },
+    rightArrow: {
+        '&:before': {
+            transform: 'rotate(225deg)',
+        }
+    }
+}); });
+
+var Pagination = function (props) {
+    var _a, _b;
+    var onChange = props.onChange, collapseFactor = props.collapseFactor, currPage = props.currPage, pageCount = props.pageCount, classes = props.classes;
+    var getItem = function (active, index, label, key) {
+        var _a;
+        return (React.createElement("div", { key: key, className: classnames(classes.item, (_a = {}, _a[classes.active] = active, _a)), onClick: function () { onChange(index); } }, label));
+    };
+    var getItems = function (items) {
+        return items.map(function (index) {
+            return getItem(index === currPage, index, index + 1, index);
+        });
+    };
+    var getAllItems = function () { return getItems(Array.from(Array(pageCount).keys())); };
+    var getCollapsedItems = function (collapseFactor) {
+        var collapseBefore = currPage - collapseFactor - 2 > 0;
+        var collapseAfter = currPage + collapseFactor + 1 < pageCount - 2;
+        var itemsBefore = collapseBefore ? currPage - collapseFactor : currPage - collapseFactor - 1;
+        var itemsAfter = collapseAfter ? currPage + collapseFactor : currPage + collapseFactor + 1;
+        var itemsValues = Array.from(Array(pageCount).keys()).filter(function (num) {
+            return num >= itemsBefore
+                && num <= itemsAfter
+                && num > 0
+                && num < pageCount - 1;
+        });
+        return (React.createElement(React.Fragment, null,
+            getItem(currPage === 0, 0, 1),
+            collapseBefore && getItem(false, currPage - collapseFactor - 1, '...'),
+            getItems(itemsValues),
+            collapseAfter && getItem(false, currPage + collapseFactor + 1, '...'),
+            getItem(currPage === pageCount - 1, pageCount - 1, pageCount)));
+    };
+    if (pageCount <= 1) {
+        return getItem(true, 0, 1);
+    }
+    return (React.createElement("div", { className: classes.root },
+        React.createElement("div", { onClick: function () { onChange(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
+        collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
+        React.createElement("div", { onClick: function () { onChange(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
+};
+var StyledTable = withStyles__default(styles$f)(Pagination);
+
 var getGridColumnStyle = function (breakpointValue) {
     if (!breakpointValue)
         return 'span 1';
@@ -2165,7 +2307,7 @@ var getGridColumnStyle = function (breakpointValue) {
 var getGridTemplateColumns = function (columns) {
     return "repeat(" + columns + ", 1fr)";
 };
-var styles$f = (function (theme) {
+var styles$g = (function (theme) {
     var _a;
     return ({
         /** Row */
@@ -2208,12 +2350,12 @@ var Col = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledRow = withStyles__default(styles$f)(Row);
+var StyledRow = withStyles__default(styles$g)(Row);
 var PropsWrappedStyledRow = function (props) { return React.createElement(StyledRow, __assign({}, props)); };
-var StyledCol = withStyles__default(styles$f)(Col);
+var StyledCol = withStyles__default(styles$g)(Col);
 var PropsWrappedStyledCol = function (props) { return React.createElement(StyledCol, __assign({}, props)); };
 
-var styles$g = (function (theme) {
+var styles$h = (function (theme) {
     var _a;
     return ({
         root: (_a = {
@@ -2247,10 +2389,10 @@ var Container = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledContainer = withStyles__default(styles$g)(Container);
+var StyledContainer = withStyles__default(styles$h)(Container);
 var PropsWrappedStyledContainer = function (props) { return React.createElement(StyledContainer, __assign({}, props)); };
 
-var styles$h = (function (theme) { return ({
+var styles$i = (function (theme) { return ({
     root: {
         borderRadius: 8,
         display: 'flex',
@@ -2259,39 +2401,444 @@ var styles$h = (function (theme) { return ({
         overflow: 'hidden',
     },
     title: {
-        padding: 18,
+        padding: 24,
         flex: 1,
+        fontWeight: theme.fontWeightSemiBold,
+        fontFamily: theme.fontFamily,
+        fontSize: 18,
     },
     body: {
-        padding: 18,
+        padding: 24,
         flex: 1,
+        fontWeight: theme.fontWeightLight,
+        fontFamily: theme.fontFamily,
+        fontSize: 14,
     },
 }); });
 
-var Card = function (_a) {
-    var classes = _a.classes, children = _a.children, rest = __rest(_a, ["classes", "children"]);
-    // const renderContent = () => <span className={ classes.content }>{ children }</span>;
+var Card = function (props) {
+    var classes = props.classes, className = props.className, children = props.children, rest = __rest(props, ["classes", "className", "children"]);
     return (React.createElement("div", __assign({}, rest, { className: classnames([
             classes.root,
+            className,
         ]) }), children));
 };
-var Title = function (_a) {
-    var classes = _a.classes, children = _a.children, rest = __rest(_a, ["classes", "children"]);
-    // const renderContent = () => <span className={ classes.content }>{ children }</span>;
+var Title = function (props) {
+    var classes = props.classes, children = props.children, className = props.className, rest = __rest(props, ["classes", "children", "className"]);
     return (React.createElement("div", __assign({}, rest, { className: classnames([
             classes.title,
+            className,
         ]) }), children));
 };
 var Body = function (props) {
-    var classes = props.classes, children = props.children, rest = __rest(props, ["classes", "children"]);
+    var classes = props.classes, className = props.className, children = props.children, rest = __rest(props, ["classes", "className", "children"]);
     return (React.createElement("div", __assign({}, rest, { className: classnames([
             classes.body,
+            className,
         ]) }), children));
 };
-var StyledCard = withStyles__default(styles$h)(Card);
-var StyledTitle = withStyles__default(styles$h)(Title);
-var StyledBody = withStyles__default(styles$h)(Body);
+var StyledCard = withStyles__default(styles$i)(Card);
+var StyledTitle = withStyles__default(styles$i)(Title);
+var StyledBody = withStyles__default(styles$i)(Body);
 
+var styles$j = (function (theme) { return ({
+    root: {
+        width: '100%',
+        border: theme.tableBorderPrimary,
+        borderRadius: 8,
+        boxShadow: theme.tableBoxShadow,
+    },
+    header: {
+        height: 70,
+    },
+    headerLabel: {
+        paddingLeft: 45,
+        paddingTop: 25,
+        fontSize: 21,
+        color: theme.tableHeaderTextColor,
+    },
+    table: {
+        width: '100%',
+        textAlign: 'left',
+        color: theme.someTextColor,
+        fontSize: 14,
+        borderSpacing: 0,
+        '& th': {
+            borderBottom: "2px solid " + theme.tableBorderColor,
+        }
+    },
+    tableHead: {
+        borderBottom: theme.tableBorderPrimary,
+    },
+    row: {
+        height: 50,
+        '&:nth-child(even)': {
+            backgroundColor: theme.tableBackgroundColor,
+        }
+    },
+    cell: {
+        padding: '0 5px',
+        '&:first-child': {
+            paddingLeft: 45,
+        },
+    },
+}); });
+
+var Table = function (props) {
+    var headerLabel = props.headerLabel, headRow = props.headRow, rows = props.rows, classes = props.classes;
+    var getHeadRow = function () {
+        return headRow.map(function (cell) {
+            return React.createElement("th", { key: cell.id, className: classes.cell }, cell.label);
+        });
+    };
+    var getRows = function () { return rows.map(function (row) { return (React.createElement("tr", { key: row.id, className: classes.row }, headRow.map(function (cell, index) { return React.createElement("td", { key: index, className: classes.cell }, row[cell.id]); }))); }); };
+    return (React.createElement("div", { className: classes.root },
+        React.createElement("div", { className: classes.header },
+            React.createElement("div", { className: classes.headerLabel }, headerLabel)),
+        React.createElement("table", { className: classes.table },
+            React.createElement("thead", { className: classes.tableHead },
+                React.createElement("tr", { className: classes.row }, getHeadRow())),
+            React.createElement("tbody", null, getRows()))));
+};
+var StyledTable$1 = withStyles__default(styles$j)(Table);
+
+var styles$k = (function (theme) { return ({
+    navbar: {
+        position: 'relative',
+        minHeight: 56,
+        backgroundColor: theme.backgroundColorPrimary,
+        width: '100%',
+        boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+    },
+    section: {},
+}); });
+
+/** Main component */
+var Navbar = function (props) {
+    var className = props.className, children = props.children, classes = props.classes, rest = __rest(props, ["className", "children", "classes"]);
+    return (React.createElement("div", __assign({ className: classnames(classes.navbar, className) }, rest), children));
+};
+var NavbarSection = function (props) {
+    var className = props.className, children = props.children, classes = props.classes, rest = __rest(props, ["className", "children", "classes"]);
+    return (React.createElement("div", __assign({ className: classnames(classes.section, className) }, rest), children));
+};
+/** Wrappers */
+var StyledNavbar = withStyles__default(styles$k)(Navbar);
+var PropsWrappedStyledNavbar = function (props) { return React.createElement(StyledNavbar, __assign({}, props)); };
+var StyledNavbarSection = withStyles__default(styles$k)(NavbarSection);
+var PropsWrappedStyledNavbarSection = function (props) { return React.createElement(StyledNavbarSection, __assign({}, props)); };
+
+var styles$l = (function (theme) { return ({
+    container: {
+        backgroundColor: theme.backgroundColorPrimary,
+        display: 'flex',
+        alignItems: 'center',
+        padding: 0,
+        height: '100%',
+    },
+    item: {
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        color: theme.navbarItemColor,
+        fontSize: 14,
+        padding: 15,
+        cursor: 'pointer',
+        userSelect: 'none',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        transition: '0.2s',
+        '&:hover': {
+            color: theme.navbarItemColorHover,
+        },
+        '&:active': {
+            color: theme.navbarItemColorClick,
+        },
+        margin: 0,
+        borderTop: '3px solid rgba(0,0,0,0)',
+        borderBottom: '3px solid rgba(0,0,0,0)',
+    },
+    itemSelected: {
+        color: theme.navbarItemColorHighlight,
+        '&:hover': {
+            color: theme.navbarItemColorHighlightHover,
+        },
+        '&:active': {
+            color: theme.navbarItemColorHighlightClick,
+        },
+        '&.underlined': {
+            borderBottom: "3px solid " + theme.navbarItemColorHighlight
+        },
+    },
+}); });
+
+/** Creating form context with default values */
+var defaultNavbarNavigationContextValues = {
+    updateSelectedRoute: function () { },
+    selectedRoute: undefined,
+    variant: 'normal',
+};
+var NavbarNavigationContext = React.createContext(defaultNavbarNavigationContextValues);
+/** Main component */
+var NavigationContainer = function (props) {
+    var className = props.className, children = props.children, _a = props.initialRoute, initialRoute = _a === void 0 ? null : _a, onRouteChange = props.onRouteChange, classes = props.classes, _b = props.variant, variant = _b === void 0 ? 'normal' : _b, rest = __rest(props, ["className", "children", "initialRoute", "onRouteChange", "classes", "variant"]);
+    /** Update selected value */
+    var _c = __read(React.useState(initialRoute), 2), selectedRoute = _c[0], setSelectedRoute = _c[1];
+    var updateSelectedRoute = function (route) {
+        setSelectedRoute(function () { return route; });
+        onRouteChange && onRouteChange(route);
+    };
+    return (React.createElement("div", __assign({ className: classnames(classes.container, className) }, rest),
+        React.createElement(NavbarNavigationContext.Provider, { value: {
+                variant: variant,
+                selectedRoute: selectedRoute,
+                updateSelectedRoute: updateSelectedRoute,
+            } }, children)));
+};
+var NavigationRoute = function (props) {
+    var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, _a = props.selected, selected = _a === void 0 ? false : _a, route = props.route, rest = __rest(props, ["className", "children", "classes", "onClick", "selected", "route"]);
+    /** Get navigation context */
+    var _b = React.useContext(NavbarNavigationContext), updateSelectedRoute = _b.updateSelectedRoute, selectedRoute = _b.selectedRoute, variant = _b.variant;
+    /** On click event wrapper */
+    var onClickWrapper = function (e) {
+        e.stopPropagation();
+        updateSelectedRoute(route);
+        onClick && onClick(e);
+    };
+    return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
+};
+/** Wrappers */
+var StyledNavigationContainer = withStyles__default(styles$l)(NavigationContainer);
+var PropsWrappedStyledNavigationContainer = function (props) { return React.createElement(StyledNavigationContainer, __assign({}, props)); };
+var StyledNavigationRoute = withStyles__default(styles$l)(NavigationRoute);
+var PropsWrappedStyledNavigationRoute = function (props) { return React.createElement(StyledNavigationRoute, __assign({}, props)); };
+
+var styles$m = (function (theme) { return ({
+    /** Container / Wrapper */
+    container: {
+        padding: '10px 0px',
+        backgroundColor: theme.backgroundColorPrimary,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    /** Section */
+    section: {
+        cursor: 'pointer',
+        userSelect: 'none',
+        borderRight: '3px solid rgba(0,0,0,0)',
+        borderLeft: '3px solid rgba(0,0,0,0)',
+        margin: '5px 0px',
+        padding: '2px 21px',
+        transition: '0.2s',
+        '&:hover': {
+            color: theme.sidebarItemColorHover,
+        },
+        '&:active': {
+            color: theme.sidebarItemColorClick,
+        },
+    },
+    sectionSelected: {
+        color: theme.sidebarItemColorHighlight,
+        borderLeft: "3px solid " + theme.sidebarItemColorHighlight,
+        '&:hover': {
+            color: theme.sidebarItemColorHighlightHover,
+        },
+        '&:active': {
+            color: theme.sidebarItemColorHighlightClick,
+        },
+    },
+    sectionHeader: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    sectionInfoContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+    },
+    sectionTitle: {
+        marginTop: 5,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        fontSize: 14,
+        color: theme.sidebarSectionColor,
+    },
+    sectionDescription: {
+        marginTop: 7,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 12,
+        color: theme.sidebarSectionColor,
+    },
+    expandIconContainer: {
+        paddingTop: 5,
+    },
+    expandIcon: {
+        transition: '0.3s',
+        width: 20,
+        fill: theme.sidebarItemColor,
+    },
+    expandIconCollapsed: {
+        transform: 'rotate(180deg)',
+    },
+    sectionChildren: {
+        padding: 0,
+        maxHeight: 9999,
+        transition: 'all 0.5s ease-in-out',
+    },
+    sectionChildrenHidden: {
+        opacity: 0,
+        maxHeight: '0px !important',
+        padding: 0,
+    },
+    /** Item */
+    item: {
+        cursor: 'pointer',
+        transition: '0.3s',
+        color: theme.sidebarItemColor,
+        fontSize: 12,
+        padding: '4px 0px',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightRegular,
+        '&:hover': {
+            color: theme.sidebarItemColorHover,
+        },
+        '&:active': {
+            color: theme.sidebarItemColorClick,
+        },
+    },
+    itemSelected: {
+        fontWeight: theme.fontWeightMedium,
+        color: theme.sidebarItemColorSelected,
+        '&:hover': {
+            color: theme.sidebarItemColorSelected,
+        },
+        '&:active': {
+            color: theme.sidebarItemColorSelected,
+        },
+    },
+}); });
+
+/** Creating form context with default values */
+var defaultSidebarNavigationContext = {
+    updateSelectedSection: function () { },
+    updateSelectedRoute: function () { },
+    selectedSection: undefined,
+    selectedRoute: undefined,
+};
+var SidebarNavigationContext = React.createContext(defaultSidebarNavigationContext);
+/** Main component */
+var SidebarNavigationContainer = function (props) {
+    var className = props.className, children = props.children, _a = props.initialSection, initialSection = _a === void 0 ? null : _a, _b = props.initialRoute, initialRoute = _b === void 0 ? null : _b, onRouteChange = props.onRouteChange, classes = props.classes, rest = __rest(props, ["className", "children", "initialSection", "initialRoute", "onRouteChange", "classes"]);
+    /** Update selected value */
+    var _c = __read(React.useState(initialSection), 2), selectedSection = _c[0], setSelectedSection = _c[1];
+    var _d = __read(React.useState(initialRoute), 2), selectedRoute = _d[0], setSelectedRoute = _d[1];
+    var updateSelectedSection = function (section) {
+        setSelectedSection(function () { return section; });
+        setSelectedRoute(function () { return null; });
+        onRouteChange && onRouteChange(section, null);
+    };
+    var updateSelectedRoute = function (route) {
+        setSelectedRoute(function () { return route; });
+        onRouteChange && onRouteChange(selectedSection, route);
+    };
+    return (React.createElement("div", __assign({ className: classnames(classes.container, className) }, rest),
+        React.createElement(SidebarNavigationContext.Provider, { value: {
+                selectedSection: selectedSection,
+                selectedRoute: selectedRoute,
+                updateSelectedSection: updateSelectedSection,
+                updateSelectedRoute: updateSelectedRoute,
+            } }, children)));
+};
+var SidebarNavigationSection = function (props) {
+    var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, route = props.route, title = props.title, description = props.description, rest = __rest(props, ["className", "children", "classes", "onClick", "route", "title", "description"]);
+    /** Get navigation context */
+    var _a = React.useContext(SidebarNavigationContext), updateSelectedSection = _a.updateSelectedSection, selectedSection = _a.selectedSection;
+    // const isExpanded, setExpanded] = React.useState(false);
+    var isExpanded = route === selectedSection;
+    /** On click event wrapper */
+    var onClickWrapper = function (e) {
+        e.stopPropagation();
+        updateSelectedSection(route);
+        onClick && onClick(e);
+    };
+    return (React.createElement("div", __assign({ className: classnames(classes.section, className, (route === selectedSection) ? classes.sectionSelected : null), onClick: onClickWrapper }, rest),
+        React.createElement("div", { className: classes.sectionHeader },
+            React.createElement("div", { className: classes.sectionInfoContainer },
+                React.createElement("div", { className: classes.sectionTitle }, title),
+                React.createElement("div", { className: classes.sectionDescription }, description)),
+            React.createElement("div", { className: classes.expandIconContainer }, children ? (React.createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
+        React.createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (children && isExpanded) ? React.createElement(React.Fragment, null,
+            React.createElement("hr", null),
+            children) : null)));
+};
+var SidebarNavigationRoute = function (props) {
+    var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, route = props.route, rest = __rest(props, ["className", "children", "classes", "onClick", "route"]);
+    /** Get navigation context */
+    var _a = React.useContext(SidebarNavigationContext), updateSelectedRoute = _a.updateSelectedRoute, selectedRoute = _a.selectedRoute;
+    /** On click event wrapper */
+    var onClickWrapper = function (e) {
+        e.stopPropagation();
+        updateSelectedRoute(route);
+        onClick && onClick(e);
+    };
+    return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
+};
+/** Wrappers */
+var StyledSidebarNavigationContainer = withStyles__default(styles$m)(SidebarNavigationContainer);
+var PropsWrappedStyledSidebarNavigationContainer = function (props) { return React.createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
+var StyledSidebarNavigationSection = withStyles__default(styles$m)(SidebarNavigationSection);
+var PropsWrappedStyledSidebarNavigationSection = function (props) { return React.createElement(StyledSidebarNavigationSection, __assign({}, props)); };
+var StyledSidebarNavigationRoute = withStyles__default(styles$m)(SidebarNavigationRoute);
+var PropsWrappedStyledSidebarNavigationRoute = function (props) { return React.createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
+
+var styles$n = (function (theme) { return ({
+    root: {
+        position: 'relative',
+        overflow: 'visible',
+    },
+    badge: {
+        position: 'absolute',
+        borderRadius: 7,
+        top: 0,
+        right: 0,
+        backgroundColor: theme.badgePrimaryBackgroundColor,
+        boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: -3,
+        marginTop: -3,
+        paddingLeft: 5,
+        paddingRight: 5,
+    },
+    badgeContent: {
+        fontFamily: theme.fontFamily,
+        fontWidth: theme.fontWeightSemiBold,
+        fontSize: 9,
+        color: theme.textColorHighlight,
+        userSelect: 'none',
+    },
+}); });
+
+/** Main component */
+var Badge = function (props) {
+    var classes = props.classes, children = props.children, className = props.className, _a = props.label, label = _a === void 0 ? null : _a, rest = __rest(props, ["classes", "children", "className", "label"]);
+    return (React.createElement("div", __assign({ className: classnames([
+            classes.root,
+            className,
+        ]) }, rest),
+        React.createElement("div", { className: classes.badge },
+            React.createElement("div", { className: classes.badgeContent }, label)),
+        children));
+};
+/** Wrappings */
+var StyledBadge = withStyles__default(styles$n)(Badge);
+var PropsWrappedStyledBadge = function (props) { return React.createElement(StyledBadge, __assign({}, props)); };
+
+exports.Badge = PropsWrappedStyledBadge;
 exports.Body = StyledBody;
 exports.Button = PropsWrappedStyledButton;
 exports.Check = index$1;
@@ -2309,6 +2856,12 @@ exports.Form = Form;
 exports.FormContext = FormContext;
 exports.InputField = InputField;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
+exports.Navbar = PropsWrappedStyledNavbar;
+exports.NavbarNavigationContext = NavbarNavigationContext;
+exports.NavbarSection = PropsWrappedStyledNavbarSection;
+exports.NavigationContainer = PropsWrappedStyledNavigationContainer;
+exports.NavigationRoute = PropsWrappedStyledNavigationRoute;
+exports.Pagination = StyledTable;
 exports.PasswordField = PropsWrappedStyledPasswordField;
 exports.PrependBackground = PrependBackground;
 exports.Profile = index;
@@ -2318,8 +2871,15 @@ exports.Search = Search;
 exports.SearchBox = PropsWrappedStyledSearchBox;
 exports.SearchField = PropsWrappedStyledSearchField;
 exports.SelectField = PropsWrappedStyledSelectField;
+exports.SidebarNavigationContainer = PropsWrappedStyledSidebarNavigationContainer;
+exports.SidebarNavigationContext = SidebarNavigationContext;
+exports.SidebarNavigationRoute = PropsWrappedStyledSidebarNavigationRoute;
+exports.SidebarNavigationSection = PropsWrappedStyledSidebarNavigationSection;
+exports.Table = StyledTable$1;
 exports.ThemeProvider = ThemeProvider;
 exports.Title = StyledTitle;
 exports.Wrapper = StyledCard;
 exports.defaultFormContextValues = defaultFormContextValues;
+exports.defaultNavbarNavigationContextValues = defaultNavbarNavigationContextValues;
+exports.defaultSidebarNavigationContext = defaultSidebarNavigationContext;
 //# sourceMappingURL=index.js.map

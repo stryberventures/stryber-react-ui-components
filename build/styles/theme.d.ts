@@ -7,6 +7,8 @@ declare const _default: {
     textColorHighlight: string;
     /** Background colors */
     backgroundColorPrimary: string;
+    /** Horizontal break line */
+    hrColor: string;
     /** Fonts */
     fontFamily: string;
     fontWeightLight: number;
@@ -24,6 +26,7 @@ declare const _default: {
     buttonBackgroundColorSecondaryHover: string;
     buttonBackgroundColorSecondaryClick: string;
     buttonBackgroundColorDisabled: string;
+    buttonColorDisabled: string;
     /** Input fields */
     inputColorIdle: string;
     inputColorBorderIdle: string;
@@ -43,6 +46,35 @@ declare const _default: {
     inputBackgroundColorHover: string;
     inputBackgroundColorClick: string;
     inputBackgroundColorDisabled: string;
+    /** Navbar */
+    navbarItemColor: string;
+    navbarItemColorHover: string;
+    navbarItemColorClick: string;
+    navbarItemColorHighlight: string;
+    navbarItemColorHighlightHover: string;
+    navbarItemColorHighlightClick: string;
+    /** Sidebar */
+    sidebarSectionColor: string;
+    sidebarItemColor: string;
+    sidebarItemColorHover: string;
+    sidebarItemColorClick: string;
+    sidebarItemColorSelected: string;
+    sidebarItemColorHighlight: string;
+    sidebarItemColorHighlightHover: string;
+    sidebarItemColorHighlightClick: string;
+    /** Badges */
+    badgePrimaryBackgroundColor: string;
+    /** Table */
+    tableBorderPrimary: string;
+    tableBoxShadow: string;
+    tableBackgroundColor: string;
+    tableBorderColor: string;
+    tableHeaderTextColor: string;
+    /** Pagination */
+    paginationBackgroundColor: string;
+    paginationBackgroundColorActive: string;
+    paginationTextColor: string;
+    paginationTextColorActive: string;
     /** Grid */
     gridColumnGap: number;
     gridColumns: number;

@@ -25,7 +25,7 @@ export default (theme: any) => ({
     h2: {
       fontSize: 32,
       fontFamily: theme.fontFamily,
-      fontWeight: theme.fontWeightMedium,
+      fontWeight: theme.fontWeightBold,
     },
     h3: {
       fontSize: 28,
@@ -35,7 +35,7 @@ export default (theme: any) => ({
     h4: {
       fontSize: 14,
       fontFamily: theme.fontFamily,
-      fontWeight: theme.fontWeightSemiBold,
+      fontWeight: theme.fontWeightBold,
     },
     p: {
       fontSize: 12,
@@ -45,6 +45,9 @@ export default (theme: any) => ({
     b: {
       fontFamily: theme.fontFamily,
       fontWeight: theme.fontWeightBold,
+    },
+    hr: {
+      border: `0.5px solid ${theme.hrColor}`,
     },
     // 'h1, h2, h3, h4, h5, h6': {
     //   marginTop: 0,

@@ -2,7 +2,6 @@ export default {
   /** Imports */
   imports: [
     `url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')`,
-    `url('https://fonts.googleapis.com/css?family=Questrial')`,
   ],
 
   /** Text color */
@@ -12,6 +11,9 @@ export default {
 
   /** Background colors */
   backgroundColorPrimary: '#fff',
+
+  /** Horizontal break line */
+  hrColor: '#eceff1',
 
   /** Fonts */
   fontFamily: 'Open Sans, sans-serif',
@@ -32,6 +34,7 @@ export default {
   buttonBackgroundColorSecondaryHover: '#f5f5f5',
   buttonBackgroundColorSecondaryClick: '#ebebeb',
   buttonBackgroundColorDisabled: '#d2d2d2',
+  buttonColorDisabled: '#95acbf',
 
   /** Input fields */
   inputColorIdle: '#54738c',
@@ -52,6 +55,27 @@ export default {
   inputBackgroundColorHover: '#f5f5f5',
   inputBackgroundColorClick: '#ebebeb',
   inputBackgroundColorDisabled: '#f0f0f0',
+
+  /** Navbar */
+  navbarItemColor: '#90a4ae',
+  navbarItemColorHover: '#a7b7bf',
+  navbarItemColorClick: '#bdc9cf',
+  navbarItemColorHighlight: '#007aff',
+  navbarItemColorHighlightHover: '#278eff',
+  navbarItemColorHighlightClick: '#62adff',
+
+  /** Sidebar */
+  sidebarSectionColor: '#1b1b1b',
+  sidebarItemColor: '#90a4ae',
+  sidebarItemColorHover: '#a7b7bf',
+  sidebarItemColorClick: '#bdc9cf',
+  sidebarItemColorSelected: '#1b1b1b',
+  sidebarItemColorHighlight: '#007aff',
+  sidebarItemColorHighlightHover: '#278eff',
+  sidebarItemColorHighlightClick: '#62adff',
+
+  /** Badges */
+  badgePrimaryBackgroundColor: '#2a5393',
 
   /** Table */
   tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',

@@ -7,11 +7,19 @@ export default (theme: any) => ({
     overflow: 'hidden',
   },
   title: {
-    padding: 18,
+    padding: 24,
     flex: 1,
+
+    fontWeight: theme.fontWeightSemiBold,
+    fontFamily: theme.fontFamily,
+    fontSize: 18,
   },
   body: {
-    padding: 18,
+    padding: 24,
     flex: 1,
+
+    fontWeight: theme.fontWeightLight,
+    fontFamily: theme.fontFamily,
+    fontSize: 14,
   },
 });

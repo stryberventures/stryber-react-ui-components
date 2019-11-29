@@ -4,7 +4,7 @@ export interface IFileFieldProps {
     name: string;
     accept: string;
     placeholder?: string;
-    value?: string;
+    value?: any;
     multiple?: boolean;
     disabled?: boolean;
     onChange?: (e: React.BaseSyntheticEvent) => void;
