@@ -49,6 +49,9 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
             fontFamily: any;
             fontWeight: any;
         };
+        hr: {
+            border: string;
+        };
         '#root': {
             height: string;
         };

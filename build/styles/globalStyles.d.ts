@@ -44,6 +44,9 @@ declare const _default: (theme: any) => {
             fontFamily: any;
             fontWeight: any;
         };
+        hr: {
+            border: string;
+        };
         '#root': {
             height: string;
         };

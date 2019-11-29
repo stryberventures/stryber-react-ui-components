@@ -4,15 +4,17 @@ declare const _default: (theme: any) => {
         padding: number;
         border: string;
         width: string;
-    };
-    content: {
         fontSize: number;
         fontFamily: any;
         fontWeight: any;
+        userSelect: string;
+        cursor: string;
     };
     disabled: {
-        backgroundColor: any;
+        color: any;
+        borderColor: any;
     };
+    /** Color variants */
     primary: {
         color: any;
         backgroundColor: any;
@@ -33,6 +35,14 @@ declare const _default: (theme: any) => {
         '&:active': {
             backgroundColor: any;
         };
+    };
+    /** Sizes */
+    normal: {};
+    mini: {
+        padding: number;
+        fontSize: number;
+        fontWeight: any;
+        borderRadius: number;
     };
 };
 export default _default;

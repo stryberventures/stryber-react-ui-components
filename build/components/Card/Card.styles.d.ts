@@ -9,10 +9,16 @@ declare const _default: (theme: any) => {
     title: {
         padding: number;
         flex: number;
+        fontWeight: any;
+        fontFamily: any;
+        fontSize: number;
     };
     body: {
         padding: number;
         flex: number;
+        fontWeight: any;
+        fontFamily: any;
+        fontSize: number;
     };
 };
 export default _default;
