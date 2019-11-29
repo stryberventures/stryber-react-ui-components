@@ -53,6 +53,19 @@ export default {
   inputBackgroundColorClick: '#ebebeb',
   inputBackgroundColorDisabled: '#f0f0f0',
 
+  /** Table */
+  tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
+  tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
+  tableBackgroundColor: '#eceff1',
+  tableBorderColor: '#eceff1',
+  tableHeaderTextColor: '#37474f',
+
+  /** Pagination */
+  paginationBackgroundColor: '#eceff1',
+  paginationBackgroundColorActive: '#007aff',
+  paginationTextColor: '#54738c',
+  paginationTextColorActive: '#fff',
+
   /** Grid */
   gridColumnGap: 20,
   gridColumns: 12,
