@@ -16,10 +16,13 @@ export * from './components/SearchField';
 export * from './components/SearchBox';
 /** Active elements */
 export * from './components/Button';
+export * from './components/Pagination';
 /** Layout */
 export * from './components/Grid';
 export * from './components/Container';
 export * from './components/Card';
+/** Table */
+export * from './components/Table';
 /** Icons */
 export * from './components/Icons';
 /** Misc */
