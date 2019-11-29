@@ -63,6 +63,7 @@ const StyledCol = withStyles(styles)(Col);
 const PropsWrappedStyledCol = (props: IColProps) => <StyledCol {...props} />;
 
 /** Exports */
+export default Row;
 export {
   PropsWrappedStyledRow as Row,
   PropsWrappedStyledCol as Col,
