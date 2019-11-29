@@ -6,28 +6,28 @@ import styles from './NavbarNavigation.styles';
 /** Interfaces */
 export interface INavigationContainerProps {
   onRouteChange?: (newRoute: any) => void;
-  initialValue?: any;
+  initialRoute?: any;
   children?: any;
   variant?: 'normal' | 'underlined';
 }
 
-export interface INavigationItemProps {
+export interface INavigationRouteProps {
+  route: any;
   children?: any;
   selected?: boolean;
-  value: any;
 }
 
 /** Context used by navigation components */
 export interface INavbarNavigationContext {
-  updateSelectedValue: (value: any) => void;
-  selectedValue: any;
+  updateSelectedRoute: (route: any) => void;
+  selectedRoute: any;
   variant: 'normal' | 'underlined';
 }
 
 /** Creating form context with default values */
 export const defaultNavbarNavigationContextValues = {
-  updateSelectedValue: () => {},
-  selectedValue: undefined,
+  updateSelectedRoute: () => {},
+  selectedRoute: undefined,
   variant: 'normal' as 'normal' | 'underlined',
 };
 export const NavbarNavigationContext: React.Context<INavbarNavigationContext> =
@@ -39,7 +39,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
   const {
     className,
     children,
-    initialValue = null,
+    initialRoute = null,
     onRouteChange,
     classes,
     variant = 'normal',
@@ -47,10 +47,10 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
   } = props;
 
   /** Update selected value */
-  const [selectedValue, setSelectedValue] = React.useState(initialValue);
-  const updateSelectedValue = (value: any) => {
-    setSelectedValue(() => value);
-    onRouteChange && onRouteChange(value);
+  const [selectedRoute, setSelectedRoute] = React.useState(initialRoute);
+  const updateSelectedRoute = (route: any) => {
+    setSelectedRoute(() => route);
+    onRouteChange && onRouteChange(route);
   };
 
   return (
@@ -58,8 +58,8 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
       <NavbarNavigationContext.Provider
         value={{
           variant,
-          selectedValue,
-          updateSelectedValue,
+          selectedRoute,
+          updateSelectedRoute,
         }}
       >
         { children }
@@ -68,28 +68,28 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
   );
 };
 
-const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
+const NavigationRoute = (props: INavigationRouteProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     className,
     children,
     classes,
     onClick,
     selected = false,
-    value,
+    route,
     ...rest
   } = props;
 
   /** Get navigation context */
   const {
-    updateSelectedValue,
-    selectedValue,
+    updateSelectedRoute,
+    selectedRoute,
     variant,
   } = React.useContext(NavbarNavigationContext);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
-    updateSelectedValue(value);
+    updateSelectedRoute(route);
     onClick && onClick(e);
   };
 
@@ -98,7 +98,7 @@ const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivEle
       className={classNames(
         classes.item,
         className,
-        (value === selectedValue || selected) ? classes.itemSelected : null,
+        (route === selectedRoute || selected) ? classes.itemSelected : null,
         variant,
       )}
       onClick={onClickWrapper}
@@ -113,12 +113,12 @@ const NavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivEle
 const StyledNavigationContainer = withStyles(styles)(NavigationContainer);
 const PropsWrappedStyledNavigationContainer = (props: INavigationContainerProps & React.HTMLProps<HTMLDivElement>) => <StyledNavigationContainer {...props} />;
 
-const StyledNavigationItem = withStyles(styles)(NavigationItem);
-const PropsWrappedStyledNavigationItem = (props: INavigationItemProps & React.HTMLProps<HTMLDivElement>) => <StyledNavigationItem {...props} />;
+const StyledNavigationRoute = withStyles(styles)(NavigationRoute);
+const PropsWrappedStyledNavigationRoute = (props: INavigationRouteProps & React.HTMLProps<HTMLDivElement>) => <StyledNavigationRoute {...props} />;
 
 /** Exports */
 export default PropsWrappedStyledNavigationContainer;
 export {
-  PropsWrappedStyledNavigationItem as NavigationItem,
+  PropsWrappedStyledNavigationRoute as NavigationRoute,
   PropsWrappedStyledNavigationContainer as NavigationContainer,
 };

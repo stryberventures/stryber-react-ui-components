@@ -6,38 +6,38 @@ import { DownArrow } from '../Icons';
 
 /** Interfaces */
 export interface ISidebarNavigationContainerProps {
-  onRouteChange?: (section: any, item: any) => void;
+  onRouteChange?: (section: any, route: any) => void;
   initialSection?: any;
-  initialItem?: any;
+  initialRoute?: any;
   children?: any;
 }
 
 export interface ISidebarNavigationSection {
   title: any;
   description: any;
-  value: any;
+  route: any;
   children?: any;
 }
 
-export interface ISidebarNavigationItemProps {
-  value: any;
+export interface ISidebarNavigationRouteProps {
+  route: any;
   children?: any;
 }
 
 /** Context used by navigation components */
 export interface ISidebarNavigationContext {
   updateSelectedSection: (section: any) => void;
-  updateSelectedItem: (item: any) => void;
+  updateSelectedRoute: (route: any) => void;
   selectedSection: any;
-  selectedItem: any;
+  selectedRoute: any;
 }
 
 /** Creating form context with default values */
 export const defaultNavbarNavigationContextValues = {
   updateSelectedSection: () => {},
-  updateSelectedItem: () => {},
+  updateSelectedRoute: () => {},
   selectedSection: undefined,
-  selectedItem: undefined,
+  selectedRoute: undefined,
 };
 export const NavbarNavigationContext: React.Context<ISidebarNavigationContext> =
   React.createContext(defaultNavbarNavigationContextValues);
@@ -49,7 +49,7 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     className,
     children,
     initialSection = null,
-    initialItem = null,
+    initialRoute = null,
     onRouteChange,
     classes,
     ...rest
@@ -57,15 +57,15 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
 
   /** Update selected value */
   const [selectedSection, setSelectedSection] = React.useState(initialSection);
-  const [selectedItem, setSelectedItem] = React.useState(initialItem);
+  const [selectedRoute, setSelectedRoute] = React.useState(initialRoute);
   const updateSelectedSection = (section: any) => {
     setSelectedSection(() => section);
-    setSelectedItem(() => null);
+    setSelectedRoute(() => null);
     onRouteChange && onRouteChange(section, null);
   };
-  const updateSelectedItem = (item: any) => {
-    setSelectedItem(() => item);
-    onRouteChange && onRouteChange(selectedSection, item);
+  const updateSelectedRoute = (route: any) => {
+    setSelectedRoute(() => route);
+    onRouteChange && onRouteChange(selectedSection, route);
   };
 
   return (
@@ -73,9 +73,9 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
       <NavbarNavigationContext.Provider
         value={{
           selectedSection,
-          selectedItem,
+          selectedRoute,
           updateSelectedSection,
-          updateSelectedItem,
+          updateSelectedRoute,
         }}
       >
         { children }
@@ -89,7 +89,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     children,
     classes,
     onClick,
-    value,
+    route,
     title,
     description,
     ...rest
@@ -102,12 +102,12 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
   } = React.useContext(NavbarNavigationContext);
 
   // const isExpanded, setExpanded] = React.useState(false);
-  const isExpanded = value === selectedSection;
+  const isExpanded = route === selectedSection;
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
-    updateSelectedSection(value);
+    updateSelectedSection(route);
     onClick && onClick(e);
   };
 
@@ -116,7 +116,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       className={classNames(
         classes.section,
         className,
-        (value === selectedSection) ? classes.sectionSelected : null,
+        (route === selectedSection) ? classes.sectionSelected : null,
       )}
       onClick={onClickWrapper}
       {...rest}
@@ -145,26 +145,26 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
   );
 };
 
-const SidebarNavigationItem = (props: ISidebarNavigationItemProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
+const SidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
   const {
     className,
     children,
     classes,
     onClick,
-    value,
+    route,
     ...rest
   } = props;
 
   /** Get navigation context */
   const {
-    updateSelectedItem,
-    selectedItem,
+    updateSelectedRoute,
+    selectedRoute,
   } = React.useContext(NavbarNavigationContext);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
-    updateSelectedItem(value);
+    updateSelectedRoute(route);
     onClick && onClick(e);
   };
 
@@ -173,7 +173,7 @@ const SidebarNavigationItem = (props: ISidebarNavigationItemProps & React.HTMLPr
       className={classNames(
         classes.item,
         className,
-        (value === selectedItem) ? classes.itemSelected : null,
+        (route === selectedRoute) ? classes.itemSelected : null,
       )}
       onClick={onClickWrapper}
       {...rest}
@@ -190,13 +190,13 @@ const PropsWrappedStyledSidebarNavigationContainer = (props: ISidebarNavigationC
 const StyledSidebarNavigationSection = withStyles(styles)(SidebarNavigationSection);
 const PropsWrappedStyledSidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLProps<HTMLDivElement>) => <StyledSidebarNavigationSection {...props} />;
 
-const StyledSidebarNavigationItem = withStyles(styles)(SidebarNavigationItem);
-const PropsWrappedStyledSidebarNavigationItem = (props: ISidebarNavigationItemProps & React.HTMLProps<HTMLDivElement>) => <StyledSidebarNavigationItem {...props} />;
+const StyledSidebarNavigationRoute = withStyles(styles)(SidebarNavigationRoute);
+const PropsWrappedStyledSidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTMLProps<HTMLDivElement>) => <StyledSidebarNavigationRoute {...props} />;
 
 /** Exports */
 export default PropsWrappedStyledSidebarNavigationContainer;
 export {
   PropsWrappedStyledSidebarNavigationContainer as SidebarNavigationContainer,
   PropsWrappedStyledSidebarNavigationSection as SidebarNavigationSection,
-  PropsWrappedStyledSidebarNavigationItem as SidebarNavigationItem,
+  PropsWrappedStyledSidebarNavigationRoute as SidebarNavigationRoute,
 };

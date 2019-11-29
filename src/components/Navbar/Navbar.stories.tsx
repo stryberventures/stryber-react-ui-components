@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Navbar } from './Navbar';
-import { NavigationContainer, NavigationItem } from '../NavbarNavigation';
+import { NavigationContainer, NavigationRoute } from '../NavbarNavigation';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
-const NavbarItemsWithExternalControl = (props: any) => {
+const NavbarRoutesWithExternalControl = (props: any) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   return (
     <Navbar>
@@ -15,13 +15,13 @@ const NavbarItemsWithExternalControl = (props: any) => {
           Array
             .from({ length: 5 })
             .map((d: any, i: number) => (
-              <NavigationItem
-                value={i}
+              <NavigationRoute
+                route={i}
                 selected={selectedIndex === i}
                 onClick={() => setSelectedIndex(i)}
               >
-                Item {i}
-              </NavigationItem>
+                Route {i}
+              </NavigationRoute>
             ))
         }
       </NavigationContainer>
@@ -37,9 +37,9 @@ storiesOf('Navbar', module)
           <NavigationContainer
             onRouteChange={(value: any) => console.log('Route changed!', value)}
           >
-            <NavigationItem value="hello">Hello</NavigationItem>
-            <NavigationItem value="world">World</NavigationItem>
-            <NavigationItem value="!">!</NavigationItem>
+            <NavigationRoute route="hello">Hello</NavigationRoute>
+            <NavigationRoute route="world">World</NavigationRoute>
+            <NavigationRoute route="!">!</NavigationRoute>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
@@ -52,11 +52,11 @@ storiesOf('Navbar', module)
           <NavigationContainer
             variant="underlined"
             onRouteChange={(value: any) => console.log('Route changed!', value)}
-            initialValue="hello"
+            initialRoute="hello"
           >
-            <NavigationItem value="hello">Hello</NavigationItem>
-            <NavigationItem value="world">World</NavigationItem>
-            <NavigationItem value="!">!</NavigationItem>
+            <NavigationRoute route="hello">Hello</NavigationRoute>
+            <NavigationRoute route="world">World</NavigationRoute>
+            <NavigationRoute route="!">!</NavigationRoute>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
@@ -68,11 +68,11 @@ storiesOf('Navbar', module)
         <Navbar>
           <NavigationContainer
             onRouteChange={(value: any) => console.log('Route changed!', value)}
-            initialValue="hello"
+            initialRoute="hello"
           >
-            <NavigationItem value="hello">Hello</NavigationItem>
-            <NavigationItem value="world">World</NavigationItem>
-            <NavigationItem value="!">!</NavigationItem>
+            <NavigationRoute route="hello">Hello</NavigationRoute>
+            <NavigationRoute route="world">World</NavigationRoute>
+            <NavigationRoute route="!">!</NavigationRoute>
           </NavigationContainer>
         </Navbar>
       </Wrapper>
@@ -81,7 +81,7 @@ storiesOf('Navbar', module)
   .add('External control', () => {
     return (
       <Wrapper>
-        <NavbarItemsWithExternalControl />
+        <NavbarRoutesWithExternalControl />
       </Wrapper>
     );
   });
