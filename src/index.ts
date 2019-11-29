@@ -22,5 +22,9 @@ export * from './components/Container';
 export * from './components/Card';
 /** Icons */
 export * from './components/Icons';
+/** Navbar */
+export * from './components/Navbar';
+export * from './components/NavbarNavigation';
+export * from './components/SidebarNavigation';
 /** Misc */
 export * from './components/EmptyComponent';

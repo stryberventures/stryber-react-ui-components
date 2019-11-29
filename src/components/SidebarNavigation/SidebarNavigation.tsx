@@ -33,14 +33,14 @@ export interface ISidebarNavigationContext {
 }
 
 /** Creating form context with default values */
-export const defaultNavbarNavigationContextValues = {
+export const defaultSidebarNavigationContext = {
   updateSelectedSection: () => {},
   updateSelectedRoute: () => {},
   selectedSection: undefined,
   selectedRoute: undefined,
 };
-export const NavbarNavigationContext: React.Context<ISidebarNavigationContext> =
-  React.createContext(defaultNavbarNavigationContextValues);
+export const SidebarNavigationContext: React.Context<ISidebarNavigationContext> =
+  React.createContext(defaultSidebarNavigationContext);
 
 
 /** Main component */
@@ -70,7 +70,7 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
 
   return (
     <div className={classNames(classes.container, className)} {...rest}>
-      <NavbarNavigationContext.Provider
+      <SidebarNavigationContext.Provider
         value={{
           selectedSection,
           selectedRoute,
@@ -79,7 +79,7 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
         }}
       >
         { children }
-      </NavbarNavigationContext.Provider>
+      </SidebarNavigationContext.Provider>
     </div>
   );
 };
@@ -99,7 +99,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
   const {
     updateSelectedSection,
     selectedSection,
-  } = React.useContext(NavbarNavigationContext);
+  } = React.useContext(SidebarNavigationContext);
 
   // const isExpanded, setExpanded] = React.useState(false);
   const isExpanded = route === selectedSection;
@@ -159,7 +159,7 @@ const SidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTML
   const {
     updateSelectedRoute,
     selectedRoute,
-  } = React.useContext(NavbarNavigationContext);
+  } = React.useContext(SidebarNavigationContext);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
