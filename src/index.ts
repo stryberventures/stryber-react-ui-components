@@ -30,4 +30,4 @@ export * from './components/Navbar';
 export * from './components/NavbarNavigation';
 export * from './components/SidebarNavigation';
 /** Misc */
-export * from './components/EmptyComponent';
+export * from './components/Badge';
