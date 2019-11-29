@@ -20,7 +20,7 @@ const DynamicNumberDemo = (props: any) => {
   return (
     <Badge
       style={{ margin: 40 }}
-      value={counter}
+      label={counter}
     >
       <Button>Hello</Button>
     </Badge>
@@ -33,13 +33,13 @@ storiesOf('Badge', module)
       <Wrapper>
         <Badge
           style={{ margin: 40 }}
-          value={1}
+          label={1}
         >
           <Button>Hello</Button>
         </Badge>
         <Badge
           style={{ margin: 40 }}
-          value={3423423}
+          label={3423423}
         >
           <Button>Hello</Button>
         </Badge>

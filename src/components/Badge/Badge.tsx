@@ -4,18 +4,19 @@ import classNames from 'classnames';
 import styles from './Badge.styles';
 
 /** Interfaces */
-export interface IBadgeProps {
+export interface IBadgeProps extends React.HTMLProps<HTMLDivElement> {
   children: any;
-  value: any;
+  className?: any;
+  label: any;
 }
 
 /** Main component */
-const Badge = (props: IBadgeProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
+const Badge = (props: IBadgeProps & WithStyles<typeof styles>) => {
   const {
     classes,
     children,
     className,
-    value = null,
+    label = null,
     ...rest
   } = props;
   return (
@@ -30,7 +31,7 @@ const Badge = (props: IBadgeProps & React.HTMLProps<HTMLDivElement> & WithStyles
       <div className={classes.badge}>
         {/** Badge content */}
         <div className={classes.badgeContent}>
-          { value }
+          { label }
         </div>
       </div>
       {/** Content */}
@@ -41,7 +42,7 @@ const Badge = (props: IBadgeProps & React.HTMLProps<HTMLDivElement> & WithStyles
 
 /** Wrappings */
 const StyledBadge = withStyles(styles)(Badge);
-const PropsWrappedStyledBadge = (props: IBadgeProps & React.HTMLProps<HTMLDivElement>) => <StyledBadge {...props} />;
+const PropsWrappedStyledBadge = (props: IBadgeProps) => <StyledBadge {...props} />;
 
 /** Exports */
 export default PropsWrappedStyledBadge;

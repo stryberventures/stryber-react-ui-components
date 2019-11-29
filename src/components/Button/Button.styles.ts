@@ -7,6 +7,8 @@ export default (theme: any) => ({
     fontSize: 16,
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightSemiBold,
+    userSelect: 'none',
+    cursor: 'pointer',
   },
   disabled: {
     color: theme.buttonColorDisabled,

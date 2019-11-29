@@ -10,6 +10,7 @@ export default (theme: any) => ({
   },
   /** Section */
   section: {
+    cursor: 'pointer',
     userSelect: 'none',
     borderRight: '3px solid rgba(0,0,0,0)',
     borderLeft: '3px solid rgba(0,0,0,0)',
@@ -79,6 +80,7 @@ export default (theme: any) => ({
   },
   /** Item */
   item: {
+    cursor: 'pointer',
     transition: '0.3s',
     color: theme.sidebarItemColor,
     fontSize: 12,
