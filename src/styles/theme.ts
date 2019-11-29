@@ -12,6 +12,7 @@ export default {
 
   /** Background colors */
   backgroundColorPrimary: '#fff',
+  backgroundColorSecondary: '#eceff1',
 
   /** Fonts */
   fontFamily: 'Open Sans, sans-serif',
@@ -52,6 +53,10 @@ export default {
   inputBackgroundColorHover: '#f5f5f5',
   inputBackgroundColorClick: '#ebebeb',
   inputBackgroundColorDisabled: '#f0f0f0',
+
+  /** Table */
+  tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
+  tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
 
   /** Grid */
   gridColumnGap: 20,
