@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface INavigationContainerProps {
     onRouteChange?: (newRoute: any) => void;
     initialRoute?: any;
+    selectedRoute?: any;
     children?: any;
     variant?: 'normal' | 'underlined';
 }

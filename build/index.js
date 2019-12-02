@@ -264,7 +264,7 @@ var defaultFormContextValues = {
 var FormContext = React.createContext(defaultFormContextValues);
 /** Form component */
 var Form = function (props) {
-    var children = props.children, onSubmit = props.onSubmit, onReset = props.onReset, onChange = props.onChange, onError = props.onError, onValidate = props.onValidate, onValidateAsync = props.onValidateAsync, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["children", "onSubmit", "onReset", "onChange", "onError", "onValidate", "onValidateAsync", "validationSchema", "initialValues"]);
+    var children = props.children, onSubmit = props.onSubmit, onReset = props.onReset, onChange = props.onChange, onError = props.onError, onValidate = props.onValidate, onValidateAsync = props.onValidateAsync, validationSchema = props.validationSchema, propsValues = props.values, initialValues = props.initialValues, rest = __rest(props, ["children", "onSubmit", "onReset", "onChange", "onError", "onValidate", "onValidateAsync", "validationSchema", "values", "initialValues"]);
     /** State */
     var _a = __read(React.useState(initialValues || {}), 2), formValues = _a[0], setFormValues = _a[1];
     var _b = __read(React.useState({}), 2), formErrors = _b[0], setFormErrors = _b[1];
@@ -2740,7 +2740,7 @@ var defaultNavbarNavigationContextValues = {
 var NavbarNavigationContext = React.createContext(defaultNavbarNavigationContextValues);
 /** Main component */
 var NavigationContainer = function (props) {
-    var className = props.className, children = props.children, _a = props.initialRoute, initialRoute = _a === void 0 ? null : _a, onRouteChange = props.onRouteChange, classes = props.classes, _b = props.variant, variant = _b === void 0 ? 'normal' : _b, rest = __rest(props, ["className", "children", "initialRoute", "onRouteChange", "classes", "variant"]);
+    var className = props.className, children = props.children, _a = props.initialRoute, initialRoute = _a === void 0 ? null : _a, onRouteChange = props.onRouteChange, propsSelectedRoute = props.selectedRoute, classes = props.classes, _b = props.variant, variant = _b === void 0 ? 'normal' : _b, rest = __rest(props, ["className", "children", "initialRoute", "onRouteChange", "selectedRoute", "classes", "variant"]);
     /** Update selected value */
     var _c = __read(React.useState(initialRoute), 2), selectedRoute = _c[0], setSelectedRoute = _c[1];
     var updateSelectedRoute = function (route) {
@@ -2750,7 +2750,7 @@ var NavigationContainer = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.container, className) }, rest),
         React.createElement(NavbarNavigationContext.Provider, { value: {
                 variant: variant,
-                selectedRoute: selectedRoute,
+                selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
                 updateSelectedRoute: updateSelectedRoute,
             } }, children)));
 };
@@ -2900,7 +2900,7 @@ var defaultSidebarNavigationContext = {
 var SidebarNavigationContext = React.createContext(defaultSidebarNavigationContext);
 /** Main component */
 var SidebarNavigationContainer = function (props) {
-    var className = props.className, children = props.children, _a = props.initialSection, initialSection = _a === void 0 ? null : _a, _b = props.initialRoute, initialRoute = _b === void 0 ? null : _b, onRouteChange = props.onRouteChange, classes = props.classes, rest = __rest(props, ["className", "children", "initialSection", "initialRoute", "onRouteChange", "classes"]);
+    var className = props.className, children = props.children, _a = props.initialSection, initialSection = _a === void 0 ? null : _a, _b = props.initialRoute, initialRoute = _b === void 0 ? null : _b, propsSelectedSection = props.selectedSection, propsSelectedRoute = props.selectedRoute, onRouteChange = props.onRouteChange, classes = props.classes, rest = __rest(props, ["className", "children", "initialSection", "initialRoute", "selectedSection", "selectedRoute", "onRouteChange", "classes"]);
     /** Update selected value */
     var _c = __read(React.useState(initialSection), 2), selectedSection = _c[0], setSelectedSection = _c[1];
     var _d = __read(React.useState(initialRoute), 2), selectedRoute = _d[0], setSelectedRoute = _d[1];
@@ -2915,8 +2915,8 @@ var SidebarNavigationContainer = function (props) {
     };
     return (React.createElement("div", __assign({ className: classnames(classes.container, className) }, rest),
         React.createElement(SidebarNavigationContext.Provider, { value: {
-                selectedSection: selectedSection,
-                selectedRoute: selectedRoute,
+                selectedSection: propsSelectedSection === undefined ? selectedSection : propsSelectedSection,
+                selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
                 updateSelectedSection: updateSelectedSection,
                 updateSelectedRoute: updateSelectedRoute,
             } }, children)));

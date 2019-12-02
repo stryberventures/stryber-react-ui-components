@@ -4,6 +4,8 @@ export interface ISidebarNavigationContainerProps {
     onRouteChange?: (section: any, route: any) => void;
     initialSection?: any;
     initialRoute?: any;
+    selectedSection?: any;
+    selectedRoute?: any;
     children?: any;
 }
 export interface ISidebarNavigationSection {
