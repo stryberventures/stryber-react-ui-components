@@ -16,6 +16,50 @@ npm start
 2) Browse to 'http://localhost:9001/'
 (should normally open automatically after step 1)
 
+## Using the library within other projects ##
+Projects that would use this package have two options 
+of how to install and import this *private* library 
+within our organization:
+
+a) Install as an NPM package from GitHub registry 
+(THE RIGHT WAY). 
+1) Create an '.npmrc' file at the 
+root of the project that will be using
+Matterhorn library.
+
+'.npmrc' file contents:
+
+```text
+@stryberventures:registry=https://npm.pkg.github.com/stryberventures
+```
+
+2) Authorize to your GitHub account and create a new
+'Personal Access Token' (https://github.com/settings/tokens).
+This token should have *read:packages* permission checked.
+
+3) Copy the created TOKEN and use it to create an
+'~/.npmrc' file  located in the '~' (home) folder 
+of your user:
+
+```text
+//npm.pkg.github.com/:_authToken=TOKEN
+```
+
+4) After this The package can be installed by typing
+the following command in the terminal:
+
+```shell script
+npm i @stryberventures/stryber-react-ui-components@0.0.8 --save
+```
+
+b) Install directly from the git repository's
+URL by typing the following command in the 
+terminal (THE EASIER WAY):
+
+```shell script
+npm i git+ssh://git@github.com/stryberventures/stryber-react-ui-components.git#0.0.8
+```
+
 ## How to build library for production ##
 
 ```shell script
@@ -35,7 +79,7 @@ permissions for you to be able to publish it_
 2) Create '~/.npmrc' file:
 
 ```text
-//npm.pkg.github.com/:_authToken=PERSONAL-ACCESS-TOKEN
+//npm.pkg.github.com/:_authToken=TOKEN
 ```
 
 _Note: Full guide can be found here
@@ -46,32 +90,4 @@ running following command(s) in the terminal:
 
 ```shell script
 npm publish
-```
-
-4) Projects that would use
-this internal company's package 
-have two options of how to install
-and import the library:
-
-a) Install directly from the git repository's
-URL by typing the following command in the 
-terminal:
-
-```shell script
-npm i git+ssh://git@github.com/stryberventures/stryber-react-ui-components.git#dev
-```
-
-b) (DOESN'T WORK RIGHT NOW) Should have '.npmrc' file located 
-at the root of the project.
-
-'.npmrc' file contents:
-
-```text
-registry=https://npm.pkg.github.com/stryberventures
-```
-
-After which they can install the package by typing
-the following command in the terminal
-```shell script
-npm i @stryberventures/stryber-react-ui-components
 ```
