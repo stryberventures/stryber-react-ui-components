@@ -5,6 +5,47 @@ import Card, { Body as CardBody  } from '../Card';
 import { Row, Col } from '../Grid';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
+const SidebarExternalControl = (props: any) => {
+  const [selectedSection, setSelectedSection] = React.useState('');
+  const [selectedRoute, setSelectedRoute] = React.useState('');
+
+  return (
+    <Wrapper>
+      <Card>
+        <SidebarNavigationContainer
+          selectedSection={selectedSection}
+          selectedRoute={selectedRoute}
+          onRouteChange={(section: any, route: any) => { setSelectedSection(section); setSelectedRoute(route); }}
+        >
+          <SidebarNavigationSection
+            route="section1"
+            title="Section 1"
+            description="Lorem ipsum dolor sit amet"
+          >
+            <SidebarNavigationRoute route="hello">Hello</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="world">World</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="!">!</SidebarNavigationRoute>
+          </SidebarNavigationSection>
+          <SidebarNavigationSection
+            route="section2"
+            title="Section 2"
+            description="Empty section"
+          />
+          <SidebarNavigationSection
+            route="section3"
+            title="Section 3"
+            description="Lorem ipsum dolor sit amet"
+          >
+            <SidebarNavigationRoute route="other">Other</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="stuff">Stuff</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="here">Here</SidebarNavigationRoute>
+          </SidebarNavigationSection>
+        </SidebarNavigationContainer>
+      </Card>
+    </Wrapper>
+  );
+};
+
 storiesOf('Sidebar navigation', module)
   .add('Normal', () => {
     return (
@@ -101,4 +142,7 @@ storiesOf('Sidebar navigation', module)
         </Row>
       </Wrapper>
     );
+  })
+  .add('External Control', () => {
+    return <SidebarExternalControl />;
   });

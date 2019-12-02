@@ -5,26 +5,21 @@ import { NavigationContainer, NavigationRoute } from '../NavbarNavigation';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
 const NavbarRoutesWithExternalControl = (props: any) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedRoute, setSelectedRoute] = React.useState('');
   return (
     <Navbar>
-      <NavigationContainer
-        variant="underlined"
-      >
-        {
-          Array
-            .from({ length: 5 })
-            .map((d: any, i: number) => (
-              <NavigationRoute
-                route={i}
-                selected={selectedIndex === i}
-                onClick={() => setSelectedIndex(i)}
-              >
-                Route {i}
-              </NavigationRoute>
-            ))
-        }
-      </NavigationContainer>
+      <Wrapper>
+        <Navbar>
+          <NavigationContainer
+            selectedRoute={selectedRoute}
+            onRouteChange={(value: any) => setSelectedRoute(value)}
+          >
+            <NavigationRoute route="hello">Hello</NavigationRoute>
+            <NavigationRoute route="world">World</NavigationRoute>
+            <NavigationRoute route="!">!</NavigationRoute>
+          </NavigationContainer>
+        </Navbar>
+      </Wrapper>
     </Navbar>
   );
 };

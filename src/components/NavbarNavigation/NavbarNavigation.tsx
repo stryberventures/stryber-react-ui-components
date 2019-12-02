@@ -7,6 +7,7 @@ import styles from './NavbarNavigation.styles';
 export interface INavigationContainerProps {
   onRouteChange?: (newRoute: any) => void;
   initialRoute?: any;
+  selectedRoute?: any;
   children?: any;
   variant?: 'normal' | 'underlined';
 }
@@ -41,6 +42,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
     children,
     initialRoute = null,
     onRouteChange,
+    selectedRoute: propsSelectedRoute,
     classes,
     variant = 'normal',
     ...rest
@@ -58,7 +60,7 @@ const NavigationContainer = (props: INavigationContainerProps & React.HTMLProps<
       <NavbarNavigationContext.Provider
         value={{
           variant,
-          selectedRoute,
+          selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
           updateSelectedRoute,
         }}
       >

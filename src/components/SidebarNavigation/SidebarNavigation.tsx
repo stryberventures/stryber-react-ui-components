@@ -9,6 +9,8 @@ export interface ISidebarNavigationContainerProps {
   onRouteChange?: (section: any, route: any) => void;
   initialSection?: any;
   initialRoute?: any;
+  selectedSection?: any;
+  selectedRoute?: any;
   children?: any;
 }
 
@@ -50,6 +52,8 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     children,
     initialSection = null,
     initialRoute = null,
+    selectedSection: propsSelectedSection,
+    selectedRoute: propsSelectedRoute,
     onRouteChange,
     classes,
     ...rest
@@ -72,8 +76,8 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     <div className={classNames(classes.container, className)} {...rest}>
       <SidebarNavigationContext.Provider
         value={{
-          selectedSection,
-          selectedRoute,
+          selectedSection: propsSelectedSection === undefined ? selectedSection : propsSelectedSection,
+          selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
           updateSelectedSection,
           updateSelectedRoute,
         }}
