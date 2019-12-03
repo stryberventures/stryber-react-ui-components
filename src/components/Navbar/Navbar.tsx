@@ -41,9 +41,9 @@ const NavbarSection = (props: INavbarSectionProps & React.HTMLProps<HTMLDivEleme
     <div
       className={classNames([
         classes.section,
-        className,
         align && classes.align,
         align,
+        className,
       ])}
       {...rest}
     >

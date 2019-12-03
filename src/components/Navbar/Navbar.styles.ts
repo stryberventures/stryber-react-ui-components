@@ -13,6 +13,7 @@ export default (theme: any) => ({
   },
   section: {
     width: '100%',
+    padding: '0px 20px',
   },
   align: {
     display: 'flex',
