@@ -9,8 +9,24 @@ export default (theme: any) => ({
 
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between'
   },
   section: {
-
+    width: '100%',
+  },
+  align: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    '&.left': {
+      justifyContent: 'flex-start',
+    },
+    '&.center': {
+      justifyContent: 'center',
+    },
+    '&.right': {
+      justifyContent: 'flex-end',
+    },
   },
 });

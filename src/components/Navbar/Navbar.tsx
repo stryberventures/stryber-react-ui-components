@@ -4,16 +4,16 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './Navbar.styles';
 
 /** Interfaces */
-export interface INavbarProps {
+export interface INavbarProps extends React.HTMLProps<HTMLDivElement> {
   children?: any;
 }
 
-export interface INavbarSectionProps {
- align: 'left' | 'center' | 'right';
+export interface INavbarSectionProps extends React.HTMLProps<HTMLDivElement> {
+  align: 'left' | 'center' | 'right';
 }
 
 /** Main component */
-const Navbar = (props: INavbarProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
+const Navbar = (props: INavbarProps & WithStyles<typeof styles>) => {
   const {
     className,
     children,
@@ -33,11 +33,20 @@ const NavbarSection = (props: INavbarSectionProps & React.HTMLProps<HTMLDivEleme
     className,
     children,
     classes,
+    align,
     ...rest
   } = props;
 
   return (
-    <div className={classNames(classes.section, className)} {...rest}>
+    <div
+      className={classNames([
+        classes.section,
+        className,
+        align && classes.align,
+        align,
+      ])}
+      {...rest}
+    >
       { children }
     </div>
   );
@@ -45,9 +54,9 @@ const NavbarSection = (props: INavbarSectionProps & React.HTMLProps<HTMLDivEleme
 
 /** Wrappers */
 const StyledNavbar = withStyles(styles)(Navbar);
-const PropsWrappedStyledNavbar = (props: INavbarProps & React.HTMLProps<HTMLDivElement>) => <StyledNavbar {...props} />;
+const PropsWrappedStyledNavbar = (props: INavbarProps) => <StyledNavbar {...props} />;
 const StyledNavbarSection = withStyles(styles)(NavbarSection);
-const PropsWrappedStyledNavbarSection = (props: INavbarSectionProps & React.HTMLProps<HTMLDivElement>) => <StyledNavbarSection {...props} />;
+const PropsWrappedStyledNavbarSection = (props: INavbarSectionProps) => <StyledNavbarSection {...props} />;
 
 /** Exports */
 export default PropsWrappedStyledNavbar;
