@@ -9,10 +9,10 @@ export default (theme: any) => ({
 
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   section: {
-    width: '100%',
     padding: '0px 20px',
   },
   align: {
@@ -20,14 +20,25 @@ export default (theme: any) => ({
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
+
+    [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+      minWidth: '100%',
+    },
+    /** Different align logic */
     '&.left': {
       justifyContent: 'flex-start',
+      [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+        justifyContent: 'center',
+      },
     },
     '&.center': {
       justifyContent: 'center',
     },
     '&.right': {
       justifyContent: 'flex-end',
+      [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+        justifyContent: 'center',
+      },
     },
   },
 });

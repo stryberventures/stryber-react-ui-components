@@ -2,9 +2,15 @@ export default (theme: any) => ({
   container: {
     backgroundColor: theme.backgroundColorPrimary,
     display: 'flex',
+    flexWrap: 'no-wrap',
     alignItems: 'center',
     padding: 0,
     height: '100%',
+
+    flexDirection: 'row',
+    [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+      flexDirection: 'column',
+    },
   },
   item: {
     fontFamily: theme.fontFamily,
@@ -12,6 +18,9 @@ export default (theme: any) => ({
     color: theme.navbarItemColor,
     fontSize: 14,
     padding: 15,
+    [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
+      padding: 5,
+    },
     cursor: 'pointer',
     userSelect: 'none',
     textAlign: 'center',
