@@ -11,8 +11,7 @@ export default (theme: any) => ({
     cursor: 'pointer',
   },
   disabled: {
-    color: theme.buttonColorDisabled,
-    borderColor: theme.buttonColorDisabled,
+    cursor: 'auto',
   },
   /** Color variants */
   primary: {
@@ -23,6 +22,17 @@ export default (theme: any) => ({
     },
     '&:active': {
       backgroundColor: theme.buttonBackgroundColorPrimaryClick,
+    },
+    '&.disabled': {
+      backgroundColor: theme.buttonBackgroundColorSecondary,
+      color: theme.buttonColorDisabled,
+      borderColor: theme.buttonColorDisabled,
+      '&:hover': {
+        backgroundColor: theme.buttonBackgroundColorSecondary,
+      },
+      '&:active': {
+        backgroundColor: theme.buttonBackgroundColorSecondary,
+      },
     },
   },
   secondary: {
@@ -35,6 +45,34 @@ export default (theme: any) => ({
     '&:active': {
       backgroundColor: theme.buttonBackgroundColorSecondaryClick,
     },
+    '&.disabled': {
+      backgroundColor: theme.buttonBackgroundColorSecondary,
+      color: theme.buttonColorDisabled,
+      borderColor: theme.buttonColorDisabled,
+      '&:hover': {
+        backgroundColor: theme.buttonBackgroundColorSecondary,
+      },
+      '&:active': {
+        backgroundColor: theme.buttonBackgroundColorSecondary,
+      },
+    },
+  },
+  tertiary: {
+    display: 'block',
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
+    fontSize: 14,
+    border: `0px !important`,
+    padding: 11,
+    '&.disabled': {
+      color: theme.buttonColorDisabled,
+      '&:hover': {
+        textDecoration: 'none',
+      },
+    },
+    '&::after': {
+      content: '" »"',
+    }
   },
   /** Sizes */
   normal: {

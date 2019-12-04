@@ -10,8 +10,11 @@ storiesOf('Button', module)
     return (
       <Wrapper>
         <Button type="submit" variant="primary" onClick={ fakedClickHandler }>Primary</Button>
+        <Button variant="primary" disabled onClick={ fakedClickHandler }>Primary Disabled</Button>
         <Button variant="secondary" onClick={ fakedClickHandler }>Secondary</Button>
-        <Button variant="secondary" disabled onClick={ fakedClickHandler }>Disabled</Button>
+        <Button variant="secondary" disabled onClick={ fakedClickHandler }>Secondary Disabled</Button>
+        <Button variant="tertiary" onClick={ fakedClickHandler }>Tertiary</Button>
+        <Button variant="tertiary" onClick={ fakedClickHandler } disabled>Tertiary Disabled</Button>
       </Wrapper>
     );
   })
