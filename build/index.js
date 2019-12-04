@@ -152,19 +152,51 @@ var GlobalStyles = function (props) {
 };
 var WrappedGlobalStyles = withStyles__default(styles)(GlobalStyles);
 
-var theme = {
+var colors = {
+    /** Primary */
+    normal: '#007aff',
+    normalHover: '#278eff',
+    normalActive: '#4ea3ff',
+    /** Warning */
+    warning: '#ff8c00',
+    warningHover: '#ff9e27',
+    warningActive: '#ffaf4e',
+    /** Danger */
+    danger: '#ea3546',
+    dangerHover: '#ee5967',
+    dangerActive: '#f17c87',
+    /** Success */
+    success: '#60a66b',
+    successHover: '#69ab73',
+    successActive: '#82b98a',
+    /** Others */
+    black: '#1b1b1b',
+    darkerGray: '#37474f',
+    darkGray: '#54738c',
+    gray: '#90a4ae',
+    grayHover: '#a7b7bf',
+    grayActive: '#bdc9cf',
+    lightGray: '#eceff1',
+    white: '#fff',
+    whiteHover: '#f5f5f5',
+    whiteActive: '#ebebeb',
+    navyBlue: '#2a5393',
+    red: '#d0021b',
+};
+
+var defaultTheme = {
     /** Imports */
     imports: [
         "url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800')",
     ],
     /** Text color */
-    textColorPrimary: '#1d1d1b',
-    textColorSecondary: '#54738c',
-    textColorHighlight: '#fff',
+    textColorPrimary: colors.black,
+    textColorSecondary: colors.darkGray,
+    textColorHighlight: colors.white,
     /** Background colors */
-    backgroundColorPrimary: '#fff',
+    backgroundColorPrimary: colors.white,
     /** Horizontal break line */
-    hrColor: '#eceff1',
+    hrColor: colors.lightGray,
     /** Fonts */
     fontFamily: 'Open Sans, sans-serif',
     fontWeightLight: 300,
@@ -174,63 +206,63 @@ var theme = {
     fontWeightBold: 800,
     /** Button colors */
     buttonColorPrimary: '#fff',
-    buttonColorSecondary: '#007aff',
-    buttonBackgroundColorPrimary: '#007aff',
-    buttonBackgroundColorPrimaryHover: '#278eff',
-    buttonBackgroundColorPrimaryClick: '#62adff',
-    buttonBackgroundColorSecondary: '#fff',
-    buttonBackgroundColorSecondaryHover: '#f5f5f5',
-    buttonBackgroundColorSecondaryClick: '#ebebeb',
-    buttonBackgroundColorDisabled: '#d2d2d2',
-    buttonColorDisabled: '#95acbf',
+    buttonColorSecondary: colors.normal,
+    buttonBackgroundColorPrimary: colors.normal,
+    buttonBackgroundColorPrimaryHover: colors.normalHover,
+    buttonBackgroundColorPrimaryActive: colors.normalActive,
+    buttonBackgroundColorSecondary: colors.white,
+    buttonBackgroundColorSecondaryHover: colors.whiteHover,
+    buttonBackgroundColorSecondaryActive: colors.whiteActive,
+    buttonBackgroundColorDisabled: colors.lightGray,
+    buttonColorDisabled: colors.gray,
     /** Input fields */
-    inputColorIdle: '#54738c',
+    inputColorIdle: colors.darkGray,
     inputColorBorderIdle: '#cfe2f2',
     inputColorBorderIdleHover: '#deebf6',
-    inputColorBorderIdleClick: '#eef5fa',
-    inputColorHighlight: '#007aff',
-    inputColorHighlightHover: '#278eff',
-    inputColorHighlightClick: '#62adff',
+    inputColorBorderIdleActive: '#eef5fa',
+    inputColorHighlight: colors.normal,
+    inputColorHighlightHover: colors.normalHover,
+    inputColorHighlightActive: colors.normalActive,
     inputColorSpecial: '#006add',
     inputColorSpecialHover: '#0073f1',
-    inputColorSpecialClick: '#057dff',
+    inputColorSpecialActive: '#057dff',
     inputColorSelected: '#a8d4fd',
-    inputColorError: '#d0021b',
+    inputColorError: colors.red,
     inputPlaceholderColorIdle: '#95acbf',
-    inputErrorMessageColor: '#ea3546',
-    inputBackgroundColor: '#fff',
-    inputBackgroundColorHover: '#f5f5f5',
-    inputBackgroundColorClick: '#ebebeb',
-    inputBackgroundColorDisabled: '#f0f0f0',
+    inputErrorMessageColor: colors.danger,
+    inputBackgroundColor: colors.white,
+    inputBackgroundColorHover: colors.whiteHover,
+    inputBackgroundColorActive: colors.whiteActive,
+    inputBackgroundColorDisabled: colors.lightGray,
     /** Navbar */
-    navbarItemColor: '#90a4ae',
-    navbarItemColorHover: '#a7b7bf',
-    navbarItemColorClick: '#bdc9cf',
-    navbarItemColorHighlight: '#007aff',
-    navbarItemColorHighlightHover: '#278eff',
-    navbarItemColorHighlightClick: '#62adff',
+    navbarItemColor: colors.gray,
+    navbarItemColorHover: colors.grayHover,
+    navbarItemColorActive: colors.grayActive,
+    navbarItemColorHighlight: colors.normal,
+    navbarItemColorHighlightHover: colors.normalHover,
+    navbarItemColorHighlightActive: colors.normalActive,
     /** Sidebar */
-    sidebarSectionColor: '#1b1b1b',
-    sidebarItemColor: '#90a4ae',
-    sidebarItemColorHover: '#a7b7bf',
-    sidebarItemColorClick: '#bdc9cf',
-    sidebarItemColorSelected: '#1b1b1b',
-    sidebarItemColorHighlight: '#007aff',
-    sidebarItemColorHighlightHover: '#278eff',
-    sidebarItemColorHighlightClick: '#62adff',
+    sidebarSectionColor: colors.black,
+    sidebarItemColor: colors.gray,
+    sidebarItemColorHover: colors.grayHover,
+    sidebarItemColorActive: colors.grayActive,
+    sidebarItemColorSelected: colors.black,
+    sidebarItemColorHighlight: colors.normal,
+    sidebarItemColorHighlightHover: colors.normalHover,
+    sidebarItemColorHighlightActive: colors.normalActive,
     /** Badges */
-    badgePrimaryBackgroundColor: '#2a5393',
+    badgePrimaryBackgroundColor: colors.navyBlue,
     /** Table */
     tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
     tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
-    tableBackgroundColor: '#eceff1',
-    tableBorderColor: '#eceff1',
-    tableHeaderTextColor: '#37474f',
+    tableBackgroundColor: colors.lightGray,
+    tableBorderColor: colors.lightGray,
+    tableHeaderTextColor: colors.darkerGray,
     /** Pagination */
-    paginationBackgroundColor: '#eceff1',
-    paginationBackgroundColorActive: '#007aff',
-    paginationTextColor: '#54738c',
-    paginationTextColorActive: '#fff',
+    paginationBackgroundColor: colors.lightGray,
+    paginationBackgroundColorActive: colors.normal,
+    paginationTextColor: colors.darkGray,
+    paginationTextColorActive: colors.white,
     /** Grid */
     gridColumnGap: 20,
     gridColumns: 12,
@@ -246,8 +278,8 @@ var theme = {
 
 /** Main component */
 var ThemeProvider = function (props) {
-    var theme$1 = props.theme, children = props.children;
-    return (React.createElement(withStyles.ThemeProvider, { theme: __assign({}, theme, { theme: theme$1 }) },
+    var _a = props.theme, theme = _a === void 0 ? {} : _a, children = props.children;
+    return (React.createElement(withStyles.ThemeProvider, { theme: __assign({}, defaultTheme, theme) },
         React.createElement(WrappedGlobalStyles, null, children)));
 };
 
@@ -395,13 +427,13 @@ var styles$1 = (function (theme) { return ({
             backgroundColor: theme.inputBackgroundColorHover,
         },
         '&:active $input ~ $checkmark': {
-            backgroundColor: theme.inputBackgroundColorClick,
+            backgroundColor: theme.inputBackgroundColorActive,
         },
         '&:hover $input:checked ~ $checkmark': {
             backgroundColor: theme.inputColorHighlightHover,
         },
         '&:active $input:checked ~ $checkmark': {
-            backgroundColor: theme.inputColorHighlightClick,
+            backgroundColor: theme.inputColorHighlightActive,
         },
     },
     input: {
@@ -843,8 +875,7 @@ var styles$4 = (function (theme) { return ({
         cursor: 'pointer',
     },
     disabled: {
-        color: theme.buttonColorDisabled,
-        borderColor: theme.buttonColorDisabled,
+        cursor: 'auto',
     },
     /** Color variants */
     primary: {
@@ -854,7 +885,18 @@ var styles$4 = (function (theme) { return ({
             backgroundColor: theme.buttonBackgroundColorPrimaryHover,
         },
         '&:active': {
-            backgroundColor: theme.buttonBackgroundColorPrimaryClick,
+            backgroundColor: theme.buttonBackgroundColorPrimaryActive,
+        },
+        '&.disabled': {
+            backgroundColor: theme.buttonBackgroundColorSecondary,
+            color: theme.buttonColorDisabled,
+            borderColor: theme.buttonColorDisabled,
+            '&:hover': {
+                backgroundColor: theme.buttonBackgroundColorSecondary,
+            },
+            '&:active': {
+                backgroundColor: theme.buttonBackgroundColorSecondary,
+            },
         },
     },
     secondary: {
@@ -865,8 +907,43 @@ var styles$4 = (function (theme) { return ({
             backgroundColor: theme.buttonBackgroundColorSecondaryHover,
         },
         '&:active': {
-            backgroundColor: theme.buttonBackgroundColorSecondaryClick,
+            backgroundColor: theme.buttonBackgroundColorSecondaryActive,
         },
+        '&.disabled': {
+            backgroundColor: theme.buttonBackgroundColorSecondary,
+            color: theme.buttonColorDisabled,
+            borderColor: theme.buttonColorDisabled,
+            '&:hover': {
+                backgroundColor: theme.buttonBackgroundColorSecondary,
+            },
+            '&:active': {
+                backgroundColor: theme.buttonBackgroundColorSecondary,
+            },
+        },
+    },
+    tertiary: {
+        display: 'block',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        fontSize: 14,
+        border: "0px !important",
+        color: theme.buttonBackgroundColorPrimary,
+        padding: 11,
+        '&:hover': {
+            color: theme.buttonBackgroundColorPrimaryHover,
+        },
+        '&:active': {
+            color: theme.buttonBackgroundColorPrimaryActive,
+        },
+        '&.disabled': {
+            color: theme.buttonColorDisabled,
+            '&:hover': {
+                textDecoration: 'none',
+            },
+        },
+        '&::after': {
+            content: '" »"',
+        }
     },
     /** Sizes */
     normal: {},
@@ -881,11 +958,18 @@ var styles$4 = (function (theme) { return ({
 /** Main component */
 var Button = function (props) {
     var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant"]);
-    return (React.createElement("button", __assign({}, rest, { disabled: disabled, className: classnames([
+    var BtnComponent = function (_a) {
+        var children = _a.children, rest = __rest(_a, ["children"]);
+        return (variant === 'tertiary'
+            ? React.createElement("a", __assign({}, rest), children)
+            : React.createElement("button", __assign({}, rest), children));
+    };
+    return (React.createElement(BtnComponent, __assign({}, rest, { disabled: disabled, className: classnames([
             classes.root,
+            classes[variant],
             classes[sizeVariant],
-            !disabled ? classes[variant] : null,
-            disabled ? classes.disabled : null,
+            disabled && classes.disabled,
+            disabled && 'disabled',
         ]), onClick: onClick }), children));
 };
 /** Wrappings */
@@ -1030,26 +1114,26 @@ var styles$6 = (function (theme) { return ({
             backgroundColor: theme.inputBackgroundColorHover,
         },
         '&:active $input ~ $checkmark': {
-            backgroundColor: theme.inputBackgroundColorClick,
+            backgroundColor: theme.inputBackgroundColorActive,
         },
         '&:hover $input:checked ~ $checkmark': {
             backgroundColor: theme.inputColorHighlightHover,
         },
         '&:active $input:checked ~ $checkmark': {
-            backgroundColor: theme.inputColorHighlightClick,
+            backgroundColor: theme.inputColorHighlightActive,
         },
         /** Switch */
         '&:hover $input ~ $switch': {
             backgroundColor: theme.inputColorBorderIdleHover,
         },
         '&:active $input ~ $switch': {
-            backgroundColor: theme.inputColorBorderIdleClick,
+            backgroundColor: theme.inputColorBorderIdleActive,
         },
         '&:hover $input:checked ~ $switch': {
             backgroundColor: theme.inputColorHighlightHover,
         },
         '&:active $input:checked ~ $switch': {
-            backgroundColor: theme.inputColorHighlightClick,
+            backgroundColor: theme.inputColorHighlightActive,
         },
     },
     /** Input */
@@ -1582,7 +1666,7 @@ var styles$9 = (function (theme) { return ({
             backgroundColor: theme.inputColorSpecialHover,
         },
         '&:active': {
-            backgroundColor: theme.inputColorSpecialClick,
+            backgroundColor: theme.inputColorSpecialActive,
         },
     },
     closeIcon: {
@@ -1733,10 +1817,10 @@ var styles$a = (function (theme) { return ({
         border: '0',
         backgroundColor: 'rgba(0,0,0,0)',
         transition: '0.5s',
-        color: '#54738c',
-        fontFamily: 'Work Sans',
-        fontSize: '14px',
-        fontWeight: '500',
+        color: theme.inputColorIdle,
+        fontFamily: theme.fontFamily,
+        fontSize: 14,
+        fontWeight: theme.fontWeightMedium,
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
@@ -1776,6 +1860,14 @@ var styles$b = (function (theme) { return ({
         letterSpacing: '0.25px',
         color: theme.inputColorIdle,
     },
+    fileLogo: {
+        fill: theme.inputColorIdle,
+        width: 14,
+    },
+    closeLogo: {
+        fill: theme.textColorHighlight,
+        width: 10,
+    },
     closeButton: {
         display: 'flex',
         alignItems: 'center',
@@ -1793,10 +1885,10 @@ var SelectedFile = function (_a) {
     var classes = _a.classes, fileName = _a.fileName, removeFile = _a.removeFile;
     return (React.createElement("li", { className: classes.selectedFile },
         React.createElement("span", { className: classes.file },
-            React.createElement(File, { fill: theme.inputColorIdle, viewBox: "0 0 14 18", width: 14 }),
+            React.createElement(File, { className: classes.fileLogo, viewBox: "0 0 14 18" }),
             React.createElement("span", { className: classes.fileName }, fileName)),
         React.createElement("span", { className: classes.closeButton, onClick: function () { return removeFile(fileName); } },
-            React.createElement(Close, { fill: theme.textColorHighlight, width: 10 }))));
+            React.createElement(Close, { className: classes.closeLogo }))));
 };
 /** Wrappers */
 var StyledSelectedFile = withStyles__default(styles$b)(SelectedFile);
@@ -2651,18 +2743,53 @@ var index$i = /*#__PURE__*/Object.freeze({
     Table: StyledTable$1
 });
 
-var styles$k = (function (theme) { return ({
-    navbar: {
-        position: 'relative',
-        minHeight: 56,
-        backgroundColor: theme.backgroundColorPrimary,
-        width: '100%',
-        boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
-        display: 'flex',
-        alignItems: 'center',
-    },
-    section: {},
-}); });
+var styles$k = (function (theme) {
+    var _a, _b, _c;
+    return ({
+        navbar: {
+            position: 'relative',
+            minHeight: 56,
+            backgroundColor: theme.backgroundColorPrimary,
+            width: '100%',
+            boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+        },
+        section: {
+            padding: '0px 20px',
+        },
+        align: (_a = {
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                flex: 1
+            },
+            _a["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
+                minWidth: '100%',
+            },
+            /** Different align logic */
+            _a['&.left'] = (_b = {
+                    justifyContent: 'flex-start'
+                },
+                _b["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
+                    justifyContent: 'center',
+                },
+                _b),
+            _a['&.center'] = {
+                justifyContent: 'center',
+            },
+            _a['&.right'] = (_c = {
+                    justifyContent: 'flex-end'
+                },
+                _c["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
+                    justifyContent: 'center',
+                },
+                _c),
+            _a),
+    });
+});
 
 /** Main component */
 var Navbar = function (props) {
@@ -2670,8 +2797,13 @@ var Navbar = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.navbar, className) }, rest), children));
 };
 var NavbarSection = function (props) {
-    var className = props.className, children = props.children, classes = props.classes, rest = __rest(props, ["className", "children", "classes"]);
-    return (React.createElement("div", __assign({ className: classnames(classes.section, className) }, rest), children));
+    var className = props.className, children = props.children, classes = props.classes, align = props.align, rest = __rest(props, ["className", "children", "classes", "align"]);
+    return (React.createElement("div", __assign({ className: classnames([
+            classes.section,
+            align && classes.align,
+            align,
+            className,
+        ]) }, rest), children));
 };
 /** Wrappers */
 var StyledNavbar = withStyles__default(styles$k)(Navbar);
@@ -2688,48 +2820,61 @@ var index$j = /*#__PURE__*/Object.freeze({
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$l = (function (theme) { return ({
-    container: {
-        backgroundColor: theme.backgroundColorPrimary,
-        display: 'flex',
-        alignItems: 'center',
-        padding: 0,
-        height: '100%',
-    },
-    item: {
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
-        color: theme.navbarItemColor,
-        fontSize: 14,
-        padding: 15,
-        cursor: 'pointer',
-        userSelect: 'none',
-        textAlign: 'center',
-        verticalAlign: 'middle',
-        transition: '0.2s',
-        '&:hover': {
-            color: theme.navbarItemColorHover,
+var styles$l = (function (theme) {
+    var _a, _b;
+    return ({
+        container: (_a = {
+                backgroundColor: theme.backgroundColorPrimary,
+                display: 'flex',
+                flexWrap: 'no-wrap',
+                alignItems: 'center',
+                padding: 0,
+                height: '100%',
+                flexDirection: 'row'
+            },
+            _a["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
+                flexDirection: 'column',
+            },
+            _a),
+        item: (_b = {
+                fontFamily: theme.fontFamily,
+                fontWeight: theme.fontWeightMedium,
+                color: theme.navbarItemColor,
+                fontSize: 14,
+                padding: 15
+            },
+            _b["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
+                padding: 5,
+            },
+            _b.cursor = 'pointer',
+            _b.userSelect = 'none',
+            _b.textAlign = 'center',
+            _b.verticalAlign = 'middle',
+            _b.transition = '0.2s',
+            _b['&:hover'] = {
+                color: theme.navbarItemColorHover,
+            },
+            _b['&:active'] = {
+                color: theme.navbarItemColorActive,
+            },
+            _b.margin = 0,
+            _b.borderTop = '3px solid rgba(0,0,0,0)',
+            _b.borderBottom = '3px solid rgba(0,0,0,0)',
+            _b),
+        itemSelected: {
+            color: theme.navbarItemColorHighlight,
+            '&:hover': {
+                color: theme.navbarItemColorHighlightHover,
+            },
+            '&:active': {
+                color: theme.navbarItemColorHighlightActive,
+            },
+            '&.underlined': {
+                borderBottom: "3px solid " + theme.navbarItemColorHighlight
+            },
         },
-        '&:active': {
-            color: theme.navbarItemColorClick,
-        },
-        margin: 0,
-        borderTop: '3px solid rgba(0,0,0,0)',
-        borderBottom: '3px solid rgba(0,0,0,0)',
-    },
-    itemSelected: {
-        color: theme.navbarItemColorHighlight,
-        '&:hover': {
-            color: theme.navbarItemColorHighlightHover,
-        },
-        '&:active': {
-            color: theme.navbarItemColorHighlightClick,
-        },
-        '&.underlined': {
-            borderBottom: "3px solid " + theme.navbarItemColorHighlight
-        },
-    },
-}); });
+    });
+});
 
 /** Creating form context with default values */
 var defaultNavbarNavigationContextValues = {
@@ -2805,7 +2950,7 @@ var styles$m = (function (theme) { return ({
             color: theme.sidebarItemColorHover,
         },
         '&:active': {
-            color: theme.sidebarItemColorClick,
+            color: theme.sidebarItemColorActive,
         },
     },
     sectionSelected: {
@@ -2815,7 +2960,7 @@ var styles$m = (function (theme) { return ({
             color: theme.sidebarItemColorHighlightHover,
         },
         '&:active': {
-            color: theme.sidebarItemColorHighlightClick,
+            color: theme.sidebarItemColorHighlightActive,
         },
     },
     sectionHeader: {
@@ -2875,7 +3020,7 @@ var styles$m = (function (theme) { return ({
             color: theme.sidebarItemColorHover,
         },
         '&:active': {
-            color: theme.sidebarItemColorClick,
+            color: theme.sidebarItemColorActive,
         },
     },
     itemSelected: {
@@ -3069,4 +3214,6 @@ exports.SidebarNavigationElements = index$l;
 exports.Table = StyledTable$1;
 exports.TableElements = index$i;
 exports.ThemeProvider = ThemeProvider;
+exports.colors = colors;
+exports.theme = defaultTheme;
 //# sourceMappingURL=index.js.map

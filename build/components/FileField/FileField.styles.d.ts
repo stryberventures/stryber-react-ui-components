@@ -19,10 +19,10 @@ declare const _default: (theme: any) => {
         border: string;
         backgroundColor: string;
         transition: string;
-        color: string;
-        fontFamily: string;
-        fontSize: string;
-        fontWeight: string;
+        color: any;
+        fontFamily: any;
+        fontSize: number;
+        fontWeight: any;
         textOverflow: string;
         whiteSpace: string;
         overflow: string;

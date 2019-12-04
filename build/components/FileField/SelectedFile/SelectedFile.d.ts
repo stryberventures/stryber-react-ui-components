@@ -30,6 +30,14 @@ declare const StyledSelectedFile: React.ComponentType<Pick<ISelectedFileProps & 
         letterSpacing: string;
         color: any;
     };
+    fileLogo: {
+        fill: any;
+        width: number;
+    };
+    closeLogo: {
+        fill: any;
+        width: number;
+    };
     closeButton: {
         display: string;
         alignItems: string;
@@ -42,7 +50,7 @@ declare const StyledSelectedFile: React.ComponentType<Pick<ISelectedFileProps & 
         cursor: string;
     };
 }>, "fileName" | "removeFile"> & {
-    classes?: Partial<string & Record<"selectedFile" | "file" | "fileName" | "closeButton", string>> | undefined;
+    classes?: Partial<string & Record<"selectedFile" | "file" | "fileName" | "fileLogo" | "closeLogo" | "closeButton", string>> | undefined;
 }>;
 export default StyledSelectedFile;
 /** Exports */

@@ -21,47 +21,47 @@ declare const _default: {
     buttonColorSecondary: string;
     buttonBackgroundColorPrimary: string;
     buttonBackgroundColorPrimaryHover: string;
-    buttonBackgroundColorPrimaryClick: string;
+    buttonBackgroundColorPrimaryActive: string;
     buttonBackgroundColorSecondary: string;
     buttonBackgroundColorSecondaryHover: string;
-    buttonBackgroundColorSecondaryClick: string;
+    buttonBackgroundColorSecondaryActive: string;
     buttonBackgroundColorDisabled: string;
     buttonColorDisabled: string;
     /** Input fields */
     inputColorIdle: string;
     inputColorBorderIdle: string;
     inputColorBorderIdleHover: string;
-    inputColorBorderIdleClick: string;
+    inputColorBorderIdleActive: string;
     inputColorHighlight: string;
     inputColorHighlightHover: string;
-    inputColorHighlightClick: string;
+    inputColorHighlightActive: string;
     inputColorSpecial: string;
     inputColorSpecialHover: string;
-    inputColorSpecialClick: string;
+    inputColorSpecialActive: string;
     inputColorSelected: string;
     inputColorError: string;
     inputPlaceholderColorIdle: string;
     inputErrorMessageColor: string;
     inputBackgroundColor: string;
     inputBackgroundColorHover: string;
-    inputBackgroundColorClick: string;
+    inputBackgroundColorActive: string;
     inputBackgroundColorDisabled: string;
     /** Navbar */
     navbarItemColor: string;
     navbarItemColorHover: string;
-    navbarItemColorClick: string;
+    navbarItemColorActive: string;
     navbarItemColorHighlight: string;
     navbarItemColorHighlightHover: string;
-    navbarItemColorHighlightClick: string;
+    navbarItemColorHighlightActive: string;
     /** Sidebar */
     sidebarSectionColor: string;
     sidebarItemColor: string;
     sidebarItemColorHover: string;
-    sidebarItemColorClick: string;
+    sidebarItemColorActive: string;
     sidebarItemColorSelected: string;
     sidebarItemColorHighlight: string;
     sidebarItemColorHighlightHover: string;
-    sidebarItemColorHighlightClick: string;
+    sidebarItemColorHighlightActive: string;
     /** Badges */
     badgePrimaryBackgroundColor: string;
     /** Table */
