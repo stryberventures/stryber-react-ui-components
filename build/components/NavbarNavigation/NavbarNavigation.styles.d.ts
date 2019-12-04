@@ -1,12 +1,16 @@
 declare const _default: (theme: any) => {
     container: {
+        [x: string]: any;
         backgroundColor: any;
         display: string;
+        flexWrap: string;
         alignItems: string;
         padding: number;
         height: string;
+        flexDirection: string;
     };
     item: {
+        [x: string]: any;
         fontFamily: any;
         fontWeight: any;
         color: any;

@@ -11,8 +11,7 @@ declare const _default: (theme: any) => {
         cursor: string;
     };
     disabled: {
-        color: any;
-        borderColor: any;
+        cursor: string;
     };
     /** Color variants */
     primary: {
@@ -24,6 +23,17 @@ declare const _default: (theme: any) => {
         '&:active': {
             backgroundColor: any;
         };
+        '&.disabled': {
+            backgroundColor: any;
+            color: any;
+            borderColor: any;
+            '&:hover': {
+                backgroundColor: any;
+            };
+            '&:active': {
+                backgroundColor: any;
+            };
+        };
     };
     secondary: {
         color: any;
@@ -34,6 +44,41 @@ declare const _default: (theme: any) => {
         };
         '&:active': {
             backgroundColor: any;
+        };
+        '&.disabled': {
+            backgroundColor: any;
+            color: any;
+            borderColor: any;
+            '&:hover': {
+                backgroundColor: any;
+            };
+            '&:active': {
+                backgroundColor: any;
+            };
+        };
+    };
+    tertiary: {
+        display: string;
+        fontFamily: any;
+        fontWeight: any;
+        fontSize: number;
+        border: string;
+        color: any;
+        padding: number;
+        '&:hover': {
+            color: any;
+        };
+        '&:active': {
+            color: any;
+        };
+        '&.disabled': {
+            color: any;
+            '&:hover': {
+                textDecoration: string;
+            };
+        };
+        '&::after': {
+            content: string;
         };
     };
     /** Sizes */

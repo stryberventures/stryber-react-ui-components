@@ -9,7 +9,7 @@ export interface IButtonProps {
   onClick?: (e: React.SyntheticEvent) => void;
   disabled?: boolean;
   children: any;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   sizeVariant?: 'normal' | 'mini';
 }
 
@@ -24,19 +24,25 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
     variant = 'primary',
     ...rest
   } = props;
+  const BtnComponent = ({ children, ...rest }: any) => (
+    variant === 'tertiary'
+      ? <a {...rest}>{ children }</a>
+      : <button {...rest}>{ children }</button>
+  );
   return (
-    <button
+    <BtnComponent
       { ...rest }
       disabled={disabled}
       className={ classNames([
         classes.root,
+        classes[variant],
         classes[sizeVariant],
-        !disabled ? classes[variant] : null,
-        disabled ? classes.disabled : null,
+        disabled && classes.disabled,
+        disabled && 'disabled',
       ]) }
       onClick={ onClick }>
       { children }
-    </button>
+    </BtnComponent>
   );
 };
 

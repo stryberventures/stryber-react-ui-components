@@ -24,26 +24,26 @@ export default (theme: any) => ({
       backgroundColor: theme.inputBackgroundColorHover,
     },
     '&:active $input ~ $checkmark': {
-      backgroundColor: theme.inputBackgroundColorClick,
+      backgroundColor: theme.inputBackgroundColorActive,
     },
     '&:hover $input:checked ~ $checkmark': {
       backgroundColor: theme.inputColorHighlightHover,
     },
     '&:active $input:checked ~ $checkmark': {
-      backgroundColor: theme.inputColorHighlightClick,
+      backgroundColor: theme.inputColorHighlightActive,
     },
     /** Switch */
     '&:hover $input ~ $switch': {
       backgroundColor: theme.inputColorBorderIdleHover,
     },
     '&:active $input ~ $switch': {
-      backgroundColor: theme.inputColorBorderIdleClick,
+      backgroundColor: theme.inputColorBorderIdleActive,
     },
     '&:hover $input:checked ~ $switch': {
       backgroundColor: theme.inputColorHighlightHover,
     },
     '&:active $input:checked ~ $switch': {
-      backgroundColor: theme.inputColorHighlightClick,
+      backgroundColor: theme.inputColorHighlightActive,
     },
   },
   /** Input */

@@ -19,13 +19,13 @@ export default (theme: any) => ({
       backgroundColor: theme.inputBackgroundColorHover,
     },
     '&:active $input ~ $checkmark': {
-      backgroundColor: theme.inputBackgroundColorClick,
+      backgroundColor: theme.inputBackgroundColorActive,
     },
     '&:hover $input:checked ~ $checkmark': {
       backgroundColor: theme.inputColorHighlightHover,
     },
     '&:active $input:checked ~ $checkmark': {
-      backgroundColor: theme.inputColorHighlightClick,
+      backgroundColor: theme.inputColorHighlightActive,
     },
   },
   input: {

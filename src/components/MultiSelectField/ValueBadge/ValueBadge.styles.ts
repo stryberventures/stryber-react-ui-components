@@ -37,7 +37,7 @@ export default (theme: any) => ({
       backgroundColor: theme.inputColorSpecialHover,
     },
     '&:active': {
-      backgroundColor: theme.inputColorSpecialClick,
+      backgroundColor: theme.inputColorSpecialActive,
     },
   },
   closeIcon: {

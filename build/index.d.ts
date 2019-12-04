@@ -3,6 +3,9 @@
  */
 /** General */
 import ThemeProvider from './components/ThemeProvider';
+/** Theming */
+import colors from './styles/colors';
+import theme from './styles/theme';
 /** Forms */
 import Form from './components/Form';
 import * as FormElements from './components/Form';
@@ -52,4 +55,4 @@ import * as SidebarNavigationElements from './components/SidebarNavigation';
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
 /** Exports */
-export { ThemeProvider, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, };
+export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, };

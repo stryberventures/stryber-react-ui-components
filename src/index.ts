@@ -3,6 +3,11 @@
  */
 /** General */
 import ThemeProvider from './components/ThemeProvider';
+
+/** Theming */
+import colors from './styles/colors';
+import theme from './styles/theme';
+
 /** Forms */
 import Form from './components/Form';
 import * as FormElements from './components/Form';
@@ -33,11 +38,14 @@ import * as SearchFieldElements from './components/SearchField';
 
 import SearchBox from './components/SearchBox';
 import * as SearchBoxElements from './components/SearchBox';
+
 /** Active elements */
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
+
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
+
 /** Layout */
 import Grid from './components/Grid';
 import * as GridElements from './components/Grid'
@@ -47,11 +55,14 @@ import * as ContainerElements from './components/Container'
 
 import Card from './components/Card';
 import * as CardElements from './components/Card';
+
 /** Table */
 import Table from './components/Table';
 import * as TableElements from './components/Table';
+
 /** Icons */
 import * as Icons from './components/Icons';
+
 /** Navbar */
 import Navbar from './components/Navbar';
 import * as NavbarElements from './components/Navbar';
@@ -68,6 +79,8 @@ import * as BadgeElements from './components/Badge';
 /** Exports */
 export {
   ThemeProvider,
+  colors,
+  theme,
   Form, FormElements,
   RadioField, RadioFieldElements,
   PasswordField, PasswordFieldElements,

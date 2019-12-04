@@ -22,6 +22,14 @@ declare const _default: (theme: any) => {
         letterSpacing: string;
         color: any;
     };
+    fileLogo: {
+        fill: any;
+        width: number;
+    };
+    closeLogo: {
+        fill: any;
+        width: number;
+    };
     closeButton: {
         display: string;
         alignItems: string;

@@ -21,7 +21,7 @@ export default (theme: any) => ({
       color: theme.sidebarItemColorHover,
     },
     '&:active': {
-      color: theme.sidebarItemColorClick,
+      color: theme.sidebarItemColorActive,
     },
   },
   sectionSelected: {
@@ -31,7 +31,7 @@ export default (theme: any) => ({
       color: theme.sidebarItemColorHighlightHover,
     },
     '&:active': {
-      color: theme.sidebarItemColorHighlightClick,
+      color: theme.sidebarItemColorHighlightActive,
     },
   },
   sectionHeader: {
@@ -91,7 +91,7 @@ export default (theme: any) => ({
       color: theme.sidebarItemColorHover,
     },
     '&:active': {
-      color: theme.sidebarItemColorClick,
+      color: theme.sidebarItemColorActive,
     },
   },
   itemSelected: {

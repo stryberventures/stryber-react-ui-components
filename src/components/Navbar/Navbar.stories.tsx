@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Navbar } from './Navbar';
+import { Navbar, NavbarSection } from './Navbar';
 import { NavigationContainer, NavigationRoute } from '../NavbarNavigation';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
@@ -77,6 +77,28 @@ storiesOf('Navbar', module)
     return (
       <Wrapper>
         <NavbarRoutesWithExternalControl />
+      </Wrapper>
+    );
+  })
+  .add('Align', () => {
+    return (
+      <Wrapper>
+        <Navbar>
+          <NavbarSection align="left">Site LOGO</NavbarSection>
+          <NavbarSection align="center">
+
+          </NavbarSection>
+          <NavbarSection align="right">
+            <NavigationContainer
+              onRouteChange={(value: any) => console.log('Route changed!', value)}
+              initialRoute="hello"
+            >
+              <NavigationRoute route="hello">Hello</NavigationRoute>
+              <NavigationRoute route="world">World</NavigationRoute>
+              <NavigationRoute route="!">!</NavigationRoute>
+            </NavigationContainer>
+          </NavbarSection>
+      </Navbar>
       </Wrapper>
     );
   });
