@@ -21,7 +21,7 @@ export default (theme: any) => ({
       backgroundColor: theme.buttonBackgroundColorPrimaryHover,
     },
     '&:active': {
-      backgroundColor: theme.buttonBackgroundColorPrimaryClick,
+      backgroundColor: theme.buttonBackgroundColorPrimaryActive,
     },
     '&.disabled': {
       backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -43,7 +43,7 @@ export default (theme: any) => ({
       backgroundColor: theme.buttonBackgroundColorSecondaryHover,
     },
     '&:active': {
-      backgroundColor: theme.buttonBackgroundColorSecondaryClick,
+      backgroundColor: theme.buttonBackgroundColorSecondaryActive,
     },
     '&.disabled': {
       backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -63,7 +63,14 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightMedium,
     fontSize: 14,
     border: `0px !important`,
+    color: theme.buttonBackgroundColorPrimary,
     padding: 11,
+    '&:hover': {
+      color: theme.buttonBackgroundColorPrimaryHover,
+    },
+    '&:active': {
+      color: theme.buttonBackgroundColorPrimaryActive,
+    },
     '&.disabled': {
       color: theme.buttonColorDisabled,
       '&:hover': {

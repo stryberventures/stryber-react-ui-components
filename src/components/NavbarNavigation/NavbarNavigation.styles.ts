@@ -30,7 +30,7 @@ export default (theme: any) => ({
       color: theme.navbarItemColorHover,
     },
     '&:active': {
-      color: theme.navbarItemColorClick,
+      color: theme.navbarItemColorActive,
     },
     margin: 0,
     borderTop: '3px solid rgba(0,0,0,0)',
@@ -42,7 +42,7 @@ export default (theme: any) => ({
       color: theme.navbarItemColorHighlightHover,
     },
     '&:active': {
-      color: theme.navbarItemColorHighlightClick,
+      color: theme.navbarItemColorHighlightActive,
     },
     '&.underlined': {
       borderBottom: `3px solid ${theme.navbarItemColorHighlight}`
