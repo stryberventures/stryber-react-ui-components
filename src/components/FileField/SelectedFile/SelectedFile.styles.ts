@@ -25,6 +25,16 @@ export default (theme: any) => ({
     color: theme.inputColorIdle,
   },
 
+  fileLogo: {
+    fill: theme.inputColorIdle,
+    width: 14,
+  },
+
+  closeLogo: {
+    fill: theme.textColorHighlight,
+    width: 10,
+  },
+
   closeButton: {
     display: 'flex',
     alignItems: 'center',

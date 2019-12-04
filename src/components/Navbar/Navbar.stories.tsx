@@ -86,6 +86,9 @@ storiesOf('Navbar', module)
         <Navbar>
           <NavbarSection align="left">Site LOGO</NavbarSection>
           <NavbarSection align="center">
+
+          </NavbarSection>
+          <NavbarSection align="right">
             <NavigationContainer
               onRouteChange={(value: any) => console.log('Route changed!', value)}
               initialRoute="hello"
@@ -95,7 +98,6 @@ storiesOf('Navbar', module)
               <NavigationRoute route="!">!</NavigationRoute>
             </NavigationContainer>
           </NavbarSection>
-          <NavbarSection align="right">#</NavbarSection>
       </Navbar>
       </Wrapper>
     );

@@ -29,7 +29,7 @@ const SidebarExternalControl = (props: any) => {
           <SidebarNavigationSection
             route="section2"
             title="Section 2"
-            description="Empty section"
+            description=""
           />
           <SidebarNavigationSection
             route="section3"
@@ -41,6 +41,11 @@ const SidebarExternalControl = (props: any) => {
             <SidebarNavigationRoute route="here">Here</SidebarNavigationRoute>
           </SidebarNavigationSection>
         </SidebarNavigationContainer>
+        <SidebarNavigationSection
+          route="section4"
+          title="Section 4"
+          description="sdfsdfdsfsd"
+        />
       </Card>
     </Wrapper>
   );

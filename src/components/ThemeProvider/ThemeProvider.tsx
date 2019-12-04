@@ -12,9 +12,9 @@ export interface IThemeProviderProps {
 
 /** Main component */
 const ThemeProvider = (props: IThemeProviderProps) => {
-  const { theme, children } = props;
+  const { theme = {}, children } = props;
   return (
-    <JssThemeProvider theme={{ ...defaultTheme, theme }}>
+    <JssThemeProvider theme={{ ...defaultTheme, ...theme }}>
       <GlobalStyles>
         { children }
       </GlobalStyles>

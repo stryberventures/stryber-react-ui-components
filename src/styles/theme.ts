@@ -1,3 +1,5 @@
+import colors from './colors';
+
 export default {
   /** Imports */
   imports: [
@@ -5,15 +7,15 @@ export default {
   ],
 
   /** Text color */
-  textColorPrimary: '#1d1d1b',
-  textColorSecondary: '#54738c',
-  textColorHighlight: '#fff',
+  textColorPrimary: colors.black,
+  textColorSecondary: colors.darkGray,
+  textColorHighlight: colors.white,
 
   /** Background colors */
-  backgroundColorPrimary: '#fff',
+  backgroundColorPrimary: colors.white,
 
   /** Horizontal break line */
-  hrColor: '#eceff1',
+  hrColor: colors.lightGray,
 
   /** Fonts */
   fontFamily: 'Open Sans, sans-serif',
@@ -25,70 +27,70 @@ export default {
 
   /** Button colors */
   buttonColorPrimary: '#fff',
-  buttonColorSecondary: '#007aff',
+  buttonColorSecondary: colors.normal,
 
-  buttonBackgroundColorPrimary: '#007aff',
-  buttonBackgroundColorPrimaryHover: '#278eff',
-  buttonBackgroundColorPrimaryClick: '#62adff',
-  buttonBackgroundColorSecondary: '#fff',
-  buttonBackgroundColorSecondaryHover: '#f5f5f5',
-  buttonBackgroundColorSecondaryClick: '#ebebeb',
-  buttonBackgroundColorDisabled: '#d2d2d2',
-  buttonColorDisabled: '#95acbf',
+  buttonBackgroundColorPrimary: colors.normal,
+  buttonBackgroundColorPrimaryHover: colors.normalHover,
+  buttonBackgroundColorPrimaryClick: colors.normalClick,
+  buttonBackgroundColorSecondary: colors.white,
+  buttonBackgroundColorSecondaryHover: colors.whiteHover,
+  buttonBackgroundColorSecondaryClick: colors.whiteClick,
+  buttonBackgroundColorDisabled: colors.lightGray,
+  buttonColorDisabled: colors.gray,
 
   /** Input fields */
-  inputColorIdle: '#54738c',
+  inputColorIdle: colors.darkGray,
   inputColorBorderIdle: '#cfe2f2',
   inputColorBorderIdleHover: '#deebf6',
   inputColorBorderIdleClick: '#eef5fa',
-  inputColorHighlight: '#007aff',
-  inputColorHighlightHover: '#278eff',
-  inputColorHighlightClick: '#62adff',
+  inputColorHighlight: colors.normal,
+  inputColorHighlightHover: colors.normalHover,
+  inputColorHighlightClick: colors.normalClick,
   inputColorSpecial: '#006add',
   inputColorSpecialHover: '#0073f1',
   inputColorSpecialClick: '#057dff',
   inputColorSelected: '#a8d4fd',
-  inputColorError: '#d0021b',
+  inputColorError: colors.red,
   inputPlaceholderColorIdle: '#95acbf',
-  inputErrorMessageColor: '#ea3546',
-  inputBackgroundColor: '#fff',
-  inputBackgroundColorHover: '#f5f5f5',
-  inputBackgroundColorClick: '#ebebeb',
-  inputBackgroundColorDisabled: '#f0f0f0',
+  inputErrorMessageColor: colors.danger,
+  inputBackgroundColor: colors.white,
+  inputBackgroundColorHover: colors.whiteHover,
+  inputBackgroundColorClick: colors.whiteClick,
+  inputBackgroundColorDisabled: colors.lightGray,
 
   /** Navbar */
-  navbarItemColor: '#90a4ae',
-  navbarItemColorHover: '#a7b7bf',
-  navbarItemColorClick: '#bdc9cf',
-  navbarItemColorHighlight: '#007aff',
-  navbarItemColorHighlightHover: '#278eff',
-  navbarItemColorHighlightClick: '#62adff',
+  navbarItemColor: colors.gray,
+  navbarItemColorHover: colors.grayHover,
+  navbarItemColorClick: colors.grayClick,
+  navbarItemColorHighlight: colors.normal,
+  navbarItemColorHighlightHover: colors.normalHover,
+  navbarItemColorHighlightClick: colors.normalClick,
 
   /** Sidebar */
-  sidebarSectionColor: '#1b1b1b',
-  sidebarItemColor: '#90a4ae',
-  sidebarItemColorHover: '#a7b7bf',
-  sidebarItemColorClick: '#bdc9cf',
-  sidebarItemColorSelected: '#1b1b1b',
-  sidebarItemColorHighlight: '#007aff',
-  sidebarItemColorHighlightHover: '#278eff',
-  sidebarItemColorHighlightClick: '#62adff',
+  sidebarSectionColor: colors.black,
+  sidebarItemColor: colors.gray,
+  sidebarItemColorHover: colors.grayHover,
+  sidebarItemColorClick: colors.grayClick,
+  sidebarItemColorSelected: colors.black,
+  sidebarItemColorHighlight: colors.normal,
+  sidebarItemColorHighlightHover: colors.normalHover,
+  sidebarItemColorHighlightClick: colors.normalClick,
 
   /** Badges */
-  badgePrimaryBackgroundColor: '#2a5393',
+  badgePrimaryBackgroundColor: colors.navyBlue,
 
   /** Table */
   tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
   tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
-  tableBackgroundColor: '#eceff1',
-  tableBorderColor: '#eceff1',
-  tableHeaderTextColor: '#37474f',
+  tableBackgroundColor: colors.lightGray,
+  tableBorderColor: colors.lightGray,
+  tableHeaderTextColor: colors.darkerGray,
 
   /** Pagination */
-  paginationBackgroundColor: '#eceff1',
-  paginationBackgroundColorActive: '#007aff',
-  paginationTextColor: '#54738c',
-  paginationTextColorActive: '#fff',
+  paginationBackgroundColor: colors.lightGray,
+  paginationBackgroundColorActive: colors.normal,
+  paginationTextColor: colors.darkGray,
+  paginationTextColorActive: colors.white,
 
   /** Grid */
   gridColumnGap: 20,

@@ -10,13 +10,13 @@ storiesOf('File field', module)
       <Wrapper>
         <FileField
           name="cv"
-          accept=".pdf"
+          accept=".svg"
           placeholder="Single file field"
           onChange={ (d: any) => console.log('InputField value:', d) }
         />
         <FileField
           name="additionalFiles"
-          accept=".pdf"
+          accept=".svg"
           placeholder="Multiple files field with error"
           onChange={ (d: any) => console.log('InputField value:', d) }
           errorMessage="Error message"
