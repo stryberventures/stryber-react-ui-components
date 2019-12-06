@@ -25,6 +25,7 @@ export interface ISelectFieldProps {
   prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
+  className?: any;
 }
 
 /** Main component */
@@ -32,6 +33,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   const {
     name,
     classes,
+    className,
     errorMessage,
     disabled,
     onChange,
@@ -140,6 +142,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
       {/** Root wrapper */}
       <div
         className={classNames([
+          className,
           classes.root,
           isDropdownOpen ? classes.rootOpen : null,
         ])}
