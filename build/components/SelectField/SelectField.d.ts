@@ -17,6 +17,7 @@ export interface ISelectFieldProps {
     prependContent?: any;
     appendContent?: any;
     errorMessage?: string;
+    className?: any;
 }
 declare const PropsWrappedStyledSelectField: (props: ISelectFieldProps) => JSX.Element;
 /** Exports */

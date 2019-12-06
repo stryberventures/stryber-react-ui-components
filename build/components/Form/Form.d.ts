@@ -32,7 +32,6 @@ export interface IFormProps {
     children: any;
     initialValues?: any;
     validationSchema?: any;
-    values?: any;
 }
 /** Form component */
 declare const Form: (props: IFormProps) => JSX.Element;

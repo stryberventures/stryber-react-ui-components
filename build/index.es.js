@@ -289,7 +289,7 @@ var defaultFormContextValues = {
 var FormContext = createContext(defaultFormContextValues);
 /** Form component */
 var Form = function (props) {
-    var children = props.children, onSubmit = props.onSubmit, onReset = props.onReset, onChange = props.onChange, onError = props.onError, onValidate = props.onValidate, onValidateAsync = props.onValidateAsync, validationSchema = props.validationSchema, propsValues = props.values, initialValues = props.initialValues, rest = __rest(props, ["children", "onSubmit", "onReset", "onChange", "onError", "onValidate", "onValidateAsync", "validationSchema", "values", "initialValues"]);
+    var children = props.children, onSubmit = props.onSubmit, onReset = props.onReset, onChange = props.onChange, onError = props.onError, onValidate = props.onValidate, onValidateAsync = props.onValidateAsync, validationSchema = props.validationSchema, initialValues = props.initialValues, rest = __rest(props, ["children", "onSubmit", "onReset", "onChange", "onError", "onValidate", "onValidateAsync", "validationSchema", "initialValues"]);
     /** State */
     var _a = __read(useState(initialValues || {}), 2), formValues = _a[0], setFormValues = _a[1];
     var _b = __read(useState({}), 2), formErrors = _b[0], setFormErrors = _b[1];
@@ -1406,7 +1406,7 @@ var styles$7 = (function (theme) { return ({
 
 /** Main component */
 var SelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, placeholder = props.placeholder, choices = props.choices;
+    var name = props.name, classes = props.classes, className = props.className, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, placeholder = props.placeholder, choices = props.choices;
     /** Getting values from Form context (if the field is wrapped inside a form */
     var _a = useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched;
     /** Getting error message from form errors */
@@ -1477,6 +1477,7 @@ var SelectField = function (props) {
         isDropdownOpen
             ? (createElement("div", { className: classes.clickaway, onClick: function () { return setDropdownOpen(function () { return false; }); } })) : null,
         createElement("div", { className: classnames([
+                className,
                 classes.root,
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
