@@ -99,6 +99,9 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     ...rest
   } = props;
 
+  /** Check if any children were passed */
+  const areChildrenVisible = (Array.isArray(children) && children.length > 0) || !!children;
+
   /** Get navigation context */
   const {
     updateSelectedSection,
@@ -132,7 +135,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
         </div>
         <div className={classes.expandIconContainer}>
         {
-          children ? (
+          areChildrenVisible ? (
             <DownArrow
               className={classNames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null)}
             />
@@ -143,7 +146,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       <div
         className={classNames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden)}
       >
-        { (children && isExpanded) ? <><hr/>{children}</> : null }
+        { (areChildrenVisible && isExpanded) ? <><hr/>{children}</> : null }
       </div>
     </div>
   );

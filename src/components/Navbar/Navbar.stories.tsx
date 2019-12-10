@@ -93,9 +93,7 @@ storiesOf('Navbar', module)
               onRouteChange={(value: any) => console.log('Route changed!', value)}
               initialRoute="hello"
             >
-              <NavigationRoute route="hello">Hello</NavigationRoute>
-              <NavigationRoute route="world">World</NavigationRoute>
-              <NavigationRoute route="!">!</NavigationRoute>
+              { [] }
             </NavigationContainer>
           </NavbarSection>
       </Navbar>
