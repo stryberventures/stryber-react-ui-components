@@ -3069,6 +3069,8 @@ var SidebarNavigationContainer = function (props) {
 };
 var SidebarNavigationSection = function (props) {
     var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, route = props.route, title = props.title, description = props.description, rest = __rest(props, ["className", "children", "classes", "onClick", "route", "title", "description"]);
+    /** Check if any children were passed */
+    var areChildrenVisible = (Array.isArray(children) && children.length > 0) || !!children;
     /** Get navigation context */
     var _a = React.useContext(SidebarNavigationContext), updateSelectedSection = _a.updateSelectedSection, selectedSection = _a.selectedSection;
     // const isExpanded, setExpanded] = React.useState(false);
@@ -3084,8 +3086,8 @@ var SidebarNavigationSection = function (props) {
             React.createElement("div", { className: classes.sectionInfoContainer },
                 React.createElement("div", { className: classes.sectionTitle }, title),
                 React.createElement("div", { className: classes.sectionDescription }, description)),
-            React.createElement("div", { className: classes.expandIconContainer }, children ? (React.createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
-        React.createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (children && isExpanded) ? React.createElement(React.Fragment, null,
+            React.createElement("div", { className: classes.expandIconContainer }, areChildrenVisible ? (React.createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
+        React.createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (areChildrenVisible && isExpanded) ? React.createElement(React.Fragment, null,
             React.createElement("hr", null),
             children) : null)));
 };

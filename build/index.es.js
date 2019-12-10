@@ -3062,6 +3062,8 @@ var SidebarNavigationContainer = function (props) {
 };
 var SidebarNavigationSection = function (props) {
     var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, route = props.route, title = props.title, description = props.description, rest = __rest(props, ["className", "children", "classes", "onClick", "route", "title", "description"]);
+    /** Check if any children were passed */
+    var areChildrenVisible = (Array.isArray(children) && children.length > 0) || !!children;
     /** Get navigation context */
     var _a = useContext(SidebarNavigationContext), updateSelectedSection = _a.updateSelectedSection, selectedSection = _a.selectedSection;
     // const isExpanded, setExpanded] = React.useState(false);
@@ -3077,8 +3079,8 @@ var SidebarNavigationSection = function (props) {
             createElement("div", { className: classes.sectionInfoContainer },
                 createElement("div", { className: classes.sectionTitle }, title),
                 createElement("div", { className: classes.sectionDescription }, description)),
-            createElement("div", { className: classes.expandIconContainer }, children ? (createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
-        createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (children && isExpanded) ? createElement(Fragment, null,
+            createElement("div", { className: classes.expandIconContainer }, areChildrenVisible ? (createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
+        createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (areChildrenVisible && isExpanded) ? createElement(Fragment, null,
             createElement("hr", null),
             children) : null)));
 };
