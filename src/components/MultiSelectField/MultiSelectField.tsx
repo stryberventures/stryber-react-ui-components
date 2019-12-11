@@ -42,6 +42,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     values,
     placeholder,
     choices,
+    clearFormValueOnUnmount,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -51,6 +52,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     formValues,
     formErrors,
     formTouched,
+    unsetFormValue,
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
@@ -137,6 +139,16 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     />
   );
 
+
+  /** Mount / unmount logic */
+  React.useEffect(() => {
+    /** Running first validation on mount */
+    if (updateFormValue) updateFormValue(name, internalValues);
+    return () => {
+      if (unsetFormValue && clearFormValueOnUnmount) unsetFormValue(name);
+    };
+  }, []);
+
   return (
     <>
       {/** Clickaway element */}
@@ -216,10 +228,6 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
             ) : null
         }
       </div>
-      {/** Error message */}
-      {
-        errorMsg ? (<div className={classes.errorMessage}>{errorMsg}</div>) : null
-      }
     </>
   );
 };

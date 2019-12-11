@@ -216,6 +216,8 @@ storiesOf('Form', module)
             email: yup.string().email().required(),
             age: yup.number().required(),
             agree: yup.boolean().oneOf([true], 'Field must be checked'),
+            someSelectField: yup.string().required(),
+            someMultiSelectField: yup.string().required(),
           })}
         >
           <FileField
@@ -229,6 +231,20 @@ storiesOf('Form', module)
             accept=".pdf"
             placeholder="Multiple files input"
             multiple
+          />
+          <SelectField
+            name="someSelectField"
+            choices={[
+              { label: 'Hello', value: 'hello' },
+              { label: 'World', value: 'world' },
+            ]}
+          />
+          <MultiSelectField
+            name="someMultiSelectField"
+            choices={[
+              { label: 'Hello', value: 'hello' },
+              { label: 'World', value: 'world' },
+            ]}
           />
           <InputField
             prependContent={<ProfileIcon />}

@@ -42,12 +42,14 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     value,
     placeholder,
     choices,
+    clearFormValueOnUnmount,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
   const {
     updateFormValue,
     updateFormTouched,
+    unsetFormValue,
     formValues,
     formErrors,
     formTouched,
@@ -126,6 +128,15 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     />
   );
 
+  /** Mount / unmount logic */
+  React.useEffect(() => {
+    /** Running first validation on mount */
+    if (updateFormValue) updateFormValue(name, internalValue);
+    return () => {
+      if (unsetFormValue && clearFormValueOnUnmount) unsetFormValue(name);
+    };
+  }, []);
+
   return (
     <>
       {/** Clickaway element */}
@@ -198,10 +209,6 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
             ) : null
         }
       </div>
-      {/** Error message */}
-      {
-        errorMsg ? (<div className={classes.errorMessage}>{errorMsg}</div>) : null
-      }
     </>
   );
 };
