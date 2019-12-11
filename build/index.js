@@ -1413,9 +1413,9 @@ var styles$7 = (function (theme) { return ({
 
 /** Main component */
 var SelectField = function (props) {
-    var name = props.name, classes = props.classes, className = props.className, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, placeholder = props.placeholder, choices = props.choices;
+    var name = props.name, classes = props.classes, className = props.className, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched;
+    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, unsetFormValue = _a.unsetFormValue, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
@@ -1480,6 +1480,16 @@ var SelectField = function (props) {
             isDropdownOpen ? classes.dropdownArrowOpen : null,
             isFocused ? classes.dropdownArrowFocused : null,
         ]) }));
+    /** Mount / unmount logic */
+    React.useEffect(function () {
+        /** Running first validation on mount */
+        if (updateFormValue)
+            updateFormValue(name, internalValue);
+        return function () {
+            if (unsetFormValue && clearFormValueOnUnmount)
+                unsetFormValue(name);
+        };
+    }, []);
     return (React.createElement(React.Fragment, null,
         isDropdownOpen
             ? (React.createElement("div", { className: classes.clickaway, onClick: function () { return setDropdownOpen(function () { return false; }); } })) : null,
@@ -1502,8 +1512,7 @@ var SelectField = function (props) {
                             classes.dropdownItem,
                             hoverIndex === i ? classes.dropdownItemHover : null,
                         ]), onMouseOver: function () { return setHoverIndex(function () { return i; }); }, onClick: function () { return onChangeWrapper(value); }, key: i }, label));
-                }))) : null),
-        errorMsg ? (React.createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
+                }))) : null)));
 };
 /** Wrappers */
 var StyledSelectField = withStyles__default(styles$7)(SelectField);
@@ -1687,9 +1696,9 @@ var StyledValueBadge = withStyles__default(styles$9)(ValueBadge);
 
 /** Main component */
 var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices;
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched;
+    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched, unsetFormValue = _a.unsetFormValue;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
@@ -1763,6 +1772,16 @@ var MultiSelectField = function (props) {
             isDropdownOpen ? classes.dropdownArrowOpen : null,
             isFocused ? classes.dropdownArrowFocused : null,
         ]) }));
+    /** Mount / unmount logic */
+    React.useEffect(function () {
+        /** Running first validation on mount */
+        if (updateFormValue)
+            updateFormValue(name, internalValues);
+        return function () {
+            if (unsetFormValue && clearFormValueOnUnmount)
+                unsetFormValue(name);
+        };
+    }, []);
     return (React.createElement(React.Fragment, null,
         isDropdownOpen
             ? (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
@@ -1782,8 +1801,7 @@ var MultiSelectField = function (props) {
             isDropdownOpen
                 ? (React.createElement(FormContext.Provider, { value: defaultFormContextValues },
                     React.createElement("div", { className: classes.dropdownWrapper }, choices
-                        .map(function (choiceData, i) { return (React.createElement(PropsWrappedStyledCheckboxField, { className: classes.dropdownItem, key: i, placeholder: choiceData.label, name: choiceData.value, checked: !!selectedChoices.find(function (d) { return d.value === choiceData.value; }), onChange: checkboxOnChangeWrapper })); })))) : null),
-        errorMsg ? (React.createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
+                        .map(function (choiceData, i) { return (React.createElement(PropsWrappedStyledCheckboxField, { className: classes.dropdownItem, key: i, placeholder: choiceData.label, name: choiceData.value, checked: !!selectedChoices.find(function (d) { return d.value === choiceData.value; }), onChange: checkboxOnChangeWrapper })); })))) : null)));
 };
 /** Wrappers */
 var StyledMultiSelectField = withStyles__default(styles$8)(MultiSelectField);
