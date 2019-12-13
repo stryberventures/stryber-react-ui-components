@@ -42,6 +42,17 @@ import * as CardElements from './components/Card';
 /** Table */
 import Table from './components/Table';
 import * as TableElements from './components/Table';
+import TableBody from './components/TableBody';
+import * as TableBodyElements from './components/TableBody';
+import TableCell from './components/TableCell';
+import * as TableCellElements from './components/TableCell';
+import TableHead from './components/TableHead';
+import * as TableHeadElements from './components/TableHead';
+import TableRow from './components/TableRow';
+import * as TableRowElements from './components/TableRow';
+/** TableData */
+import TableData from './components/TableData';
+import * as TableDataElements from './components/TableData';
 /** Icons */
 import * as Icons from './components/Icons';
 /** Navbar */
@@ -55,4 +66,4 @@ import * as SidebarNavigationElements from './components/SidebarNavigation';
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
 /** Exports */
-export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, };
+export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, TableBody, TableBodyElements, TableCell, TableCellElements, TableRow, TableRowElements, TableHead, TableHeadElements, TableData, TableDataElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, };

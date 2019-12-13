@@ -1,23 +1,25 @@
 import * as React from 'react';
 import { WithStyles } from 'react-jss';
-interface TableProps {
-    rows: any[];
-    headRow: {
-        label: string;
-        id: string;
-    }[];
-    headerLabel: string;
-    perPage?: number;
-    currPage?: number;
+interface ITableProps {
+    children?: any;
+    className?: any;
+    headerComponent?: any;
+    headerLabel?: string;
 }
-declare const StyledTable: React.ComponentType<Pick<TableProps & WithStyles<(theme: any) => {
+declare const StyledTable: React.ComponentType<Pick<ITableProps & WithStyles<(theme: any) => {
     root: {
-        width: string;
         border: any;
         borderRadius: number;
         boxShadow: any;
     };
+    table: {
+        borderSpacing: number;
+        fontSize: number;
+        textAlign: string;
+        width: string;
+    };
     header: {
+        display: string;
         height: number;
     };
     headerLabel: {
@@ -25,34 +27,16 @@ declare const StyledTable: React.ComponentType<Pick<TableProps & WithStyles<(the
         paddingTop: number;
         fontSize: number;
         color: any;
+        whiteSpace: string;
     };
-    table: {
+    headerComponent: {
         width: string;
-        textAlign: string;
-        color: any;
-        fontSize: number;
-        borderSpacing: number;
-        '& th': {
-            borderBottom: string;
-        };
+        display: string;
+        justifyContent: string;
+        alignItems: string;
     };
-    tableHead: {
-        borderBottom: any;
-    };
-    row: {
-        height: number;
-        '&:nth-child(even)': {
-            backgroundColor: any;
-        };
-    };
-    cell: {
-        padding: string;
-        '&:first-child': {
-            paddingLeft: number;
-        };
-    };
-}>, "rows" | "headRow" | "headerLabel" | "perPage" | "currPage"> & {
-    classes?: Partial<Record<"headerLabel" | "root" | "header" | "table" | "tableHead" | "row" | "cell", string>> | undefined;
+}>, "children" | "className" | "headerComponent" | "headerLabel"> & {
+    classes?: Partial<Record<"headerComponent" | "headerLabel" | "root" | "table" | "header", string>> | undefined;
 }>;
 export default StyledTable;
 export { StyledTable as Table };
