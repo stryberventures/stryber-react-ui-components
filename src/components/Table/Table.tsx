@@ -1,41 +1,34 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './Table.styles';
+import classNames from 'classnames';
 
-interface TableProps {
-  rows: any[];
-  headRow: {label: string, id: string}[];
-  headerLabel: string;
-  perPage?: number;
-  currPage?: number;
+interface ITableProps {
+  children?: any;
+  className?: any;
+  headerComponent?: any;
+  headerLabel?: string;
 }
 
-const Table = (props: TableProps & WithStyles<typeof styles>) => {
-  const { headerLabel, headRow, rows, classes } = props;
-  const getHeadRow = () =>
-    headRow.map(cell =>
-      <th key={cell.id} className={classes.cell}>{cell.label}</th>);
+const Table = (props: ITableProps & WithStyles<typeof styles>) => {
+  const { children, classes, className, headerLabel, headerComponent } = props;
 
-  const getRows = () => rows.map(row => (
-    <tr key={row.id} className={classes.row}>
-      {headRow.map((cell, index) => <td key={index} className={classes.cell}>{row[cell.id]}</td>)}
-    </tr>
-  ));
+  if (!headerLabel && !headerComponent) {
+    return (
+      <table className={classNames(classes.root, classes.table, className)}>
+        {children}
+      </table>
+    );
+  }
 
   return (
-    <div className={classes.root}>
+    <div className={classNames(classes.root, className)}>
       <div className={classes.header}>
-        <div className={classes.headerLabel}>{headerLabel}</div>
+        {headerLabel && <div className={classes.headerLabel}>{headerLabel}</div>}
+        {headerComponent && <div className={classes.headerComponent}>{headerComponent}</div>}
       </div>
       <table className={classes.table}>
-        <thead className={classes.tableHead}>
-        <tr className={classes.row}>
-          {getHeadRow()}
-        </tr>
-        </thead>
-        <tbody>
-          {getRows()}
-        </tbody>
+        {children}
       </table>
     </div>
   );

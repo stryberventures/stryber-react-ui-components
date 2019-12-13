@@ -2459,11 +2459,13 @@ var styles$f = (function (theme) { return ({
     leftArrow: {
         '&:before': {
             transform: 'rotate(45deg)',
+            marginLeft: 2,
         }
     },
     rightArrow: {
         '&:before': {
             transform: 'rotate(225deg)',
+            marginRight: 2,
         }
     }
 }); });
@@ -2688,12 +2690,18 @@ var index$h = /*#__PURE__*/Object.freeze({
 
 var styles$j = (function (theme) { return ({
     root: {
-        width: '100%',
         border: theme.tableBorderPrimary,
         borderRadius: 8,
         boxShadow: theme.tableBoxShadow,
     },
+    table: {
+        borderSpacing: 0,
+        fontSize: 14,
+        textAlign: 'left',
+        width: '100%',
+    },
     header: {
+        display: 'flex',
         height: 70,
     },
     headerLabel: {
@@ -2701,49 +2709,26 @@ var styles$j = (function (theme) { return ({
         paddingTop: 25,
         fontSize: 21,
         color: theme.tableHeaderTextColor,
+        whiteSpace: 'nowrap',
     },
-    table: {
+    headerComponent: {
         width: '100%',
-        textAlign: 'left',
-        color: theme.someTextColor,
-        fontSize: 14,
-        borderSpacing: 0,
-        '& th': {
-            borderBottom: "2px solid " + theme.tableBorderColor,
-        }
-    },
-    tableHead: {
-        borderBottom: theme.tableBorderPrimary,
-    },
-    row: {
-        height: 50,
-        '&:nth-child(even)': {
-            backgroundColor: theme.tableBackgroundColor,
-        }
-    },
-    cell: {
-        padding: '0 5px',
-        '&:first-child': {
-            paddingLeft: 45,
-        },
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
 }); });
 
 var Table = function (props) {
-    var headerLabel = props.headerLabel, headRow = props.headRow, rows = props.rows, classes = props.classes;
-    var getHeadRow = function () {
-        return headRow.map(function (cell) {
-            return createElement("th", { key: cell.id, className: classes.cell }, cell.label);
-        });
-    };
-    var getRows = function () { return rows.map(function (row) { return (createElement("tr", { key: row.id, className: classes.row }, headRow.map(function (cell, index) { return createElement("td", { key: index, className: classes.cell }, row[cell.id]); }))); }); };
-    return (createElement("div", { className: classes.root },
+    var children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
+    if (!headerLabel && !headerComponent) {
+        return (createElement("table", { className: classnames(classes.root, classes.table, className) }, children));
+    }
+    return (createElement("div", { className: classnames(classes.root, className) },
         createElement("div", { className: classes.header },
-            createElement("div", { className: classes.headerLabel }, headerLabel)),
-        createElement("table", { className: classes.table },
-            createElement("thead", { className: classes.tableHead },
-                createElement("tr", { className: classes.row }, getHeadRow())),
-            createElement("tbody", null, getRows()))));
+            headerLabel && createElement("div", { className: classes.headerLabel }, headerLabel),
+            headerComponent && createElement("div", { className: classes.headerComponent }, headerComponent)),
+        createElement("table", { className: classes.table }, children)));
 };
 var StyledTable$1 = withStyles(styles$j)(Table);
 
@@ -2755,7 +2740,127 @@ var index$i = /*#__PURE__*/Object.freeze({
     Table: StyledTable$1
 });
 
-var styles$k = (function (theme) {
+var VARIANT_HEAD = 'head';
+var VARIANT_BODY = 'body';
+var TableContext = createContext({
+    variant: ''
+});
+
+var TableBody = function (_a) {
+    var children = _a.children, className = _a.className;
+    return (createElement(TableContext.Provider, { value: { variant: VARIANT_BODY } },
+        createElement("tbody", { className: className }, children)));
+};
+
+
+
+var index$j = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableBody,
+    TableBody: TableBody
+});
+
+var styles$k = (function (theme) { return ({
+    root: {
+        padding: '0 5px',
+        '&:first-child': {
+            paddingLeft: 45,
+        },
+        '&:last-child': {
+            paddingRight: 20,
+        },
+        'th&': {
+            whiteSpace: 'nowrap',
+            fontWeight: 'normal',
+            borderBottom: "2px solid " + theme.tableBorderColor,
+        },
+    },
+}); });
+
+var TableCell = function (props) {
+    var Component;
+    var children = props.children, classes = props.classes, className = props.className, component = props.component;
+    var tableContext = useContext(TableContext);
+    if (component) {
+        Component = component;
+    }
+    else {
+        Component = tableContext.variant && tableContext.variant === 'head' ? 'th' : 'td';
+    }
+    return (createElement(Component, { className: classnames(classes.root, className) }, children));
+};
+var StyledTable$2 = withStyles(styles$k)(TableCell);
+
+
+
+var index$k = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledTable$2,
+    TableCell: StyledTable$2
+});
+
+var TableHead = function (_a) {
+    var children = _a.children, className = _a.className;
+    return (createElement(TableContext.Provider, { value: { variant: VARIANT_HEAD } },
+        createElement("thead", { className: className }, children)));
+};
+
+
+
+var index$l = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableHead,
+    TableHead: TableHead
+});
+
+var styles$l = (function (theme) { return ({
+    root: {
+        height: 40,
+        '&:nth-child(even)': {
+            backgroundColor: theme.tableBackgroundColor,
+        }
+    },
+}); });
+
+var TableRow = function (props) {
+    var children = props.children, classes = props.classes, className = props.className;
+    return (createElement("tr", { className: classnames(classes.root, className) }, children));
+};
+var StyledTable$3 = withStyles(styles$l)(TableRow);
+
+
+
+var index$m = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledTable$3,
+    TableRow: StyledTable$3
+});
+
+var TableData = function (props) {
+    var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
+    var getHeadRow = function () {
+        return headRow.map(function (cell) {
+            return createElement(StyledTable$2, { key: cell.id }, cell.label);
+        });
+    };
+    var getRows = function () { return rows.map(function (row) { return (createElement(StyledTable$3, { key: row.id }, headRow.map(function (cell, index) {
+        return createElement(StyledTable$2, { key: index }, row[cell.id]);
+    }))); }); };
+    return (createElement(StyledTable$1, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+        createElement(TableHead, null,
+            createElement(StyledTable$3, null, getHeadRow())),
+        createElement(TableBody, null, getRows())));
+};
+
+
+
+var index$n = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableData,
+    TableData: TableData
+});
+
+var styles$m = (function (theme) {
     var _a, _b, _c;
     return ({
         navbar: {
@@ -2818,21 +2923,21 @@ var NavbarSection = function (props) {
         ]) }, rest), children));
 };
 /** Wrappers */
-var StyledNavbar = withStyles(styles$k)(Navbar);
+var StyledNavbar = withStyles(styles$m)(Navbar);
 var PropsWrappedStyledNavbar = function (props) { return createElement(StyledNavbar, __assign({}, props)); };
-var StyledNavbarSection = withStyles(styles$k)(NavbarSection);
+var StyledNavbarSection = withStyles(styles$m)(NavbarSection);
 var PropsWrappedStyledNavbarSection = function (props) { return createElement(StyledNavbarSection, __assign({}, props)); };
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$l = (function (theme) {
+var styles$n = (function (theme) {
     var _a, _b;
     return ({
         container: (_a = {
@@ -2924,14 +3029,14 @@ var NavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledNavigationContainer = withStyles(styles$l)(NavigationContainer);
+var StyledNavigationContainer = withStyles(styles$n)(NavigationContainer);
 var PropsWrappedStyledNavigationContainer = function (props) { return createElement(StyledNavigationContainer, __assign({}, props)); };
-var StyledNavigationRoute = withStyles(styles$l)(NavigationRoute);
+var StyledNavigationRoute = withStyles(styles$n)(NavigationRoute);
 var PropsWrappedStyledNavigationRoute = function (props) { return createElement(StyledNavigationRoute, __assign({}, props)); };
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -2940,7 +3045,7 @@ var index$k = /*#__PURE__*/Object.freeze({
     NavigationContainer: PropsWrappedStyledNavigationContainer
 });
 
-var styles$m = (function (theme) { return ({
+var styles$o = (function (theme) { return ({
     /** Container / Wrapper */
     container: {
         padding: '10px 0px',
@@ -3115,16 +3220,16 @@ var SidebarNavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledSidebarNavigationContainer = withStyles(styles$m)(SidebarNavigationContainer);
+var StyledSidebarNavigationContainer = withStyles(styles$o)(SidebarNavigationContainer);
 var PropsWrappedStyledSidebarNavigationContainer = function (props) { return createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
-var StyledSidebarNavigationSection = withStyles(styles$m)(SidebarNavigationSection);
+var StyledSidebarNavigationSection = withStyles(styles$o)(SidebarNavigationSection);
 var PropsWrappedStyledSidebarNavigationSection = function (props) { return createElement(StyledSidebarNavigationSection, __assign({}, props)); };
-var StyledSidebarNavigationRoute = withStyles(styles$m)(SidebarNavigationRoute);
+var StyledSidebarNavigationRoute = withStyles(styles$o)(SidebarNavigationRoute);
 var PropsWrappedStyledSidebarNavigationRoute = function (props) { return createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3134,7 +3239,7 @@ var index$l = /*#__PURE__*/Object.freeze({
     SidebarNavigationRoute: PropsWrappedStyledSidebarNavigationRoute
 });
 
-var styles$n = (function (theme) { return ({
+var styles$p = (function (theme) { return ({
     root: {
         position: 'relative',
         overflow: 'visible',
@@ -3175,16 +3280,16 @@ var Badge = function (props) {
         children));
 };
 /** Wrappings */
-var StyledBadge = withStyles(styles$n)(Badge);
+var StyledBadge = withStyles(styles$p)(Badge);
 var PropsWrappedStyledBadge = function (props) { return createElement(StyledBadge, __assign({}, props)); };
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     Badge: PropsWrappedStyledBadge
 });
 
-export { PropsWrappedStyledBadge as Badge, index$m as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, StyledCard as Card, index$h as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$g as ContainerElements, PropsWrappedStyledStyledFileField as FileField, index$b as FileFieldElements, Form, index as FormElements, Row as Grid, index$f as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$a as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$j as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$k as NavbarNavigationElements, StyledTable as Pagination, index$e as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$c as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$l as SidebarNavigationElements, StyledTable$1 as Table, index$i as TableElements, ThemeProvider, colors, defaultTheme as theme };
+export { PropsWrappedStyledBadge as Badge, index$r as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, StyledCard as Card, index$h as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$g as ContainerElements, PropsWrappedStyledStyledFileField as FileField, index$b as FileFieldElements, Form, index as FormElements, Row as Grid, index$f as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$a as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$o as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$p as NavbarNavigationElements, StyledTable as Pagination, index$e as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$c as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$q as SidebarNavigationElements, StyledTable$1 as Table, TableBody, index$j as TableBodyElements, StyledTable$2 as TableCell, index$k as TableCellElements, TableData, index$n as TableDataElements, index$i as TableElements, TableHead, index$l as TableHeadElements, StyledTable$3 as TableRow, index$m as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map

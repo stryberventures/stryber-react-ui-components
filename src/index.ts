@@ -60,6 +60,22 @@ import * as CardElements from './components/Card';
 import Table from './components/Table';
 import * as TableElements from './components/Table';
 
+import TableBody from './components/TableBody';
+import * as TableBodyElements from './components/TableBody';
+
+import TableCell from './components/TableCell';
+import * as TableCellElements from './components/TableCell';
+
+import TableHead from './components/TableHead';
+import * as TableHeadElements from './components/TableHead';
+
+import TableRow from './components/TableRow';
+import * as TableRowElements from './components/TableRow';
+
+/** TableData */
+import TableData from './components/TableData';
+import * as TableDataElements from './components/TableData';
+
 /** Icons */
 import * as Icons from './components/Icons';
 
@@ -97,6 +113,11 @@ export {
   Button, ButtonElements,
   Pagination, PaginationElements,
   Table, TableElements,
+  TableBody, TableBodyElements,
+  TableCell, TableCellElements,
+  TableRow, TableRowElements,
+  TableHead, TableHeadElements,
+  TableData, TableDataElements,
   Icons,
   Navbar, NavbarElements,
   NavbarNavigation, NavbarNavigationElements,

@@ -1,11 +1,17 @@
 declare const _default: (theme: any) => {
     root: {
-        width: string;
         border: any;
         borderRadius: number;
         boxShadow: any;
     };
+    table: {
+        borderSpacing: number;
+        fontSize: number;
+        textAlign: string;
+        width: string;
+    };
     header: {
+        display: string;
         height: number;
     };
     headerLabel: {
@@ -13,31 +19,13 @@ declare const _default: (theme: any) => {
         paddingTop: number;
         fontSize: number;
         color: any;
+        whiteSpace: string;
     };
-    table: {
+    headerComponent: {
         width: string;
-        textAlign: string;
-        color: any;
-        fontSize: number;
-        borderSpacing: number;
-        '& th': {
-            borderBottom: string;
-        };
-    };
-    tableHead: {
-        borderBottom: any;
-    };
-    row: {
-        height: number;
-        '&:nth-child(even)': {
-            backgroundColor: any;
-        };
-    };
-    cell: {
-        padding: string;
-        '&:first-child': {
-            paddingLeft: number;
-        };
+        display: string;
+        justifyContent: string;
+        alignItems: string;
     };
 };
 export default _default;

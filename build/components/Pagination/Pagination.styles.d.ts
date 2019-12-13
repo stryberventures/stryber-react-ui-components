@@ -43,11 +43,13 @@ declare const _default: (theme: any) => {
     leftArrow: {
         '&:before': {
             transform: string;
+            marginLeft: number;
         };
     };
     rightArrow: {
         '&:before': {
             transform: string;
+            marginRight: number;
         };
     };
 };

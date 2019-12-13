@@ -43,11 +43,13 @@ export default (theme: any) => ({
   leftArrow: {
     '&:before': {
       transform: 'rotate(45deg)',
+      marginLeft: 2,
     }
   },
   rightArrow: {
     '&:before': {
       transform: 'rotate(225deg)',
+      marginRight: 2,
     }
   }
 });

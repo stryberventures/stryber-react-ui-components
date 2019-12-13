@@ -2466,11 +2466,13 @@ var styles$f = (function (theme) { return ({
     leftArrow: {
         '&:before': {
             transform: 'rotate(45deg)',
+            marginLeft: 2,
         }
     },
     rightArrow: {
         '&:before': {
             transform: 'rotate(225deg)',
+            marginRight: 2,
         }
     }
 }); });
@@ -2695,12 +2697,18 @@ var index$h = /*#__PURE__*/Object.freeze({
 
 var styles$j = (function (theme) { return ({
     root: {
-        width: '100%',
         border: theme.tableBorderPrimary,
         borderRadius: 8,
         boxShadow: theme.tableBoxShadow,
     },
+    table: {
+        borderSpacing: 0,
+        fontSize: 14,
+        textAlign: 'left',
+        width: '100%',
+    },
     header: {
+        display: 'flex',
         height: 70,
     },
     headerLabel: {
@@ -2708,49 +2716,26 @@ var styles$j = (function (theme) { return ({
         paddingTop: 25,
         fontSize: 21,
         color: theme.tableHeaderTextColor,
+        whiteSpace: 'nowrap',
     },
-    table: {
+    headerComponent: {
         width: '100%',
-        textAlign: 'left',
-        color: theme.someTextColor,
-        fontSize: 14,
-        borderSpacing: 0,
-        '& th': {
-            borderBottom: "2px solid " + theme.tableBorderColor,
-        }
-    },
-    tableHead: {
-        borderBottom: theme.tableBorderPrimary,
-    },
-    row: {
-        height: 50,
-        '&:nth-child(even)': {
-            backgroundColor: theme.tableBackgroundColor,
-        }
-    },
-    cell: {
-        padding: '0 5px',
-        '&:first-child': {
-            paddingLeft: 45,
-        },
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
 }); });
 
 var Table = function (props) {
-    var headerLabel = props.headerLabel, headRow = props.headRow, rows = props.rows, classes = props.classes;
-    var getHeadRow = function () {
-        return headRow.map(function (cell) {
-            return React.createElement("th", { key: cell.id, className: classes.cell }, cell.label);
-        });
-    };
-    var getRows = function () { return rows.map(function (row) { return (React.createElement("tr", { key: row.id, className: classes.row }, headRow.map(function (cell, index) { return React.createElement("td", { key: index, className: classes.cell }, row[cell.id]); }))); }); };
-    return (React.createElement("div", { className: classes.root },
+    var children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
+    if (!headerLabel && !headerComponent) {
+        return (React.createElement("table", { className: classnames(classes.root, classes.table, className) }, children));
+    }
+    return (React.createElement("div", { className: classnames(classes.root, className) },
         React.createElement("div", { className: classes.header },
-            React.createElement("div", { className: classes.headerLabel }, headerLabel)),
-        React.createElement("table", { className: classes.table },
-            React.createElement("thead", { className: classes.tableHead },
-                React.createElement("tr", { className: classes.row }, getHeadRow())),
-            React.createElement("tbody", null, getRows()))));
+            headerLabel && React.createElement("div", { className: classes.headerLabel }, headerLabel),
+            headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),
+        React.createElement("table", { className: classes.table }, children)));
 };
 var StyledTable$1 = withStyles__default(styles$j)(Table);
 
@@ -2762,7 +2747,127 @@ var index$i = /*#__PURE__*/Object.freeze({
     Table: StyledTable$1
 });
 
-var styles$k = (function (theme) {
+var VARIANT_HEAD = 'head';
+var VARIANT_BODY = 'body';
+var TableContext = React.createContext({
+    variant: ''
+});
+
+var TableBody = function (_a) {
+    var children = _a.children, className = _a.className;
+    return (React.createElement(TableContext.Provider, { value: { variant: VARIANT_BODY } },
+        React.createElement("tbody", { className: className }, children)));
+};
+
+
+
+var index$j = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableBody,
+    TableBody: TableBody
+});
+
+var styles$k = (function (theme) { return ({
+    root: {
+        padding: '0 5px',
+        '&:first-child': {
+            paddingLeft: 45,
+        },
+        '&:last-child': {
+            paddingRight: 20,
+        },
+        'th&': {
+            whiteSpace: 'nowrap',
+            fontWeight: 'normal',
+            borderBottom: "2px solid " + theme.tableBorderColor,
+        },
+    },
+}); });
+
+var TableCell = function (props) {
+    var Component;
+    var children = props.children, classes = props.classes, className = props.className, component = props.component;
+    var tableContext = React.useContext(TableContext);
+    if (component) {
+        Component = component;
+    }
+    else {
+        Component = tableContext.variant && tableContext.variant === 'head' ? 'th' : 'td';
+    }
+    return (React.createElement(Component, { className: classnames(classes.root, className) }, children));
+};
+var StyledTable$2 = withStyles__default(styles$k)(TableCell);
+
+
+
+var index$k = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledTable$2,
+    TableCell: StyledTable$2
+});
+
+var TableHead = function (_a) {
+    var children = _a.children, className = _a.className;
+    return (React.createElement(TableContext.Provider, { value: { variant: VARIANT_HEAD } },
+        React.createElement("thead", { className: className }, children)));
+};
+
+
+
+var index$l = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableHead,
+    TableHead: TableHead
+});
+
+var styles$l = (function (theme) { return ({
+    root: {
+        height: 40,
+        '&:nth-child(even)': {
+            backgroundColor: theme.tableBackgroundColor,
+        }
+    },
+}); });
+
+var TableRow = function (props) {
+    var children = props.children, classes = props.classes, className = props.className;
+    return (React.createElement("tr", { className: classnames(classes.root, className) }, children));
+};
+var StyledTable$3 = withStyles__default(styles$l)(TableRow);
+
+
+
+var index$m = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledTable$3,
+    TableRow: StyledTable$3
+});
+
+var TableData = function (props) {
+    var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
+    var getHeadRow = function () {
+        return headRow.map(function (cell) {
+            return React.createElement(StyledTable$2, { key: cell.id }, cell.label);
+        });
+    };
+    var getRows = function () { return rows.map(function (row) { return (React.createElement(StyledTable$3, { key: row.id }, headRow.map(function (cell, index) {
+        return React.createElement(StyledTable$2, { key: index }, row[cell.id]);
+    }))); }); };
+    return (React.createElement(StyledTable$1, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+        React.createElement(TableHead, null,
+            React.createElement(StyledTable$3, null, getHeadRow())),
+        React.createElement(TableBody, null, getRows())));
+};
+
+
+
+var index$n = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': TableData,
+    TableData: TableData
+});
+
+var styles$m = (function (theme) {
     var _a, _b, _c;
     return ({
         navbar: {
@@ -2825,21 +2930,21 @@ var NavbarSection = function (props) {
         ]) }, rest), children));
 };
 /** Wrappers */
-var StyledNavbar = withStyles__default(styles$k)(Navbar);
+var StyledNavbar = withStyles__default(styles$m)(Navbar);
 var PropsWrappedStyledNavbar = function (props) { return React.createElement(StyledNavbar, __assign({}, props)); };
-var StyledNavbarSection = withStyles__default(styles$k)(NavbarSection);
+var StyledNavbarSection = withStyles__default(styles$m)(NavbarSection);
 var PropsWrappedStyledNavbarSection = function (props) { return React.createElement(StyledNavbarSection, __assign({}, props)); };
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$l = (function (theme) {
+var styles$n = (function (theme) {
     var _a, _b;
     return ({
         container: (_a = {
@@ -2931,14 +3036,14 @@ var NavigationRoute = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledNavigationContainer = withStyles__default(styles$l)(NavigationContainer);
+var StyledNavigationContainer = withStyles__default(styles$n)(NavigationContainer);
 var PropsWrappedStyledNavigationContainer = function (props) { return React.createElement(StyledNavigationContainer, __assign({}, props)); };
-var StyledNavigationRoute = withStyles__default(styles$l)(NavigationRoute);
+var StyledNavigationRoute = withStyles__default(styles$n)(NavigationRoute);
 var PropsWrappedStyledNavigationRoute = function (props) { return React.createElement(StyledNavigationRoute, __assign({}, props)); };
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -2947,7 +3052,7 @@ var index$k = /*#__PURE__*/Object.freeze({
     NavigationContainer: PropsWrappedStyledNavigationContainer
 });
 
-var styles$m = (function (theme) { return ({
+var styles$o = (function (theme) { return ({
     /** Container / Wrapper */
     container: {
         padding: '10px 0px',
@@ -3122,16 +3227,16 @@ var SidebarNavigationRoute = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledSidebarNavigationContainer = withStyles__default(styles$m)(SidebarNavigationContainer);
+var StyledSidebarNavigationContainer = withStyles__default(styles$o)(SidebarNavigationContainer);
 var PropsWrappedStyledSidebarNavigationContainer = function (props) { return React.createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
-var StyledSidebarNavigationSection = withStyles__default(styles$m)(SidebarNavigationSection);
+var StyledSidebarNavigationSection = withStyles__default(styles$o)(SidebarNavigationSection);
 var PropsWrappedStyledSidebarNavigationSection = function (props) { return React.createElement(StyledSidebarNavigationSection, __assign({}, props)); };
-var StyledSidebarNavigationRoute = withStyles__default(styles$m)(SidebarNavigationRoute);
+var StyledSidebarNavigationRoute = withStyles__default(styles$o)(SidebarNavigationRoute);
 var PropsWrappedStyledSidebarNavigationRoute = function (props) { return React.createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3141,7 +3246,7 @@ var index$l = /*#__PURE__*/Object.freeze({
     SidebarNavigationRoute: PropsWrappedStyledSidebarNavigationRoute
 });
 
-var styles$n = (function (theme) { return ({
+var styles$p = (function (theme) { return ({
     root: {
         position: 'relative',
         overflow: 'visible',
@@ -3182,19 +3287,19 @@ var Badge = function (props) {
         children));
 };
 /** Wrappings */
-var StyledBadge = withStyles__default(styles$n)(Badge);
+var StyledBadge = withStyles__default(styles$p)(Badge);
 var PropsWrappedStyledBadge = function (props) { return React.createElement(StyledBadge, __assign({}, props)); };
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     Badge: PropsWrappedStyledBadge
 });
 
 exports.Badge = PropsWrappedStyledBadge;
-exports.BadgeElements = index$m;
+exports.BadgeElements = index$r;
 exports.Button = PropsWrappedStyledButton;
 exports.ButtonElements = index$5;
 exports.Card = StyledCard;
@@ -3215,9 +3320,9 @@ exports.InputFieldElements = index$6;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
 exports.MultiSelectFieldElements = index$a;
 exports.Navbar = PropsWrappedStyledNavbar;
-exports.NavbarElements = index$j;
+exports.NavbarElements = index$o;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
-exports.NavbarNavigationElements = index$k;
+exports.NavbarNavigationElements = index$p;
 exports.Pagination = StyledTable;
 exports.PaginationElements = index$e;
 exports.PasswordField = PropsWrappedStyledPasswordField;
@@ -3231,9 +3336,19 @@ exports.SearchFieldElements = index$c;
 exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
-exports.SidebarNavigationElements = index$l;
+exports.SidebarNavigationElements = index$q;
 exports.Table = StyledTable$1;
+exports.TableBody = TableBody;
+exports.TableBodyElements = index$j;
+exports.TableCell = StyledTable$2;
+exports.TableCellElements = index$k;
+exports.TableData = TableData;
+exports.TableDataElements = index$n;
 exports.TableElements = index$i;
+exports.TableHead = TableHead;
+exports.TableHeadElements = index$l;
+exports.TableRow = StyledTable$3;
+exports.TableRowElements = index$m;
 exports.ThemeProvider = ThemeProvider;
 exports.colors = colors;
 exports.theme = defaultTheme;

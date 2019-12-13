@@ -1,11 +1,17 @@
 export default (theme: any) => ({
   root: {
-    width: '100%',
     border: theme.tableBorderPrimary,
     borderRadius: 8,
     boxShadow: theme.tableBoxShadow,
   },
+  table: {
+    borderSpacing: 0,
+    fontSize: 14,
+    textAlign: 'left',
+    width: '100%',
+  },
   header: {
+    display: 'flex',
     height: 70,
   },
   headerLabel: {
@@ -13,30 +19,12 @@ export default (theme: any) => ({
     paddingTop: 25,
     fontSize: 21,
     color: theme.tableHeaderTextColor,
+    whiteSpace: 'nowrap',
   },
-  table: {
+  headerComponent: {
     width: '100%',
-    textAlign: 'left',
-    color: theme.someTextColor,
-    fontSize: 14,
-    borderSpacing: 0,
-    '& th': {
-      borderBottom: `2px solid ${theme.tableBorderColor}`,
-    }
-  },
-  tableHead: {
-    borderBottom: theme.tableBorderPrimary,
-  },
-  row: {
-    height: 50,
-    '&:nth-child(even)': {
-      backgroundColor: theme.tableBackgroundColor,
-    }
-  },
-  cell: {
-    padding: '0 5px',
-    '&:first-child': {
-      paddingLeft: 45,
-    },
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });

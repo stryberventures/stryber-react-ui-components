@@ -51,11 +51,13 @@ declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles
     leftArrow: {
         '&:before': {
             transform: string;
+            marginLeft: number;
         };
     };
     rightArrow: {
         '&:before': {
             transform: string;
+            marginRight: number;
         };
     };
 }>, "currPage" | "pageCount" | "onChange" | "collapseFactor"> & {
