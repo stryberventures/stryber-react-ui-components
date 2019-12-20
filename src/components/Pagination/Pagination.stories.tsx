@@ -20,7 +20,7 @@ const PaginationWithCollapseFactorExample = () => {
         <Pagination
           onChange={(index)=>{updatePage(index)}}
           currPage={currPage}
-          pageCount={15}
+          pageCount={14204}
           collapseFactor={2}
         />
       </div>

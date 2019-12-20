@@ -4,13 +4,16 @@ interface ITableProps {
     children?: any;
     className?: any;
     headerComponent?: any;
+    border?: boolean;
     headerLabel?: string;
 }
 declare const StyledTable: React.ComponentType<Pick<ITableProps & WithStyles<(theme: any) => {
     root: {
-        border: any;
-        borderRadius: number;
-        boxShadow: any;
+        '&.withBorder': {
+            border: any;
+            borderRadius: number;
+            boxShadow: any;
+        };
     };
     table: {
         borderSpacing: number;
@@ -35,7 +38,7 @@ declare const StyledTable: React.ComponentType<Pick<ITableProps & WithStyles<(th
         justifyContent: string;
         alignItems: string;
     };
-}>, "children" | "className" | "headerComponent" | "headerLabel"> & {
+}>, "children" | "className" | "headerComponent" | "border" | "headerLabel"> & {
     classes?: Partial<Record<"headerComponent" | "headerLabel" | "root" | "table" | "header", string>> | undefined;
 }>;
 export default StyledTable;

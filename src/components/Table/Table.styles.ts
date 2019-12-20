@@ -1,8 +1,10 @@
 export default (theme: any) => ({
   root: {
-    border: theme.tableBorderPrimary,
-    borderRadius: 8,
-    boxShadow: theme.tableBoxShadow,
+    '&.withBorder': {
+      border: theme.tableBorderPrimary,
+      borderRadius: 8,
+      boxShadow: theme.tableBoxShadow,
+    }
   },
   table: {
     borderSpacing: 0,

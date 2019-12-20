@@ -7,22 +7,27 @@ interface ITableProps {
   children?: any;
   className?: any;
   headerComponent?: any;
+  border?: boolean;
   headerLabel?: string;
 }
 
 const Table = (props: ITableProps & WithStyles<typeof styles>) => {
-  const { children, classes, className, headerLabel, headerComponent } = props;
+  const { border = true, children, classes, className, headerLabel, headerComponent } = props;
 
   if (!headerLabel && !headerComponent) {
     return (
-      <table className={classNames(classes.root, classes.table, className)}>
+      <table className={classNames(classes.root, classes.table, className, {
+        'withBorder': border,
+      })}>
         {children}
       </table>
     );
   }
 
   return (
-    <div className={classNames(classes.root, className)}>
+    <div className={classNames(classes.root, className, {
+      'withBorder': border,
+    })}>
       <div className={classes.header}>
         {headerLabel && <div className={classes.headerLabel}>{headerLabel}</div>}
         {headerComponent && <div className={classes.headerComponent}>{headerComponent}</div>}
