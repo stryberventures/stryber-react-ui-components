@@ -5,6 +5,7 @@ interface PaginationProps {
     pageCount: number;
     onChange: (index: number) => void;
     collapseFactor?: number;
+    className?: string;
 }
 declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles<(theme: any) => {
     root: {
@@ -34,6 +35,10 @@ declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles
             opacity: number;
         };
     };
+    widthAuto: {
+        width: string;
+        padding: string;
+    };
     arrow: {
         display: string;
         alignItems: string;
@@ -60,8 +65,8 @@ declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles
             marginRight: number;
         };
     };
-}>, "currPage" | "pageCount" | "onChange" | "collapseFactor"> & {
-    classes?: Partial<Record<"root" | "item" | "active" | "disabled" | "arrow" | "leftArrow" | "rightArrow", string>> | undefined;
+}>, "currPage" | "pageCount" | "onChange" | "collapseFactor" | "className"> & {
+    classes?: Partial<Record<"root" | "item" | "active" | "disabled" | "widthAuto" | "arrow" | "leftArrow" | "rightArrow", string>> | undefined;
 }>;
 export default StyledTable;
 export { StyledTable as Pagination };

@@ -26,6 +26,10 @@ export default (theme: any) => ({
       opacity: 0.5,
     }
   },
+  widthAuto: {
+    width: 'auto',
+    padding: '0 4px',
+  },
   arrow: {
     display: 'flex',
     alignItems: 'center',

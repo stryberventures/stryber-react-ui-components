@@ -8,6 +8,7 @@ interface PaginationProps {
   pageCount: number;
   onChange: (index: number)=> void;
   collapseFactor?: number;
+  className?: string;
 }
 
 const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
@@ -16,13 +17,17 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
     collapseFactor,
     currPage,
     pageCount,
+    className,
     classes
   } = props;
 
   const getItem = (active: boolean, index: number, label: number | string, key?: number | string) => (
     <div
       key={key}
-      className={classNames(classes.item, {[classes.active]: active})}
+      className={classNames(classes.item, {
+        [classes.widthAuto]: label > 999,
+        [classes.active]: active
+      })}
       onClick={()=> {onChange(index)}}
     >
       {label}
@@ -62,7 +67,7 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classNames(classes.root, className)}>
       <div
         onClick={()=>{onChange(currPage - 1)}}
         className={classNames(

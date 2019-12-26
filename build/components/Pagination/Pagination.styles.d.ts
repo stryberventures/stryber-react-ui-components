@@ -26,6 +26,10 @@ declare const _default: (theme: any) => {
             opacity: number;
         };
     };
+    widthAuto: {
+        width: string;
+        padding: string;
+    };
     arrow: {
         display: string;
         alignItems: string;

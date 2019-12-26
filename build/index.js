@@ -2449,6 +2449,10 @@ var styles$f = (function (theme) { return ({
             opacity: 0.5,
         }
     },
+    widthAuto: {
+        width: 'auto',
+        padding: '0 4px',
+    },
     arrow: {
         display: 'flex',
         alignItems: 'center',
@@ -2479,10 +2483,13 @@ var styles$f = (function (theme) { return ({
 
 var Pagination = function (props) {
     var _a, _b;
-    var onChange = props.onChange, collapseFactor = props.collapseFactor, currPage = props.currPage, pageCount = props.pageCount, classes = props.classes;
+    var onChange = props.onChange, collapseFactor = props.collapseFactor, currPage = props.currPage, pageCount = props.pageCount, className = props.className, classes = props.classes;
     var getItem = function (active, index, label, key) {
         var _a;
-        return (React.createElement("div", { key: key, className: classnames(classes.item, (_a = {}, _a[classes.active] = active, _a)), onClick: function () { onChange(index); } }, label));
+        return (React.createElement("div", { key: key, className: classnames(classes.item, (_a = {},
+                _a[classes.widthAuto] = label > 999,
+                _a[classes.active] = active,
+                _a)), onClick: function () { onChange(index); } }, label));
     };
     var getItems = function (items) {
         return items.map(function (index) {
@@ -2511,7 +2518,7 @@ var Pagination = function (props) {
     if (pageCount <= 1) {
         return getItem(true, 0, 1);
     }
-    return (React.createElement("div", { className: classes.root },
+    return (React.createElement("div", { className: classnames(classes.root, className) },
         React.createElement("div", { onClick: function () { onChange(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         React.createElement("div", { onClick: function () { onChange(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
@@ -2697,9 +2704,11 @@ var index$h = /*#__PURE__*/Object.freeze({
 
 var styles$j = (function (theme) { return ({
     root: {
-        border: theme.tableBorderPrimary,
-        borderRadius: 8,
-        boxShadow: theme.tableBoxShadow,
+        '&.withBorder': {
+            border: theme.tableBorderPrimary,
+            borderRadius: 8,
+            boxShadow: theme.tableBoxShadow,
+        }
     },
     table: {
         borderSpacing: 0,
@@ -2727,11 +2736,15 @@ var styles$j = (function (theme) { return ({
 }); });
 
 var Table = function (props) {
-    var children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
+    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
     if (!headerLabel && !headerComponent) {
-        return (React.createElement("table", { className: classnames(classes.root, classes.table, className) }, children));
+        return (React.createElement("table", { className: classnames(classes.root, classes.table, className, {
+                'withBorder': border,
+            }) }, children));
     }
-    return (React.createElement("div", { className: classnames(classes.root, className) },
+    return (React.createElement("div", { className: classnames(classes.root, className, {
+            'withBorder': border,
+        }) },
         React.createElement("div", { className: classes.header },
             headerLabel && React.createElement("div", { className: classes.headerLabel }, headerLabel),
             headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),

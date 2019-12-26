@@ -1,8 +1,10 @@
 declare const _default: (theme: any) => {
     root: {
-        border: any;
-        borderRadius: number;
-        boxShadow: any;
+        '&.withBorder': {
+            border: any;
+            borderRadius: number;
+            boxShadow: any;
+        };
     };
     table: {
         borderSpacing: number;
