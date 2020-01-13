@@ -1696,19 +1696,19 @@ var StyledValueBadge = withStyles__default(styles$9)(ValueBadge);
 
 /** Main component */
 var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount;
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, refApi = props.refApi;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched, unsetFormValue = _a.unsetFormValue;
+    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, unsetFormValue = _b.unsetFormValue;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
-    var _b = __read(React.useState(false), 2), isFocused = _b[0], setFocused = _b[1];
+    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _c = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _c[0], setInternalValues = _c[1];
+    var _d = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _d[0], setInternalValues = _d[1];
     /** Selected choice */
     var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
     /** Select Field State */
-    var _d = __read(React.useState(false), 2), isDropdownOpen = _d[0], setDropdownOpen = _d[1];
+    var _e = __read(React.useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (values) {
         /** Passthrough to form context */
@@ -1767,11 +1767,16 @@ var MultiSelectField = function (props) {
         });
     };
     /** Append content arrow */
-    var appendContent = (React.createElement(DownArrow, { className: classnames([
+    var downArrow = (React.createElement(DownArrow, { className: classnames([
             classes.dropdownArrow,
             isDropdownOpen ? classes.dropdownArrowOpen : null,
             isFocused ? classes.dropdownArrowFocused : null,
         ]) }));
+    React.useImperativeHandle(refApi, function () { return ({
+        clear: function () {
+            setInternalValues([]);
+        }
+    }); });
     /** Mount / unmount logic */
     React.useEffect(function () {
         /** Running first validation on mount */
@@ -1785,19 +1790,20 @@ var MultiSelectField = function (props) {
     return (React.createElement(React.Fragment, null,
         isDropdownOpen
             ? (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
-        React.createElement("div", { className: classnames([
+        React.createElement("div", { ref: refApi, className: classnames([
                 classes.root,
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
-            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: selectedChoices.length > 0, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContent, onClick: inputLabelOnClick },
+            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: downArrow, onClick: inputLabelOnClick },
                 React.createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
                         classes.selectLabel,
                         placeholder ? classes.selectLabelWithPlaceholder : null,
                         errorMsg ? classes.selectLabelInvalid : null,
-                    ]) }, selectedChoices.map(function (_a) {
-                    var label = _a.label, value = _a.value;
-                    return (React.createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
-                }))),
+                    ]) }, showBadgeChoices ?
+                    selectedChoices.map(function (_a) {
+                        var label = _a.label, value = _a.value;
+                        return (React.createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+                    }) : null)),
             isDropdownOpen
                 ? (React.createElement(FormContext.Provider, { value: defaultFormContextValues },
                     React.createElement("div", { className: classes.dropdownWrapper }, choices
@@ -1805,7 +1811,9 @@ var MultiSelectField = function (props) {
 };
 /** Wrappers */
 var StyledMultiSelectField = withStyles__default(styles$8)(MultiSelectField);
-var PropsWrappedStyledMultiSelectField = function (props) { return React.createElement(StyledMultiSelectField, __assign({}, props)); };
+var PropsWrappedStyledMultiSelectField = React.forwardRef(function (props, ref) {
+    return React.createElement(StyledMultiSelectField, __assign({}, props, { refApi: ref }));
+});
 
 
 
@@ -2484,12 +2492,17 @@ var styles$f = (function (theme) { return ({
 var Pagination = function (props) {
     var _a, _b;
     var onChange = props.onChange, collapseFactor = props.collapseFactor, currPage = props.currPage, pageCount = props.pageCount, className = props.className, classes = props.classes;
+    var onClick = function (index) {
+        if (index !== currPage) {
+            onChange(index);
+        }
+    };
     var getItem = function (active, index, label, key) {
         var _a;
         return (React.createElement("div", { key: key, className: classnames(classes.item, (_a = {},
                 _a[classes.widthAuto] = label > 999,
                 _a[classes.active] = active,
-                _a)), onClick: function () { onChange(index); } }, label));
+                _a)), onClick: function () { onClick(index); } }, label));
     };
     var getItems = function (items) {
         return items.map(function (index) {
@@ -2519,18 +2532,17 @@ var Pagination = function (props) {
         return getItem(true, 0, 1);
     }
     return (React.createElement("div", { className: classnames(classes.root, className) },
-        React.createElement("div", { onClick: function () { onChange(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
+        React.createElement("div", { onClick: function () { onClick(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
-        React.createElement("div", { onClick: function () { onChange(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
+        React.createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledTable = withStyles__default(styles$f)(Pagination);
+var StyledPagination = React.memo(withStyles__default(styles$f)(Pagination));
 
 
 
 var index$e = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable,
-    Pagination: StyledTable
+    'default': StyledPagination
 });
 
 var getGridColumnStyle = function (breakpointValue) {
@@ -2750,14 +2762,14 @@ var Table = function (props) {
             headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),
         React.createElement("table", { className: classes.table }, children)));
 };
-var StyledTable$1 = withStyles__default(styles$j)(Table);
+var StyledTable = withStyles__default(styles$j)(Table);
 
 
 
 var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$1,
-    Table: StyledTable$1
+    'default': StyledTable,
+    Table: StyledTable
 });
 
 var VARIANT_HEAD = 'head';
@@ -2809,14 +2821,14 @@ var TableCell = function (props) {
     }
     return (React.createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$2 = withStyles__default(styles$k)(TableCell);
+var StyledTable$1 = withStyles__default(styles$k)(TableCell);
 
 
 
 var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$2,
-    TableCell: StyledTable$2
+    'default': StyledTable$1,
+    TableCell: StyledTable$1
 });
 
 var TableHead = function (_a) {
@@ -2846,29 +2858,29 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className;
     return (React.createElement("tr", { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$3 = withStyles__default(styles$l)(TableRow);
+var StyledTable$2 = withStyles__default(styles$l)(TableRow);
 
 
 
 var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$3,
-    TableRow: StyledTable$3
+    'default': StyledTable$2,
+    TableRow: StyledTable$2
 });
 
 var TableData = function (props) {
     var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
     var getHeadRow = function () {
         return headRow.map(function (cell) {
-            return React.createElement(StyledTable$2, { key: cell.id }, cell.label);
+            return React.createElement(StyledTable$1, { key: cell.id }, cell.label);
         });
     };
-    var getRows = function () { return rows.map(function (row) { return (React.createElement(StyledTable$3, { key: row.id }, headRow.map(function (cell, index) {
-        return React.createElement(StyledTable$2, { key: index }, row[cell.id]);
+    var getRows = function () { return rows.map(function (row) { return (React.createElement(StyledTable$2, { key: row.id }, headRow.map(function (cell, index) {
+        return React.createElement(StyledTable$1, { key: index }, row[cell.id]);
     }))); }); };
-    return (React.createElement(StyledTable$1, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+    return (React.createElement(StyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
         React.createElement(TableHead, null,
-            React.createElement(StyledTable$3, null, getHeadRow())),
+            React.createElement(StyledTable$2, null, getHeadRow())),
         React.createElement(TableBody, null, getRows())));
 };
 
@@ -3336,7 +3348,7 @@ exports.Navbar = PropsWrappedStyledNavbar;
 exports.NavbarElements = index$o;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
 exports.NavbarNavigationElements = index$p;
-exports.Pagination = StyledTable;
+exports.Pagination = StyledPagination;
 exports.PaginationElements = index$e;
 exports.PasswordField = PropsWrappedStyledPasswordField;
 exports.PasswordFieldElements = index$7;
@@ -3350,17 +3362,17 @@ exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
 exports.SidebarNavigationElements = index$q;
-exports.Table = StyledTable$1;
+exports.Table = StyledTable;
 exports.TableBody = TableBody;
 exports.TableBodyElements = index$j;
-exports.TableCell = StyledTable$2;
+exports.TableCell = StyledTable$1;
 exports.TableCellElements = index$k;
 exports.TableData = TableData;
 exports.TableDataElements = index$n;
 exports.TableElements = index$i;
 exports.TableHead = TableHead;
 exports.TableHeadElements = index$l;
-exports.TableRow = StyledTable$3;
+exports.TableRow = StyledTable$2;
 exports.TableRowElements = index$m;
 exports.ThemeProvider = ThemeProvider;
 exports.colors = colors;

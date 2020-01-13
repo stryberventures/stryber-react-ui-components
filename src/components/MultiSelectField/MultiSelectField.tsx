@@ -25,8 +25,9 @@ export interface IMultiSelectFieldProps {
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
   prependContent?: any;
-  appendContent?: any;
   errorMessage?: string;
+  showBadgeChoices?: boolean;
+  refApi?: any;
 }
 
 /** Main component */
@@ -43,6 +44,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     placeholder,
     choices,
     clearFormValueOnUnmount,
+    showBadgeChoices = true,
+    refApi,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -129,7 +132,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   };
 
   /** Append content arrow */
-  const appendContent = (
+  const downArrow = (
     <DownArrow
       className={classNames([
         classes.dropdownArrow,
@@ -139,6 +142,11 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     />
   );
 
+  React.useImperativeHandle(refApi, () => ({
+    clear: () => {
+      setInternalValues([]);
+    }
+  }));
 
   /** Mount / unmount logic */
   React.useEffect(() => {
@@ -148,7 +156,6 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       if (unsetFormValue && clearFormValueOnUnmount) unsetFormValue(name);
     };
   }, []);
-
   return (
     <>
       {/** Clickaway element */}
@@ -164,6 +171,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       }
       {/** Root wrapper */}
       <div
+        ref={refApi}
         className={classNames([
           classes.root,
           isDropdownOpen ? classes.rootOpen : null,
@@ -171,11 +179,11 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       >
         {/** Value & Placeholder / Header */}
         <InputFieldLayout
-          isPlaceholderCollapsed={selectedChoices.length > 0}
+          isPlaceholderCollapsed={showBadgeChoices ? selectedChoices.length > 0 : false}
           errorMsg={errorMsg}
           disabled={disabled}
           placeholder={placeholder}
-          appendContent={appendContent}
+          appendContent={downArrow}
           onClick={inputLabelOnClick}
         >
           <div
@@ -188,7 +196,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               errorMsg ? classes.selectLabelInvalid : null,
             ])}
           >
-            {
+            {showBadgeChoices ?
               selectedChoices.map(({ label, value }: IMultiChoiceData) => (
                 <ValueBadge
                   key={value}
@@ -196,7 +204,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                 >
                   { label }
                 </ValueBadge>
-              ))
+              )) : null
             }
           </div>
         </InputFieldLayout>
@@ -234,7 +242,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
 
 /** Wrappers */
 const StyledMultiSelectField = withStyles(styles)(MultiSelectField);
-const PropsWrappedStyledMultiSelectField = (props: IMultiSelectFieldProps) => <StyledMultiSelectField {...props} />;
+const PropsWrappedStyledMultiSelectField = React.forwardRef((props: IMultiSelectFieldProps, ref) =>
+  <StyledMultiSelectField {...props} refApi={ref}/>
+);
 
 /** Exports */
 export default PropsWrappedStyledMultiSelectField;

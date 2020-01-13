@@ -1,4 +1,4 @@
-import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, useRef } from 'react';
+import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, forwardRef, useImperativeHandle, useRef, memo } from 'react';
 import withStyles, { ThemeProvider as ThemeProvider$1 } from 'react-jss';
 
 /*! *****************************************************************************
@@ -1689,19 +1689,19 @@ var StyledValueBadge = withStyles(styles$9)(ValueBadge);
 
 /** Main component */
 var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount;
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, refApi = props.refApi;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched, unsetFormValue = _a.unsetFormValue;
+    var _b = useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, unsetFormValue = _b.unsetFormValue;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
-    var _b = __read(useState(false), 2), isFocused = _b[0], setFocused = _b[1];
+    var _c = __read(useState(false), 2), isFocused = _c[0], setFocused = _c[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _c = __read(useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _c[0], setInternalValues = _c[1];
+    var _d = __read(useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _d[0], setInternalValues = _d[1];
     /** Selected choice */
     var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
     /** Select Field State */
-    var _d = __read(useState(false), 2), isDropdownOpen = _d[0], setDropdownOpen = _d[1];
+    var _e = __read(useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (values) {
         /** Passthrough to form context */
@@ -1760,11 +1760,16 @@ var MultiSelectField = function (props) {
         });
     };
     /** Append content arrow */
-    var appendContent = (createElement(DownArrow, { className: classnames([
+    var downArrow = (createElement(DownArrow, { className: classnames([
             classes.dropdownArrow,
             isDropdownOpen ? classes.dropdownArrowOpen : null,
             isFocused ? classes.dropdownArrowFocused : null,
         ]) }));
+    useImperativeHandle(refApi, function () { return ({
+        clear: function () {
+            setInternalValues([]);
+        }
+    }); });
     /** Mount / unmount logic */
     useEffect(function () {
         /** Running first validation on mount */
@@ -1778,19 +1783,20 @@ var MultiSelectField = function (props) {
     return (createElement(Fragment, null,
         isDropdownOpen
             ? (createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
-        createElement("div", { className: classnames([
+        createElement("div", { ref: refApi, className: classnames([
                 classes.root,
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
-            createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: selectedChoices.length > 0, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContent, onClick: inputLabelOnClick },
+            createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: downArrow, onClick: inputLabelOnClick },
                 createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
                         classes.selectLabel,
                         placeholder ? classes.selectLabelWithPlaceholder : null,
                         errorMsg ? classes.selectLabelInvalid : null,
-                    ]) }, selectedChoices.map(function (_a) {
-                    var label = _a.label, value = _a.value;
-                    return (createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
-                }))),
+                    ]) }, showBadgeChoices ?
+                    selectedChoices.map(function (_a) {
+                        var label = _a.label, value = _a.value;
+                        return (createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+                    }) : null)),
             isDropdownOpen
                 ? (createElement(FormContext.Provider, { value: defaultFormContextValues },
                     createElement("div", { className: classes.dropdownWrapper }, choices
@@ -1798,7 +1804,9 @@ var MultiSelectField = function (props) {
 };
 /** Wrappers */
 var StyledMultiSelectField = withStyles(styles$8)(MultiSelectField);
-var PropsWrappedStyledMultiSelectField = function (props) { return createElement(StyledMultiSelectField, __assign({}, props)); };
+var PropsWrappedStyledMultiSelectField = forwardRef(function (props, ref) {
+    return createElement(StyledMultiSelectField, __assign({}, props, { refApi: ref }));
+});
 
 
 
@@ -2477,12 +2485,17 @@ var styles$f = (function (theme) { return ({
 var Pagination = function (props) {
     var _a, _b;
     var onChange = props.onChange, collapseFactor = props.collapseFactor, currPage = props.currPage, pageCount = props.pageCount, className = props.className, classes = props.classes;
+    var onClick = function (index) {
+        if (index !== currPage) {
+            onChange(index);
+        }
+    };
     var getItem = function (active, index, label, key) {
         var _a;
         return (createElement("div", { key: key, className: classnames(classes.item, (_a = {},
                 _a[classes.widthAuto] = label > 999,
                 _a[classes.active] = active,
-                _a)), onClick: function () { onChange(index); } }, label));
+                _a)), onClick: function () { onClick(index); } }, label));
     };
     var getItems = function (items) {
         return items.map(function (index) {
@@ -2512,18 +2525,17 @@ var Pagination = function (props) {
         return getItem(true, 0, 1);
     }
     return (createElement("div", { className: classnames(classes.root, className) },
-        createElement("div", { onClick: function () { onChange(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
+        createElement("div", { onClick: function () { onClick(currPage - 1); }, className: classnames(classes.item, classes.arrow, classes.leftArrow, (_a = {}, _a[classes.disabled] = currPage === 0, _a)) }),
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
-        createElement("div", { onClick: function () { onChange(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
+        createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledTable = withStyles(styles$f)(Pagination);
+var StyledPagination = memo(withStyles(styles$f)(Pagination));
 
 
 
 var index$e = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable,
-    Pagination: StyledTable
+    'default': StyledPagination
 });
 
 var getGridColumnStyle = function (breakpointValue) {
@@ -2743,14 +2755,14 @@ var Table = function (props) {
             headerComponent && createElement("div", { className: classes.headerComponent }, headerComponent)),
         createElement("table", { className: classes.table }, children)));
 };
-var StyledTable$1 = withStyles(styles$j)(Table);
+var StyledTable = withStyles(styles$j)(Table);
 
 
 
 var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$1,
-    Table: StyledTable$1
+    'default': StyledTable,
+    Table: StyledTable
 });
 
 var VARIANT_HEAD = 'head';
@@ -2802,14 +2814,14 @@ var TableCell = function (props) {
     }
     return (createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$2 = withStyles(styles$k)(TableCell);
+var StyledTable$1 = withStyles(styles$k)(TableCell);
 
 
 
 var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$2,
-    TableCell: StyledTable$2
+    'default': StyledTable$1,
+    TableCell: StyledTable$1
 });
 
 var TableHead = function (_a) {
@@ -2839,29 +2851,29 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className;
     return (createElement("tr", { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$3 = withStyles(styles$l)(TableRow);
+var StyledTable$2 = withStyles(styles$l)(TableRow);
 
 
 
 var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$3,
-    TableRow: StyledTable$3
+    'default': StyledTable$2,
+    TableRow: StyledTable$2
 });
 
 var TableData = function (props) {
     var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
     var getHeadRow = function () {
         return headRow.map(function (cell) {
-            return createElement(StyledTable$2, { key: cell.id }, cell.label);
+            return createElement(StyledTable$1, { key: cell.id }, cell.label);
         });
     };
-    var getRows = function () { return rows.map(function (row) { return (createElement(StyledTable$3, { key: row.id }, headRow.map(function (cell, index) {
-        return createElement(StyledTable$2, { key: index }, row[cell.id]);
+    var getRows = function () { return rows.map(function (row) { return (createElement(StyledTable$2, { key: row.id }, headRow.map(function (cell, index) {
+        return createElement(StyledTable$1, { key: index }, row[cell.id]);
     }))); }); };
-    return (createElement(StyledTable$1, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+    return (createElement(StyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
         createElement(TableHead, null,
-            createElement(StyledTable$3, null, getHeadRow())),
+            createElement(StyledTable$2, null, getHeadRow())),
         createElement(TableBody, null, getRows())));
 };
 
@@ -3304,5 +3316,5 @@ var index$r = /*#__PURE__*/Object.freeze({
     Badge: PropsWrappedStyledBadge
 });
 
-export { PropsWrappedStyledBadge as Badge, index$r as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, StyledCard as Card, index$h as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$g as ContainerElements, PropsWrappedStyledStyledFileField as FileField, index$b as FileFieldElements, Form, index as FormElements, Row as Grid, index$f as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$a as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$o as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$p as NavbarNavigationElements, StyledTable as Pagination, index$e as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$c as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$q as SidebarNavigationElements, StyledTable$1 as Table, TableBody, index$j as TableBodyElements, StyledTable$2 as TableCell, index$k as TableCellElements, TableData, index$n as TableDataElements, index$i as TableElements, TableHead, index$l as TableHeadElements, StyledTable$3 as TableRow, index$m as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
+export { PropsWrappedStyledBadge as Badge, index$r as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, StyledCard as Card, index$h as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$g as ContainerElements, PropsWrappedStyledStyledFileField as FileField, index$b as FileFieldElements, Form, index as FormElements, Row as Grid, index$f as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$a as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$o as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$p as NavbarNavigationElements, StyledPagination as Pagination, index$e as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$c as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$q as SidebarNavigationElements, StyledTable as Table, TableBody, index$j as TableBodyElements, StyledTable$1 as TableCell, index$k as TableCellElements, TableData, index$n as TableDataElements, index$i as TableElements, TableHead, index$l as TableHeadElements, StyledTable$2 as TableRow, index$m as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map
