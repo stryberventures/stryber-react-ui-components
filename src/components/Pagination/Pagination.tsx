@@ -11,7 +11,7 @@ interface PaginationProps {
   className?: string;
 }
 
-const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
+const Pagination: React.FC<PaginationProps & WithStyles<typeof styles>> = (props) => {
   const {
     onChange,
     collapseFactor,
@@ -21,6 +21,12 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
     classes
   } = props;
 
+  const onClick = (index: number) => {
+    if (index !== currPage) {
+      onChange(index);
+    }
+  };
+
   const getItem = (active: boolean, index: number, label: number | string, key?: number | string) => (
     <div
       key={key}
@@ -28,7 +34,7 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
         [classes.widthAuto]: label > 999,
         [classes.active]: active
       })}
-      onClick={()=> {onChange(index)}}
+      onClick={()=> {onClick(index)}}
     >
       {label}
     </div>
@@ -69,7 +75,7 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
   return (
     <div className={classNames(classes.root, className)}>
       <div
-        onClick={()=>{onChange(currPage - 1)}}
+        onClick={()=>{onClick(currPage - 1)}}
         className={classNames(
           classes.item,
           classes.arrow,
@@ -79,7 +85,7 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
       />
       {collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems()}
       <div
-        onClick={()=>{onChange(currPage + 1)}}
+        onClick={()=>{onClick(currPage + 1)}}
         className={classNames(
           classes.item,
           classes.arrow,
@@ -91,8 +97,6 @@ const Pagination = (props: PaginationProps & WithStyles<typeof styles>) => {
   );
 };
 
-const StyledTable = withStyles(styles)(Pagination);
+const StyledPagination = React.memo(withStyles(styles)(Pagination));
 
-export default StyledTable;
-
-export { StyledTable as Pagination };
+export default StyledPagination;

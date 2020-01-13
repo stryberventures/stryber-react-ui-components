@@ -15,10 +15,11 @@ export interface IMultiSelectFieldProps {
     onBlur?: (e: React.BaseSyntheticEvent) => void;
     clearFormValueOnUnmount?: boolean;
     prependContent?: any;
-    appendContent?: any;
     errorMessage?: string;
+    showBadgeChoices?: boolean;
+    refApi?: any;
 }
-declare const PropsWrappedStyledMultiSelectField: (props: IMultiSelectFieldProps) => JSX.Element;
+declare const PropsWrappedStyledMultiSelectField: React.ForwardRefExoticComponent<IMultiSelectFieldProps & React.RefAttributes<{}>>;
 /** Exports */
 export default PropsWrappedStyledMultiSelectField;
 export { PropsWrappedStyledMultiSelectField as MultiSelectField, };

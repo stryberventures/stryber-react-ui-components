@@ -7,7 +7,7 @@ interface PaginationProps {
     collapseFactor?: number;
     className?: string;
 }
-declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles<(theme: any) => {
+declare const StyledPagination: React.MemoExoticComponent<React.ComponentType<Pick<PaginationProps & WithStyles<(theme: any) => {
     root: {
         userSelect: string;
         display: string;
@@ -67,6 +67,5 @@ declare const StyledTable: React.ComponentType<Pick<PaginationProps & WithStyles
     };
 }>, "currPage" | "pageCount" | "onChange" | "collapseFactor" | "className"> & {
     classes?: Partial<Record<"root" | "item" | "active" | "disabled" | "widthAuto" | "arrow" | "leftArrow" | "rightArrow", string>> | undefined;
-}>;
-export default StyledTable;
-export { StyledTable as Pagination };
+}>>;
+export default StyledPagination;
