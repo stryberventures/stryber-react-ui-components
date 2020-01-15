@@ -10,12 +10,9 @@ export interface IInputFieldLayoutProps {
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
-
   prependContent?: any;
   appendContent?: any;
-
   showPrependBackground?: boolean;
-
   children?: any;
 }
 
