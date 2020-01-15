@@ -99,7 +99,6 @@ declare const _default: (theme: any) => {
         display: string;
         alignItems: string;
         justifyContent: string;
-        paddingLeft: number;
     };
     /** Error message */
     errorMessage: {

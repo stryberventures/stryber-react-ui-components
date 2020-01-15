@@ -108,8 +108,6 @@ export default (theme: any) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-
-    paddingLeft: 20,
   },
   /** Error message */
   errorMessage: {

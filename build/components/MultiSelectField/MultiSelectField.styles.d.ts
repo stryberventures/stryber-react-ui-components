@@ -79,6 +79,10 @@ declare const _default: (theme: any) => {
         border: string;
         backgroundColor: any;
     };
+    dropdownSearchItemsWrapper: {
+        maxHeight: number;
+        overflowY: string;
+    };
     dropdownItem: {
         paddingLeft: number;
         paddingRight: number;
