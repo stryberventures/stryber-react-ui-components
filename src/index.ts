@@ -43,6 +43,9 @@ import * as SearchBoxElements from './components/SearchBox';
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
 
+import ButtonsSet from './components/ButtonsSet';
+import * as ButtonsSetElements from './components/ButtonsSet';
+
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
 
@@ -123,4 +126,5 @@ export {
   NavbarNavigation, NavbarNavigationElements,
   SidebarNavigation, SidebarNavigationElements,
   Badge, BadgeElements,
+  ButtonsSet, ButtonsSetElements
 };
