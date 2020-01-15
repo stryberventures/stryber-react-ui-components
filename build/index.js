@@ -552,13 +552,11 @@ var index$2 = (function (props) { return (React.createElement("svg", __assign({ 
 
 var Eye = (function (props) {
     return (React.createElement("svg", __assign({ viewBox: "0 0 20 20", version: "1.1", xmlns: "http://www.w3.org/2000/svg", xmlnsXlink: "http://www.w3.org/1999/xlink" }, props),
-        React.createElement("title", null, "Eye"),
         React.createElement("path", { d: "M18.5714507,10.4285791 C17.5111816,8.78795214 16.060287,7.38170046 14.3192135,6.48884225 C14.7656426,7.24777173 15.0000179,8.11830848 15.0000179,9.00000596 C15.0000179,11.7567057 12.7567116,14.0000119 10.0000119,14.0000119 C7.24331221,14.0000119 5.00000596,11.7567057 5.00000596,9.00000596 C5.00000596,8.11830848 5.23438124,7.24777173 5.68081034,6.48884225 C3.93973684,7.38170046 2.48884225,8.78795214 1.42857313,10.4285791 C3.33705755,13.3750112 6.41741836,15.4285851 10.0000119,15.4285851 C13.5826055,15.4285851 16.6629663,13.3750112 18.5714507,10.4285791 Z M10.5357268,6.1428597 C10.5357268,5.85268078 10.2901908,5.60714477 10.0000119,5.60714477 C8.13617041,5.60714477 6.60715073,7.13616445 6.60715073,9.00000596 C6.60715073,9.29018488 6.85268674,9.53572088 7.14286566,9.53572088 C7.43304458,9.53572088 7.67858058,9.29018488 7.67858058,9.00000596 C7.67858058,7.72768302 8.72768898,6.67857462 10.0000119,6.67857462 C10.2901908,6.67857462 10.5357268,6.43303861 10.5357268,6.1428597 Z M20.0000238,10.4285791 C20.0000238,10.7075973 19.910738,10.964294 19.7768093,11.1986693 C17.7232354,14.5803698 13.9620702,16.8571582 10.0000119,16.8571582 C6.03795363,16.8571582 2.27678843,14.569209 0.223214552,11.1986693 C0.0892858207,10.964294 0,10.7075973 0,10.4285791 C0,10.1495609 0.0892858207,9.89286417 0.223214552,9.65848889 C2.27678843,6.28794916 6.03795363,4 10.0000119,4 C13.9620702,4 17.7232354,6.28794916 19.7768093,9.65848889 C19.910738,9.89286417 20.0000238,10.1495609 20.0000238,10.4285791 Z" })));
 });
 
 var EyeDisabled = (function (props) {
     return (React.createElement("svg", __assign({ viewBox: "0 0 20 20", version: "1.1", xmlns: "http://www.w3.org/2000/svg", xmlnsXlink: "http://www.w3.org/1999/xlink" }, props),
-        React.createElement("title", null, "Eye Disabled"),
         React.createElement("path", { d: "M6.19420381,14.7566938 L7.06474056,13.1830312 C5.77009616,12.24553 5.00000596,10.7388318 5.00000596,9.14284778 C5.00000596,8.2611503 5.23438124,7.39061354 5.68081034,6.63168407 C3.93973684,7.52454228 2.48884225,8.93079395 1.42857313,10.5714209 C2.5892888,12.3682981 4.22991576,13.8749963 6.19420381,14.7566938 Z M10.5357268,6.28570151 C10.5357268,5.9955226 10.2901908,5.74998659 10.0000119,5.74998659 C8.13617041,5.74998659 6.60715073,7.27900627 6.60715073,9.14284778 C6.60715073,9.43302669 6.85268674,9.6785627 7.14286566,9.6785627 C7.43304458,9.6785627 7.67858058,9.43302669 7.67858058,9.14284778 C7.67858058,7.8593641 8.72768898,6.82141644 10.0000119,6.82141644 C10.2901908,6.82141644 10.5357268,6.57588043 10.5357268,6.28570151 Z M14.587071,4.15400254 C14.587071,4.176324 14.587071,4.23212764 14.5759102,4.25444909 C12.2209967,8.46204339 9.88840465,12.6919592 7.53349112,16.8995535 L6.98661547,17.8928582 C6.91965111,18.0044655 6.7968831,18.0714298 6.6741151,18.0714298 C6.473222,18.0714298 5.41295288,17.4241076 5.1785776,17.2901789 C5.06697033,17.2232146 5,17.1116073 5,16.9776785 C5,16.7991069 5.3794707,16.1964276 5.49107797,16.0066952 C3.32589682,15.0245512 1.50669822,13.3504421 0.223214552,11.3415111 C0.0781250931,11.1182966 0,10.8504391 0,10.571412 C0,10.3035634 0.0781250931,10.0245453 0.223214552,9.8013307 C2.43303861,6.40846952 5.88170344,4.14284182 10.0000119,4.14284182 C10.6696556,4.14284182 11.35046,4.20980618 12.0089429,4.33257418 L12.6116222,3.24998361 C12.6785865,3.13837633 12.7901938,3.07141197 12.9241225,3.07141197 C13.1250156,3.07141197 14.174124,3.71873417 14.4084993,3.8526629 C14.5201066,3.91962726 14.587071,4.03123454 14.587071,4.15400254 Z M15.0000179,9.14284778 C15.0000179,11.2187431 13.7165342,13.0714239 11.7857283,13.8080319 L14.9107321,8.20534666 C14.9665357,8.51784703 15.0000179,8.8303474 15.0000179,9.14284778 Z M20.0000238,10.5714209 C20.0000238,10.8615998 19.9218987,11.0959751 19.7768093,11.3415111 C19.4308267,11.9107082 18.9955584,12.4575839 18.56029,12.9598166 C16.3727874,15.4709803 13.3593909,17 10.0000119,17 L10.8259058,15.526784 C14.0736775,15.2477658 16.8303772,13.272317 18.5714507,10.5714209 C17.7455569,9.28793724 16.6852877,8.16070375 15.4241255,7.290167 L16.1272514,6.04016551 C17.5111816,6.9665059 18.9062725,8.36159685 19.7768093,9.8013307 C19.9218987,10.0468667 20.0000238,10.281242 20.0000238,10.5714209 Z" })));
 });
 
@@ -803,7 +801,6 @@ var styles$3 = (function (theme) { return ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 20,
     },
     /** Error message */
     errorMessage: {
@@ -1177,6 +1174,7 @@ var styles$6 = (function (theme) { return ({
         left: 0,
         height: 19,
         width: 19,
+        minWidth: 19,
         backgroundColor: theme.inputBackgroundColor,
         borderRadius: 3,
         border: "1px solid " + theme.inputColorBorderIdle,
@@ -1607,6 +1605,10 @@ var styles$8 = (function (theme) { return ({
         border: "solid 1px #cfd8dc",
         backgroundColor: theme.inputBackgroundColor,
     },
+    dropdownSearchItemsWrapper: {
+        maxHeight: 195,
+        overflowY: 'auto',
+    },
     dropdownItem: {
         paddingLeft: 18,
         paddingRight: 18,
@@ -1694,387 +1696,7 @@ var ValueBadge = function (props) {
 };
 var StyledValueBadge = withStyles__default(styles$9)(ValueBadge);
 
-/** Main component */
-var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, refApi = props.refApi;
-    /** Getting values from Form context (if the field is wrapped inside a form */
-    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, unsetFormValue = _b.unsetFormValue;
-    /** Getting error message from form errors */
-    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
-    /** Focus status (needed for styles) */
-    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
-    /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _d = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _d[0], setInternalValues = _d[1];
-    /** Selected choice */
-    var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
-    /** Select Field State */
-    var _e = __read(React.useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
-    /** Wrappers to merge form and props methods */
-    var onChangeWrapper = function (values) {
-        /** Passthrough to form context */
-        formValues && updateFormValue(name, values);
-        /** Independent callback */
-        onChange && onChange(values);
-    };
-    var onFocusWrapper = function (e) {
-        setFocused(true);
-        /** Independent callback */
-        onFocus && onFocus(e);
-    };
-    var onBlurWrapper = function (e) {
-        var name = e.target.name;
-        setFocused(false);
-        /** Passthrough to form context */
-        formTouched && updateFormTouched(name, true);
-        /** Independent callback */
-        onBlur && onBlur(e);
-    };
-    /** Helper function */
-    var clickAwayOnClick = function (e) {
-        e.stopPropagation();
-        setDropdownOpen(function () { return false; });
-    };
-    var removeSelectionLabel = function (value) {
-        setDropdownOpen(function () { return false; });
-        setInternalValues(function (oiv) {
-            var newValues = (oiv || []).filter(function (d) { return d !== value.toString(); });
-            onChangeWrapper(newValues);
-            return newValues;
-        });
-    };
-    var selectedBadgeOnClose = function (value) {
-        return function (e) {
-            e.stopPropagation();
-            removeSelectionLabel(value);
-        };
-    };
-    var inputLabelOnClick = function (e) {
-        e.stopPropagation();
-        setDropdownOpen(function (v) { return !v; });
-    };
-    var checkboxOnChangeWrapper = function (e) {
-        var _a = e.target, name = _a.name, checked = _a.checked;
-        setInternalValues(function (oiv) {
-            var newValues = [];
-            if (checked) {
-                newValues = (oiv || []).filter(function (d) { return d !== name; }).concat([name]);
-            }
-            else {
-                newValues = (oiv || []).filter(function (d) { return d !== name; });
-            }
-            onChangeWrapper(newValues);
-            return newValues;
-        });
-    };
-    /** Append content arrow */
-    var downArrow = (React.createElement(DownArrow, { className: classnames([
-            classes.dropdownArrow,
-            isDropdownOpen ? classes.dropdownArrowOpen : null,
-            isFocused ? classes.dropdownArrowFocused : null,
-        ]) }));
-    React.useImperativeHandle(refApi, function () { return ({
-        clear: function () {
-            setInternalValues([]);
-        }
-    }); });
-    /** Mount / unmount logic */
-    React.useEffect(function () {
-        /** Running first validation on mount */
-        if (updateFormValue)
-            updateFormValue(name, internalValues);
-        return function () {
-            if (unsetFormValue && clearFormValueOnUnmount)
-                unsetFormValue(name);
-        };
-    }, []);
-    return (React.createElement(React.Fragment, null,
-        isDropdownOpen
-            ? (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
-        React.createElement("div", { ref: refApi, className: classnames([
-                classes.root,
-                isDropdownOpen ? classes.rootOpen : null,
-            ]) },
-            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: downArrow, onClick: inputLabelOnClick },
-                React.createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
-                        classes.selectLabel,
-                        placeholder ? classes.selectLabelWithPlaceholder : null,
-                        errorMsg ? classes.selectLabelInvalid : null,
-                    ]) }, showBadgeChoices ?
-                    selectedChoices.map(function (_a) {
-                        var label = _a.label, value = _a.value;
-                        return (React.createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
-                    }) : null)),
-            isDropdownOpen
-                ? (React.createElement(FormContext.Provider, { value: defaultFormContextValues },
-                    React.createElement("div", { className: classes.dropdownWrapper }, choices
-                        .map(function (choiceData, i) { return (React.createElement(PropsWrappedStyledCheckboxField, { className: classes.dropdownItem, key: i, placeholder: choiceData.label, name: choiceData.value, checked: !!selectedChoices.find(function (d) { return d.value === choiceData.value; }), onChange: checkboxOnChangeWrapper })); })))) : null)));
-};
-/** Wrappers */
-var StyledMultiSelectField = withStyles__default(styles$8)(MultiSelectField);
-var PropsWrappedStyledMultiSelectField = React.forwardRef(function (props, ref) {
-    return React.createElement(StyledMultiSelectField, __assign({}, props, { refApi: ref }));
-});
-
-
-
-var index$a = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': PropsWrappedStyledMultiSelectField,
-    MultiSelectField: PropsWrappedStyledMultiSelectField
-});
-
 var styles$a = (function (theme) { return ({
-    input: {
-        display: 'none',
-    },
-    inputFieldWrapper: {
-        width: '100%',
-        padding: '23px 0',
-        cursor: 'pointer',
-        '&:focus': {
-            outline: 'none',
-        },
-    },
-    inputWithPlaceholder: {
-        display: 'block',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        padding: '0 14px',
-        border: '0',
-        backgroundColor: 'rgba(0,0,0,0)',
-        transition: '0.5s',
-        color: theme.inputColorIdle,
-        fontFamily: theme.fontFamily,
-        fontSize: 14,
-        fontWeight: theme.fontWeightMedium,
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        cursor: 'pointer',
-    },
-    selectedFiles: {
-        margin: 0,
-        padding: '0 21px',
-        color: theme.inputPlaceholderColorIdle || '#95acbf',
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightLight,
-        fontSize: 10,
-    },
-}); });
-
-var styles$b = (function (theme) { return ({
-    selectedFile: {
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-between',
-        padding: '8px 2px 8px 0',
-        borderBottom: "1px solid " + theme.inputColorBorderIdle
-    },
-    file: {
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'nowrap',
-        overflow: 'hidden',
-    },
-    fileName: {
-        marginLeft: 8,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        fontSize: '10px',
-        letterSpacing: '0.25px',
-        color: theme.inputColorIdle,
-    },
-    fileLogo: {
-        fill: theme.inputColorIdle,
-        width: 14,
-    },
-    closeLogo: {
-        fill: theme.textColorHighlight,
-        width: 10,
-    },
-    closeButton: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        width: 18,
-        height: 18,
-        marginLeft: 8,
-        backgroundColor: theme.inputColorBorderIdle,
-        borderRadius: '100%',
-        cursor: 'pointer',
-    },
-}); });
-
-var SelectedFile = function (_a) {
-    var classes = _a.classes, fileName = _a.fileName, removeFile = _a.removeFile;
-    return (React.createElement("li", { className: classes.selectedFile },
-        React.createElement("span", { className: classes.file },
-            React.createElement(File, { className: classes.fileLogo, viewBox: "0 0 14 18" }),
-            React.createElement("span", { className: classes.fileName }, fileName)),
-        React.createElement("span", { className: classes.closeButton, onClick: function () { return removeFile(fileName); } },
-            React.createElement(Close, { className: classes.closeLogo }))));
-};
-/** Wrappers */
-var StyledSelectedFile = withStyles__default(styles$b)(SelectedFile);
-
-var styles$c = (function (theme) { return ({
-    uploadButton: {
-        marginRight: 12,
-        padding: '0 24px',
-        borderRadius: 4.4,
-        fontSize: 10,
-        fontWeight: 500,
-        lineHeight: '23px',
-        cursor: 'pointer',
-        '&.fileNotSelected': {
-            color: '#007aff',
-            border: 'solid 1px #007aff',
-            backgroundColor: '#fff',
-            '&.error': {
-                borderColor: theme.inputColorError || '#d0021b',
-                color: theme.inputColorError || '#d0021b',
-            },
-        },
-        '&.disabled': {
-            borderColor: theme.inputColorBorderIdle,
-            color: theme.inputColorBorderIdle,
-        },
-        '&.fileSelected': {
-            color: '#fff',
-            border: 'solid 1px #007aff',
-            backgroundColor: '#007aff',
-            '&.error': {
-                borderColor: theme.inputColorError || '#d0021b',
-                backgroundColor: theme.inputColorError || '#d0021b',
-            },
-        },
-    },
-}); });
-
-/** Component */
-var UploadButton = function (props) {
-    var classes = props.classes, files = props.files, errorMsg = props.errorMsg, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a;
-    var noFilesSelected = !files || (!files.name && !files.length);
-    return (React.createElement("button", { onClick: onClick, disabled: disabled, className: classnames([
-            classes.uploadButton,
-            errorMsg ? 'error' : '',
-            noFilesSelected ? 'fileNotSelected' : 'fileSelected',
-            disabled ? 'disabled' : null,
-        ]) }, noFilesSelected ? 'Upload' : 'Change'));
-};
-/** Wrappers */
-var StyledUploadButton = withStyles__default(styles$c)(UploadButton);
-
-/** Main component */
-var FileField = function (props) {
-    var name = props.name, accept = props.accept, classes = props.classes, errorMessage = props.errorMessage, inputText = props.inputText, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.multiple, multiple = _b === void 0 ? false : _b, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, placeholder = props.placeholder, value = props.value, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent;
-    /** Getting values from Form context (if the field is wrapped inside a form */
-    var _d = React.useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
-    /** Create input ref and an event to click it */
-    var inputRef = React.useRef(null);
-    var clickFileInput = function () {
-        (inputRef && inputRef.current) && inputRef.current.click();
-    };
-    /** Focus status (needed for styles) */
-    var _e = __read(React.useState(false), 2), isFocused = _e[0], setFocused = _e[1];
-    /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _f = __read(React.useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
-    /** Getting error message from form errors */
-    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
-    /** Getting files names */
-    var getFileNames = function (files) {
-        if (files && files.name) {
-            return [files.name];
-        }
-        return (files && files.length)
-            ? Object.values(files).map(function (file) { return file.name; })
-            : [];
-    };
-    /** Wrappers to merge form and props methods */
-    var onChangeWrapper = function (e) {
-        if (disabled)
-            return;
-        var _a = e.target, name = _a.name, targetFiles = _a.files;
-        /** Getting array of multiple files */
-        var multipleFiles = Array.from(targetFiles);
-        /** Getting files to be added to formData */
-        var files = multiple ? multipleFiles : targetFiles[0];
-        /** Internal value update */
-        setInternalValue(files);
-        /** Passthrough to form context */
-        formValues && updateFormValue(name, files);
-        /** Independent callback */
-        onChange && onChange(files);
-    };
-    var onFocusWrapper = function (e) {
-        if (disabled)
-            return;
-        /** Internal value update */
-        setFocused(true);
-        /** Independent callback */
-        onFocus && onFocus(e);
-    };
-    var onBlurWrapper = function (e) {
-        if (disabled)
-            return;
-        var name = e.target.name;
-        /** Internal value update */
-        setFocused(false);
-        /** Passthrough to form context */
-        formTouched && updateFormTouched(name, true);
-        /** Independent callback */
-        onBlur && onBlur(e);
-    };
-    /** Remove file from internalValue */
-    var removeFile = function (fileName) {
-        var files = multiple ? (internalValue).filter(function (file) { return file.name !== fileName; }) : undefined;
-        setInternalValue(files);
-        /** Passthrough to form context */
-        formValues && updateFormValue(name, files);
-        /** Independent callback */
-        onChange && onChange(files);
-    };
-    /** On mount/unmount logic */
-    React.useEffect(function () {
-        /** On mount */
-        /** Update form with internal value on mount */
-        name && updateFormValue(name, internalValue);
-        return function () {
-            /** On unmount */
-            /** Clear Form value if needed */
-            name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
-        };
-    }, []);
-    /** Set placeholder appearance */
-    var isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && (internalValue.name || internalValue.length)) || isFocused);
-    var isPlaceholderVisible = multiple ? !!(internalValue && internalValue.length) : !!internalValue;
-    /** Default components */
-    var appendContentDefault = React.createElement(StyledUploadButton, { files: internalValue, errorMsg: errorMsg, onClick: clickFileInput, disabled: disabled });
-    var inputTextDefault = multiple ? ((internalValue && internalValue.length) + " uploaded " + (internalValue && internalValue.length > 1 ? 'files' : 'file')) : '1 uploaded file';
-    return (React.createElement(React.Fragment, null,
-        React.createElement(PropsWrappedStyledInputFieldLayout, { prependContent: prependContent, appendContent: appendContent ? appendContent(internalValue, errorMsg, clickFileInput, disabled) : appendContentDefault, isPlaceholderCollapsed: isPlaceholderCollapsed, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
-            React.createElement("div", __assign({ onClick: clickFileInput, onFocus: onFocusWrapper, onBlur: onBlurWrapper, className: classes.inputFieldWrapper }, (disabled ? {} : { tabIndex: 0 })),
-                React.createElement("div", { className: classes.inputWithPlaceholder }, isPlaceholderVisible ? (inputText || inputTextDefault) : null),
-                React.createElement("input", { ref: inputRef, name: name, type: "file", accept: accept, multiple: multiple, value: value, key: internalValue, className: classes.input, disabled: disabled, onChange: onChangeWrapper }))),
-        internalValue ?
-            (React.createElement("ul", { className: classes.selectedFiles }, getFileNames(internalValue).map(function (fileName) { return (React.createElement(StyledSelectedFile, { key: fileName, fileName: fileName, removeFile: removeFile })); }))) : null));
-};
-/** Wrappers */
-var StyledFileField = withStyles__default(styles$a)(FileField);
-var PropsWrappedStyledStyledFileField = function (props) { return React.createElement(StyledFileField, __assign({}, props)); };
-
-
-
-var index$b = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': PropsWrappedStyledStyledFileField,
-    FileField: PropsWrappedStyledStyledFileField
-});
-
-var styles$d = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -2216,6 +1838,7 @@ var SearchField = function (props) {
     var onClearClickWrapper = function (e) {
         e.stopPropagation();
         setInputValue(function () { return ''; });
+        onChange && onChange('');
     };
     /** Prepend magnifying lens */
     var prependContent = (React.createElement(Search, { className: classes.searchIcon }));
@@ -2233,15 +1856,415 @@ var SearchField = function (props) {
             ]) })));
 };
 /** Wrappers */
-var StyledSearchField = withStyles__default(styles$d)(SearchField);
+var StyledSearchField = withStyles__default(styles$a)(SearchField);
 var PropsWrappedStyledSearchField = function (props) { return React.createElement(StyledSearchField, __assign({}, props)); };
+
+
+
+var index$a = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledSearchField,
+    SearchField: PropsWrappedStyledSearchField
+});
+
+/** Main component */
+var MultiSelectField = function (props) {
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, appendContent = props.appendContent, refApi = props.refApi, search = props.search;
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, unsetFormValue = _b.unsetFormValue;
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
+    /** Focus status (needed for styles) */
+    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _d = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _d[0], setInternalValues = _d[1];
+    /** Selected choice */
+    var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
+    /** Select Field State */
+    var _e = __read(React.useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
+    /** Search Value State */
+    var _f = __read(React.useState(''), 2), searchValue = _f[0], setSearchValue = _f[1];
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (values) {
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, values);
+        /** Independent callback */
+        onChange && onChange(values);
+    };
+    var onFocusWrapper = function (e) {
+        setFocused(true);
+        /** Independent callback */
+        onFocus && onFocus(e);
+    };
+    var onBlurWrapper = function (e) {
+        var name = e.target.name;
+        setFocused(false);
+        /** Passthrough to form context */
+        formTouched && updateFormTouched(name, true);
+        /** Independent callback */
+        onBlur && onBlur(e);
+    };
+    /** Helper function */
+    var clickAwayOnClick = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(function () { return false; });
+    };
+    var removeSelectionLabel = function (value) {
+        setDropdownOpen(function () { return false; });
+        setInternalValues(function (oiv) {
+            var newValues = (oiv || []).filter(function (d) { return d !== value.toString(); });
+            onChangeWrapper(newValues);
+            return newValues;
+        });
+    };
+    var selectedBadgeOnClose = function (value) {
+        return function (e) {
+            e.stopPropagation();
+            removeSelectionLabel(value);
+        };
+    };
+    var inputLabelOnClick = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(function (v) { return !v; });
+    };
+    var checkboxOnChangeWrapper = function (e) {
+        var _a = e.target, name = _a.name, checked = _a.checked;
+        setInternalValues(function (oiv) {
+            var newValues = [];
+            if (checked) {
+                newValues = (oiv || []).filter(function (d) { return d !== name; }).concat([name]);
+            }
+            else {
+                newValues = (oiv || []).filter(function (d) { return d !== name; });
+            }
+            onChangeWrapper(newValues);
+            return newValues;
+        });
+    };
+    /** Append content and down arrow */
+    var appendContentWithArrow = (React.createElement(React.Fragment, null,
+        appendContent ? appendContent : null,
+        React.createElement(DownArrow, { className: classnames([
+                classes.dropdownArrow,
+                isDropdownOpen ? classes.dropdownArrowOpen : null,
+                isFocused ? classes.dropdownArrowFocused : null,
+            ]) })));
+    var isChoiceSelected = function (option) { return !!selectedChoices.find(function (d) { return d.value === option.value; }); };
+    var getChoices = function (choices) {
+        return (choices.map(function (choice, i) {
+            return (React.createElement(PropsWrappedStyledCheckboxField, { className: classes.dropdownItem, key: search ? choice.value : i, placeholder: choice.label, name: choice.value, checked: isChoiceSelected(choice), onChange: checkboxOnChangeWrapper }));
+        }));
+    };
+    var getSearchChoices = function (choices, value) {
+        var matchedChoices = choices.filter(function (choice) { return choice.label.toUpperCase().indexOf(value.toUpperCase()) === 0; });
+        var pickedChoices = matchedChoices.filter(function (choice) { return isChoiceSelected(choice); });
+        var unpickedChoices = matchedChoices.filter(function (choice) { return !isChoiceSelected(choice); });
+        return getChoices(__spread(pickedChoices, unpickedChoices));
+    };
+    var getBadgeChoices = function () {
+        return selectedChoices.map(function (_a) {
+            var label = _a.label, value = _a.value;
+            return (React.createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+        });
+    };
+    React.useImperativeHandle(refApi, function () { return ({
+        clear: function () {
+            setInternalValues([]);
+            search && setSearchValue('');
+        }
+    }); });
+    /** Mount / unmount logic */
+    React.useEffect(function () {
+        /** Running first validation on mount */
+        if (updateFormValue)
+            updateFormValue(name, internalValues);
+        return function () {
+            if (unsetFormValue && clearFormValueOnUnmount)
+                unsetFormValue(name);
+        };
+    }, []);
+    return (React.createElement(React.Fragment, null,
+        isDropdownOpen
+            ? (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
+        React.createElement("div", { ref: refApi, className: classnames([
+                classes.root,
+                isDropdownOpen ? classes.rootOpen : null,
+            ]) },
+            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContentWithArrow, onClick: inputLabelOnClick },
+                React.createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
+                        classes.selectLabel,
+                        placeholder ? classes.selectLabelWithPlaceholder : null,
+                        errorMsg ? classes.selectLabelInvalid : null,
+                    ]) }, showBadgeChoices ? getBadgeChoices() : null)),
+            isDropdownOpen
+                ? (React.createElement(FormContext.Provider, { value: defaultFormContextValues },
+                    React.createElement("div", { className: classes.dropdownWrapper }, search ? (React.createElement(React.Fragment, null,
+                        React.createElement(PropsWrappedStyledSearchField, { value: searchValue, collapsiblePlaceholder: false, onChange: function (value) { setSearchValue(value); } }),
+                        React.createElement("div", { className: classes.dropdownSearchItemsWrapper }, getSearchChoices(choices, searchValue)))) : getChoices(choices)))) : null)));
+};
+/** Wrappers */
+var StyledMultiSelectField = withStyles__default(styles$8)(MultiSelectField);
+var PropsWrappedStyledMultiSelectField = React.forwardRef(function (props, ref) {
+    return React.createElement(StyledMultiSelectField, __assign({}, props, { refApi: ref }));
+});
+
+
+
+var index$b = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledMultiSelectField,
+    MultiSelectField: PropsWrappedStyledMultiSelectField
+});
+
+var styles$b = (function (theme) { return ({
+    input: {
+        display: 'none',
+    },
+    inputFieldWrapper: {
+        width: '100%',
+        padding: '23px 0',
+        cursor: 'pointer',
+        '&:focus': {
+            outline: 'none',
+        },
+    },
+    inputWithPlaceholder: {
+        display: 'block',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        padding: '0 14px',
+        border: '0',
+        backgroundColor: 'rgba(0,0,0,0)',
+        transition: '0.5s',
+        color: theme.inputColorIdle,
+        fontFamily: theme.fontFamily,
+        fontSize: 14,
+        fontWeight: theme.fontWeightMedium,
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        cursor: 'pointer',
+    },
+    selectedFiles: {
+        margin: 0,
+        padding: '0 21px',
+        color: theme.inputPlaceholderColorIdle || '#95acbf',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+}); });
+
+var styles$c = (function (theme) { return ({
+    selectedFile: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'nowrap',
+        justifyContent: 'space-between',
+        padding: '8px 2px 8px 0',
+        borderBottom: "1px solid " + theme.inputColorBorderIdle
+    },
+    file: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'nowrap',
+        overflow: 'hidden',
+    },
+    fileName: {
+        marginLeft: 8,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        fontSize: '10px',
+        letterSpacing: '0.25px',
+        color: theme.inputColorIdle,
+    },
+    fileLogo: {
+        fill: theme.inputColorIdle,
+        width: 14,
+    },
+    closeLogo: {
+        fill: theme.textColorHighlight,
+        width: 10,
+    },
+    closeButton: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: 18,
+        height: 18,
+        marginLeft: 8,
+        backgroundColor: theme.inputColorBorderIdle,
+        borderRadius: '100%',
+        cursor: 'pointer',
+    },
+}); });
+
+var SelectedFile = function (_a) {
+    var classes = _a.classes, fileName = _a.fileName, removeFile = _a.removeFile;
+    return (React.createElement("li", { className: classes.selectedFile },
+        React.createElement("span", { className: classes.file },
+            React.createElement(File, { className: classes.fileLogo, viewBox: "0 0 14 18" }),
+            React.createElement("span", { className: classes.fileName }, fileName)),
+        React.createElement("span", { className: classes.closeButton, onClick: function () { return removeFile(fileName); } },
+            React.createElement(Close, { className: classes.closeLogo }))));
+};
+/** Wrappers */
+var StyledSelectedFile = withStyles__default(styles$c)(SelectedFile);
+
+var styles$d = (function (theme) { return ({
+    uploadButton: {
+        marginRight: 12,
+        padding: '0 24px',
+        borderRadius: 4.4,
+        fontSize: 10,
+        fontWeight: 500,
+        lineHeight: '23px',
+        cursor: 'pointer',
+        '&.fileNotSelected': {
+            color: '#007aff',
+            border: 'solid 1px #007aff',
+            backgroundColor: '#fff',
+            '&.error': {
+                borderColor: theme.inputColorError || '#d0021b',
+                color: theme.inputColorError || '#d0021b',
+            },
+        },
+        '&.disabled': {
+            borderColor: theme.inputColorBorderIdle,
+            color: theme.inputColorBorderIdle,
+        },
+        '&.fileSelected': {
+            color: '#fff',
+            border: 'solid 1px #007aff',
+            backgroundColor: '#007aff',
+            '&.error': {
+                borderColor: theme.inputColorError || '#d0021b',
+                backgroundColor: theme.inputColorError || '#d0021b',
+            },
+        },
+    },
+}); });
+
+/** Component */
+var UploadButton = function (props) {
+    var classes = props.classes, files = props.files, errorMsg = props.errorMsg, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a;
+    var noFilesSelected = !files || (!files.name && !files.length);
+    return (React.createElement("button", { onClick: onClick, disabled: disabled, className: classnames([
+            classes.uploadButton,
+            errorMsg ? 'error' : '',
+            noFilesSelected ? 'fileNotSelected' : 'fileSelected',
+            disabled ? 'disabled' : null,
+        ]) }, noFilesSelected ? 'Upload' : 'Change'));
+};
+/** Wrappers */
+var StyledUploadButton = withStyles__default(styles$d)(UploadButton);
+
+/** Main component */
+var FileField = function (props) {
+    var name = props.name, accept = props.accept, classes = props.classes, errorMessage = props.errorMessage, inputText = props.inputText, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.multiple, multiple = _b === void 0 ? false : _b, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, placeholder = props.placeholder, value = props.value, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent;
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _d = React.useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, unsetFormValue = _d.unsetFormValue, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched;
+    /** Create input ref and an event to click it */
+    var inputRef = React.useRef(null);
+    var clickFileInput = function () {
+        (inputRef && inputRef.current) && inputRef.current.click();
+    };
+    /** Focus status (needed for styles) */
+    var _e = __read(React.useState(false), 2), isFocused = _e[0], setFocused = _e[1];
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _f = __read(React.useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
+    /** Getting files names */
+    var getFileNames = function (files) {
+        if (files && files.name) {
+            return [files.name];
+        }
+        return (files && files.length)
+            ? Object.values(files).map(function (file) { return file.name; })
+            : [];
+    };
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (e) {
+        if (disabled)
+            return;
+        var _a = e.target, name = _a.name, targetFiles = _a.files;
+        /** Getting array of multiple files */
+        var multipleFiles = Array.from(targetFiles);
+        /** Getting files to be added to formData */
+        var files = multiple ? multipleFiles : targetFiles[0];
+        /** Internal value update */
+        setInternalValue(files);
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, files);
+        /** Independent callback */
+        onChange && onChange(files);
+    };
+    var onFocusWrapper = function (e) {
+        if (disabled)
+            return;
+        /** Internal value update */
+        setFocused(true);
+        /** Independent callback */
+        onFocus && onFocus(e);
+    };
+    var onBlurWrapper = function (e) {
+        if (disabled)
+            return;
+        var name = e.target.name;
+        /** Internal value update */
+        setFocused(false);
+        /** Passthrough to form context */
+        formTouched && updateFormTouched(name, true);
+        /** Independent callback */
+        onBlur && onBlur(e);
+    };
+    /** Remove file from internalValue */
+    var removeFile = function (fileName) {
+        var files = multiple ? (internalValue).filter(function (file) { return file.name !== fileName; }) : undefined;
+        setInternalValue(files);
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, files);
+        /** Independent callback */
+        onChange && onChange(files);
+    };
+    /** On mount/unmount logic */
+    React.useEffect(function () {
+        /** On mount */
+        /** Update form with internal value on mount */
+        name && updateFormValue(name, internalValue);
+        return function () {
+            /** On unmount */
+            /** Clear Form value if needed */
+            name && clearFormValueOnUnmount && unsetFormValue && unsetFormValue(name);
+        };
+    }, []);
+    /** Set placeholder appearance */
+    var isPlaceholderCollapsed = !!((typeof internalValue !== 'undefined' && internalValue !== '' && (internalValue.name || internalValue.length)) || isFocused);
+    var isPlaceholderVisible = multiple ? !!(internalValue && internalValue.length) : !!internalValue;
+    /** Default components */
+    var appendContentDefault = React.createElement(StyledUploadButton, { files: internalValue, errorMsg: errorMsg, onClick: clickFileInput, disabled: disabled });
+    var inputTextDefault = multiple ? ((internalValue && internalValue.length) + " uploaded " + (internalValue && internalValue.length > 1 ? 'files' : 'file')) : '1 uploaded file';
+    return (React.createElement(React.Fragment, null,
+        React.createElement(PropsWrappedStyledInputFieldLayout, { prependContent: prependContent, appendContent: appendContent ? appendContent(internalValue, errorMsg, clickFileInput, disabled) : appendContentDefault, isPlaceholderCollapsed: isPlaceholderCollapsed, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
+            React.createElement("div", __assign({ onClick: clickFileInput, onFocus: onFocusWrapper, onBlur: onBlurWrapper, className: classes.inputFieldWrapper }, (disabled ? {} : { tabIndex: 0 })),
+                React.createElement("div", { className: classes.inputWithPlaceholder }, isPlaceholderVisible ? (inputText || inputTextDefault) : null),
+                React.createElement("input", { ref: inputRef, name: name, type: "file", accept: accept, multiple: multiple, value: value, key: internalValue, className: classes.input, disabled: disabled, onChange: onChangeWrapper }))),
+        internalValue ?
+            (React.createElement("ul", { className: classes.selectedFiles }, getFileNames(internalValue).map(function (fileName) { return (React.createElement(StyledSelectedFile, { key: fileName, fileName: fileName, removeFile: removeFile })); }))) : null));
+};
+/** Wrappers */
+var StyledFileField = withStyles__default(styles$b)(FileField);
+var PropsWrappedStyledStyledFileField = function (props) { return React.createElement(StyledFileField, __assign({}, props)); };
 
 
 
 var index$c = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': PropsWrappedStyledSearchField,
-    SearchField: PropsWrappedStyledSearchField
+    'default': PropsWrappedStyledStyledFileField,
+    FileField: PropsWrappedStyledStyledFileField
 });
 
 var styles$e = (function (theme) { return ({
@@ -3334,7 +3357,7 @@ exports.CheckboxFieldElements = index$8;
 exports.Container = PropsWrappedStyledContainer;
 exports.ContainerElements = index$g;
 exports.FileField = PropsWrappedStyledStyledFileField;
-exports.FileFieldElements = index$b;
+exports.FileFieldElements = index$c;
 exports.Form = Form;
 exports.FormElements = index;
 exports.Grid = Row;
@@ -3343,7 +3366,7 @@ exports.Icons = index$4;
 exports.InputField = InputField;
 exports.InputFieldElements = index$6;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
-exports.MultiSelectFieldElements = index$a;
+exports.MultiSelectFieldElements = index$b;
 exports.Navbar = PropsWrappedStyledNavbar;
 exports.NavbarElements = index$o;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
@@ -3357,7 +3380,7 @@ exports.RadioFieldElements = index$1;
 exports.SearchBox = PropsWrappedStyledSearchBox;
 exports.SearchBoxElements = index$d;
 exports.SearchField = PropsWrappedStyledSearchField;
-exports.SearchFieldElements = index$c;
+exports.SearchFieldElements = index$a;
 exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;

@@ -14,10 +14,11 @@ export interface IMultiSelectFieldProps {
     onFocus?: (e: React.BaseSyntheticEvent) => void;
     onBlur?: (e: React.BaseSyntheticEvent) => void;
     clearFormValueOnUnmount?: boolean;
-    prependContent?: any;
+    appendContent?: any;
     errorMessage?: string;
     showBadgeChoices?: boolean;
     refApi?: any;
+    search?: boolean;
 }
 declare const PropsWrappedStyledMultiSelectField: React.ForwardRefExoticComponent<IMultiSelectFieldProps & React.RefAttributes<{}>>;
 /** Exports */

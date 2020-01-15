@@ -83,6 +83,7 @@ declare const _default: (theme: any) => {
         left: number;
         height: number;
         width: number;
+        minWidth: number;
         backgroundColor: any;
         borderRadius: number;
         border: string;

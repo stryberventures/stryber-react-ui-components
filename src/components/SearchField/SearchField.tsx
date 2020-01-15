@@ -62,6 +62,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
   const onClearClickWrapper = (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
     setInputValue(() => '');
+    onChange && onChange('');
   };
 
   /** Prepend magnifying lens */

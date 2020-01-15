@@ -7,6 +7,7 @@ import { defaultFormContextValues, FormContext} from '../Form';
 import { CheckboxField } from '../CheckboxField';
 import { ValueBadge } from './ValueBadge';
 import { DownArrow } from '../Icons';
+import { SearchField } from '../SearchField';
 
 /** Interfaces */
 export interface IMultiChoiceData {
@@ -24,10 +25,11 @@ export interface IMultiSelectFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
-  prependContent?: any;
+  appendContent?: any;
   errorMessage?: string;
   showBadgeChoices?: boolean;
   refApi?: any;
+  search?: boolean;
 }
 
 /** Main component */
@@ -45,7 +47,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     choices,
     clearFormValueOnUnmount,
     showBadgeChoices = true,
+    appendContent,
     refApi,
+    search,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -71,6 +75,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
 
   /** Select Field State */
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
+
+  /** Search Value State */
+  const [searchValue, setSearchValue] = React.useState<string>('');
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (values: any[]) => {
@@ -131,20 +138,65 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     });
   };
 
-  /** Append content arrow */
-  const downArrow = (
-    <DownArrow
-      className={classNames([
-        classes.dropdownArrow,
-        isDropdownOpen ? classes.dropdownArrowOpen : null,
-        isFocused ? classes.dropdownArrowFocused : null,
-      ])}
-    />
+  /** Append content and down arrow */
+  const appendContentWithArrow = (
+    <>
+      {appendContent ? appendContent : null}
+      <DownArrow
+        className={classNames([
+          classes.dropdownArrow,
+          isDropdownOpen ? classes.dropdownArrowOpen : null,
+          isFocused ? classes.dropdownArrowFocused : null,
+        ])}
+      />
+    </>
   );
+
+  const isChoiceSelected = (option:IMultiChoiceData) => !!selectedChoices.find(d => d.value === option.value);
+
+  const getChoices = (choices:IMultiChoiceData[]) => {
+    return (
+      choices.map((choice: IMultiChoiceData, i: number) => {
+        return (
+          <CheckboxField
+            className={classes.dropdownItem}
+            key={search ? choice.value : i}
+            placeholder={choice.label}
+            name={choice.value}
+            checked={isChoiceSelected(choice)}
+            onChange={checkboxOnChangeWrapper}
+          />
+        )
+      })
+    );
+  };
+
+  const getSearchChoices = (choices:IMultiChoiceData[], value: string) => {
+    const matchedChoices = choices.filter(choice => choice.label.toUpperCase().indexOf(value.toUpperCase()) === 0);
+
+    const pickedChoices = matchedChoices.filter(choice => isChoiceSelected(choice));
+    const unpickedChoices = matchedChoices.filter(choice => !isChoiceSelected(choice));
+
+    return getChoices([...pickedChoices, ...unpickedChoices]);
+  };
+
+  const getBadgeChoices = () => {
+    return selectedChoices.map(({ label, value }: IMultiChoiceData) => {
+      return (
+        <ValueBadge
+          key={value}
+          onClose={selectedBadgeOnClose(value)}
+        >
+          { label }
+        </ValueBadge>
+      );
+    });
+  };
 
   React.useImperativeHandle(refApi, () => ({
     clear: () => {
       setInternalValues([]);
+      search && setSearchValue('');
     }
   }));
 
@@ -183,7 +235,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
           errorMsg={errorMsg}
           disabled={disabled}
           placeholder={placeholder}
-          appendContent={downArrow}
+          appendContent={appendContentWithArrow}
           onClick={inputLabelOnClick}
         >
           <div
@@ -196,16 +248,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               errorMsg ? classes.selectLabelInvalid : null,
             ])}
           >
-            {showBadgeChoices ?
-              selectedChoices.map(({ label, value }: IMultiChoiceData) => (
-                <ValueBadge
-                  key={value}
-                  onClose={selectedBadgeOnClose(value)}
-                >
-                  { label }
-                </ValueBadge>
-              )) : null
-            }
+            {showBadgeChoices ? getBadgeChoices() : null}
           </div>
         </InputFieldLayout>
         {/** Multi Select dropdown */}
@@ -219,17 +262,18 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                 className={classes.dropdownWrapper}
               >
                 {
-                  choices
-                    .map((choiceData: IMultiChoiceData, i: number) => (
-                      <CheckboxField
-                        className={classes.dropdownItem}
-                        key={i}
-                        placeholder={choiceData.label}
-                        name={choiceData.value}
-                        checked={!!selectedChoices.find(d => d.value === choiceData.value)}
-                        onChange={checkboxOnChangeWrapper}
+                  search ? (
+                    <>
+                      <SearchField
+                        value={searchValue}
+                        collapsiblePlaceholder={false}
+                        onChange={value => {setSearchValue(value)}}
                       />
-                    ))
+                      <div className={classes.dropdownSearchItemsWrapper}>
+                        {getSearchChoices(choices, searchValue)}
+                      </div>
+                    </>
+                  ) : getChoices(choices)
                 }
               </div>
               </FormContext.Provider>

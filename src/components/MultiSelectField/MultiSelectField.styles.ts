@@ -88,6 +88,10 @@ export default (theme: any) => ({
     border: `solid 1px #cfd8dc`,
     backgroundColor: theme.inputBackgroundColor,
   },
+  dropdownSearchItemsWrapper: {
+    maxHeight: 195,
+    overflowY: 'auto',
+  },
   dropdownItem: {
     paddingLeft: 18,
     paddingRight: 18,
