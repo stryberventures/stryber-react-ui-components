@@ -11,6 +11,7 @@ export interface IButtonProps {
   children: any;
   variant?: 'primary' | 'secondary' | 'tertiary';
   sizeVariant?: 'normal' | 'mini';
+  className?: any;
 }
 
 /** Main component */
@@ -22,6 +23,7 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
     disabled = false,
     sizeVariant = 'normal',
     variant = 'primary',
+    className,
     ...rest
   } = props;
   const BtnComponent = ({ children, ...rest }: any) => (
@@ -39,6 +41,7 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
         classes[sizeVariant],
         disabled && classes.disabled,
         disabled && 'disabled',
+        className,
       ]) }
       onClick={ onClick }>
       { children }
