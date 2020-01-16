@@ -5,6 +5,24 @@ import { Profile as ProfileIcon } from '../Icons';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
+const ControlledInputField = () => {
+  const [value, setValue] = React.useState('');
+
+  React.useEffect(() => {
+    if (value === 'clear') {
+      setValue('');
+    };
+  }, [value]);
+
+  return (
+    <InputField
+      controlled
+      value={value}
+      onChange={(e: any) => setValue(e.target.value)}
+    />
+  );
+};
+
 storiesOf('Input field', module)
   .add('Text input', () => {
     return (
@@ -65,6 +83,7 @@ storiesOf('Input field', module)
             placeholder="Text field with append and prepend"
             value="Value"
           />
+          <ControlledInputField/>
       </Wrapper>
     );
   });
