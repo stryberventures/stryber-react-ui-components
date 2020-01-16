@@ -954,7 +954,7 @@ var styles$4 = (function (theme) { return ({
 
 /** Main component */
 var Button = function (props) {
-    var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant"]);
+    var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, className = props.className, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant", "className"]);
     var BtnComponent = function (_a) {
         var children = _a.children, rest = __rest(_a, ["children"]);
         return (variant === 'tertiary'
@@ -967,6 +967,7 @@ var Button = function (props) {
             classes[sizeVariant],
             disabled && classes.disabled,
             disabled && 'disabled',
+            className,
         ]), onClick: onClick }), children));
 };
 /** Wrappings */
@@ -983,7 +984,7 @@ var index$5 = /*#__PURE__*/Object.freeze({
 
 /** Main component */
 var InputField = function (props) {
-    var _a = props.name, name = _a === void 0 ? 'unnamed' : _a, value = props.value, _b = props.type, type = _b === void 0 ? 'text' : _b, placeholder = props.placeholder, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent, errorMessage = props.errorMessage, rest = __rest(props, ["name", "value", "type", "placeholder", "disabled", "onChange", "onFocus", "onBlur", "clearFormValueOnUnmount", "prependContent", "appendContent", "errorMessage"]);
+    var _a = props.name, name = _a === void 0 ? 'unnamed' : _a, value = props.value, _b = props.type, type = _b === void 0 ? 'text' : _b, placeholder = props.placeholder, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent, controlled = props.controlled, errorMessage = props.errorMessage, rest = __rest(props, ["name", "value", "type", "placeholder", "disabled", "onChange", "onFocus", "onBlur", "clearFormValueOnUnmount", "prependContent", "appendContent", "controlled", "errorMessage"]);
     /** Focus status (needed for styles) */
     var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
@@ -1037,7 +1038,7 @@ var InputField = function (props) {
         case 'number':
         case 'email':
         case 'password':
-            return (React.createElement(StyledTextInput, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, disabled: disabled, placeholder: placeholder, type: type, name: name, errorMsg: errorMsg, value: internalValue, appendContent: appendContent, prependContent: prependContent })));
+            return (React.createElement(StyledTextInput, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, disabled: disabled, placeholder: placeholder, type: type, name: name, errorMsg: errorMsg, value: controlled ? value : internalValue, appendContent: appendContent, prependContent: prependContent })));
     }
     return React.createElement("input", __assign({}, props));
 };
@@ -2454,6 +2455,47 @@ var index$d = /*#__PURE__*/Object.freeze({
 
 var styles$f = (function (theme) { return ({
     root: {
+        border: "1px solid " + theme.buttonBackgroundColorPrimary,
+        display: "inline-block",
+        borderRadius: 6
+    },
+    button: {
+        display: "inline-block",
+        width: 71,
+        border: 0,
+        height: 24,
+        padding: 6,
+        textOverflow: "ellipsis",
+        overflow: "hidden",
+        whiteSpace: "nowrap"
+    }
+}); });
+
+/** Main component */
+var ButtonsSet = function (props) {
+    var classes = props.classes, className = props.className, buttonsData = props.buttonsData, rest = __rest(props, ["classes", "className", "buttonsData"]);
+    var renderButtons = function () {
+        return buttonsData.map(function (_a) {
+            var label = _a.label, _b = _a.onClick, onClick = _b === void 0 ? function () { } : _b, active = _a.active;
+            return (React.createElement(PropsWrappedStyledButton, { onClick: onClick, sizeVariant: "mini", className: classes.button, variant: active ? 'primary' : 'secondary' }, label));
+        });
+    };
+    return (React.createElement("div", __assign({ className: classnames([classes.root, className]) }, rest), renderButtons()));
+};
+/** Wrappings */
+var StyledButtonsSet = withStyles__default(styles$f)(ButtonsSet);
+var PropsWrappedStyledBadge = function (props) { return (React.createElement(StyledButtonsSet, __assign({}, props))); };
+
+
+
+var index$e = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledBadge,
+    ButtonsSet: PropsWrappedStyledBadge
+});
+
+var styles$g = (function (theme) { return ({
+    root: {
         userSelect: 'none',
         display: 'flex',
     },
@@ -2559,11 +2601,11 @@ var Pagination = function (props) {
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         React.createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledPagination = React.memo(withStyles__default(styles$f)(Pagination));
+var StyledPagination = React.memo(withStyles__default(styles$g)(Pagination));
 
 
 
-var index$e = /*#__PURE__*/Object.freeze({
+var index$f = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledPagination
 });
@@ -2576,7 +2618,7 @@ var getGridColumnStyle = function (breakpointValue) {
 var getGridTemplateColumns = function (columns) {
     return "repeat(" + columns + ", 1fr)";
 };
-var styles$g = (function (theme) {
+var styles$h = (function (theme) {
     var _a;
     return ({
         /** Row */
@@ -2619,21 +2661,21 @@ var Col = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledRow = withStyles__default(styles$g)(Row);
+var StyledRow = withStyles__default(styles$h)(Row);
 var PropsWrappedStyledRow = function (props) { return React.createElement(StyledRow, __assign({}, props)); };
-var StyledCol = withStyles__default(styles$g)(Col);
+var StyledCol = withStyles__default(styles$h)(Col);
 var PropsWrappedStyledCol = function (props) { return React.createElement(StyledCol, __assign({}, props)); };
 
 
 
-var index$f = /*#__PURE__*/Object.freeze({
+var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Row,
     Row: PropsWrappedStyledRow,
     Col: PropsWrappedStyledCol
 });
 
-var styles$h = (function (theme) {
+var styles$i = (function (theme) {
     var _a;
     return ({
         root: (_a = {
@@ -2667,18 +2709,18 @@ var Container = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledContainer = withStyles__default(styles$h)(Container);
+var StyledContainer = withStyles__default(styles$i)(Container);
 var PropsWrappedStyledContainer = function (props) { return React.createElement(StyledContainer, __assign({}, props)); };
 
 
 
-var index$g = /*#__PURE__*/Object.freeze({
+var index$h = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledContainer,
     Container: PropsWrappedStyledContainer
 });
 
-var styles$i = (function (theme) { return ({
+var styles$j = (function (theme) { return ({
     root: {
         borderRadius: 8,
         display: 'flex',
@@ -2723,13 +2765,13 @@ var Body = function (props) {
             className,
         ]) }), children));
 };
-var StyledCard = withStyles__default(styles$i)(Card);
-var StyledTitle = withStyles__default(styles$i)(Title);
-var StyledBody = withStyles__default(styles$i)(Body);
+var StyledCard = withStyles__default(styles$j)(Card);
+var StyledTitle = withStyles__default(styles$j)(Title);
+var StyledBody = withStyles__default(styles$j)(Body);
 
 
 
-var index$h = /*#__PURE__*/Object.freeze({
+var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledCard,
     Wrapper: StyledCard,
@@ -2737,7 +2779,7 @@ var index$h = /*#__PURE__*/Object.freeze({
     Body: StyledBody
 });
 
-var styles$j = (function (theme) { return ({
+var styles$k = (function (theme) { return ({
     root: {
         '&.withBorder': {
             border: theme.tableBorderPrimary,
@@ -2785,11 +2827,11 @@ var Table = function (props) {
             headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),
         React.createElement("table", { className: classes.table }, children)));
 };
-var StyledTable = withStyles__default(styles$j)(Table);
+var StyledTable = withStyles__default(styles$k)(Table);
 
 
 
-var index$i = /*#__PURE__*/Object.freeze({
+var index$j = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable,
     Table: StyledTable
@@ -2809,13 +2851,13 @@ var TableBody = function (_a) {
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableBody,
     TableBody: TableBody
 });
 
-var styles$k = (function (theme) { return ({
+var styles$l = (function (theme) { return ({
     root: {
         padding: '0 5px',
         '&:first-child': {
@@ -2844,11 +2886,11 @@ var TableCell = function (props) {
     }
     return (React.createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$1 = withStyles__default(styles$k)(TableCell);
+var StyledTable$1 = withStyles__default(styles$l)(TableCell);
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$l = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$1,
     TableCell: StyledTable$1
@@ -2862,13 +2904,13 @@ var TableHead = function (_a) {
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableHead,
     TableHead: TableHead
 });
 
-var styles$l = (function (theme) { return ({
+var styles$m = (function (theme) { return ({
     root: {
         height: 40,
         '&:nth-child(even)': {
@@ -2881,11 +2923,11 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className;
     return (React.createElement("tr", { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$2 = withStyles__default(styles$l)(TableRow);
+var StyledTable$2 = withStyles__default(styles$m)(TableRow);
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$n = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$2,
     TableRow: StyledTable$2
@@ -2909,13 +2951,13 @@ var TableData = function (props) {
 
 
 
-var index$n = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableData,
     TableData: TableData
 });
 
-var styles$m = (function (theme) {
+var styles$n = (function (theme) {
     var _a, _b, _c;
     return ({
         navbar: {
@@ -2978,21 +3020,21 @@ var NavbarSection = function (props) {
         ]) }, rest), children));
 };
 /** Wrappers */
-var StyledNavbar = withStyles__default(styles$m)(Navbar);
+var StyledNavbar = withStyles__default(styles$n)(Navbar);
 var PropsWrappedStyledNavbar = function (props) { return React.createElement(StyledNavbar, __assign({}, props)); };
-var StyledNavbarSection = withStyles__default(styles$m)(NavbarSection);
+var StyledNavbarSection = withStyles__default(styles$n)(NavbarSection);
 var PropsWrappedStyledNavbarSection = function (props) { return React.createElement(StyledNavbarSection, __assign({}, props)); };
 
 
 
-var index$o = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$n = (function (theme) {
+var styles$o = (function (theme) {
     var _a, _b;
     return ({
         container: (_a = {
@@ -3084,14 +3126,14 @@ var NavigationRoute = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledNavigationContainer = withStyles__default(styles$n)(NavigationContainer);
+var StyledNavigationContainer = withStyles__default(styles$o)(NavigationContainer);
 var PropsWrappedStyledNavigationContainer = function (props) { return React.createElement(StyledNavigationContainer, __assign({}, props)); };
-var StyledNavigationRoute = withStyles__default(styles$n)(NavigationRoute);
+var StyledNavigationRoute = withStyles__default(styles$o)(NavigationRoute);
 var PropsWrappedStyledNavigationRoute = function (props) { return React.createElement(StyledNavigationRoute, __assign({}, props)); };
 
 
 
-var index$p = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -3100,7 +3142,7 @@ var index$p = /*#__PURE__*/Object.freeze({
     NavigationContainer: PropsWrappedStyledNavigationContainer
 });
 
-var styles$o = (function (theme) { return ({
+var styles$p = (function (theme) { return ({
     /** Container / Wrapper */
     container: {
         padding: '10px 0px',
@@ -3275,16 +3317,16 @@ var SidebarNavigationRoute = function (props) {
     return (React.createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledSidebarNavigationContainer = withStyles__default(styles$o)(SidebarNavigationContainer);
+var StyledSidebarNavigationContainer = withStyles__default(styles$p)(SidebarNavigationContainer);
 var PropsWrappedStyledSidebarNavigationContainer = function (props) { return React.createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
-var StyledSidebarNavigationSection = withStyles__default(styles$o)(SidebarNavigationSection);
+var StyledSidebarNavigationSection = withStyles__default(styles$p)(SidebarNavigationSection);
 var PropsWrappedStyledSidebarNavigationSection = function (props) { return React.createElement(StyledSidebarNavigationSection, __assign({}, props)); };
-var StyledSidebarNavigationRoute = withStyles__default(styles$o)(SidebarNavigationRoute);
+var StyledSidebarNavigationRoute = withStyles__default(styles$p)(SidebarNavigationRoute);
 var PropsWrappedStyledSidebarNavigationRoute = function (props) { return React.createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
 
 
 
-var index$q = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3294,7 +3336,7 @@ var index$q = /*#__PURE__*/Object.freeze({
     SidebarNavigationRoute: PropsWrappedStyledSidebarNavigationRoute
 });
 
-var styles$p = (function (theme) { return ({
+var styles$q = (function (theme) { return ({
     root: {
         position: 'relative',
         overflow: 'visible',
@@ -3335,44 +3377,46 @@ var Badge = function (props) {
         children));
 };
 /** Wrappings */
-var StyledBadge = withStyles__default(styles$p)(Badge);
-var PropsWrappedStyledBadge = function (props) { return React.createElement(StyledBadge, __assign({}, props)); };
+var StyledBadge = withStyles__default(styles$q)(Badge);
+var PropsWrappedStyledBadge$1 = function (props) { return React.createElement(StyledBadge, __assign({}, props)); };
 
 
 
-var index$r = /*#__PURE__*/Object.freeze({
+var index$s = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': PropsWrappedStyledBadge,
-    Badge: PropsWrappedStyledBadge
+    'default': PropsWrappedStyledBadge$1,
+    Badge: PropsWrappedStyledBadge$1
 });
 
-exports.Badge = PropsWrappedStyledBadge;
-exports.BadgeElements = index$r;
+exports.Badge = PropsWrappedStyledBadge$1;
+exports.BadgeElements = index$s;
 exports.Button = PropsWrappedStyledButton;
 exports.ButtonElements = index$5;
+exports.ButtonsSet = PropsWrappedStyledBadge;
+exports.ButtonsSetElements = index$e;
 exports.Card = StyledCard;
-exports.CardElements = index$h;
+exports.CardElements = index$i;
 exports.CheckboxField = PropsWrappedStyledCheckboxField;
 exports.CheckboxFieldElements = index$8;
 exports.Container = PropsWrappedStyledContainer;
-exports.ContainerElements = index$g;
+exports.ContainerElements = index$h;
 exports.FileField = PropsWrappedStyledStyledFileField;
 exports.FileFieldElements = index$c;
 exports.Form = Form;
 exports.FormElements = index;
 exports.Grid = Row;
-exports.GridElements = index$f;
+exports.GridElements = index$g;
 exports.Icons = index$4;
 exports.InputField = InputField;
 exports.InputFieldElements = index$6;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
 exports.MultiSelectFieldElements = index$b;
 exports.Navbar = PropsWrappedStyledNavbar;
-exports.NavbarElements = index$o;
+exports.NavbarElements = index$p;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
-exports.NavbarNavigationElements = index$p;
+exports.NavbarNavigationElements = index$q;
 exports.Pagination = StyledPagination;
-exports.PaginationElements = index$e;
+exports.PaginationElements = index$f;
 exports.PasswordField = PropsWrappedStyledPasswordField;
 exports.PasswordFieldElements = index$7;
 exports.RadioField = PropsWrappedStyledRadioField;
@@ -3384,19 +3428,19 @@ exports.SearchFieldElements = index$a;
 exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
-exports.SidebarNavigationElements = index$q;
+exports.SidebarNavigationElements = index$r;
 exports.Table = StyledTable;
 exports.TableBody = TableBody;
-exports.TableBodyElements = index$j;
+exports.TableBodyElements = index$k;
 exports.TableCell = StyledTable$1;
-exports.TableCellElements = index$k;
+exports.TableCellElements = index$l;
 exports.TableData = TableData;
-exports.TableDataElements = index$n;
-exports.TableElements = index$i;
+exports.TableDataElements = index$o;
+exports.TableElements = index$j;
 exports.TableHead = TableHead;
-exports.TableHeadElements = index$l;
+exports.TableHeadElements = index$m;
 exports.TableRow = StyledTable$2;
-exports.TableRowElements = index$m;
+exports.TableRowElements = index$n;
 exports.ThemeProvider = ThemeProvider;
 exports.colors = colors;
 exports.theme = defaultTheme;

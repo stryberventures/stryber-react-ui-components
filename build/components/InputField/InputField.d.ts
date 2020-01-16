@@ -6,6 +6,7 @@ export interface IInputFieldProps {
     placeholder?: string;
     value?: any;
     disabled?: boolean;
+    controlled?: boolean;
     onChange?: (e: React.BaseSyntheticEvent) => void;
     onFocus?: (e: React.BaseSyntheticEvent) => void;
     onBlur?: (e: React.BaseSyntheticEvent) => void;

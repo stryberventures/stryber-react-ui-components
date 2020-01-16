@@ -30,6 +30,8 @@ import * as SearchBoxElements from './components/SearchBox';
 /** Active elements */
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
+import ButtonsSet from './components/ButtonsSet';
+import * as ButtonsSetElements from './components/ButtonsSet';
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
 /** Layout */
@@ -66,4 +68,4 @@ import * as SidebarNavigationElements from './components/SidebarNavigation';
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
 /** Exports */
-export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, TableBody, TableBodyElements, TableCell, TableCellElements, TableRow, TableRowElements, TableHead, TableHeadElements, TableData, TableDataElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, };
+export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, TableBody, TableBodyElements, TableCell, TableCellElements, TableRow, TableRowElements, TableHead, TableHeadElements, TableData, TableDataElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, ButtonsSet, ButtonsSetElements };
