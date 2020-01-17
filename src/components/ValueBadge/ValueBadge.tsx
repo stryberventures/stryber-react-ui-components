@@ -1,7 +1,7 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './ValueBadge.styles';
-import { Close } from '../../Icons';
+import { Close } from '../Icons';
 
 export interface IValueProps {
   classes?: any;

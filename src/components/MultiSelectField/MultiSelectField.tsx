@@ -5,7 +5,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './MultiSelectField.styles';
 import { defaultFormContextValues, FormContext} from '../Form';
 import { CheckboxField } from '../CheckboxField';
-import { ValueBadge } from './ValueBadge';
+import { ValueBadge } from '../ValueBadge';
 import { DownArrow } from '../Icons';
 import { SearchField } from '../SearchField';
 
