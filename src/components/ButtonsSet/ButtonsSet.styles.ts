@@ -14,7 +14,9 @@ export default (theme: any) => ({
     textOverflow: "ellipsis",
     overflow: "hidden",
     whiteSpace: "nowrap",
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    position: 'relative',
+    zIndex: 1
   },
   active: {
     color: '#fff',
@@ -28,7 +30,7 @@ export default (theme: any) => ({
     width: 71,
     height: 24,
     position: 'absolute',
-    zIndex: -1,
+    zIndex: 0,
     borderRadius: 4,
     transition: 'left 0.2s ease'
   }

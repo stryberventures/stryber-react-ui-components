@@ -30,6 +30,7 @@ const ButtonsSet = (props: IButtonsSetProps & WithStyles<typeof styles>) => {
   const renderButtons = () =>
     buttonsData.map(({ label, onClick = () => {} }, idx) => (
       <Button
+        key={idx}
         onClick={(e: MouseEvent<HTMLButtonElement>) => handleClick(idx, onClick, e)}
         sizeVariant="mini"
         className={classNames([
