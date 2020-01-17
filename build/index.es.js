@@ -2458,7 +2458,8 @@ var styles$f = (function (theme) { return ({
     root: {
         border: "1px solid " + theme.buttonBackgroundColorPrimary,
         display: "inline-block",
-        borderRadius: 6
+        borderRadius: 6,
+        position: 'relative'
     },
     button: {
         display: "inline-block",
@@ -2468,20 +2469,49 @@ var styles$f = (function (theme) { return ({
         padding: 6,
         textOverflow: "ellipsis",
         overflow: "hidden",
-        whiteSpace: "nowrap"
+        whiteSpace: "nowrap",
+        backgroundColor: 'transparent',
+        position: 'relative',
+        zIndex: 1
+    },
+    active: {
+        color: '#fff',
+        transition: 'color 0.2s ease',
+        '&:hover': {
+            backgroundColor: 'transparent',
+        },
+    },
+    background: {
+        backgroundColor: theme.buttonBackgroundColorPrimary,
+        width: 71,
+        height: 24,
+        position: 'absolute',
+        zIndex: 0,
+        borderRadius: 4,
+        transition: 'left 0.2s ease'
     }
 }); });
 
 /** Main component */
 var ButtonsSet = function (props) {
-    var classes = props.classes, className = props.className, buttonsData = props.buttonsData, rest = __rest(props, ["classes", "className", "buttonsData"]);
+    var classes = props.classes, className = props.className, buttonsData = props.buttonsData, _a = props.active, active = _a === void 0 ? 0 : _a, rest = __rest(props, ["classes", "className", "buttonsData", "active"]);
+    var _b = __read(useState(active), 2), activeIdx = _b[0], setActiveIdx = _b[1];
+    var handleClick = function (idx, onClick, e) {
+        onClick && onClick(e);
+        setActiveIdx(idx);
+    };
     var renderButtons = function () {
-        return buttonsData.map(function (_a) {
-            var label = _a.label, _b = _a.onClick, onClick = _b === void 0 ? function () { } : _b, active = _a.active;
-            return (createElement(PropsWrappedStyledButton, { onClick: onClick, sizeVariant: "mini", className: classes.button, variant: active ? 'primary' : 'secondary' }, label));
+        return buttonsData.map(function (_a, idx) {
+            var label = _a.label, _b = _a.onClick, onClick = _b === void 0 ? function () { } : _b;
+            return (createElement(PropsWrappedStyledButton, { key: idx, onClick: function (e) { return handleClick(idx, onClick, e); }, sizeVariant: "mini", className: classnames([
+                    classes.button,
+                    idx === activeIdx && classes.active
+                ]), variant: "secondary" }, label));
         });
     };
-    return (createElement("div", __assign({ className: classnames([classes.root, className]) }, rest), renderButtons()));
+    return (createElement("div", __assign({ className: classnames([classes.root, className]) }, rest),
+        createElement("div", { style: { left: 71 * activeIdx }, className: classes.background }),
+        renderButtons()));
 };
 /** Wrappings */
 var StyledButtonsSet = withStyles(styles$f)(ButtonsSet);

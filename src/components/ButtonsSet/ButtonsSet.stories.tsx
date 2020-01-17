@@ -16,6 +16,7 @@ storiesOf('ButtonSet', module)
       <Wrapper>
         <ButtonsSet
           buttonsData={buttons}
+          active={1}
           style={{ margin: 40 }}
         />
       </Wrapper>
