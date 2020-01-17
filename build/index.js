@@ -1697,6 +1697,14 @@ var ValueBadge = function (props) {
 };
 var StyledValueBadge = withStyles__default(styles$9)(ValueBadge);
 
+
+
+var index$a = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledValueBadge,
+    ValueBadge: StyledValueBadge
+});
+
 var styles$a = (function (theme) { return ({
     root: {
         position: 'relative',
@@ -1862,7 +1870,7 @@ var PropsWrappedStyledSearchField = function (props) { return React.createElemen
 
 
 
-var index$a = /*#__PURE__*/Object.freeze({
+var index$b = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchField,
     SearchField: PropsWrappedStyledSearchField
@@ -2011,7 +2019,7 @@ var PropsWrappedStyledMultiSelectField = React.forwardRef(function (props, ref) 
 
 
 
-var index$b = /*#__PURE__*/Object.freeze({
+var index$c = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledMultiSelectField,
     MultiSelectField: PropsWrappedStyledMultiSelectField
@@ -2262,7 +2270,7 @@ var PropsWrappedStyledStyledFileField = function (props) { return React.createEl
 
 
 
-var index$c = /*#__PURE__*/Object.freeze({
+var index$d = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledStyledFileField,
     FileField: PropsWrappedStyledStyledFileField
@@ -2447,7 +2455,7 @@ var PropsWrappedStyledSearchBox = function (props) { return React.createElement(
 
 
 
-var index$d = /*#__PURE__*/Object.freeze({
+var index$e = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchBox,
     SearchBox: PropsWrappedStyledSearchBox
@@ -2488,7 +2496,7 @@ var PropsWrappedStyledBadge = function (props) { return (React.createElement(Sty
 
 
 
-var index$e = /*#__PURE__*/Object.freeze({
+var index$f = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     ButtonsSet: PropsWrappedStyledBadge
@@ -2605,7 +2613,7 @@ var StyledPagination = React.memo(withStyles__default(styles$g)(Pagination));
 
 
 
-var index$f = /*#__PURE__*/Object.freeze({
+var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledPagination
 });
@@ -2668,7 +2676,7 @@ var PropsWrappedStyledCol = function (props) { return React.createElement(Styled
 
 
 
-var index$g = /*#__PURE__*/Object.freeze({
+var index$h = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Row,
     Row: PropsWrappedStyledRow,
@@ -2714,7 +2722,7 @@ var PropsWrappedStyledContainer = function (props) { return React.createElement(
 
 
 
-var index$h = /*#__PURE__*/Object.freeze({
+var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledContainer,
     Container: PropsWrappedStyledContainer
@@ -2771,7 +2779,7 @@ var StyledBody = withStyles__default(styles$j)(Body);
 
 
 
-var index$i = /*#__PURE__*/Object.freeze({
+var index$j = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledCard,
     Wrapper: StyledCard,
@@ -2831,7 +2839,7 @@ var StyledTable = withStyles__default(styles$k)(Table);
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable,
     Table: StyledTable
@@ -2851,7 +2859,7 @@ var TableBody = function (_a) {
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$l = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableBody,
     TableBody: TableBody
@@ -2890,7 +2898,7 @@ var StyledTable$1 = withStyles__default(styles$l)(TableCell);
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$1,
     TableCell: StyledTable$1
@@ -2904,7 +2912,7 @@ var TableHead = function (_a) {
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$n = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableHead,
     TableHead: TableHead
@@ -2927,7 +2935,7 @@ var StyledTable$2 = withStyles__default(styles$m)(TableRow);
 
 
 
-var index$n = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$2,
     TableRow: StyledTable$2
@@ -2951,7 +2959,7 @@ var TableData = function (props) {
 
 
 
-var index$o = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableData,
     TableData: TableData
@@ -3027,7 +3035,7 @@ var PropsWrappedStyledNavbarSection = function (props) { return React.createElem
 
 
 
-var index$p = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
@@ -3133,7 +3141,7 @@ var PropsWrappedStyledNavigationRoute = function (props) { return React.createEl
 
 
 
-var index$q = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -3326,7 +3334,7 @@ var PropsWrappedStyledSidebarNavigationRoute = function (props) { return React.c
 
 
 
-var index$r = /*#__PURE__*/Object.freeze({
+var index$s = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3382,7 +3390,7 @@ var PropsWrappedStyledBadge$1 = function (props) { return React.createElement(St
 
 
 
-var index$s = /*#__PURE__*/Object.freeze({
+var index$t = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge$1,
     Badge: PropsWrappedStyledBadge$1
@@ -3463,67 +3471,69 @@ var Default = withStyles__default(styles$r)(DropDownField);
 
 
 
-var index$t = /*#__PURE__*/Object.freeze({
+var index$u = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Default
 });
 
 exports.Badge = PropsWrappedStyledBadge$1;
-exports.BadgeElements = index$s;
+exports.BadgeElements = index$t;
 exports.Button = PropsWrappedStyledButton;
 exports.ButtonElements = index$5;
 exports.ButtonsSet = PropsWrappedStyledBadge;
-exports.ButtonsSetElements = index$e;
+exports.ButtonsSetElements = index$f;
 exports.Card = StyledCard;
-exports.CardElements = index$i;
+exports.CardElements = index$j;
 exports.CheckboxField = PropsWrappedStyledCheckboxField;
 exports.CheckboxFieldElements = index$8;
 exports.Container = PropsWrappedStyledContainer;
-exports.ContainerElements = index$h;
+exports.ContainerElements = index$i;
 exports.DropDownField = Default;
-exports.DropDownFieldElements = index$t;
+exports.DropDownFieldElements = index$u;
 exports.FileField = PropsWrappedStyledStyledFileField;
-exports.FileFieldElements = index$c;
+exports.FileFieldElements = index$d;
 exports.Form = Form;
 exports.FormElements = index;
 exports.Grid = Row;
-exports.GridElements = index$g;
+exports.GridElements = index$h;
 exports.Icons = index$4;
 exports.InputField = InputField;
 exports.InputFieldElements = index$6;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
-exports.MultiSelectFieldElements = index$b;
+exports.MultiSelectFieldElements = index$c;
 exports.Navbar = PropsWrappedStyledNavbar;
-exports.NavbarElements = index$p;
+exports.NavbarElements = index$q;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
-exports.NavbarNavigationElements = index$q;
+exports.NavbarNavigationElements = index$r;
 exports.Pagination = StyledPagination;
-exports.PaginationElements = index$f;
+exports.PaginationElements = index$g;
 exports.PasswordField = PropsWrappedStyledPasswordField;
 exports.PasswordFieldElements = index$7;
 exports.RadioField = PropsWrappedStyledRadioField;
 exports.RadioFieldElements = index$1;
 exports.SearchBox = PropsWrappedStyledSearchBox;
-exports.SearchBoxElements = index$d;
+exports.SearchBoxElements = index$e;
 exports.SearchField = PropsWrappedStyledSearchField;
-exports.SearchFieldElements = index$a;
+exports.SearchFieldElements = index$b;
 exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
-exports.SidebarNavigationElements = index$r;
+exports.SidebarNavigationElements = index$s;
 exports.Table = StyledTable;
 exports.TableBody = TableBody;
-exports.TableBodyElements = index$k;
+exports.TableBodyElements = index$l;
 exports.TableCell = StyledTable$1;
-exports.TableCellElements = index$l;
+exports.TableCellElements = index$m;
 exports.TableData = TableData;
-exports.TableDataElements = index$o;
-exports.TableElements = index$j;
+exports.TableDataElements = index$p;
+exports.TableElements = index$k;
 exports.TableHead = TableHead;
-exports.TableHeadElements = index$m;
+exports.TableHeadElements = index$n;
 exports.TableRow = StyledTable$2;
-exports.TableRowElements = index$n;
+exports.TableRowElements = index$o;
 exports.ThemeProvider = ThemeProvider;
+exports.ValueBadge = StyledValueBadge;
+exports.ValueBadgeElements = index$a;
 exports.colors = colors;
 exports.theme = defaultTheme;
 //# sourceMappingURL=index.js.map

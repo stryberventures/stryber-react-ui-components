@@ -1690,6 +1690,14 @@ var ValueBadge = function (props) {
 };
 var StyledValueBadge = withStyles(styles$9)(ValueBadge);
 
+
+
+var index$a = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledValueBadge,
+    ValueBadge: StyledValueBadge
+});
+
 var styles$a = (function (theme) { return ({
     root: {
         position: 'relative',
@@ -1855,7 +1863,7 @@ var PropsWrappedStyledSearchField = function (props) { return createElement(Styl
 
 
 
-var index$a = /*#__PURE__*/Object.freeze({
+var index$b = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchField,
     SearchField: PropsWrappedStyledSearchField
@@ -2004,7 +2012,7 @@ var PropsWrappedStyledMultiSelectField = forwardRef(function (props, ref) {
 
 
 
-var index$b = /*#__PURE__*/Object.freeze({
+var index$c = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledMultiSelectField,
     MultiSelectField: PropsWrappedStyledMultiSelectField
@@ -2255,7 +2263,7 @@ var PropsWrappedStyledStyledFileField = function (props) { return createElement(
 
 
 
-var index$c = /*#__PURE__*/Object.freeze({
+var index$d = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledStyledFileField,
     FileField: PropsWrappedStyledStyledFileField
@@ -2440,7 +2448,7 @@ var PropsWrappedStyledSearchBox = function (props) { return createElement(Styled
 
 
 
-var index$d = /*#__PURE__*/Object.freeze({
+var index$e = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchBox,
     SearchBox: PropsWrappedStyledSearchBox
@@ -2481,7 +2489,7 @@ var PropsWrappedStyledBadge = function (props) { return (createElement(StyledBut
 
 
 
-var index$e = /*#__PURE__*/Object.freeze({
+var index$f = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     ButtonsSet: PropsWrappedStyledBadge
@@ -2598,7 +2606,7 @@ var StyledPagination = memo(withStyles(styles$g)(Pagination));
 
 
 
-var index$f = /*#__PURE__*/Object.freeze({
+var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledPagination
 });
@@ -2661,7 +2669,7 @@ var PropsWrappedStyledCol = function (props) { return createElement(StyledCol, _
 
 
 
-var index$g = /*#__PURE__*/Object.freeze({
+var index$h = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Row,
     Row: PropsWrappedStyledRow,
@@ -2707,7 +2715,7 @@ var PropsWrappedStyledContainer = function (props) { return createElement(Styled
 
 
 
-var index$h = /*#__PURE__*/Object.freeze({
+var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledContainer,
     Container: PropsWrappedStyledContainer
@@ -2764,7 +2772,7 @@ var StyledBody = withStyles(styles$j)(Body);
 
 
 
-var index$i = /*#__PURE__*/Object.freeze({
+var index$j = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledCard,
     Wrapper: StyledCard,
@@ -2824,7 +2832,7 @@ var StyledTable = withStyles(styles$k)(Table);
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable,
     Table: StyledTable
@@ -2844,7 +2852,7 @@ var TableBody = function (_a) {
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$l = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableBody,
     TableBody: TableBody
@@ -2883,7 +2891,7 @@ var StyledTable$1 = withStyles(styles$l)(TableCell);
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$1,
     TableCell: StyledTable$1
@@ -2897,7 +2905,7 @@ var TableHead = function (_a) {
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$n = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableHead,
     TableHead: TableHead
@@ -2920,7 +2928,7 @@ var StyledTable$2 = withStyles(styles$m)(TableRow);
 
 
 
-var index$n = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledTable$2,
     TableRow: StyledTable$2
@@ -2944,7 +2952,7 @@ var TableData = function (props) {
 
 
 
-var index$o = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableData,
     TableData: TableData
@@ -3020,7 +3028,7 @@ var PropsWrappedStyledNavbarSection = function (props) { return createElement(St
 
 
 
-var index$p = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
@@ -3126,7 +3134,7 @@ var PropsWrappedStyledNavigationRoute = function (props) { return createElement(
 
 
 
-var index$q = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -3319,7 +3327,7 @@ var PropsWrappedStyledSidebarNavigationRoute = function (props) { return createE
 
 
 
-var index$r = /*#__PURE__*/Object.freeze({
+var index$s = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3375,7 +3383,7 @@ var PropsWrappedStyledBadge$1 = function (props) { return createElement(StyledBa
 
 
 
-var index$s = /*#__PURE__*/Object.freeze({
+var index$t = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge$1,
     Badge: PropsWrappedStyledBadge$1
@@ -3456,10 +3464,10 @@ var Default = withStyles(styles$r)(DropDownField);
 
 
 
-var index$t = /*#__PURE__*/Object.freeze({
+var index$u = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Default
 });
 
-export { PropsWrappedStyledBadge$1 as Badge, index$s as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$e as ButtonsSetElements, StyledCard as Card, index$i as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$h as ContainerElements, Default as DropDownField, index$t as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$c as FileFieldElements, Form, index as FormElements, Row as Grid, index$g as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$b as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$p as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$q as NavbarNavigationElements, StyledPagination as Pagination, index$f as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$a as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$r as SidebarNavigationElements, StyledTable as Table, TableBody, index$k as TableBodyElements, StyledTable$1 as TableCell, index$l as TableCellElements, TableData, index$o as TableDataElements, index$j as TableElements, TableHead, index$m as TableHeadElements, StyledTable$2 as TableRow, index$n as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
+export { PropsWrappedStyledBadge$1 as Badge, index$t as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$f as ButtonsSetElements, StyledCard as Card, index$j as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$i as ContainerElements, Default as DropDownField, index$u as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$d as FileFieldElements, Form, index as FormElements, Row as Grid, index$h as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$c as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$q as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$r as NavbarNavigationElements, StyledPagination as Pagination, index$g as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$e as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$b as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$s as SidebarNavigationElements, StyledTable as Table, TableBody, index$l as TableBodyElements, StyledTable$1 as TableCell, index$m as TableCellElements, TableData, index$p as TableDataElements, index$k as TableElements, TableHead, index$n as TableHeadElements, StyledTable$2 as TableRow, index$o as TableRowElements, ThemeProvider, StyledValueBadge as ValueBadge, index$a as ValueBadgeElements, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map

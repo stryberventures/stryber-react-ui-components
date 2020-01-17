@@ -98,6 +98,9 @@ import * as BadgeElements from './components/Badge';
 import DropDownField from './components/DropDownField';
 import * as DropDownFieldElements from './components/DropDownField';
 
+import ValueBadge from './components/ValueBadge';
+import * as ValueBadgeElements from './components/ValueBadge';
+
 /** Exports */
 export {
   ThemeProvider,
@@ -130,5 +133,6 @@ export {
   SidebarNavigation, SidebarNavigationElements,
   Badge, BadgeElements,
   ButtonsSet, ButtonsSetElements,
-  DropDownField, DropDownFieldElements
+  DropDownField, DropDownFieldElements,
+  ValueBadge, ValueBadgeElements,
 };
