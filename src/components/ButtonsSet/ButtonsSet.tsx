@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, MouseEvent } from "react";
 import withStyles, { WithStyles } from "react-jss";
 import classNames from "classnames";
 import styles from "./ButtonsSet.styles";
@@ -6,26 +7,36 @@ import { Button } from "../Button";
 /** Interfaces */
 export interface IButtonsData {
   label: string;
-  active: boolean;
-  onClick: (e: React.SyntheticEvent) => void;
+  onClick: any
 }
 
 export interface IButtonsSetProps extends React.HTMLProps<HTMLDivElement> {
   className?: any;
   buttonsData: IButtonsData[];
+  active?: number;
 }
 
 /** Main component */
 const ButtonsSet = (props: IButtonsSetProps & WithStyles<typeof styles>) => {
-  const { classes, className, buttonsData, ...rest } = props;
+  const { classes, className, buttonsData, active = 0, ...rest } = props;
+
+  const [activeIdx, setActiveIdx] = useState<number>(active);
+
+  const handleClick = (idx: number, onClick: (e?: MouseEvent<HTMLButtonElement>) => {} | null, e: MouseEvent<HTMLButtonElement>) => {
+    onClick && onClick(e);
+    setActiveIdx(idx);
+  };
 
   const renderButtons = () =>
-    buttonsData.map(({ label, onClick = () => {}, active }) => (
+    buttonsData.map(({ label, onClick = () => {} }, idx) => (
       <Button
-        onClick={onClick}
+        onClick={(e: MouseEvent<HTMLButtonElement>) => handleClick(idx, onClick, e)}
         sizeVariant="mini"
-        className={classes.button}
-        variant={active ? 'primary' : 'secondary'}
+        className={classNames([
+          classes.button,
+          idx === activeIdx && classes.active
+        ])}
+        variant="secondary"
       >
         {label}
       </Button>
@@ -33,6 +44,7 @@ const ButtonsSet = (props: IButtonsSetProps & WithStyles<typeof styles>) => {
 
   return (
     <div className={classNames([classes.root, className])} {...rest}>
+      <div style={{left: 71 * activeIdx}} className={classes.background} />
       {renderButtons()}
     </div>
   );
