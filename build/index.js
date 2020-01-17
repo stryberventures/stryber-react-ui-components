@@ -3388,6 +3388,86 @@ var index$s = /*#__PURE__*/Object.freeze({
     Badge: PropsWrappedStyledBadge$1
 });
 
+var styles$r = (function (theme) { return ({
+    root: {
+        position: 'relative',
+        cursor: 'pointer',
+    },
+    rootOpen: {
+        zIndex: 99,
+    },
+    input: {
+        height: 47,
+    },
+    clickaway: {
+        zIndex: 98,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    },
+    dropdownWrapper: {
+        position: 'absolute',
+        top: 'calc(100% + 4px)',
+        width: '100%',
+        padding: 10,
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: 6,
+        border: "solid 1px #cfd8dc",
+        backgroundColor: theme.inputBackgroundColor,
+    },
+    dropdownArrow: {
+        transition: '0.3s',
+        fill: theme.inputPlaceholderColorIdle,
+        width: 25,
+        height: 25,
+        marginRight: 10,
+    },
+    dropdownArrowOpen: {
+        transform: 'rotate(180deg)',
+    },
+    dropdownArrowFocused: {
+        fill: theme.inputColorHighlight,
+    },
+}); });
+
+var DropDownField = function (props) {
+    var _a, _b;
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, appendContent = props.appendContent, onClose = props.onClose;
+    var _c = __read(React.useState(false), 2), isDropdownOpen = _c[0], setDropdownOpen = _c[1];
+    var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var appendContentWithArrow = (React.createElement(React.Fragment, null,
+        appendContent ? appendContent : null,
+        React.createElement(DownArrow, { className: classnames(classes.dropdownArrow, (_a = {},
+                _a[classes.dropdownArrowOpen] = isDropdownOpen,
+                _a[classes.dropdownArrowFocused] = isFocused,
+                _a)) })));
+    var clickAwayOnClick = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(false);
+        onClose && onClose();
+    };
+    var toggleDropdown = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(!isDropdownOpen);
+        isDropdownOpen && onClose && onClose();
+    };
+    return (React.createElement(React.Fragment, null,
+        isDropdownOpen && (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })),
+        React.createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
+            React.createElement(PropsWrappedStyledInputFieldLayout, { className: classes.input, isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0 }),
+            isDropdownOpen && (React.createElement("div", { className: classes.dropdownWrapper }, children)))));
+};
+var Default = withStyles__default(styles$r)(DropDownField);
+
+
+
+var index$t = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': Default
+});
+
 exports.Badge = PropsWrappedStyledBadge$1;
 exports.BadgeElements = index$s;
 exports.Button = PropsWrappedStyledButton;
@@ -3400,6 +3480,8 @@ exports.CheckboxField = PropsWrappedStyledCheckboxField;
 exports.CheckboxFieldElements = index$8;
 exports.Container = PropsWrappedStyledContainer;
 exports.ContainerElements = index$h;
+exports.DropDownField = Default;
+exports.DropDownFieldElements = index$t;
 exports.FileField = PropsWrappedStyledStyledFileField;
 exports.FileFieldElements = index$c;
 exports.Form = Form;

@@ -3381,5 +3381,85 @@ var index$s = /*#__PURE__*/Object.freeze({
     Badge: PropsWrappedStyledBadge$1
 });
 
-export { PropsWrappedStyledBadge$1 as Badge, index$s as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$e as ButtonsSetElements, StyledCard as Card, index$i as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$h as ContainerElements, PropsWrappedStyledStyledFileField as FileField, index$c as FileFieldElements, Form, index as FormElements, Row as Grid, index$g as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$b as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$p as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$q as NavbarNavigationElements, StyledPagination as Pagination, index$f as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$a as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$r as SidebarNavigationElements, StyledTable as Table, TableBody, index$k as TableBodyElements, StyledTable$1 as TableCell, index$l as TableCellElements, TableData, index$o as TableDataElements, index$j as TableElements, TableHead, index$m as TableHeadElements, StyledTable$2 as TableRow, index$n as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
+var styles$r = (function (theme) { return ({
+    root: {
+        position: 'relative',
+        cursor: 'pointer',
+    },
+    rootOpen: {
+        zIndex: 99,
+    },
+    input: {
+        height: 47,
+    },
+    clickaway: {
+        zIndex: 98,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+    },
+    dropdownWrapper: {
+        position: 'absolute',
+        top: 'calc(100% + 4px)',
+        width: '100%',
+        padding: 10,
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: 6,
+        border: "solid 1px #cfd8dc",
+        backgroundColor: theme.inputBackgroundColor,
+    },
+    dropdownArrow: {
+        transition: '0.3s',
+        fill: theme.inputPlaceholderColorIdle,
+        width: 25,
+        height: 25,
+        marginRight: 10,
+    },
+    dropdownArrowOpen: {
+        transform: 'rotate(180deg)',
+    },
+    dropdownArrowFocused: {
+        fill: theme.inputColorHighlight,
+    },
+}); });
+
+var DropDownField = function (props) {
+    var _a, _b;
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, appendContent = props.appendContent, onClose = props.onClose;
+    var _c = __read(useState(false), 2), isDropdownOpen = _c[0], setDropdownOpen = _c[1];
+    var _d = __read(useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var appendContentWithArrow = (createElement(Fragment, null,
+        appendContent ? appendContent : null,
+        createElement(DownArrow, { className: classnames(classes.dropdownArrow, (_a = {},
+                _a[classes.dropdownArrowOpen] = isDropdownOpen,
+                _a[classes.dropdownArrowFocused] = isFocused,
+                _a)) })));
+    var clickAwayOnClick = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(false);
+        onClose && onClose();
+    };
+    var toggleDropdown = function (e) {
+        e.stopPropagation();
+        setDropdownOpen(!isDropdownOpen);
+        isDropdownOpen && onClose && onClose();
+    };
+    return (createElement(Fragment, null,
+        isDropdownOpen && (createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })),
+        createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
+            createElement(PropsWrappedStyledInputFieldLayout, { className: classes.input, isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0 }),
+            isDropdownOpen && (createElement("div", { className: classes.dropdownWrapper }, children)))));
+};
+var Default = withStyles(styles$r)(DropDownField);
+
+
+
+var index$t = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': Default
+});
+
+export { PropsWrappedStyledBadge$1 as Badge, index$s as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$e as ButtonsSetElements, StyledCard as Card, index$i as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$h as ContainerElements, Default as DropDownField, index$t as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$c as FileFieldElements, Form, index as FormElements, Row as Grid, index$g as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$b as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$p as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$q as NavbarNavigationElements, StyledPagination as Pagination, index$f as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$d as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$a as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$r as SidebarNavigationElements, StyledTable as Table, TableBody, index$k as TableBodyElements, StyledTable$1 as TableCell, index$l as TableCellElements, TableData, index$o as TableDataElements, index$j as TableElements, TableHead, index$m as TableHeadElements, StyledTable$2 as TableRow, index$n as TableRowElements, ThemeProvider, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map
