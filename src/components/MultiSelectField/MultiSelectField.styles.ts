@@ -8,10 +8,11 @@ export default (theme: any) => ({
   /** Dropdown arrow */
   dropdownArrow: {
     transition: '0.3s',
-
     fill: theme.inputPlaceholderColorIdle,
     width: 25,
     height: 25,
+  },
+  dropdownArrowNormal: {
     marginRight: 10,
   },
   dropdownArrowOpen: {
@@ -37,24 +38,12 @@ export default (theme: any) => ({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-
     cursor: 'pointer',
     userSelect: 'none',
-
     width: '100%',
     height: '100%',
     border: 0,
-    padding: 8,
-    minHeight: 44,
-    backgroundColor: theme.inputBackgroundColor,
-
     transition: '0.5s',
-
-    color: theme.inputColorIdle || '#54738c',
-
-    fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
-    fontSize: 14,
 
     '&:focus': {
       color: theme.inputColorHighlight || '#007aff',
@@ -65,9 +54,22 @@ export default (theme: any) => ({
       visibility: 'hidden',
     },
   },
+  selectLabelNormal: {
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
+    color: theme.inputColorIdle || '#54738c',
+    padding: 8,
+    minHeight: 44,
+    backgroundColor: theme.inputBackgroundColor,
+    fontSize: 14,
+  },
   selectLabelWithPlaceholder: {
     paddingBottom: 5,
     paddingTop: 23,
+  },
+  selectLabelMini: {
+    padding: 0,
+    height: 26,
   },
   selectLabelInvalid: {
     '&:focus': {
@@ -79,18 +81,28 @@ export default (theme: any) => ({
     position: 'absolute',
     top: 'calc(100% + 4px)',
     width: '100%',
-
-    paddingTop: 10,
-    paddingBottom: 10,
-
     boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
     borderRadius: 6,
     border: `solid 1px #cfd8dc`,
     backgroundColor: theme.inputBackgroundColor,
+    overflowY: 'auto',
+  },
+  dropdownWrapperNormal: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    maxHeight: 217,
+  },
+  dropdownWrapperMini: {
+    maxHeight: 160,
   },
   dropdownSearchItemsWrapper: {
-    maxHeight: 195,
     overflowY: 'auto',
+  },
+  dropdownSearchItemsWrapperNormal: {
+    maxHeight: 205,
+  },
+  dropdownSearchItemsWrapperMini: {
+    maxHeight: 157,
   },
   dropdownItem: {
     paddingLeft: 18,
@@ -107,6 +119,17 @@ export default (theme: any) => ({
       backgroundColor: '#eceff1',
     },
   },
+  dropdownItemMini: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    '& div': {
+      padding: 6,
+    },
+    '& label': {
+      fontFamily: 'inherit',
+      fontWeight: 'normal',
+    }
+  },
   /** Clickaway */
   clickaway: {
     zIndex: 98,
@@ -122,5 +145,5 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
-  },
+  }
 });

@@ -34,7 +34,6 @@ declare const _default: (theme: any) => {
         width: string;
         height: string;
         border: number;
-        padding: number;
         backgroundColor: any;
         transition: string;
         color: any;
@@ -52,6 +51,12 @@ declare const _default: (theme: any) => {
         '&::placeholder': {
             color: any;
         };
+    };
+    inputFieldNormal: {
+        padding: number;
+    };
+    inputFieldMini: {
+        padding: number;
     };
     inputFieldWithPlaceholder: {
         paddingBottom: number;

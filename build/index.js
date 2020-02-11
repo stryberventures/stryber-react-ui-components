@@ -478,17 +478,74 @@ var styles$1 = (function (theme) { return ({
             backgroundColor: 'white',
         },
     },
-    placeholder: {
+    placeholderNormal: {
         padding: 10,
     },
+    placeholderMini: {
+        padding: 4,
+        fontWeight: 'normal',
+    },
 }); });
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var classnames = createCommonjsModule(function (module) {
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else {
+		window.classNames = classNames;
+	}
+}());
+});
 
 /** Main component */
 var RadioField = function (props) {
     /** Get props */
-    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, onChange = props.onChange, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder", "onChange"]);
+    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, onChange = props.onChange, _a = props.sizeVariant, sizeVariant = _a === void 0 ? 'normal' : _a, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder", "onChange", "sizeVariant"]);
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, formValues = _a.formValues;
+    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, formValues = _b.formValues;
     /** Ref */
     var inputRef = React.createRef();
     /** Get checked value when using within a form or solo */
@@ -518,7 +575,7 @@ var RadioField = function (props) {
     return (React.createElement("label", { className: classes.root },
         React.createElement("input", __assign({}, rest, { ref: inputRef, type: "radio", className: classes.input, name: name, value: value, checked: checkedValue, onChange: onChangeWrapper })),
         React.createElement("span", { className: classes.checkmark }),
-        React.createElement("div", { className: classes.placeholder }, placeholder)));
+        React.createElement("div", { className: classnames(sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal) }, placeholder)));
 };
 /** Wrappers */
 var StyledRadioField = withStyles__default(styles$1)(RadioField);
@@ -595,59 +652,6 @@ var index$4 = /*#__PURE__*/Object.freeze({
     File: File,
     PrependBackground: PrependBackground,
     Profile: index$2
-});
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var classnames = createCommonjsModule(function (module) {
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg) && arg.length) {
-				var inner = classNames.apply(null, arg);
-				if (inner) {
-					classes.push(inner);
-				}
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if ( module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else {
-		window.classNames = classNames;
-	}
-}());
 });
 
 var styles$2 = (function (theme) { return ({
@@ -733,18 +737,25 @@ var styles$3 = (function (theme) { return ({
         position: 'absolute',
         transition: '0.2s',
         fontSize: 14,
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
-        color: theme.inputPlaceholderColorIdle || '#95acbf',
         width: '100%',
         height: '100%',
-        padding: 14,
         margin: 0,
         transform: 'translate(0, 0px)',
         transformOrigin: 'left',
+        color: theme.inputPlaceholderColorIdle || '#95acbf',
+    },
+    placeholderFontFamily: {
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+    },
+    placeholderNormal: {
+        padding: 14,
+    },
+    placeholderMini: {
+        lineHeight: '26px',
     },
     placeholderInvalid: {},
     placeholderCollapsed: {
@@ -813,7 +824,7 @@ var styles$3 = (function (theme) { return ({
 
 /** Main component */
 var InputFieldLayout = function (props) {
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, _a = props.showPrependBackground, showPrependBackground = _a === void 0 ? true : _a, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "showPrependBackground"]);
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.showPrependBackground, showPrependBackground = _a === void 0 ? true : _a, _b = props.customPlaceholderFont, customPlaceholderFont = _b === void 0 ? false : _b, _c = props.sizeVariant, sizeVariant = _c === void 0 ? 'normal' : _c, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant"]);
     return (React.createElement(React.Fragment, null,
         React.createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
@@ -834,6 +845,9 @@ var InputFieldLayout = function (props) {
                 placeholder ?
                     (React.createElement("div", { className: classnames([
                             classes.placeholder,
+                            placeholderClassName,
+                            sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal,
+                            customPlaceholderFont ? null : classes.placeholderFontFamily,
                             isPlaceholderCollapsed ? classes.placeholderCollapsed : null,
                             errorMsg ? classes.placeholderInvalid : null,
                         ]) }, placeholder)) : null,
@@ -1538,6 +1552,8 @@ var styles$8 = (function (theme) { return ({
         fill: theme.inputPlaceholderColorIdle,
         width: 25,
         height: 25,
+    },
+    dropdownArrowNormal: {
         marginRight: 10,
     },
     dropdownArrowOpen: {
@@ -1568,14 +1584,7 @@ var styles$8 = (function (theme) { return ({
         width: '100%',
         height: '100%',
         border: 0,
-        padding: 8,
-        minHeight: 44,
-        backgroundColor: theme.inputBackgroundColor,
         transition: '0.5s',
-        color: theme.inputColorIdle || '#54738c',
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
-        fontSize: 14,
         '&:focus': {
             color: theme.inputColorHighlight || '#007aff',
             outline: 'none',
@@ -1585,9 +1594,22 @@ var styles$8 = (function (theme) { return ({
             visibility: 'hidden',
         },
     },
+    selectLabelNormal: {
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightMedium,
+        color: theme.inputColorIdle || '#54738c',
+        padding: 8,
+        minHeight: 44,
+        backgroundColor: theme.inputBackgroundColor,
+        fontSize: 14,
+    },
     selectLabelWithPlaceholder: {
         paddingBottom: 5,
         paddingTop: 23,
+    },
+    selectLabelMini: {
+        padding: 0,
+        height: 26,
     },
     selectLabelInvalid: {
         '&:focus': {
@@ -1599,16 +1621,28 @@ var styles$8 = (function (theme) { return ({
         position: 'absolute',
         top: 'calc(100% + 4px)',
         width: '100%',
-        paddingTop: 10,
-        paddingBottom: 10,
         boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
         borderRadius: 6,
         border: "solid 1px #cfd8dc",
         backgroundColor: theme.inputBackgroundColor,
+        overflowY: 'auto',
+    },
+    dropdownWrapperNormal: {
+        paddingTop: 10,
+        paddingBottom: 10,
+        maxHeight: 217,
+    },
+    dropdownWrapperMini: {
+        maxHeight: 160,
     },
     dropdownSearchItemsWrapper: {
-        maxHeight: 195,
         overflowY: 'auto',
+    },
+    dropdownSearchItemsWrapperNormal: {
+        maxHeight: 205,
+    },
+    dropdownSearchItemsWrapperMini: {
+        maxHeight: 157,
     },
     dropdownItem: {
         paddingLeft: 18,
@@ -1622,6 +1656,17 @@ var styles$8 = (function (theme) { return ({
         '&:hover': {
             backgroundColor: '#eceff1',
         },
+    },
+    dropdownItemMini: {
+        paddingLeft: 12,
+        paddingRight: 12,
+        '& div': {
+            padding: 6,
+        },
+        '& label': {
+            fontFamily: 'inherit',
+            fontWeight: 'normal',
+        }
     },
     /** Clickaway */
     clickaway: {
@@ -1638,7 +1683,7 @@ var styles$8 = (function (theme) { return ({
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightLight,
         fontSize: 10,
-    },
+    }
 }); });
 
 var styles$9 = (function (theme) { return ({
@@ -1741,7 +1786,6 @@ var styles$a = (function (theme) { return ({
         width: '100%',
         height: '100%',
         border: 0,
-        padding: 14,
         backgroundColor: theme.inputBackgroundColor,
         transition: '0.5s',
         color: theme.inputColorIdle || '#54738c',
@@ -1760,6 +1804,12 @@ var styles$a = (function (theme) { return ({
         '&::placeholder': {
             color: theme.inputPlaceholderColorIdle || '#95acbf',
         }
+    },
+    inputFieldNormal: {
+        padding: 14,
+    },
+    inputFieldMini: {
+        padding: 0,
     },
     inputFieldWithPlaceholder: {
         paddingBottom: 5,
@@ -1817,11 +1867,11 @@ var styles$a = (function (theme) { return ({
 
 /** Main component */
 var SearchField = function (props) {
-    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _a = props.placeholder, placeholder = _a === void 0 ? 'Search' : _a, _b = props.collapsiblePlaceholder, collapsiblePlaceholder = _b === void 0 ? true : _b;
+    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _a = props.placeholder, placeholder = _a === void 0 ? 'Search' : _a, _b = props.collapsiblePlaceholder, collapsiblePlaceholder = _b === void 0 ? true : _b, _c = props.sizeVariant, sizeVariant = _c === void 0 ? 'normal' : _c;
     /** Focus status (needed for styles) */
-    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
+    var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _d = __read(React.useState(value || ''), 2), inputValue = _d[0], setInputValue = _d[1];
+    var _e = __read(React.useState(value || ''), 2), inputValue = _e[0], setInputValue = _e[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (e) {
         var value = e.target.value;
@@ -1861,6 +1911,7 @@ var SearchField = function (props) {
             // onKeyDown={onKeyDownWrapper}
             className: classnames([
                 classes.inputField,
+                sizeVariant === 'mini' ? classes.inputFieldMini : classes.inputFieldNormal,
                 (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
             ]) })));
 };
@@ -1878,21 +1929,21 @@ var index$b = /*#__PURE__*/Object.freeze({
 
 /** Main component */
 var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, appendContent = props.appendContent, refApi = props.refApi, search = props.search;
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, appendContent = props.appendContent, refApi = props.refApi, search = props.search, customPlaceholderFont = props.customPlaceholderFont, placeholderClassName = props.placeholderClassName, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched, unsetFormValue = _b.unsetFormValue;
+    var _c = React.useContext(FormContext), updateFormValue = _c.updateFormValue, updateFormTouched = _c.updateFormTouched, formValues = _c.formValues, formErrors = _c.formErrors, formTouched = _c.formTouched, unsetFormValue = _c.unsetFormValue;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
-    var _c = __read(React.useState(false), 2), isFocused = _c[0], setFocused = _c[1];
+    var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _d = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _d[0], setInternalValues = _d[1];
+    var _e = __read(React.useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _e[0], setInternalValues = _e[1];
     /** Selected choice */
     var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
     /** Select Field State */
-    var _e = __read(React.useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
+    var _f = __read(React.useState(false), 2), isDropdownOpen = _f[0], setDropdownOpen = _f[1];
     /** Search Value State */
-    var _f = __read(React.useState(''), 2), searchValue = _f[0], setSearchValue = _f[1];
+    var _g = __read(React.useState(''), 2), searchValue = _g[0], setSearchValue = _g[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (values) {
         /** Passthrough to form context */
@@ -1955,13 +2006,17 @@ var MultiSelectField = function (props) {
         appendContent ? appendContent : null,
         React.createElement(DownArrow, { className: classnames([
                 classes.dropdownArrow,
+                sizeVariant === 'normal' ? classes.dropdownArrowNormal : null,
                 isDropdownOpen ? classes.dropdownArrowOpen : null,
                 isFocused ? classes.dropdownArrowFocused : null,
             ]) })));
     var isChoiceSelected = function (option) { return !!selectedChoices.find(function (d) { return d.value === option.value; }); };
     var getChoices = function (choices) {
         return (choices.map(function (choice, i) {
-            return (React.createElement(PropsWrappedStyledCheckboxField, { className: classes.dropdownItem, key: search ? choice.value : i, placeholder: choice.label, name: choice.value, checked: isChoiceSelected(choice), onChange: checkboxOnChangeWrapper }));
+            return (React.createElement(PropsWrappedStyledCheckboxField, { className: classnames([
+                    classes.dropdownItem,
+                    sizeVariant === 'mini' ? classes.dropdownItemMini : null,
+                ]), key: search ? choice.value : i, placeholder: choice.label, name: choice.value, checked: isChoiceSelected(choice), onChange: checkboxOnChangeWrapper }));
         }));
     };
     var getSearchChoices = function (choices, value) {
@@ -1999,17 +2054,27 @@ var MultiSelectField = function (props) {
                 classes.root,
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
-            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContentWithArrow, onClick: inputLabelOnClick },
+            React.createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContentWithArrow, sizeVariant: sizeVariant, showPrependBackground: sizeVariant !== 'mini', customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, onClick: inputLabelOnClick },
                 React.createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
                         classes.selectLabel,
                         placeholder ? classes.selectLabelWithPlaceholder : null,
+                        sizeVariant === 'mini' ? classes.selectLabelMini : classes.selectLabelNormal,
                         errorMsg ? classes.selectLabelInvalid : null,
                     ]) }, showBadgeChoices ? getBadgeChoices() : null)),
             isDropdownOpen
                 ? (React.createElement(FormContext.Provider, { value: defaultFormContextValues },
-                    React.createElement("div", { className: classes.dropdownWrapper }, search ? (React.createElement(React.Fragment, null,
-                        React.createElement(PropsWrappedStyledSearchField, { value: searchValue, collapsiblePlaceholder: false, onChange: function (value) { setSearchValue(value); } }),
-                        React.createElement("div", { className: classes.dropdownSearchItemsWrapper }, getSearchChoices(choices, searchValue)))) : getChoices(choices)))) : null)));
+                    React.createElement("div", { className: classnames([
+                            classes.dropdownWrapper,
+                            !search && (sizeVariant === 'mini'
+                                ? classes.dropdownWrapperMini
+                                : classes.dropdownWrapperNormal),
+                        ]) }, search ? (React.createElement(React.Fragment, null,
+                        React.createElement(PropsWrappedStyledSearchField, { value: searchValue, collapsiblePlaceholder: false, onChange: function (value) { setSearchValue(value); }, sizeVariant: sizeVariant }),
+                        React.createElement("div", { className: classnames(classes.dropdownSearchItemsWrapper, [
+                                sizeVariant === 'mini'
+                                    ? classes.dropdownSearchItemsWrapperMini
+                                    : classes.dropdownSearchItemsWrapperNormal,
+                            ]) }, getSearchChoices(choices, searchValue)))) : getChoices(choices)))) : null)));
 };
 /** Wrappers */
 var StyledMultiSelectField = withStyles__default(styles$8)(MultiSelectField);
@@ -3434,7 +3499,7 @@ var styles$r = (function (theme) { return ({
     rootOpen: {
         zIndex: 99,
     },
-    input: {
+    inputNormal: {
         height: 47,
     },
     clickaway: {
@@ -3449,17 +3514,24 @@ var styles$r = (function (theme) { return ({
         position: 'absolute',
         top: 'calc(100% + 4px)',
         width: '100%',
-        padding: 10,
         boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
         borderRadius: 6,
         border: "solid 1px #cfd8dc",
         backgroundColor: theme.inputBackgroundColor,
+    },
+    dropdownWrapperNormal: {
+        padding: 10,
+    },
+    dropdownWrapperMini: {
+        padding: 2,
     },
     dropdownArrow: {
         transition: '0.3s',
         fill: theme.inputPlaceholderColorIdle,
         width: 25,
         height: 25,
+    },
+    dropdownArrowNormal: {
         marginRight: 10,
     },
     dropdownArrowOpen: {
@@ -3471,13 +3543,14 @@ var styles$r = (function (theme) { return ({
 }); });
 
 var DropDownField = function (props) {
-    var _a, _b;
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, appendContent = props.appendContent, onClose = props.onClose;
-    var _c = __read(React.useState(false), 2), isDropdownOpen = _c[0], setDropdownOpen = _c[1];
-    var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var _a, _b, _c;
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, appendContent = props.appendContent, onClose = props.onClose, placeholderClassName = props.placeholderClassName, customPlaceholderFont = props.customPlaceholderFont, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d;
+    var _e = __read(React.useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
+    var _f = __read(React.useState(false), 2), isFocused = _f[0], setFocused = _f[1];
     var appendContentWithArrow = (React.createElement(React.Fragment, null,
         appendContent ? appendContent : null,
         React.createElement(DownArrow, { className: classnames(classes.dropdownArrow, (_a = {},
+                _a[classes.dropdownArrowNormal] = sizeVariant === 'normal',
                 _a[classes.dropdownArrowOpen] = isDropdownOpen,
                 _a[classes.dropdownArrowFocused] = isFocused,
                 _a)) })));
@@ -3494,8 +3567,10 @@ var DropDownField = function (props) {
     return (React.createElement(React.Fragment, null,
         isDropdownOpen && (React.createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })),
         React.createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
-            React.createElement(PropsWrappedStyledInputFieldLayout, { className: classes.input, isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0 }),
-            isDropdownOpen && (React.createElement("div", { className: classes.dropdownWrapper }, children)))));
+            React.createElement(PropsWrappedStyledInputFieldLayout, { className: classnames((_c = {},
+                    _c[classes.inputNormal] = sizeVariant === 'normal',
+                    _c)), isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0 }),
+            isDropdownOpen && (React.createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal) }, children)))));
 };
 var Default = withStyles__default(styles$r)(DropDownField);
 

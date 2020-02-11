@@ -35,7 +35,6 @@ export default (theme: any) => ({
     width: '100%',
     height: '100%',
     border: 0,
-    padding: 14,
     backgroundColor: theme.inputBackgroundColor,
 
     transition: '0.5s',
@@ -58,6 +57,12 @@ export default (theme: any) => ({
     '&::placeholder': {
       color: theme.inputPlaceholderColorIdle || '#95acbf',
     }
+  },
+  inputFieldNormal: {
+    padding: 14,
+  },
+  inputFieldMini: {
+    padding: 0,
   },
   inputFieldWithPlaceholder: {
     paddingBottom: 5,

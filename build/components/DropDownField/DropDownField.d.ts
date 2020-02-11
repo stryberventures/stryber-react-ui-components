@@ -2,11 +2,14 @@ import * as React from "react";
 import { WithStyles } from 'react-jss';
 interface IDropDownFieldProps {
     placeholder: string;
-    children: any;
+    children: React.ReactNode;
     appendContent?: any;
     onClose?: () => void;
     disabled?: boolean;
     className?: string;
+    sizeVariant?: 'normal' | 'mini';
+    customPlaceholderFont?: boolean;
+    placeholderClassName?: string;
 }
 declare const _default: React.ComponentType<Pick<IDropDownFieldProps & WithStyles<(theme: any) => {
     root: {
@@ -16,7 +19,7 @@ declare const _default: React.ComponentType<Pick<IDropDownFieldProps & WithStyle
     rootOpen: {
         zIndex: number;
     };
-    input: {
+    inputNormal: {
         height: number;
     };
     clickaway: {
@@ -31,17 +34,24 @@ declare const _default: React.ComponentType<Pick<IDropDownFieldProps & WithStyle
         position: string;
         top: string;
         width: string;
-        padding: number;
         boxShadow: string;
         borderRadius: number;
         border: string;
         backgroundColor: any;
+    };
+    dropdownWrapperNormal: {
+        padding: number;
+    };
+    dropdownWrapperMini: {
+        padding: number;
     };
     dropdownArrow: {
         transition: string;
         fill: any;
         width: number;
         height: number;
+    };
+    dropdownArrowNormal: {
         marginRight: number;
     };
     dropdownArrowOpen: {
@@ -50,7 +60,7 @@ declare const _default: React.ComponentType<Pick<IDropDownFieldProps & WithStyle
     dropdownArrowFocused: {
         fill: any;
     };
-}>, "placeholder" | "children" | "appendContent" | "onClose" | "disabled" | "className"> & {
-    classes?: Partial<Record<"root" | "rootOpen" | "input" | "clickaway" | "dropdownWrapper" | "dropdownArrow" | "dropdownArrowOpen" | "dropdownArrowFocused", string>> | undefined;
+}>, "placeholder" | "children" | "appendContent" | "onClose" | "disabled" | "className" | "sizeVariant" | "customPlaceholderFont" | "placeholderClassName"> & {
+    classes?: Partial<Record<"root" | "rootOpen" | "inputNormal" | "clickaway" | "dropdownWrapper" | "dropdownWrapperNormal" | "dropdownWrapperMini" | "dropdownArrow" | "dropdownArrowNormal" | "dropdownArrowOpen" | "dropdownArrowFocused", string>> | undefined;
 }>;
 export default _default;

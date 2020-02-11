@@ -15,6 +15,7 @@ export interface ISearchFieldProps {
   onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
+  sizeVariant?: 'normal' | 'mini';
 }
 
 /** Main component */
@@ -29,6 +30,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     value,
     placeholder = 'Search',
     collapsiblePlaceholder = true,
+    sizeVariant = 'normal',
   } = props;
 
   /** Focus status (needed for styles) */
@@ -101,6 +103,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         // onKeyDown={onKeyDownWrapper}
         className={classNames([
           classes.inputField,
+          sizeVariant === 'mini' ? classes.inputFieldMini : classes.inputFieldNormal,
           (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
         ])}
       />

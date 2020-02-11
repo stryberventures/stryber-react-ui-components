@@ -2,6 +2,7 @@ import * as React from "react";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './RadioField.styles';
 import { FormContext } from "../Form";
+import classNames from 'classnames';
 
 /** Interfaces */
 export interface IRadioFieldProps {
@@ -11,6 +12,7 @@ export interface IRadioFieldProps {
   checked?: boolean;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
+  sizeVariant?: 'normal' | 'mini';
 }
 
 /** Main component */
@@ -23,6 +25,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     checked,
     placeholder,
     onChange,
+    sizeVariant = 'normal',
     ...rest
   } = props;
 
@@ -78,8 +81,10 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
       />
       <span className={classes.checkmark}>
       </span>
-      <div className={classes.placeholder}>
-      { placeholder }
+      <div className={classNames(
+        sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal
+      )}>
+        { placeholder }
       </div>
     </label>
   );

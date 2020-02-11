@@ -7,6 +7,7 @@ export interface IRadioFieldProps {
     checked?: boolean;
     disabled?: boolean;
     onChange?: (e: React.BaseSyntheticEvent) => void;
+    sizeVariant?: 'normal' | 'mini';
 }
 declare const PropsWrappedStyledRadioField: (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement>) => JSX.Element;
 /** Exports */

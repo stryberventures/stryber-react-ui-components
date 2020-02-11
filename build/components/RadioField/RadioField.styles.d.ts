@@ -66,8 +66,12 @@ declare const _default: (theme: any) => {
             backgroundColor: string;
         };
     };
-    placeholder: {
+    placeholderNormal: {
         padding: number;
+    };
+    placeholderMini: {
+        padding: number;
+        fontWeight: string;
     };
 };
 export default _default;

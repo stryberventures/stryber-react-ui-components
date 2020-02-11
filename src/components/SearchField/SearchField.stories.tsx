@@ -15,6 +15,12 @@ storiesOf('Search Field', module)
           collapsiblePlaceholder={false}
           onChange={ (d: any) => console.log('SearchBox value:', d) }
         />
+        <SearchField
+          sizeVariant='mini'
+          placeholder='Search mini'
+          collapsiblePlaceholder={false}
+          onChange={ (d: any) => console.log('SearchBox value:', d) }
+        />
       </Wrapper>
     );
   });

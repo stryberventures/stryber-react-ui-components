@@ -73,7 +73,11 @@ export default (theme: any) => ({
       backgroundColor: 'white',
     },
   },
-  placeholder: {
+  placeholderNormal: {
     padding: 10,
+  },
+  placeholderMini: {
+    padding: 4,
+    fontWeight: 'normal',
   },
 });

@@ -11,6 +11,8 @@ declare const _default: (theme: any) => {
         fill: any;
         width: number;
         height: number;
+    };
+    dropdownArrowNormal: {
         marginRight: number;
     };
     dropdownArrowOpen: {
@@ -41,14 +43,7 @@ declare const _default: (theme: any) => {
         width: string;
         height: string;
         border: number;
-        padding: number;
-        minHeight: number;
-        backgroundColor: any;
         transition: string;
-        color: any;
-        fontFamily: any;
-        fontWeight: any;
-        fontSize: number;
         '&:focus': {
             color: any;
             outline: string;
@@ -58,9 +53,22 @@ declare const _default: (theme: any) => {
             visibility: string;
         };
     };
+    selectLabelNormal: {
+        fontFamily: any;
+        fontWeight: any;
+        color: any;
+        padding: number;
+        minHeight: number;
+        backgroundColor: any;
+        fontSize: number;
+    };
     selectLabelWithPlaceholder: {
         paddingBottom: number;
         paddingTop: number;
+    };
+    selectLabelMini: {
+        padding: number;
+        height: number;
     };
     selectLabelInvalid: {
         '&:focus': {
@@ -72,16 +80,28 @@ declare const _default: (theme: any) => {
         position: string;
         top: string;
         width: string;
-        paddingTop: number;
-        paddingBottom: number;
         boxShadow: string;
         borderRadius: number;
         border: string;
         backgroundColor: any;
+        overflowY: string;
+    };
+    dropdownWrapperNormal: {
+        paddingTop: number;
+        paddingBottom: number;
+        maxHeight: number;
+    };
+    dropdownWrapperMini: {
+        maxHeight: number;
     };
     dropdownSearchItemsWrapper: {
-        maxHeight: number;
         overflowY: string;
+    };
+    dropdownSearchItemsWrapperNormal: {
+        maxHeight: number;
+    };
+    dropdownSearchItemsWrapperMini: {
+        maxHeight: number;
     };
     dropdownItem: {
         paddingLeft: number;
@@ -94,6 +114,17 @@ declare const _default: (theme: any) => {
         fontSize: number;
         '&:hover': {
             backgroundColor: string;
+        };
+    };
+    dropdownItemMini: {
+        paddingLeft: number;
+        paddingRight: number;
+        '& div': {
+            padding: number;
+        };
+        '& label': {
+            fontFamily: string;
+            fontWeight: string;
         };
     };
     /** Clickaway */
