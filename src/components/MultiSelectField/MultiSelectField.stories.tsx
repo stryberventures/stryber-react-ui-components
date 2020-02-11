@@ -26,7 +26,7 @@ storiesOf('Multi Select field', module)
       <Wrapper>
         <MultiSelectField
           name="option"
-          choices={CHOICES.slice(0, 5)}
+          choices={CHOICES.slice(0, 8)}
           onChange={ (d: any) => console.log('SelectField value:', d) }
         />
         <MultiSelectField
@@ -70,6 +70,38 @@ storiesOf('Multi Select field', module)
           showBadgeChoices={false}
           choices={CHOICES.slice(0, 5)}
           onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+      </Wrapper>
+    );
+  })
+  .add('Mini' , () => {
+    return (
+      <Wrapper>
+        <MultiSelectField
+          name="option"
+          placeholder="Mini multiselect"
+          showBadgeChoices={false}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          sizeVariant="mini"
+        />
+        <MultiSelectField
+          name="option"
+          placeholder="Mini multiselect custom font placeholder"
+          customPlaceholderFont={true}
+          showBadgeChoices={false}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          sizeVariant="mini"
+        />
+        <MultiSelectField
+          search
+          name="option"
+          placeholder="Mini multiselect with search"
+          showBadgeChoices={false}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          sizeVariant="mini"
         />
       </Wrapper>
     );

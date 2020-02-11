@@ -33,20 +33,25 @@ export default (theme: any) => ({
     position: 'absolute',
     transition: '0.2s',
     fontSize: 14,
-    fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-
-    color: theme.inputPlaceholderColorIdle || '#95acbf',
-
     width: '100%',
     height: '100%',
-    padding: 14,
     margin: 0,
     transform: 'translate(0, 0px)',
     transformOrigin: 'left',
+    color: theme.inputPlaceholderColorIdle || '#95acbf',
+  },
+  placeholderFontFamily: {
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightMedium,
+  },
+  placeholderNormal: {
+    padding: 14,
+  },
+  placeholderMini: {
+    lineHeight: '26px',
   },
   placeholderInvalid: {
   },

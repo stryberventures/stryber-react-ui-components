@@ -6,7 +6,7 @@ declare const _default: (theme: any) => {
     rootOpen: {
         zIndex: number;
     };
-    input: {
+    inputNormal: {
         height: number;
     };
     clickaway: {
@@ -21,17 +21,24 @@ declare const _default: (theme: any) => {
         position: string;
         top: string;
         width: string;
-        padding: number;
         boxShadow: string;
         borderRadius: number;
         border: string;
         backgroundColor: any;
+    };
+    dropdownWrapperNormal: {
+        padding: number;
+    };
+    dropdownWrapperMini: {
+        padding: number;
     };
     dropdownArrow: {
         transition: string;
         fill: any;
         width: number;
         height: number;
+    };
+    dropdownArrowNormal: {
         marginRight: number;
     };
     dropdownArrowOpen: {

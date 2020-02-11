@@ -31,18 +31,25 @@ declare const _default: (theme: any) => {
         position: string;
         transition: string;
         fontSize: number;
-        fontFamily: any;
-        fontWeight: any;
         overflow: string;
         textOverflow: string;
         whiteSpace: string;
-        color: any;
         width: string;
         height: string;
-        padding: number;
         margin: number;
         transform: string;
         transformOrigin: string;
+        color: any;
+    };
+    placeholderFontFamily: {
+        fontFamily: any;
+        fontWeight: any;
+    };
+    placeholderNormal: {
+        padding: number;
+    };
+    placeholderMini: {
+        lineHeight: string;
     };
     placeholderInvalid: {};
     placeholderCollapsed: {

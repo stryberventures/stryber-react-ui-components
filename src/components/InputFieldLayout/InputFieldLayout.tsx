@@ -7,6 +7,7 @@ import styles from './InputFieldLayout.styles';
 /** Interfaces */
 export interface IInputFieldLayoutProps {
   placeholder?: string;
+  placeholderClassName?: string;
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
@@ -14,6 +15,8 @@ export interface IInputFieldLayoutProps {
   appendContent?: any;
   showPrependBackground?: boolean;
   children?: any;
+  sizeVariant?: 'normal' | 'mini';
+  customPlaceholderFont?: boolean;
 }
 
 /** Main component */
@@ -28,7 +31,10 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
     placeholder,
     isPlaceholderCollapsed,
     children,
+    placeholderClassName,
     showPrependBackground = true,
+    customPlaceholderFont = false,
+    sizeVariant = 'normal',
     ...rest
   } = props;
   return (
@@ -60,6 +66,9 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
               (<div
                 className={classNames([
                   classes.placeholder,
+                  placeholderClassName,
+                  sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal,
+                  customPlaceholderFont ? null : classes.placeholderFontFamily,
                   isPlaceholderCollapsed ? classes.placeholderCollapsed : null,
                   errorMsg ? classes.placeholderInvalid : null,
                 ])}

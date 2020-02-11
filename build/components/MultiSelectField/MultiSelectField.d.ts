@@ -14,7 +14,10 @@ export interface IMultiSelectFieldProps {
     onFocus?: (e: React.BaseSyntheticEvent) => void;
     onBlur?: (e: React.BaseSyntheticEvent) => void;
     clearFormValueOnUnmount?: boolean;
-    appendContent?: any;
+    appendContent?: React.ReactNode;
+    sizeVariant?: 'normal' | 'mini';
+    customPlaceholderFont?: boolean;
+    placeholderClassName?: string;
     errorMessage?: string;
     showBadgeChoices?: boolean;
     refApi?: any;

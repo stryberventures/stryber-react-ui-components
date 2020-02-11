@@ -7,11 +7,14 @@ import { InputFieldLayout } from '../InputFieldLayout';
 
 interface IDropDownFieldProps {
   placeholder: string;
-  children: any;
+  children: React.ReactNode;
   appendContent?: any;
   onClose?: () => void;
   disabled?: boolean;
   className?: string;
+  sizeVariant?: 'normal' | 'mini';
+  customPlaceholderFont?: boolean;
+  placeholderClassName?: string;
 }
 
 const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) => {
@@ -23,6 +26,9 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     className,
     appendContent,
     onClose,
+    placeholderClassName,
+    customPlaceholderFont,
+    sizeVariant = 'normal',
   } = props;
 
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
@@ -33,6 +39,7 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
       {appendContent ? appendContent : null}
       <DownArrow
         className={classNames(classes.dropdownArrow, {
+          [classes.dropdownArrowNormal]: sizeVariant === 'normal',
           [classes.dropdownArrowOpen]: isDropdownOpen,
           [classes.dropdownArrowFocused]: isFocused
         })}
@@ -62,10 +69,16 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
       )}
       <div className={classNames(classes.root, {[classes.rootOpen]: isDropdownOpen}, className)}>
         <InputFieldLayout
-          className={classes.input}
+          className={classNames({
+            [classes.inputNormal]: sizeVariant === 'normal',
+          })}
           isPlaceholderCollapsed={false}
           disabled={disabled}
           placeholder={placeholder}
+          sizeVariant={sizeVariant}
+          customPlaceholderFont={customPlaceholderFont}
+          placeholderClassName={placeholderClassName}
+          showPrependBackground={sizeVariant !== 'mini'}
           onFocus={() => {setFocused(true)}}
           onBlur={()=> {setFocused(false)}}
           appendContent={appendContentWithArrow}
@@ -73,7 +86,9 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
           tabIndex={0}
         />
         {isDropdownOpen && (
-          <div className={classes.dropdownWrapper}>
+          <div className={classNames(classes.dropdownWrapper,
+            sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal
+          )}>
             {children}
           </div>
         )}

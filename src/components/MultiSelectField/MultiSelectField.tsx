@@ -25,7 +25,10 @@ export interface IMultiSelectFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
-  appendContent?: any;
+  appendContent?: React.ReactNode;
+  sizeVariant?: 'normal' | 'mini';
+  customPlaceholderFont?: boolean;
+  placeholderClassName?: string;
   errorMessage?: string;
   showBadgeChoices?: boolean;
   refApi?: any;
@@ -46,10 +49,13 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     placeholder,
     choices,
     clearFormValueOnUnmount,
-    showBadgeChoices = true,
     appendContent,
     refApi,
     search,
+    customPlaceholderFont,
+    placeholderClassName,
+    showBadgeChoices = true,
+    sizeVariant = 'normal',
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -145,6 +151,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       <DownArrow
         className={classNames([
           classes.dropdownArrow,
+          sizeVariant === 'normal' ? classes.dropdownArrowNormal : null,
           isDropdownOpen ? classes.dropdownArrowOpen : null,
           isFocused ? classes.dropdownArrowFocused : null,
         ])}
@@ -159,7 +166,10 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       choices.map((choice: IMultiChoiceData, i: number) => {
         return (
           <CheckboxField
-            className={classes.dropdownItem}
+            className={classNames([
+              classes.dropdownItem,
+              sizeVariant === 'mini' ? classes.dropdownItemMini : null,
+            ])}
             key={search ? choice.value : i}
             placeholder={choice.label}
             name={choice.value}
@@ -236,6 +246,10 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
           disabled={disabled}
           placeholder={placeholder}
           appendContent={appendContentWithArrow}
+          sizeVariant={sizeVariant}
+          showPrependBackground={sizeVariant !== 'mini'}
+          customPlaceholderFont={customPlaceholderFont}
+          placeholderClassName={placeholderClassName}
           onClick={inputLabelOnClick}
         >
           <div
@@ -245,6 +259,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
             className={classNames([
               classes.selectLabel,
               placeholder ? classes.selectLabelWithPlaceholder : null,
+              sizeVariant === 'mini' ? classes.selectLabelMini : classes.selectLabelNormal,
               errorMsg ? classes.selectLabelInvalid : null,
             ])}
           >
@@ -259,7 +274,12 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                 value={defaultFormContextValues}
               >
               <div
-                className={classes.dropdownWrapper}
+                className={classNames([
+                  classes.dropdownWrapper,
+                  !search && (sizeVariant === 'mini'
+                    ? classes.dropdownWrapperMini
+                    : classes.dropdownWrapperNormal),
+                ])}
               >
                 {
                   search ? (
@@ -268,8 +288,13 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
                         value={searchValue}
                         collapsiblePlaceholder={false}
                         onChange={value => {setSearchValue(value)}}
+                        sizeVariant={sizeVariant}
                       />
-                      <div className={classes.dropdownSearchItemsWrapper}>
+                      <div className={classNames(classes.dropdownSearchItemsWrapper, [
+                        sizeVariant === 'mini'
+                          ? classes.dropdownSearchItemsWrapperMini
+                          : classes.dropdownSearchItemsWrapperNormal,
+                      ])}>
                         {getSearchChoices(choices, searchValue)}
                       </div>
                     </>
