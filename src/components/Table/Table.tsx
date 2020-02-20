@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 interface ITableProps {
   children?: any;
-  className?: any;
+  className: any;
   headerComponent?: any;
   border?: boolean;
   headerLabel?: string;

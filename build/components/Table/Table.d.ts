@@ -1,7 +1,7 @@
 import * as React from 'react';
 interface ITableProps {
     children?: any;
-    className?: any;
+    className: any;
     headerComponent?: any;
     border?: boolean;
     headerLabel?: string;
