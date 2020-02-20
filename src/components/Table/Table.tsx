@@ -38,9 +38,19 @@ const Table = (props: ITableProps & WithStyles<typeof styles>) => {
     </div>
   );
 };
+//
+// const StyledTable = withStyles(styles)(Table);
+//
+// export default StyledTable;
+//
+// export { StyledTable as Table };
 
+/** Wrappings */
 const StyledTable = withStyles(styles)(Table);
+const PropsWrappedStyledTable = (props: ITableProps & React.HTMLProps<HTMLButtonElement>) => <StyledTable {...props} />;
 
-export default StyledTable;
-
-export { StyledTable as Table };
+/** Exports */
+export default PropsWrappedStyledTable;
+export {
+  PropsWrappedStyledTable as Table,
+};

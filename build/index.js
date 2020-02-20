@@ -2930,14 +2930,22 @@ var Table = function (props) {
             headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),
         React.createElement("table", { className: classes.table }, children)));
 };
+//
+// const StyledTable = withStyles(styles)(Table);
+//
+// export default StyledTable;
+//
+// export { StyledTable as Table };
+/** Wrappings */
 var StyledTable = withStyles__default(styles$k)(Table);
+var PropsWrappedStyledTable = function (props) { return React.createElement(StyledTable, __assign({}, props)); };
 
 
 
 var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable,
-    Table: StyledTable
+    'default': PropsWrappedStyledTable,
+    Table: PropsWrappedStyledTable
 });
 
 var VARIANT_HEAD = 'head';
@@ -3046,7 +3054,7 @@ var TableData = function (props) {
     var getRows = function () { return rows.map(function (row) { return (React.createElement(StyledTable$2, { key: row.id }, headRow.map(function (cell, index) {
         return React.createElement(StyledTable$1, { key: index }, row[cell.id]);
     }))); }); };
-    return (React.createElement(StyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+    return (React.createElement(PropsWrappedStyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
         React.createElement(TableHead, null,
             React.createElement(StyledTable$2, null, getHeadRow())),
         React.createElement(TableBody, null, getRows())));
@@ -3624,7 +3632,7 @@ exports.SelectField = PropsWrappedStyledSelectField;
 exports.SelectFieldElements = index$9;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
 exports.SidebarNavigationElements = index$s;
-exports.Table = StyledTable;
+exports.Table = PropsWrappedStyledTable;
 exports.TableBody = TableBody;
 exports.TableBodyElements = index$l;
 exports.TableCell = StyledTable$1;
