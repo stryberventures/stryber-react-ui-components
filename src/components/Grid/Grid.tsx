@@ -7,7 +7,7 @@ import styles from './Grid.styles';
 /** Row */
 export interface IRowProps {
   children?: any;
-  className?: any;
+  className?: string;
 }
 
 const Row = (props: IRowProps & WithStyles<typeof styles>) => {
@@ -38,7 +38,7 @@ export interface IColProps {
   sm?: number;
   xs?: number;
   children?: any;
-  className?: any;
+  className?: string;
 }
 
 const Col = (props: IColProps & WithStyles<typeof styles>) => {
