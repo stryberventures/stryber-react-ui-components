@@ -7,12 +7,14 @@ import styles from './Grid.styles';
 /** Row */
 export interface IRowProps {
   children?: any;
+  className?: any;
 }
 
 const Row = (props: IRowProps & WithStyles<typeof styles>) => {
   const {
     children,
     classes,
+    className,
     ...rest
   } = props;
   return (
@@ -20,6 +22,7 @@ const Row = (props: IRowProps & WithStyles<typeof styles>) => {
       { ...rest }
       className={ classNames([
         classes.row,
+        className,
       ]) }
     >
       { children }
@@ -35,6 +38,7 @@ export interface IColProps {
   sm?: number;
   xs?: number;
   children?: any;
+  className?: any;
 }
 
 const Col = (props: IColProps & WithStyles<typeof styles>) => {
@@ -42,6 +46,7 @@ const Col = (props: IColProps & WithStyles<typeof styles>) => {
     children,
     xl, lg, md, sm, xs,
     classes,
+    className,
     ...rest
   } = props;
   return (
@@ -49,6 +54,7 @@ const Col = (props: IColProps & WithStyles<typeof styles>) => {
       { ...rest }
       className={ classNames([
         classes.col,
+        className,
       ]) }
     >
       { children }
