@@ -1,0 +1,87 @@
+{
+  "name": "@stryberventures/stryber-react-ui-components",
+  "version": "0.0.25",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "build/index.es.js",
+  "types": "build/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stryberventures/stryber-react-ui-components"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-jss": "^10.0.0"
+  },
+  "dependencies": {
+    "@types/classnames": "^2.2.8",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.8",
+    "@types/react-helmet": "^5.0.8",
+    "@types/react-router-dom": "^4.3.4",
+    "classnames": "^2.2.6",
+    "react-helmet": "^5.2.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "3.3.3"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "start": "start-storybook -p 9001 -c .storybook",
+    "build": "npm run cleanup && npm run build:rollup",
+    "watch:ts": "tsc -w",
+    "build:ts": "tsc",
+    "build:rollup": "rollup -c",
+    "cleanup": "rimraf build",
+    "tslint": "tslint --project tsconfig.json",
+    "prepublish": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-dom": "16.8.4",
+    "react-dom": "16.8.4",
+    "@types/react": "16.8.4",
+    "react": "16.8.4",
+    "@types/react-jss": "^8.6.4",
+    "react-jss": "^10.0.0",
+    "yup": "^0.27.0",
+    "@types/yup": "^0.26.24",
+    "@storybook/react": "5.1.9",
+    "@types/storybook__react": "4.0.2",
+    "awesome-typescript-loader": "5.2.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "file-loader": "^4.2.0",
+    "react-docgen-typescript-loader": "3.1.0",
+    "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "rollup": "^1.26.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "tsc-watch": "^2.2.1",
+    "url-loader": "^2.2.0"
+  }
+}

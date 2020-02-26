@@ -1,0 +1,100 @@
+import * as React from "react";
+import styles from './DropDownField.styles';
+import withStyles, { WithStyles } from 'react-jss';
+import { DownArrow } from '../Icons';
+import classNames from 'classnames';
+import { InputFieldLayout } from '../InputFieldLayout';
+
+interface IDropDownFieldProps {
+  placeholder: string;
+  children: React.ReactNode;
+  appendContent?: any;
+  onClose?: () => void;
+  disabled?: boolean;
+  className?: string;
+  sizeVariant?: 'normal' | 'mini';
+  customPlaceholderFont?: boolean;
+  placeholderClassName?: string;
+}
+
+const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) => {
+  const {
+    classes,
+    disabled,
+    placeholder,
+    children,
+    className,
+    appendContent,
+    onClose,
+    placeholderClassName,
+    customPlaceholderFont,
+    sizeVariant = 'normal',
+  } = props;
+
+  const [isDropdownOpen, setDropdownOpen] = React.useState(false);
+  const [isFocused, setFocused] = React.useState(false);
+
+  const appendContentWithArrow = (
+    <>
+      {appendContent ? appendContent : null}
+      <DownArrow
+        className={classNames(classes.dropdownArrow, {
+          [classes.dropdownArrowNormal]: sizeVariant === 'normal',
+          [classes.dropdownArrowOpen]: isDropdownOpen,
+          [classes.dropdownArrowFocused]: isFocused
+        })}
+      />
+    </>
+  );
+
+  const clickAwayOnClick = (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    setDropdownOpen(false);
+    onClose && onClose();
+  };
+
+  const toggleDropdown = (e: React.BaseSyntheticEvent) => {
+    e.stopPropagation();
+    setDropdownOpen(!isDropdownOpen);
+    isDropdownOpen && onClose && onClose();
+  };
+
+  return (
+    <>
+      {isDropdownOpen && (
+        <div
+          className={classes.clickaway}
+          onClick={clickAwayOnClick}
+        />
+      )}
+      <div className={classNames(classes.root, {[classes.rootOpen]: isDropdownOpen}, className)}>
+        <InputFieldLayout
+          className={classNames({
+            [classes.inputNormal]: sizeVariant === 'normal',
+          })}
+          isPlaceholderCollapsed={false}
+          disabled={disabled}
+          placeholder={placeholder}
+          sizeVariant={sizeVariant}
+          customPlaceholderFont={customPlaceholderFont}
+          placeholderClassName={placeholderClassName}
+          showPrependBackground={sizeVariant !== 'mini'}
+          onFocus={() => {setFocused(true)}}
+          onBlur={()=> {setFocused(false)}}
+          appendContent={appendContentWithArrow}
+          onClick={toggleDropdown}
+          tabIndex={0}
+        />
+        {isDropdownOpen && (
+          <div className={classNames(classes.dropdownWrapper,
+            sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal
+          )}>
+            {children}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default withStyles(styles)(DropDownField)
