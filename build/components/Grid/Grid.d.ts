@@ -3,6 +3,7 @@ import { WithStyles } from 'react-jss';
 /** Row */
 export interface IRowProps {
     children?: any;
+    className?: string;
 }
 declare const Row: (props: IRowProps & WithStyles<(theme: any) => {
     row: {
@@ -26,6 +27,7 @@ export interface IColProps {
     sm?: number;
     xs?: number;
     children?: any;
+    className?: string;
 }
 declare const PropsWrappedStyledRow: (props: IRowProps) => JSX.Element;
 declare const PropsWrappedStyledCol: (props: IColProps) => JSX.Element;

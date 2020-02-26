@@ -2745,15 +2745,17 @@ var styles$h = (function (theme) {
 });
 
 var Row = function (props) {
-    var children = props.children, classes = props.classes, rest = __rest(props, ["children", "classes"]);
+    var children = props.children, classes = props.classes, className = props.className, rest = __rest(props, ["children", "classes", "className"]);
     return (createElement("div", __assign({}, rest, { className: classnames([
             classes.row,
+            className,
         ]) }), children));
 };
 var Col = function (props) {
-    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes"]);
+    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, className = props.className, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes", "className"]);
     return (createElement("div", __assign({}, rest, { className: classnames([
             classes.col,
+            className,
         ]) }), children));
 };
 /** Wrappers */
