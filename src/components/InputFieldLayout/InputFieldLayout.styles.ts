@@ -49,7 +49,7 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightRegular,
   },
   placeholderNormal: {
-    padding: 14,
+    padding: 12,
   },
   placeholderMini: {
     lineHeight: '26px',
