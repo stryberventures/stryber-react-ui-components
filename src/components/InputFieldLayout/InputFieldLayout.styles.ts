@@ -58,7 +58,7 @@ export default (theme: any) => ({
   },
   placeholderCollapsed: {
     fontSize: 10,
-    transform: 'translate(0, -12px)',
+    transform: 'translate(0, -10px)',
     fontWeight: theme.fontWeightMedium,
   },
   /** Prepend */
