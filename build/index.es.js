@@ -2557,10 +2557,12 @@ var styles$f = (function (theme) { return ({
     }
 }); });
 
+var DEFAULT_BUTTON_WIDTH = 71;
 /** Main component */
 var ButtonsSet = function (props) {
-    var classes = props.classes, className = props.className, buttonsData = props.buttonsData, _a = props.active, active = _a === void 0 ? 0 : _a, rest = __rest(props, ["classes", "className", "buttonsData", "active"]);
+    var classes = props.classes, width = props.width, className = props.className, buttonsData = props.buttonsData, _a = props.active, active = _a === void 0 ? 0 : _a, rest = __rest(props, ["classes", "width", "className", "buttonsData", "active"]);
     var _b = __read(useState(active), 2), activeIdx = _b[0], setActiveIdx = _b[1];
+    var buttonWidth = width || DEFAULT_BUTTON_WIDTH;
     var handleClick = function (idx, onClick, e) {
         onClick && onClick(e);
         setActiveIdx(idx);
@@ -2571,11 +2573,11 @@ var ButtonsSet = function (props) {
             return (createElement(PropsWrappedStyledButton, { key: idx, onClick: function (e) { return handleClick(idx, onClick, e); }, sizeVariant: "mini", className: classnames([
                     classes.button,
                     idx === activeIdx && classes.active
-                ]), variant: "secondary" }, label));
+                ]), style: { width: buttonWidth + "px" }, variant: "secondary" }, label));
         });
     };
     return (createElement("div", __assign({ className: classnames([classes.root, className]) }, rest),
-        createElement("div", { style: { left: 71 * activeIdx }, className: classes.background }),
+        createElement("div", { style: { left: buttonWidth * activeIdx, width: buttonWidth + "px" }, className: classes.background }),
         renderButtons()));
 };
 /** Wrappings */
@@ -2745,15 +2747,17 @@ var styles$h = (function (theme) {
 });
 
 var Row = function (props) {
-    var children = props.children, classes = props.classes, rest = __rest(props, ["children", "classes"]);
+    var children = props.children, classes = props.classes, className = props.className, rest = __rest(props, ["children", "classes", "className"]);
     return (createElement("div", __assign({}, rest, { className: classnames([
             classes.row,
+            className,
         ]) }), children));
 };
 var Col = function (props) {
-    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes"]);
+    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, className = props.className, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes", "className"]);
     return (createElement("div", __assign({}, rest, { className: classnames([
             classes.col,
+            className,
         ]) }), children));
 };
 /** Wrappers */

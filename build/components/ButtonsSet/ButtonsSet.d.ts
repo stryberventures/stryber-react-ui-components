@@ -8,6 +8,7 @@ export interface IButtonsSetProps extends React.HTMLProps<HTMLDivElement> {
     className?: any;
     buttonsData: IButtonsData[];
     active?: number;
+    width?: number;
 }
 declare const PropsWrappedStyledBadge: (props: IButtonsSetProps) => JSX.Element;
 /** Exports */
