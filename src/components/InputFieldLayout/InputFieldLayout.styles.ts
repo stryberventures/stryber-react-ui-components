@@ -2,10 +2,11 @@ export default (theme: any) => ({
   /** Root Wrapper */
   root: {
     position: 'relative',
+    maxHeight: theme.inputMaxHeightIdle,
     borderRadius: 8,
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
-    transition: '0.5s',
+    transition: 'color 0.5s, border 0.5s',
     backgroundColor: theme.inputBackgroundColor || '#fff',
 
     display: 'flex',
@@ -31,7 +32,7 @@ export default (theme: any) => ({
     pointerEvents: 'none',
     userSelect: 'none',
     position: 'absolute',
-    transition: '0.2s',
+    transition: 'transform 0.2s, font 0.2s, color 0.2s',
     fontSize: 14,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -41,11 +42,11 @@ export default (theme: any) => ({
     margin: 0,
     transform: 'translate(0, 0px)',
     transformOrigin: 'left',
-    color: theme.inputPlaceholderColorIdle || '#95acbf',
+    color: theme.inputPlaceholderColorIdle || '#95acbf'
   },
   placeholderFontFamily: {
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
+    fontWeight: theme.fontWeightRegular,
   },
   placeholderNormal: {
     padding: 14,
@@ -58,10 +59,11 @@ export default (theme: any) => ({
   placeholderCollapsed: {
     fontSize: 10,
     transform: 'translate(0, -12px)',
+    fontWeight: theme.fontWeightMedium,
   },
   /** Prepend */
   prepend: {
-    transition: '0.5s',
+    transition: 'color 0.5s, border 0.5s',
     position: 'relative',
     minWidth: 7,
     overflow: 'visible',
