@@ -39,8 +39,10 @@ const Table = (props: ITableProps & WithStyles<typeof styles>) => {
   );
 };
 
+/** Wrappers */
 const StyledTable = withStyles(styles)(Table);
+const PropsWrappedStyledTable = (props: ITableProps) => <StyledTable {...props} />;
 
-export default StyledTable;
+export default PropsWrappedStyledTable;
 
-export { StyledTable as Table };
+export { PropsWrappedStyledTable as Table };
