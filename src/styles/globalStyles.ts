@@ -10,6 +10,7 @@ export default (theme: any) => ({
     body: {
       fontFamily: theme.fontFamily,
       fontWeight: theme.fontWeightRegular,
+      fontSmoothing: 'antialiased',
       height: '100%',
       width: '100%',
       padding: 0,
