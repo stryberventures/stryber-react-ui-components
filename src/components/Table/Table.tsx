@@ -9,10 +9,11 @@ interface ITableProps {
   headerComponent?: any;
   border?: boolean;
   headerLabel?: string;
+  headerLabelClassName?: string;
 }
 
 const Table = (props: ITableProps & WithStyles<typeof styles>) => {
-  const { border = true, children, classes, className, headerLabel, headerComponent } = props;
+  const { border = true, children, classes, className, headerLabel, headerComponent, headerLabelClassName } = props;
 
   if (!headerLabel && !headerComponent) {
     return (
@@ -29,7 +30,7 @@ const Table = (props: ITableProps & WithStyles<typeof styles>) => {
       'withBorder': border,
     })}>
       <div className={classes.header}>
-        {headerLabel && <div className={classes.headerLabel}>{headerLabel}</div>}
+        {headerLabel && <div className={classNames(classes.headerLabel, headerLabelClassName)}>{headerLabel}</div>}
         {headerComponent && <div className={classes.headerComponent}>{headerComponent}</div>}
       </div>
       <table className={classes.table}>

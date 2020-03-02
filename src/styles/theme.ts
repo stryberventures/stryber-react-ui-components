@@ -72,6 +72,7 @@ export default {
   sidebarItemColorHover: colors.grayHover,
   sidebarItemColorActive: colors.grayActive,
   sidebarItemColorSelected: colors.black,
+  sidebarItemBackgroundSelected: colors.white,
   sidebarItemColorHighlight: colors.normal,
   sidebarItemColorHighlightHover: colors.normalHover,
   sidebarItemColorHighlightActive: colors.normalActive,
