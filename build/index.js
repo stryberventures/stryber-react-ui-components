@@ -79,6 +79,7 @@ var styles = (function (theme) { return ({
         body: {
             fontFamily: theme.fontFamily,
             fontWeight: theme.fontWeightRegular,
+            fontSmoothing: 'antialiased',
             height: '100%',
             width: '100%',
             padding: 0,
@@ -216,6 +217,7 @@ var defaultTheme = {
     buttonBackgroundColorDisabled: colors.lightGray,
     buttonColorDisabled: colors.gray,
     /** Input fields */
+    inputMaxHeightIdle: 43,
     inputColorIdle: colors.darkGray,
     inputColorBorderIdle: '#cfe2f2',
     inputColorBorderIdleHover: '#deebf6',
@@ -247,6 +249,7 @@ var defaultTheme = {
     sidebarItemColorHover: colors.grayHover,
     sidebarItemColorActive: colors.grayActive,
     sidebarItemColorSelected: colors.black,
+    sidebarItemBackgroundSelected: colors.white,
     sidebarItemColorHighlight: colors.normal,
     sidebarItemColorHighlightHover: colors.normalHover,
     sidebarItemColorHighlightActive: colors.normalActive,
@@ -681,21 +684,21 @@ var styles$2 = (function (theme) { return ({
         width: '100%',
         height: '100%',
         border: 0,
-        padding: 14,
+        padding: 12,
         backgroundColor: 'rgba(0,0,0,0)',
-        transition: '0.5s',
+        transition: 'color 0.5s',
         color: theme.inputColorIdle || '#54738c',
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
+        fontWeight: theme.fontWeightRegular,
         fontSize: 14,
         '&:focus': {
             color: theme.inputColorHighlight || '#007aff',
             outline: 'none',
         },
     },
-    inputWithPlaceholder: {
-        paddingBottom: 5,
-        paddingTop: 23,
+    inputWithPlaceholder: {},
+    inputWithPlaceholderCollapsed: {
+        transform: 'translate(0px, 5px)'
     },
     inputInvalid: {
         '&:focus': {
@@ -708,10 +711,11 @@ var styles$3 = (function (theme) { return ({
     /** Root Wrapper */
     root: {
         position: 'relative',
+        maxHeight: theme.inputMaxHeightIdle,
         borderRadius: 8,
         overflow: 'hidden',
         border: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
-        transition: '0.5s',
+        transition: 'color 0.5s, border 0.5s',
         backgroundColor: theme.inputBackgroundColor || '#fff',
         display: 'flex',
         justifyContent: 'space-between',
@@ -735,7 +739,7 @@ var styles$3 = (function (theme) { return ({
         pointerEvents: 'none',
         userSelect: 'none',
         position: 'absolute',
-        transition: '0.2s',
+        transition: 'transform 0.2s, font 0.2s, color 0.2s',
         fontSize: 14,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -745,14 +749,14 @@ var styles$3 = (function (theme) { return ({
         margin: 0,
         transform: 'translate(0, 0px)',
         transformOrigin: 'left',
-        color: theme.inputPlaceholderColorIdle || '#95acbf',
+        color: theme.inputPlaceholderColorIdle || '#95acbf'
     },
     placeholderFontFamily: {
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
+        fontWeight: theme.fontWeightRegular,
     },
     placeholderNormal: {
-        padding: 14,
+        padding: 12,
     },
     placeholderMini: {
         lineHeight: '26px',
@@ -760,11 +764,12 @@ var styles$3 = (function (theme) { return ({
     placeholderInvalid: {},
     placeholderCollapsed: {
         fontSize: 10,
-        transform: 'translate(0, -12px)',
+        transform: 'translate(0, -10px)',
+        fontWeight: theme.fontWeightMedium,
     },
     /** Prepend */
     prepend: {
-        transition: '0.5s',
+        transition: 'color 0.5s, border 0.5s',
         position: 'relative',
         minWidth: 7,
         overflow: 'visible',
@@ -864,10 +869,12 @@ var PropsWrappedStyledInputFieldLayout = function (props) { return React.createE
 
 var TextInput = function (props) {
     var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
-    return (React.createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, isPlaceholderCollapsed: !!((typeof value !== 'undefined' && value !== '') || isFocused), errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
+    var isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
+    return (React.createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed },
         React.createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
                 placeholder ? classes.inputWithPlaceholder : null,
+                isPlaceholderCollapsed ? classes.inputWithPlaceholderCollapsed : null,
                 errorMsg ? classes.inputInvalid : null,
             ]), disabled: disabled, value: value || '' }))));
 };
@@ -2564,10 +2571,12 @@ var styles$f = (function (theme) { return ({
     }
 }); });
 
+var DEFAULT_BUTTON_WIDTH = 71;
 /** Main component */
 var ButtonsSet = function (props) {
-    var classes = props.classes, className = props.className, buttonsData = props.buttonsData, _a = props.active, active = _a === void 0 ? 0 : _a, rest = __rest(props, ["classes", "className", "buttonsData", "active"]);
+    var classes = props.classes, width = props.width, className = props.className, buttonsData = props.buttonsData, _a = props.active, active = _a === void 0 ? 0 : _a, rest = __rest(props, ["classes", "width", "className", "buttonsData", "active"]);
     var _b = __read(React.useState(active), 2), activeIdx = _b[0], setActiveIdx = _b[1];
+    var buttonWidth = width || DEFAULT_BUTTON_WIDTH;
     var handleClick = function (idx, onClick, e) {
         onClick && onClick(e);
         setActiveIdx(idx);
@@ -2578,11 +2587,11 @@ var ButtonsSet = function (props) {
             return (React.createElement(PropsWrappedStyledButton, { key: idx, onClick: function (e) { return handleClick(idx, onClick, e); }, sizeVariant: "mini", className: classnames([
                     classes.button,
                     idx === activeIdx && classes.active
-                ]), variant: "secondary" }, label));
+                ]), style: { width: buttonWidth + "px" }, variant: "secondary" }, label));
         });
     };
     return (React.createElement("div", __assign({ className: classnames([classes.root, className]) }, rest),
-        React.createElement("div", { style: { left: 71 * activeIdx }, className: classes.background }),
+        React.createElement("div", { style: { left: buttonWidth * activeIdx, width: buttonWidth + "px" }, className: classes.background }),
         renderButtons()));
 };
 /** Wrappings */
@@ -2704,13 +2713,15 @@ var Pagination = function (props) {
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         React.createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledPagination = React.memo(withStyles__default(styles$g)(Pagination));
+var StyledPagination = withStyles__default(styles$g)(Pagination);
+var PropsWrappedStyledPagination = function (props) { return React.createElement(StyledPagination, __assign({}, props)); };
 
 
 
 var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledPagination
+    'default': PropsWrappedStyledPagination,
+    Pagination: PropsWrappedStyledPagination
 });
 
 var getGridColumnStyle = function (breakpointValue) {
@@ -2752,15 +2763,17 @@ var styles$h = (function (theme) {
 });
 
 var Row = function (props) {
-    var children = props.children, classes = props.classes, rest = __rest(props, ["children", "classes"]);
+    var children = props.children, classes = props.classes, className = props.className, rest = __rest(props, ["children", "classes", "className"]);
     return (React.createElement("div", __assign({}, rest, { className: classnames([
             classes.row,
+            className,
         ]) }), children));
 };
 var Col = function (props) {
-    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes"]);
+    var children = props.children, xl = props.xl, lg = props.lg, md = props.md, sm = props.sm, xs = props.xs, classes = props.classes, className = props.className, rest = __rest(props, ["children", "xl", "lg", "md", "sm", "xs", "classes", "className"]);
     return (React.createElement("div", __assign({}, rest, { className: classnames([
             classes.col,
+            className,
         ]) }), children));
 };
 /** Wrappers */
@@ -2916,7 +2929,7 @@ var styles$k = (function (theme) { return ({
 }); });
 
 var Table = function (props) {
-    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
+    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent, headerLabelClassName = props.headerLabelClassName;
     if (!headerLabel && !headerComponent) {
         return (React.createElement("table", { className: classnames(classes.root, classes.table, className, {
                 'withBorder': border,
@@ -2926,7 +2939,7 @@ var Table = function (props) {
             'withBorder': border,
         }) },
         React.createElement("div", { className: classes.header },
-            headerLabel && React.createElement("div", { className: classes.headerLabel }, headerLabel),
+            headerLabel && React.createElement("div", { className: classnames(classes.headerLabel, headerLabelClassName) }, headerLabel),
             headerComponent && React.createElement("div", { className: classes.headerComponent }, headerComponent)),
         React.createElement("table", { className: classes.table }, children)));
 };
@@ -2991,14 +3004,15 @@ var TableCell = function (props) {
     }
     return (React.createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$1 = withStyles__default(styles$l)(TableCell);
+var StyledTableCell = withStyles__default(styles$l)(TableCell);
+var PropsWrappedStyledTableCell = function (props) { return React.createElement(StyledTableCell, __assign({}, props)); };
 
 
 
 var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$1,
-    TableCell: StyledTable$1
+    'default': PropsWrappedStyledTableCell,
+    TableCell: PropsWrappedStyledTableCell
 });
 
 var TableHead = function (_a) {
@@ -3028,29 +3042,30 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className;
     return (React.createElement("tr", { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$2 = withStyles__default(styles$m)(TableRow);
+var StyledTableRow = withStyles__default(styles$m)(TableRow);
+var PropsWrappedStyledTableRow = function (props) { return React.createElement(StyledTableRow, __assign({}, props)); };
 
 
 
 var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$2,
-    TableRow: StyledTable$2
+    'default': PropsWrappedStyledTableRow,
+    TableRow: PropsWrappedStyledTableRow
 });
 
 var TableData = function (props) {
     var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
     var getHeadRow = function () {
         return headRow.map(function (cell) {
-            return React.createElement(StyledTable$1, { key: cell.id }, cell.label);
+            return React.createElement(PropsWrappedStyledTableCell, { key: cell.id }, cell.label);
         });
     };
-    var getRows = function () { return rows.map(function (row) { return (React.createElement(StyledTable$2, { key: row.id }, headRow.map(function (cell, index) {
-        return React.createElement(StyledTable$1, { key: index }, row[cell.id]);
+    var getRows = function () { return rows.map(function (row) { return (React.createElement(PropsWrappedStyledTableRow, { key: row.id }, headRow.map(function (cell, index) {
+        return React.createElement(PropsWrappedStyledTableCell, { key: index }, row[cell.id]);
     }))); }); };
     return (React.createElement(PropsWrappedStyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
         React.createElement(TableHead, null,
-            React.createElement(StyledTable$2, null, getHeadRow())),
+            React.createElement(PropsWrappedStyledTableRow, null, getHeadRow())),
         React.createElement(TableBody, null, getRows())));
 };
 
@@ -3269,10 +3284,11 @@ var styles$p = (function (theme) { return ({
             color: theme.sidebarItemColorHover,
         },
         '&:active': {
-            color: theme.sidebarItemColorActive,
+            color: theme.sidebarItemColorActive
         },
     },
     sectionSelected: {
+        backgroundColor: theme.sidebarItemBackgroundSelected,
         color: theme.sidebarItemColorHighlight,
         borderLeft: "3px solid " + theme.sidebarItemColorHighlight,
         '&:hover': {
@@ -3612,7 +3628,7 @@ exports.Navbar = PropsWrappedStyledNavbar;
 exports.NavbarElements = index$q;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
 exports.NavbarNavigationElements = index$r;
-exports.Pagination = StyledPagination;
+exports.Pagination = PropsWrappedStyledPagination;
 exports.PaginationElements = index$g;
 exports.PasswordField = PropsWrappedStyledPasswordField;
 exports.PasswordFieldElements = index$7;
@@ -3629,14 +3645,14 @@ exports.SidebarNavigationElements = index$s;
 exports.Table = PropsWrappedStyledTable;
 exports.TableBody = TableBody;
 exports.TableBodyElements = index$l;
-exports.TableCell = StyledTable$1;
+exports.TableCell = PropsWrappedStyledTableCell;
 exports.TableCellElements = index$m;
 exports.TableData = TableData;
 exports.TableDataElements = index$p;
 exports.TableElements = index$k;
 exports.TableHead = TableHead;
 exports.TableHeadElements = index$n;
-exports.TableRow = StyledTable$2;
+exports.TableRow = PropsWrappedStyledTableRow;
 exports.TableRowElements = index$o;
 exports.ThemeProvider = ThemeProvider;
 exports.ValueBadge = StyledValueBadge;

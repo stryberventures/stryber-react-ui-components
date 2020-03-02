@@ -5,6 +5,7 @@ interface ITableProps {
     headerComponent?: any;
     border?: boolean;
     headerLabel?: string;
+    headerLabelClassName?: string;
 }
 declare const PropsWrappedStyledTable: (props: ITableProps) => JSX.Element;
 export default PropsWrappedStyledTable;

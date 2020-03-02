@@ -32,20 +32,24 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
     value,
     ...rest
   } = props;
+
+  const isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
+
   return (
     <InputFieldLayout
       appendContent={appendContent}
       prependContent={prependContent}
-      isPlaceholderCollapsed={!!((typeof value !== 'undefined' && value !== '') || isFocused)}
       errorMsg={errorMsg}
       disabled={disabled}
       placeholder={placeholder}
+      isPlaceholderCollapsed={isPlaceholderCollapsed}
     >
       <input
         {...rest}
         className={classNames([
           classes.input,
           placeholder ? classes.inputWithPlaceholder : null,
+          isPlaceholderCollapsed ? classes.inputWithPlaceholderCollapsed : null,
           errorMsg ? classes.inputInvalid : null,
         ])}
         disabled={disabled}

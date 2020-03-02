@@ -27,15 +27,15 @@ export default (theme: any) => ({
     width: '100%',
     height: '100%',
     border: 0,
-    padding: 14,
+    padding: 12,
     backgroundColor: 'rgba(0,0,0,0)',
 
-    transition: '0.5s',
+    transition: 'color 0.5s',
 
     color: theme.inputColorIdle || '#54738c',
 
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
+    fontWeight: theme.fontWeightRegular,
     fontSize: 14,
 
     '&:focus': {
@@ -44,8 +44,10 @@ export default (theme: any) => ({
     },
   },
   inputWithPlaceholder: {
-    paddingBottom: 5,
-    paddingTop: 23,
+
+  },
+  inputWithPlaceholderCollapsed: {
+    transform:'translate(0px, 5px)'
   },
   inputInvalid: {
     '&:focus': {

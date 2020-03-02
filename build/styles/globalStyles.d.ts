@@ -8,6 +8,7 @@ declare const _default: (theme: any) => {
         body: {
             fontFamily: any;
             fontWeight: any;
+            fontSmoothing: string;
             height: string;
             width: string;
             padding: number;

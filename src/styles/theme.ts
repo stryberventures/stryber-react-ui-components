@@ -39,6 +39,7 @@ export default {
   buttonColorDisabled: colors.gray,
 
   /** Input fields */
+  inputMaxHeightIdle: 43,
   inputColorIdle: colors.darkGray,
   inputColorBorderIdle: '#cfe2f2',
   inputColorBorderIdleHover: '#deebf6',

@@ -1,13 +1,10 @@
 {
   "name": "@stryberventures/stryber-react-ui-components",
-  "version": "0.0.24",
+  "version": "0.0.28",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
   "types": "build/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/stryberventures/stryber-react-ui-components"
