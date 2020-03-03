@@ -1,4 +1,4 @@
-import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, forwardRef, useImperativeHandle, useRef, memo } from 'react';
+import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, forwardRef, useImperativeHandle, useRef } from 'react';
 import withStyles, { ThemeProvider as ThemeProvider$1 } from 'react-jss';
 
 /*! *****************************************************************************
@@ -72,6 +72,7 @@ var styles = (function (theme) { return ({
         body: {
             fontFamily: theme.fontFamily,
             fontWeight: theme.fontWeightRegular,
+            fontSmoothing: 'antialiased',
             height: '100%',
             width: '100%',
             padding: 0,
@@ -209,6 +210,7 @@ var defaultTheme = {
     buttonBackgroundColorDisabled: colors.lightGray,
     buttonColorDisabled: colors.gray,
     /** Input fields */
+    inputMaxHeightIdle: 43,
     inputColorIdle: colors.darkGray,
     inputColorBorderIdle: '#cfe2f2',
     inputColorBorderIdleHover: '#deebf6',
@@ -240,6 +242,7 @@ var defaultTheme = {
     sidebarItemColorHover: colors.grayHover,
     sidebarItemColorActive: colors.grayActive,
     sidebarItemColorSelected: colors.black,
+    sidebarItemBackgroundSelected: colors.white,
     sidebarItemColorHighlight: colors.normal,
     sidebarItemColorHighlightHover: colors.normalHover,
     sidebarItemColorHighlightActive: colors.normalActive,
@@ -674,21 +677,21 @@ var styles$2 = (function (theme) { return ({
         width: '100%',
         height: '100%',
         border: 0,
-        padding: 14,
+        padding: 12,
         backgroundColor: 'rgba(0,0,0,0)',
-        transition: '0.5s',
+        transition: 'color 0.5s',
         color: theme.inputColorIdle || '#54738c',
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
+        fontWeight: theme.fontWeightRegular,
         fontSize: 14,
         '&:focus': {
             color: theme.inputColorHighlight || '#007aff',
             outline: 'none',
         },
     },
-    inputWithPlaceholder: {
-        paddingBottom: 5,
-        paddingTop: 23,
+    inputWithPlaceholder: {},
+    inputWithPlaceholderCollapsed: {
+        transform: 'translate(0px, 5px)'
     },
     inputInvalid: {
         '&:focus': {
@@ -701,10 +704,11 @@ var styles$3 = (function (theme) { return ({
     /** Root Wrapper */
     root: {
         position: 'relative',
+        maxHeight: theme.inputMaxHeightIdle,
         borderRadius: 8,
         overflow: 'hidden',
         border: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
-        transition: '0.5s',
+        transition: 'color 0.5s, border 0.5s',
         backgroundColor: theme.inputBackgroundColor || '#fff',
         display: 'flex',
         justifyContent: 'space-between',
@@ -728,7 +732,7 @@ var styles$3 = (function (theme) { return ({
         pointerEvents: 'none',
         userSelect: 'none',
         position: 'absolute',
-        transition: '0.2s',
+        transition: 'transform 0.2s, font 0.2s, color 0.2s',
         fontSize: 14,
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -738,14 +742,14 @@ var styles$3 = (function (theme) { return ({
         margin: 0,
         transform: 'translate(0, 0px)',
         transformOrigin: 'left',
-        color: theme.inputPlaceholderColorIdle || '#95acbf',
+        color: theme.inputPlaceholderColorIdle || '#95acbf'
     },
     placeholderFontFamily: {
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
+        fontWeight: theme.fontWeightRegular,
     },
     placeholderNormal: {
-        padding: 14,
+        padding: 12,
     },
     placeholderMini: {
         lineHeight: '26px',
@@ -753,11 +757,12 @@ var styles$3 = (function (theme) { return ({
     placeholderInvalid: {},
     placeholderCollapsed: {
         fontSize: 10,
-        transform: 'translate(0, -12px)',
+        transform: 'translate(0, -10px)',
+        fontWeight: theme.fontWeightMedium,
     },
     /** Prepend */
     prepend: {
-        transition: '0.5s',
+        transition: 'color 0.5s, border 0.5s',
         position: 'relative',
         minWidth: 7,
         overflow: 'visible',
@@ -857,10 +862,12 @@ var PropsWrappedStyledInputFieldLayout = function (props) { return createElement
 
 var TextInput = function (props) {
     var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
-    return (createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, isPlaceholderCollapsed: !!((typeof value !== 'undefined' && value !== '') || isFocused), errorMsg: errorMsg, disabled: disabled, placeholder: placeholder },
+    var isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
+    return (createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed },
         createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
                 placeholder ? classes.inputWithPlaceholder : null,
+                isPlaceholderCollapsed ? classes.inputWithPlaceholderCollapsed : null,
                 errorMsg ? classes.inputInvalid : null,
             ]), disabled: disabled, value: value || '' }))));
 };
@@ -2699,13 +2706,15 @@ var Pagination = function (props) {
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledPagination = memo(withStyles(styles$g)(Pagination));
+var StyledPagination = withStyles(styles$g)(Pagination);
+var PropsWrappedStyledPagination = function (props) { return createElement(StyledPagination, __assign({}, props)); };
 
 
 
 var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledPagination
+    'default': PropsWrappedStyledPagination,
+    Pagination: PropsWrappedStyledPagination
 });
 
 var getGridColumnStyle = function (breakpointValue) {
@@ -2913,7 +2922,7 @@ var styles$k = (function (theme) { return ({
 }); });
 
 var Table = function (props) {
-    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent;
+    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent, headerLabelClassName = props.headerLabelClassName;
     if (!headerLabel && !headerComponent) {
         return (createElement("table", { className: classnames(classes.root, classes.table, className, {
                 'withBorder': border,
@@ -2923,18 +2932,20 @@ var Table = function (props) {
             'withBorder': border,
         }) },
         createElement("div", { className: classes.header },
-            headerLabel && createElement("div", { className: classes.headerLabel }, headerLabel),
+            headerLabel && createElement("div", { className: classnames(classes.headerLabel, headerLabelClassName) }, headerLabel),
             headerComponent && createElement("div", { className: classes.headerComponent }, headerComponent)),
         createElement("table", { className: classes.table }, children)));
 };
+/** Wrappers */
 var StyledTable = withStyles(styles$k)(Table);
+var PropsWrappedStyledTable = function (props) { return createElement(StyledTable, __assign({}, props)); };
 
 
 
 var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable,
-    Table: StyledTable
+    'default': PropsWrappedStyledTable,
+    Table: PropsWrappedStyledTable
 });
 
 var VARIANT_HEAD = 'head';
@@ -2986,14 +2997,15 @@ var TableCell = function (props) {
     }
     return (createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$1 = withStyles(styles$l)(TableCell);
+var StyledTableCell = withStyles(styles$l)(TableCell);
+var PropsWrappedStyledTableCell = function (props) { return createElement(StyledTableCell, __assign({}, props)); };
 
 
 
 var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$1,
-    TableCell: StyledTable$1
+    'default': PropsWrappedStyledTableCell,
+    TableCell: PropsWrappedStyledTableCell
 });
 
 var TableHead = function (_a) {
@@ -3023,29 +3035,30 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className;
     return (createElement("tr", { className: classnames(classes.root, className) }, children));
 };
-var StyledTable$2 = withStyles(styles$m)(TableRow);
+var StyledTableRow = withStyles(styles$m)(TableRow);
+var PropsWrappedStyledTableRow = function (props) { return createElement(StyledTableRow, __assign({}, props)); };
 
 
 
 var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledTable$2,
-    TableRow: StyledTable$2
+    'default': PropsWrappedStyledTableRow,
+    TableRow: PropsWrappedStyledTableRow
 });
 
 var TableData = function (props) {
     var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
     var getHeadRow = function () {
         return headRow.map(function (cell) {
-            return createElement(StyledTable$1, { key: cell.id }, cell.label);
+            return createElement(PropsWrappedStyledTableCell, { key: cell.id }, cell.label);
         });
     };
-    var getRows = function () { return rows.map(function (row) { return (createElement(StyledTable$2, { key: row.id }, headRow.map(function (cell, index) {
-        return createElement(StyledTable$1, { key: index }, row[cell.id]);
+    var getRows = function () { return rows.map(function (row) { return (createElement(PropsWrappedStyledTableRow, { key: row.id }, headRow.map(function (cell, index) {
+        return createElement(PropsWrappedStyledTableCell, { key: index }, row[cell.id]);
     }))); }); };
-    return (createElement(StyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+    return (createElement(PropsWrappedStyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
         createElement(TableHead, null,
-            createElement(StyledTable$2, null, getHeadRow())),
+            createElement(PropsWrappedStyledTableRow, null, getHeadRow())),
         createElement(TableBody, null, getRows())));
 };
 
@@ -3264,10 +3277,11 @@ var styles$p = (function (theme) { return ({
             color: theme.sidebarItemColorHover,
         },
         '&:active': {
-            color: theme.sidebarItemColorActive,
+            color: theme.sidebarItemColorActive
         },
     },
     sectionSelected: {
+        backgroundColor: theme.sidebarItemBackgroundSelected,
         color: theme.sidebarItemColorHighlight,
         borderLeft: "3px solid " + theme.sidebarItemColorHighlight,
         '&:hover': {
@@ -3578,5 +3592,5 @@ var index$u = /*#__PURE__*/Object.freeze({
     'default': Default
 });
 
-export { PropsWrappedStyledBadge$1 as Badge, index$t as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$f as ButtonsSetElements, StyledCard as Card, index$j as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$i as ContainerElements, Default as DropDownField, index$u as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$d as FileFieldElements, Form, index as FormElements, Row as Grid, index$h as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$c as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$q as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$r as NavbarNavigationElements, StyledPagination as Pagination, index$g as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$e as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$b as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$s as SidebarNavigationElements, StyledTable as Table, TableBody, index$l as TableBodyElements, StyledTable$1 as TableCell, index$m as TableCellElements, TableData, index$p as TableDataElements, index$k as TableElements, TableHead, index$n as TableHeadElements, StyledTable$2 as TableRow, index$o as TableRowElements, ThemeProvider, StyledValueBadge as ValueBadge, index$a as ValueBadgeElements, colors, defaultTheme as theme };
+export { PropsWrappedStyledBadge$1 as Badge, index$t as BadgeElements, PropsWrappedStyledButton as Button, index$5 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$f as ButtonsSetElements, StyledCard as Card, index$j as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$8 as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$i as ContainerElements, Default as DropDownField, index$u as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$d as FileFieldElements, Form, index as FormElements, Row as Grid, index$h as GridElements, index$4 as Icons, InputField, index$6 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$c as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$q as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$r as NavbarNavigationElements, PropsWrappedStyledPagination as Pagination, index$g as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$7 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$e as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$b as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$9 as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$s as SidebarNavigationElements, PropsWrappedStyledTable as Table, TableBody, index$l as TableBodyElements, PropsWrappedStyledTableCell as TableCell, index$m as TableCellElements, TableData, index$p as TableDataElements, index$k as TableElements, TableHead, index$n as TableHeadElements, PropsWrappedStyledTableRow as TableRow, index$o as TableRowElements, ThemeProvider, StyledValueBadge as ValueBadge, index$a as ValueBadgeElements, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map

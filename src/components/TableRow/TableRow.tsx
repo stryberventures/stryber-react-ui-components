@@ -18,8 +18,9 @@ const TableRow = (props: ITableRowProps & WithStyles<typeof styles>) => {
   );
 };
 
-const StyledTable = withStyles(styles)(TableRow);
+const StyledTableRow = withStyles(styles)(TableRow);
+const PropsWrappedStyledTableRow = (props: ITableRowProps) => <StyledTableRow {...props} />;
 
-export default StyledTable;
+export default PropsWrappedStyledTableRow;
 
-export { StyledTable as TableRow };
+export { PropsWrappedStyledTableRow as TableRow };

@@ -3,7 +3,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './Pagination.styles';
 import classNames from 'classnames';
 
-interface PaginationProps {
+interface IPaginationProps {
   currPage: number;
   pageCount: number;
   onChange: (index: number)=> void;
@@ -11,7 +11,7 @@ interface PaginationProps {
   className?: string;
 }
 
-const Pagination: React.FC<PaginationProps & WithStyles<typeof styles>> = (props) => {
+const Pagination: React.FC<IPaginationProps & WithStyles<typeof styles>> = (props) => {
   const {
     onChange,
     collapseFactor,
@@ -97,6 +97,8 @@ const Pagination: React.FC<PaginationProps & WithStyles<typeof styles>> = (props
   );
 };
 
-const StyledPagination = React.memo(withStyles(styles)(Pagination));
+const StyledPagination = withStyles(styles)(Pagination);
+const PropsWrappedStyledPagination = (props: IPaginationProps) => <StyledPagination {...props} />;
 
-export default StyledPagination;
+export default PropsWrappedStyledPagination;
+export { PropsWrappedStyledPagination as Pagination };

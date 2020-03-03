@@ -1,27 +1,9 @@
-import * as React from 'react';
-import { WithStyles } from 'react-jss';
+/// <reference types="react" />
 interface ITableCellProps {
     children?: any;
     className?: any;
     component?: any;
 }
-declare const StyledTable: React.ComponentType<Pick<ITableCellProps & WithStyles<(theme: any) => {
-    root: {
-        padding: string;
-        '&:first-child': {
-            paddingLeft: number;
-        };
-        '&:last-child': {
-            paddingRight: number;
-        };
-        'th&': {
-            whiteSpace: string;
-            fontWeight: string;
-            borderBottom: string;
-        };
-    };
-}>, "children" | "className" | "component"> & {
-    classes?: Partial<Record<"root", string>> | undefined;
-}>;
-export default StyledTable;
-export { StyledTable as TableCell };
+declare const PropsWrappedStyledTableCell: (props: ITableCellProps) => JSX.Element;
+export default PropsWrappedStyledTableCell;
+export { PropsWrappedStyledTableCell as TableCell };
