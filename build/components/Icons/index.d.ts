@@ -7,5 +7,6 @@ import Search from './Search';
 import Close from './Close';
 import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
+import Download from './Download';
 import File from './File';
-export { DownArrow, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, };
+export { DownArrow, Download, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, };
