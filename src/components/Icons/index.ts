@@ -7,10 +7,12 @@ import Search from './Search';
 import Close from './Close';
 import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
+import Download from './Download';
 import File from './File';
 
 export {
   DownArrow,
+  Download,
   Close,
   Check,
   CloseOutline,
