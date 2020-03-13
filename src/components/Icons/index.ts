@@ -7,10 +7,13 @@ import Search from './Search';
 import Close from './Close';
 import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
+import Download from './Download';
 import File from './File';
+import Delete from './Delete';
 
 export {
   DownArrow,
+  Download,
   Close,
   Check,
   CloseOutline,
@@ -20,4 +23,5 @@ export {
   File,
   PrependBackground,
   Profile,
+  Delete,
 }

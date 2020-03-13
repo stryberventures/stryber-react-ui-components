@@ -28,6 +28,7 @@ declare const _default: {
     buttonBackgroundColorDisabled: string;
     buttonColorDisabled: string;
     /** Input fields */
+    inputMaxHeightIdle: number;
     inputColorIdle: string;
     inputColorBorderIdle: string;
     inputColorBorderIdleHover: string;
@@ -59,6 +60,7 @@ declare const _default: {
     sidebarItemColorHover: string;
     sidebarItemColorActive: string;
     sidebarItemColorSelected: string;
+    sidebarItemBackgroundSelected: string;
     sidebarItemColorHighlight: string;
     sidebarItemColorHighlightHover: string;
     sidebarItemColorHighlightActive: string;

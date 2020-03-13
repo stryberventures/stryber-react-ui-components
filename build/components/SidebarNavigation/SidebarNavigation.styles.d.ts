@@ -24,6 +24,7 @@ declare const _default: (theme: any) => {
         };
     };
     sectionSelected: {
+        backgroundColor: any;
         color: any;
         borderLeft: string;
         '&:hover': {

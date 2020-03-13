@@ -1,18 +1,8 @@
-import * as React from 'react';
-import { WithStyles } from 'react-jss';
+/// <reference types="react" />
 interface ITableRowProps {
     children?: any;
     className?: any;
 }
-declare const StyledTable: React.ComponentType<Pick<ITableRowProps & WithStyles<(theme: any) => {
-    root: {
-        height: number;
-        '&:nth-child(even)': {
-            backgroundColor: any;
-        };
-    };
-}>, "children" | "className"> & {
-    classes?: Partial<Record<"root", string>> | undefined;
-}>;
-export default StyledTable;
-export { StyledTable as TableRow };
+declare const PropsWrappedStyledTableRow: (props: ITableRowProps) => JSX.Element;
+export default PropsWrappedStyledTableRow;
+export { PropsWrappedStyledTableRow as TableRow };

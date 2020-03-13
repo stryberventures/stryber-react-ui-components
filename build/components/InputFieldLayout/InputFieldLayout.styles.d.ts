@@ -2,6 +2,7 @@ declare const _default: (theme: any) => {
     /** Root Wrapper */
     root: {
         position: string;
+        maxHeight: any;
         borderRadius: number;
         overflow: string;
         border: string;
@@ -55,6 +56,7 @@ declare const _default: (theme: any) => {
     placeholderCollapsed: {
         fontSize: number;
         transform: string;
+        fontWeight: any;
     };
     /** Prepend */
     prepend: {

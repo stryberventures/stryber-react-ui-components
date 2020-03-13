@@ -21,10 +21,11 @@ export default (theme: any) => ({
       color: theme.sidebarItemColorHover,
     },
     '&:active': {
-      color: theme.sidebarItemColorActive,
+      color: theme.sidebarItemColorActive
     },
   },
   sectionSelected: {
+    backgroundColor: theme.sidebarItemBackgroundSelected,
     color: theme.sidebarItemColorHighlight,
     borderLeft: `3px solid ${theme.sidebarItemColorHighlight}`,
     '&:hover': {

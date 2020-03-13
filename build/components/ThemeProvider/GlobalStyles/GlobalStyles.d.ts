@@ -13,6 +13,7 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
         body: {
             fontFamily: any;
             fontWeight: any;
+            fontSmoothing: string;
             height: string;
             width: string;
             padding: number;

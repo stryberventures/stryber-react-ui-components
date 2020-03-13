@@ -37,9 +37,9 @@ declare const _default: (theme: any) => {
             outline: string;
         };
     };
-    inputWithPlaceholder: {
-        paddingBottom: number;
-        paddingTop: number;
+    inputWithPlaceholder: {};
+    inputWithPlaceholderCollapsed: {
+        transform: string;
     };
     inputInvalid: {
         '&:focus': {

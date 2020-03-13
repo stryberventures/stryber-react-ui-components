@@ -29,8 +29,9 @@ const TableCell = (props: ITableCellProps & WithStyles<typeof styles>) => {
   );
 };
 
-const StyledTable = withStyles(styles)(TableCell);
+const StyledTableCell = withStyles(styles)(TableCell);
+const PropsWrappedStyledTableCell = (props: ITableCellProps) => <StyledTableCell {...props} />;
 
-export default StyledTable;
+export default PropsWrappedStyledTableCell;
 
-export { StyledTable as TableCell };
+export { PropsWrappedStyledTableCell as TableCell };
