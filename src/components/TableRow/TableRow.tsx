@@ -4,15 +4,16 @@ import styles from './TableRow.styles';
 import classNames from 'classnames';
 
 interface ITableRowProps {
+  [key: string]: any;
   children?: any;
   className?: any;
 }
 
 const TableRow = (props: ITableRowProps & WithStyles<typeof styles>) => {
-  const { children, classes, className } = props;
+  const { children, classes, className, ...otherProps } = props;
 
   return (
-    <tr className={classNames(classes.root, className)}>
+    <tr className={classNames(classes.root, className)} { ...otherProps }>
       {children}
     </tr>
   );
