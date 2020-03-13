@@ -9,6 +9,7 @@ import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
 import Download from './Download';
 import File from './File';
+import Delete from './Delete';
 
 export {
   DownArrow,
@@ -22,4 +23,5 @@ export {
   File,
   PrependBackground,
   Profile,
+  Delete,
 }
