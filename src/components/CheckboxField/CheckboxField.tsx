@@ -10,6 +10,7 @@ export interface ICheckboxFieldProps {
   placeholder?: any | React.Component;
   checked?: boolean;
   disabled?: boolean;
+  controlled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   variant?: 'checkmark' | 'switch';
@@ -22,6 +23,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     classes,
     className,
     value,
+    controlled,
     name,
     checked,
     placeholder,
@@ -93,7 +95,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
           className={classes.input}
           name={name}
           value={value}
-          checked={internalValue}
+          checked={controlled ? checked : internalValue}
           onChange={onChangeWrapper}
           onFocus={onFocusWrapper}
         />
