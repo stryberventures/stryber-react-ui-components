@@ -1,12 +1,13 @@
 export default (theme: any) => ({
   root: {
     borderRadius: 8,
-    padding: 14,
+    padding: 10,
+    maxHeight: 44,
     border: `solid 1px`,
     width: '100%',
     fontSize: 16,
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightSemiBold,
+    fontWeight: theme.fontWeightMedium,
     userSelect: 'none',
     cursor: 'pointer',
   },
@@ -85,9 +86,10 @@ export default (theme: any) => ({
   normal: {
   },
   mini: {
-    padding: 7,
+    padding: '4px 7px',
     fontSize: 10,
-    fontWeight: theme.fontWeightMedium,
+    fontWeight: theme.fontWeightRegular,
     borderRadius: 4,
+    maxHeight: 24
   },
 });

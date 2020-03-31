@@ -638,14 +638,18 @@ var CloseOutline = (function (props) { return (React.createElement("svg", __assi
 var DownArrow = (function (props) { return (React.createElement("svg", __assign({ viewBox: "0 0 24 24" }, props),
     React.createElement("path", { d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" }))); });
 
+var index$4 = (function (props) { return (React.createElement("svg", __assign({ viewBox: "0 0 512 512" }, props),
+    React.createElement("path", { d: "m409.785156 278.5-153.785156 153.785156-153.785156-153.785156 28.285156-28.285156 105.5 105.5v-355.714844h40v355.714844l105.5-105.5zm102.214844 193.5h-512v40h512zm0 0" }))); });
+
 var File = (function (props) { return (React.createElement("svg", __assign({ width: 24, viewBox: "0 0 24 24" }, props),
     React.createElement("path", { d: "M13.006 3.443L10.056.494A1.687 1.687 0 0 0 8.865 0H1.687C.756 0 0 .756 0 1.688v14.624C0 17.244.756 18 1.688 18h10.124c.932 0 1.688-.756 1.688-1.688V4.636c0-.447-.178-.876-.494-1.193zm-.796.796a.559.559 0 0 1 .148.261H9V1.142c.099.025.19.076.261.148l2.95 2.949zm-.398 12.636H1.688a.562.562 0 0 1-.563-.563V1.688c0-.31.252-.562.563-.562h6.187v3.656c0 .466.378.844.844.844h3.656v10.688c0 .31-.252.562-.563.562zm-1.211-7.416l-4.739 4.7a.422.422 0 0 1-.596-.001l-2.368-2.375a.422.422 0 0 1 0-.597l.3-.298a.422.422 0 0 1 .597 0l1.773 1.78 4.14-4.108a.422.422 0 0 1 .598.002l.297.3a.422.422 0 0 1-.002.597z" }))); });
 
 
 
-var index$4 = /*#__PURE__*/Object.freeze({
+var index$5 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     DownArrow: DownArrow,
+    Download: index$4,
     Close: Close,
     Check: index$3,
     CloseOutline: CloseOutline,
@@ -997,7 +1001,7 @@ var PropsWrappedStyledButton = function (props) { return React.createElement(Sty
 
 
 
-var index$5 = /*#__PURE__*/Object.freeze({
+var index$6 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledButton,
     Button: PropsWrappedStyledButton
@@ -1066,7 +1070,7 @@ var InputField = function (props) {
 
 
 
-var index$6 = /*#__PURE__*/Object.freeze({
+var index$7 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': InputField,
     InputField: InputField
@@ -1105,7 +1109,7 @@ var PropsWrappedStyledPasswordField = function (props) { return React.createElem
 
 
 
-var index$7 = /*#__PURE__*/Object.freeze({
+var index$8 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledPasswordField,
     PasswordField: PropsWrappedStyledPasswordField
@@ -1314,7 +1318,7 @@ var PropsWrappedStyledCheckboxField = function (props) { return React.createElem
 
 
 
-var index$8 = /*#__PURE__*/Object.freeze({
+var index$9 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledCheckboxField,
     CheckboxField: PropsWrappedStyledCheckboxField
@@ -1540,7 +1544,7 @@ var PropsWrappedStyledSelectField = function (props) { return React.createElemen
 
 
 
-var index$9 = /*#__PURE__*/Object.freeze({
+var index$a = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSelectField,
     SelectField: PropsWrappedStyledSelectField
@@ -1751,7 +1755,7 @@ var StyledValueBadge = withStyles__default(styles$9)(ValueBadge);
 
 
 
-var index$a = /*#__PURE__*/Object.freeze({
+var index$b = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': StyledValueBadge,
     ValueBadge: StyledValueBadge
@@ -1928,7 +1932,7 @@ var PropsWrappedStyledSearchField = function (props) { return React.createElemen
 
 
 
-var index$b = /*#__PURE__*/Object.freeze({
+var index$c = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchField,
     SearchField: PropsWrappedStyledSearchField
@@ -2091,7 +2095,7 @@ var PropsWrappedStyledMultiSelectField = React.forwardRef(function (props, ref) 
 
 
 
-var index$c = /*#__PURE__*/Object.freeze({
+var index$d = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledMultiSelectField,
     MultiSelectField: PropsWrappedStyledMultiSelectField
@@ -2342,7 +2346,7 @@ var PropsWrappedStyledStyledFileField = function (props) { return React.createEl
 
 
 
-var index$d = /*#__PURE__*/Object.freeze({
+var index$e = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledStyledFileField,
     FileField: PropsWrappedStyledStyledFileField
@@ -2527,7 +2531,7 @@ var PropsWrappedStyledSearchBox = function (props) { return React.createElement(
 
 
 
-var index$e = /*#__PURE__*/Object.freeze({
+var index$f = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchBox,
     SearchBox: PropsWrappedStyledSearchBox
@@ -2600,7 +2604,7 @@ var PropsWrappedStyledBadge = function (props) { return (React.createElement(Sty
 
 
 
-var index$f = /*#__PURE__*/Object.freeze({
+var index$g = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     ButtonsSet: PropsWrappedStyledBadge
@@ -2718,7 +2722,7 @@ var PropsWrappedStyledPagination = function (props) { return React.createElement
 
 
 
-var index$g = /*#__PURE__*/Object.freeze({
+var index$h = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledPagination,
     Pagination: PropsWrappedStyledPagination
@@ -2784,7 +2788,7 @@ var PropsWrappedStyledCol = function (props) { return React.createElement(Styled
 
 
 
-var index$h = /*#__PURE__*/Object.freeze({
+var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Row,
     Row: PropsWrappedStyledRow,
@@ -2830,7 +2834,7 @@ var PropsWrappedStyledContainer = function (props) { return React.createElement(
 
 
 
-var index$i = /*#__PURE__*/Object.freeze({
+var index$j = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledContainer,
     Container: PropsWrappedStyledContainer
@@ -2891,7 +2895,7 @@ var PropsWrappedStyledBody = function (props) { return React.createElement(Style
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledCard,
     Wrapper: PropsWrappedStyledCard,
@@ -2953,7 +2957,7 @@ var PropsWrappedStyledTable = function (props) { return React.createElement(Styl
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$l = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTable,
     Table: PropsWrappedStyledTable
@@ -2973,7 +2977,7 @@ var TableBody = function (_a) {
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableBody,
     TableBody: TableBody
@@ -3013,7 +3017,7 @@ var PropsWrappedStyledTableCell = function (props) { return React.createElement(
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$n = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTableCell,
     TableCell: PropsWrappedStyledTableCell
@@ -3027,7 +3031,7 @@ var TableHead = function (_a) {
 
 
 
-var index$n = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableHead,
     TableHead: TableHead
@@ -3051,7 +3055,7 @@ var PropsWrappedStyledTableRow = function (props) { return React.createElement(S
 
 
 
-var index$o = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTableRow,
     TableRow: PropsWrappedStyledTableRow
@@ -3075,7 +3079,7 @@ var TableData = function (props) {
 
 
 
-var index$p = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableData,
     TableData: TableData
@@ -3151,7 +3155,7 @@ var PropsWrappedStyledNavbarSection = function (props) { return React.createElem
 
 
 
-var index$q = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
@@ -3257,7 +3261,7 @@ var PropsWrappedStyledNavigationRoute = function (props) { return React.createEl
 
 
 
-var index$r = /*#__PURE__*/Object.freeze({
+var index$s = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -3451,7 +3455,7 @@ var PropsWrappedStyledSidebarNavigationRoute = function (props) { return React.c
 
 
 
-var index$s = /*#__PURE__*/Object.freeze({
+var index$t = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3507,7 +3511,7 @@ var PropsWrappedStyledBadge$1 = function (props) { return React.createElement(St
 
 
 
-var index$t = /*#__PURE__*/Object.freeze({
+var index$u = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge$1,
     Badge: PropsWrappedStyledBadge$1
@@ -3598,69 +3602,69 @@ var Default = withStyles__default(styles$r)(DropDownField);
 
 
 
-var index$u = /*#__PURE__*/Object.freeze({
+var index$v = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Default
 });
 
 exports.Badge = PropsWrappedStyledBadge$1;
-exports.BadgeElements = index$t;
+exports.BadgeElements = index$u;
 exports.Button = PropsWrappedStyledButton;
-exports.ButtonElements = index$5;
+exports.ButtonElements = index$6;
 exports.ButtonsSet = PropsWrappedStyledBadge;
-exports.ButtonsSetElements = index$f;
-exports.Card = PropsWrappedStyledCard;
-exports.CardElements = index$j;
+exports.ButtonsSetElements = index$g;
+exports.Card = StyledCard;
+exports.CardElements = index$k;
 exports.CheckboxField = PropsWrappedStyledCheckboxField;
-exports.CheckboxFieldElements = index$8;
+exports.CheckboxFieldElements = index$9;
 exports.Container = PropsWrappedStyledContainer;
-exports.ContainerElements = index$i;
+exports.ContainerElements = index$j;
 exports.DropDownField = Default;
-exports.DropDownFieldElements = index$u;
+exports.DropDownFieldElements = index$v;
 exports.FileField = PropsWrappedStyledStyledFileField;
-exports.FileFieldElements = index$d;
+exports.FileFieldElements = index$e;
 exports.Form = Form;
 exports.FormElements = index;
 exports.Grid = Row;
-exports.GridElements = index$h;
-exports.Icons = index$4;
+exports.GridElements = index$i;
+exports.Icons = index$5;
 exports.InputField = InputField;
-exports.InputFieldElements = index$6;
+exports.InputFieldElements = index$7;
 exports.MultiSelectField = PropsWrappedStyledMultiSelectField;
-exports.MultiSelectFieldElements = index$c;
+exports.MultiSelectFieldElements = index$d;
 exports.Navbar = PropsWrappedStyledNavbar;
-exports.NavbarElements = index$q;
+exports.NavbarElements = index$r;
 exports.NavbarNavigation = PropsWrappedStyledNavigationContainer;
-exports.NavbarNavigationElements = index$r;
+exports.NavbarNavigationElements = index$s;
 exports.Pagination = PropsWrappedStyledPagination;
-exports.PaginationElements = index$g;
+exports.PaginationElements = index$h;
 exports.PasswordField = PropsWrappedStyledPasswordField;
-exports.PasswordFieldElements = index$7;
+exports.PasswordFieldElements = index$8;
 exports.RadioField = PropsWrappedStyledRadioField;
 exports.RadioFieldElements = index$1;
 exports.SearchBox = PropsWrappedStyledSearchBox;
-exports.SearchBoxElements = index$e;
+exports.SearchBoxElements = index$f;
 exports.SearchField = PropsWrappedStyledSearchField;
-exports.SearchFieldElements = index$b;
+exports.SearchFieldElements = index$c;
 exports.SelectField = PropsWrappedStyledSelectField;
-exports.SelectFieldElements = index$9;
+exports.SelectFieldElements = index$a;
 exports.SidebarNavigation = PropsWrappedStyledSidebarNavigationContainer;
-exports.SidebarNavigationElements = index$s;
+exports.SidebarNavigationElements = index$t;
 exports.Table = PropsWrappedStyledTable;
 exports.TableBody = TableBody;
-exports.TableBodyElements = index$l;
+exports.TableBodyElements = index$m;
 exports.TableCell = PropsWrappedStyledTableCell;
-exports.TableCellElements = index$m;
+exports.TableCellElements = index$n;
 exports.TableData = TableData;
-exports.TableDataElements = index$p;
-exports.TableElements = index$k;
+exports.TableDataElements = index$q;
+exports.TableElements = index$l;
 exports.TableHead = TableHead;
-exports.TableHeadElements = index$n;
+exports.TableHeadElements = index$o;
 exports.TableRow = PropsWrappedStyledTableRow;
-exports.TableRowElements = index$o;
+exports.TableRowElements = index$p;
 exports.ThemeProvider = ThemeProvider;
 exports.ValueBadge = StyledValueBadge;
-exports.ValueBadgeElements = index$a;
+exports.ValueBadgeElements = index$b;
 exports.colors = colors;
 exports.theme = defaultTheme;
 //# sourceMappingURL=index.js.map
