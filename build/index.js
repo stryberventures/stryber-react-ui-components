@@ -2888,15 +2888,19 @@ var Body = function (props) {
 var StyledCard = withStyles__default(styles$j)(Card);
 var StyledTitle = withStyles__default(styles$j)(Title);
 var StyledBody = withStyles__default(styles$j)(Body);
+/** Wrappings */
+var PropsWrappedStyledCard = function (props) { return React.createElement(StyledCard, __assign({}, props)); };
+var PropsWrappedStyledTitle = function (props) { return React.createElement(StyledTitle, __assign({}, props)); };
+var PropsWrappedStyledBody = function (props) { return React.createElement(StyledBody, __assign({}, props)); };
 
 
 
 var index$k = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': StyledCard,
-    Wrapper: StyledCard,
-    Title: StyledTitle,
-    Body: StyledBody
+    'default': PropsWrappedStyledCard,
+    Wrapper: PropsWrappedStyledCard,
+    Title: PropsWrappedStyledTitle,
+    Body: PropsWrappedStyledBody
 });
 
 var styles$k = (function (theme) { return ({
