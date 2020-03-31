@@ -86,9 +86,15 @@ const StyledCard = withStyles(styles)(Card);
 const StyledTitle = withStyles(styles)(Title);
 const StyledBody = withStyles(styles)(Body);
 
-export default StyledCard;
+/** Wrappings */
+const PropsWrappedStyledCard = (props: CardProps & React.HTMLProps<HTMLDivElement>) => <StyledCard{...props} />;
+const PropsWrappedStyledTitle = (props:  TitleProps & React.HTMLProps<HTMLDivElement>) => <StyledTitle{...props} />;
+const PropsWrappedStyledBody = (props: BodyProps & React.HTMLProps<HTMLDivElement>) => <StyledBody{...props} />;
+
+/** Exports */
+export default PropsWrappedStyledCard;
 export {
-  StyledCard as Wrapper,
-  StyledTitle as Title,
-  StyledBody as Body,
+  PropsWrappedStyledCard as Wrapper,
+  PropsWrappedStyledTitle as Title,
+  PropsWrappedStyledBody as Body,
 };
