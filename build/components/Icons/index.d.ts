@@ -9,4 +9,5 @@ import CloseOutline from './CloseOutline';
 import DownArrow from './DownArrow';
 import Download from './Download';
 import File from './File';
-export { DownArrow, Download, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, };
+import Delete from './Delete';
+export { DownArrow, Download, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, Delete, };

@@ -1,5 +1,6 @@
 /// <reference types="react" />
 interface ITableRowProps {
+    [key: string]: any;
     children?: any;
     className?: any;
 }

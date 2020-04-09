@@ -63,7 +63,7 @@ export default (theme: any) => ({
   },
   selectLabelWithPlaceholder: {
     paddingBottom: 5,
-    paddingTop: 23,
+    paddingTop: 18,
   },
   selectLabelInvalid: {
     '&:focus': {
