@@ -2,6 +2,7 @@ declare const _default: (theme: any) => {
     root: {
         borderRadius: number;
         padding: number;
+        maxHeight: number;
         border: string;
         width: string;
         fontSize: number;
@@ -84,10 +85,11 @@ declare const _default: (theme: any) => {
     /** Sizes */
     normal: {};
     mini: {
-        padding: number;
+        padding: string;
         fontSize: number;
         fontWeight: any;
         borderRadius: number;
+        maxHeight: number;
     };
 };
 export default _default;

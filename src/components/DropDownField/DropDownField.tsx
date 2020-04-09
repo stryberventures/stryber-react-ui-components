@@ -97,4 +97,12 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
   );
 };
 
-export default withStyles(styles)(DropDownField)
+/** Wrappings */
+const StyledDropDownField = withStyles(styles)(DropDownField);
+const PropsWrappedStyledDropDownField = (props: IDropDownFieldProps) => <StyledDropDownField {...props} />;
+
+/** Exports */
+export default PropsWrappedStyledDropDownField;
+export {
+  PropsWrappedStyledDropDownField as DropDownField,
+};
