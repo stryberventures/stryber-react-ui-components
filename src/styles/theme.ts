@@ -25,6 +25,26 @@ export default {
   fontWeightSemiBold: 700,
   fontWeightBold: 800,
 
+  /** Fonts sizes */
+  bodyLargeFontSize: 16,
+  bodyLargeLetterSpacing: 0.15,
+  buttonsFontSize: 16,
+  buttonsLetterSpacing: 0.15,
+  subtitleFontSize: 14,
+  subtitleLetterSpacing: 0.10,
+  capsFontSize: 14,
+  capsLetterSpacing: 1.1,
+  smallLinkFontSize: 12,
+  smallLinkLetterSpacing: 0.4,
+  bodySmallFontSize: 12,
+  bodySmallLetterSpacing: 0.4,
+  capsSmallFontSize: 10,
+  capsSmallLetterSpacing: 1.5,
+  messageFontSize: 10,
+  messageLetterSpacing: 1.5,
+  finePrintFontSize: 8,
+  finePrintLetterSpacing: 1.5,
+
   /** Button colors */
   buttonColorPrimary: '#fff',
   buttonColorSecondary: colors.normal,
