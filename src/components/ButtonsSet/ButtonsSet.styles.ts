@@ -16,7 +16,10 @@ export default (theme: any) => ({
     whiteSpace: "nowrap",
     backgroundColor: 'transparent',
     position: 'relative',
-    zIndex: 1
+    zIndex: 1,
+    '&:hover': {
+      backgroundColor: '#bdc9cf'
+    }
   },
   active: {
     color: '#fff',

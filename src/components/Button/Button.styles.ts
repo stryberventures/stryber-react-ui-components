@@ -1,13 +1,11 @@
 export default (theme: any) => ({
   root: {
-    borderRadius: 8,
-    padding: 10,
-    maxHeight: 44,
     border: `solid 1px`,
     width: '100%',
-    fontSize: 16,
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
+    fontWeight: theme.fontWeightSemiBold,
+    fontSize: theme.buttonsFontSize,
+    letterSpacing: theme.buttonsLetterSpacing,
     userSelect: 'none',
     cursor: 'pointer',
   },
@@ -19,17 +17,18 @@ export default (theme: any) => ({
     color: theme.buttonBackgroundColorSecondary,
     backgroundColor: theme.buttonBackgroundColorPrimary,
     '&:hover': {
-      backgroundColor: theme.buttonBackgroundColorPrimaryHover,
+      filter: theme.buttonBackgroundColorPrimaryHover,
     },
     '&:active': {
       backgroundColor: theme.buttonBackgroundColorPrimaryActive,
     },
     '&.disabled': {
-      backgroundColor: theme.buttonBackgroundColorSecondary,
-      color: theme.buttonColorDisabled,
-      borderColor: theme.buttonColorDisabled,
+      backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
+      color: 'rgba(255, 255, 255, 0.5)',
+      borderColor: theme.buttonBackgroundColorPrimaryDisabled,
       '&:hover': {
-        backgroundColor: theme.buttonBackgroundColorSecondary,
+        backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
+        filter: 'brightness(100%)',
       },
       '&:active': {
         backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -41,17 +40,18 @@ export default (theme: any) => ({
     border: `solid 1px ${theme.buttonBackgroundColorPrimary}`,
     backgroundColor: theme.buttonBackgroundColorSecondary,
     '&:hover': {
-      backgroundColor: theme.buttonBackgroundColorSecondaryHover,
+      backgroundColor: theme.buttonBackgroundColorPrimary,
+      color: theme.buttonBackgroundColorSecondary
     },
     '&:active': {
       backgroundColor: theme.buttonBackgroundColorSecondaryActive,
     },
     '&.disabled': {
-      backgroundColor: theme.buttonBackgroundColorSecondary,
-      color: theme.buttonColorDisabled,
-      borderColor: theme.buttonColorDisabled,
+      backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,
+      color: 'rgba(204, 204, 204, 0.5)',
+      borderColor: theme.buttonBackgroundColorPrimaryDisabled,
       '&:hover': {
-        backgroundColor: theme.buttonBackgroundColorSecondary,
+        backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,
       },
       '&:active': {
         backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -65,7 +65,7 @@ export default (theme: any) => ({
     fontSize: 14,
     border: `0px !important`,
     color: theme.buttonBackgroundColorPrimary,
-    padding: 11,
+    padding: '20px 32px',
     '&:hover': {
       color: theme.buttonBackgroundColorPrimaryHover,
     },
@@ -78,18 +78,34 @@ export default (theme: any) => ({
         textDecoration: 'none',
       },
     },
-    '&::after': {
-      content: '" »"',
-    }
   },
   /** Sizes */
+  large: {
+    padding: '27px 44px',
+  },
   normal: {
+    padding: '20px 32px',
+  },
+  small: {
+    padding: '15px 24px',
+    fontWeight: theme.fontWeightRegular,
+    fontSize: theme.subtitleFontSize,
+    letterSpacing: theme.subtitleLetterSpacing,
   },
   mini: {
-    padding: '4px 7px',
+    padding: '4px 12px',
     fontSize: 10,
     fontWeight: theme.fontWeightRegular,
     borderRadius: 4,
     maxHeight: 24
   },
+  round: {
+    borderRadius: 4,
+  },
+  flat: {
+    borderRadius: 0,
+  },
+  circle: {
+    borderRadius: 50,
+  }
 });
