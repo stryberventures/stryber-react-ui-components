@@ -2,6 +2,7 @@ export default {
   /** Primary */
   normal: '#007aff',
   normalHover: '#278eff',
+  darkHover: 'brightness(85%)',
   normalActive: '#4ea3ff',
   /** Warning */
   warning: '#ff8c00',
@@ -23,6 +24,8 @@ export default {
   grayHover: '#a7b7bf',
   grayActive: '#bdc9cf',
   lightGray: '#eceff1',
+  lightGray2: '#cccccc',
+  lightGray3: '#f9f9f9',
   white: '#fff',
   whiteHover: '#f5f5f5',
   whiteActive: '#ebebeb',

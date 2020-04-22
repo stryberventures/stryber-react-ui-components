@@ -10,7 +10,8 @@ export interface IButtonProps {
   disabled?: boolean;
   children: any;
   variant?: 'primary' | 'secondary' | 'tertiary';
-  sizeVariant?: 'normal' | 'mini';
+  sizeVariant?: 'normal' | 'mini' | 'small' | 'large';
+  shape?: 'flat' | 'round' | 'circle';
   className?: any;
 }
 
@@ -23,6 +24,7 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
     disabled = false,
     sizeVariant = 'normal',
     variant = 'primary',
+    shape = 'round',
     className,
     ...rest
   } = props;
@@ -39,6 +41,7 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
         classes.root,
         classes[variant],
         classes[sizeVariant],
+        classes[shape],
         disabled && classes.disabled,
         disabled && 'disabled',
         className,

@@ -31,7 +31,7 @@ export default {
   buttonsFontSize: 16,
   buttonsLetterSpacing: 0.15,
   subtitleFontSize: 14,
-  subtitleLetterSpacing: 0.10,
+  subtitleLetterSpacing: 0.1,
   capsFontSize: 14,
   capsLetterSpacing: 1.1,
   smallLinkFontSize: 12,
@@ -50,11 +50,13 @@ export default {
   buttonColorSecondary: colors.normal,
 
   buttonBackgroundColorPrimary: colors.normal,
-  buttonBackgroundColorPrimaryHover: colors.normalHover,
+  buttonBackgroundColorPrimaryHover: colors.darkHover,
   buttonBackgroundColorPrimaryActive: colors.normalActive,
+  buttonBackgroundColorPrimaryDisabled: colors.lightGray2,
   buttonBackgroundColorSecondary: colors.white,
   buttonBackgroundColorSecondaryHover: colors.whiteHover,
   buttonBackgroundColorSecondaryActive: colors.whiteActive,
+  buttonBackgroundColorSecondaryDisabled: colors.lightGray3,
   buttonBackgroundColorDisabled: colors.lightGray,
   buttonColorDisabled: colors.gray,
 
