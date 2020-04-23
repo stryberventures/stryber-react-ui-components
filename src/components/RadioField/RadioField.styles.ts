@@ -7,10 +7,9 @@ export default (theme: any) => ({
     cursor: 'pointer',
     userSelect: 'none',
 
-    color: theme.textColorSecondary,
+    color: theme.textColorPrimary,
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
-    fontSize: 14,
+    fontWeight: theme.fontWeightRegular,
 
     display: 'flex',
     alignItems: 'center',
@@ -73,11 +72,37 @@ export default (theme: any) => ({
       backgroundColor: 'white',
     },
   },
-  placeholderNormal: {
-    padding: 10,
+  placeholder: {
+    padding: '8px 4px',
   },
-  placeholderMini: {
-    padding: 4,
-    fontWeight: 'normal',
+  /* Handle sizes */
+  small: {
+    fontSize: 14,
+    '& $checkmark': {
+      height: 16,
+      width: 16,
+      '&:after': {
+        top: 4,
+        left: 4,
+        width: 6,
+        height: 6,
+      },
+    },
   },
+  normal: {
+    fontSize: 14,
+  },
+  large: {
+    fontSize: 16,
+    '& $checkmark': {
+      height: 28,
+      width: 28,
+      '&:after': {
+        top: 8,
+        left: 8,
+        width: 10,
+        height: 10,
+      },
+    },
+  }
 });

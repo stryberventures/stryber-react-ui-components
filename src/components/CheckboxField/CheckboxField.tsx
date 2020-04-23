@@ -15,6 +15,7 @@ export interface ICheckboxFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   variant?: 'checkmark' | 'switch';
   errorMessage?: string;
+  sizeVariant?: 'small' | 'normal' | 'large'
 }
 
 const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
@@ -31,6 +32,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     onChange,
     onFocus,
     variant,
+    sizeVariant = 'normal',
     ...rest
   } = props;
 
@@ -87,7 +89,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   }, []);
 
   return (
-    <div className={classNames([classes.wrapper, className])}>
+    <div className={classNames([classes.wrapper, classes[sizeVariant], className])}>
       <label className={classes.root}>
         <input
           {...rest}

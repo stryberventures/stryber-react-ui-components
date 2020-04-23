@@ -81,16 +81,19 @@ export default (theme: any) => ({
   },
   /** Sizes */
   large: {
-    padding: '27px 44px',
+    padding: '23px 44px',
+    maxHeight: 70
   },
   normal: {
-    padding: '20px 32px',
+    padding: '16px 32px',
+    maxHeight: 56,
   },
   small: {
-    padding: '15px 24px',
+    padding: '12px 24px',
     fontWeight: theme.fontWeightRegular,
     fontSize: theme.subtitleFontSize,
     letterSpacing: theme.subtitleLetterSpacing,
+    maxHeight: 44,
   },
   mini: {
     padding: '4px 12px',

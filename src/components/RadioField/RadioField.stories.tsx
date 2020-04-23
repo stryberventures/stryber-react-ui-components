@@ -66,4 +66,30 @@ storiesOf('Radio field', module)
         />
       </Wrapper>
     );
+  })
+  .add('Radio sizes', () => {
+    return (
+      <Wrapper>
+        <RadioField
+          sizeVariant='small'
+          name="answer"
+          placeholder="Option A"
+          value="a"
+          onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+        />
+        <RadioField
+          name="answer"
+          placeholder="Option B"
+          value="b"
+          onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+        />
+        <RadioField
+          sizeVariant='large'
+          name="answer"
+          placeholder="Option A"
+          value="a"
+          onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+        />
+      </Wrapper>
+    );
   });
