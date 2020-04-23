@@ -71,7 +71,7 @@ storiesOf('DropDownField', module)
           <RadioField
             name="answer"
             placeholder="Option A"
-            sizeVariant={'mini'}
+            sizeVariant='small'
             checked
             value="a"
             onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
@@ -79,14 +79,14 @@ storiesOf('DropDownField', module)
           <RadioField
             name="answer"
             placeholder="Option B"
-            sizeVariant={'mini'}
+            sizeVariant={'small'}
             value="b"
             onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
           />
           <RadioField
             name="answer"
             placeholder="Option C"
-            sizeVariant={'mini'}
+            sizeVariant={'small'}
             checked
             value="c"
             onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
@@ -94,7 +94,7 @@ storiesOf('DropDownField', module)
           <RadioField
             name="answer"
             placeholder="Option D"
-            sizeVariant={'mini'}
+            sizeVariant={'small'}
             value="d"
             onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
           />

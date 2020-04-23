@@ -11,10 +11,9 @@ export default (theme: any) => ({
     cursor: 'pointer',
     userSelect: 'none',
 
-    color: theme.textColorSecondary,
+    color: theme.textColorPrimary,
     fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightMedium,
-    fontSize: 14,
+    fontWeight: theme.fontWeightRegular,
 
     display: 'flex',
     alignItems: 'center',
@@ -75,7 +74,7 @@ export default (theme: any) => ({
       backgroundColor: theme.inputColorHighlight,
     },
     '&:checked ~ $switch:after': {
-      left: 15,
+      left: 19,
     },
     '&:disabled ~ $switch': {
       backgroundColor: `${theme.inputColorBorderIdle} !important`,
@@ -86,9 +85,9 @@ export default (theme: any) => ({
     position: 'relative',
     top: 0,
     left: 0,
-    height: 19,
-    width: 19,
-    minWidth: 19,
+    height: 24,
+    width: 24,
+    minWidth: 16,
     backgroundColor: theme.inputBackgroundColor,
     borderRadius: 3,
     border: `1px solid ${theme.inputColorBorderIdle}`,
@@ -99,10 +98,10 @@ export default (theme: any) => ({
       position: 'absolute',
       display: 'none',
 
-      left: 5.5,
-      top: 1,
+      left: 7.5,
+      top: 2,
       width: 6,
-      height: 12,
+      height: 14,
       border: 'solid white',
       borderWidth: '0 2px 2px 0',
       transform: 'rotate(45deg)',
@@ -115,10 +114,10 @@ export default (theme: any) => ({
     position: 'relative',
     top: 0,
     left: 0,
-    height: 22,
-    width: 36,
+    height: 24,
+    width: 44,
     backgroundColor: theme.inputColorBorderIdle,
-    borderRadius: 11,
+    borderRadius: 12,
     border: `1px solid ${theme.inputColorBorderIdle}`,
 
     /** Switch */
@@ -129,10 +128,10 @@ export default (theme: any) => ({
       position: 'absolute',
       display: 'block',
 
-      top: 2,
+      top: 1,
       left: 2,
-      width: 16,
-      height: 16,
+      width: 20,
+      height: 20,
       borderRadius: '50%',
       backgroundColor: theme.inputBackgroundColor,
       boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)',
@@ -141,7 +140,7 @@ export default (theme: any) => ({
 
   /** Placeholder */
   placeholder: {
-    padding: 10,
+    padding: '8px 4px',
   },
   placeholderInvalid: {
     color: theme.inputColorError,
@@ -153,4 +152,66 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
+  /** Handle size */
+  small: {
+    fontSize: 14,
+    '& $checkmark': {
+      height: 16,
+      width: 16,
+      '&:after': {
+        left: 4.4,
+        top: 2,
+        width: 5,
+        height: 8,
+      },
+    },
+    '& $switch': {
+      height: 16,
+      width: 26,
+      borderRadius: 8,
+      '&:after': {
+        top: 1,
+        left: 2,
+        width: 12,
+        height: 12,
+      }
+    },
+    '& $input': {
+      '&:checked ~ $switch:after': {
+        left: 10,
+      }
+    }
+  },
+  normal: {
+    fontSize: 14,
+  },
+  large: {
+    fontSize: 16,
+    '& $checkmark': {
+      height: 30,
+      width: 30,
+      '&:after': {
+        left: 9,
+        top: 4,
+        width: 8,
+        height: 16,
+      },
+    },
+    '& $switch': {
+      height: 32,
+      width: 60,
+      borderRadius: 16,
+      '&:after': {
+        top: 2,
+        left: 2,
+        width: 26,
+        height: 26,
+      }
+    },
+    '& $input': {
+      '&:checked ~ $switch:after': {
+        left: 29,
+      }
+    }
+  }
 });

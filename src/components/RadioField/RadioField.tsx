@@ -12,7 +12,7 @@ export interface IRadioFieldProps {
   checked?: boolean;
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
-  sizeVariant?: 'normal' | 'mini';
+  sizeVariant?: 'small' | 'normal' | 'large';
 }
 
 /** Main component */
@@ -68,7 +68,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   }, []);
 
   return (
-    <label className={classes.root}>
+    <label className={classNames(classes.root, classes[sizeVariant])}>
       <input
         {...rest}
         ref={inputRef}
@@ -81,9 +81,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
       />
       <span className={classes.checkmark}>
       </span>
-      <div className={classNames(
-        sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal
-      )}>
+      <div className={classes.placeholder}>
         { placeholder }
       </div>
     </label>
