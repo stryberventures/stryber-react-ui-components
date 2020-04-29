@@ -15,7 +15,7 @@ export interface ISearchFieldProps {
   onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
-  sizeVariant?: 'normal' | 'mini';
+  sizeVariant?: 'normal' | 'mini' | 'micro';
 }
 
 /** Main component */
@@ -69,7 +69,11 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
 
   /** Prepend magnifying lens */
   const prependContent = (
-    <Search className={classes.searchIcon} />
+    <Search className={classNames(
+      classes.searchIcon, 
+      {[classes.searchIconMicro]: sizeVariant === 'micro'}
+    )}
+    />
   );
 
   /** Append content arrow */
@@ -103,7 +107,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         // onKeyDown={onKeyDownWrapper}
         className={classNames([
           classes.inputField,
-          sizeVariant === 'mini' ? classes.inputFieldMini : classes.inputFieldNormal,
+          ['mini', 'micro'].includes(sizeVariant) ? classes.inputFieldMini : classes.inputFieldNormal,
           (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
         ])}
       />
