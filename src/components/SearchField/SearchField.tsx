@@ -33,9 +33,6 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     sizeVariant = 'normal',
   } = props;
 
-  const small = sizeVariant === 'small';
-  const mini = sizeVariant === 'mini';
-
   /** Focus status (needed for styles) */
   const [isFocused, setFocused] = React.useState(false);
   /** Setting the internal value of the field from form initial values or from value provided to the field */
@@ -74,7 +71,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
   const prependContent = (
     <Search className={classNames(
       classes.searchIcon,
-      {[classes.searchIconSmall]: small}
+      {[classes.searchIconSmall]: sizeVariant === 'small'}
     )} />
   );
 
@@ -109,7 +106,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         placeholder={collapsiblePlaceholder ? undefined : placeholder}
         className={classNames([
           classes.inputField,
-          (small || mini) ? classes.inputFieldMini : classes.inputFieldNormal,
+          sizeVariant === 'normal' ? classes.inputFieldNormal : classes.inputFieldMini,
           (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
         ])}
       />
