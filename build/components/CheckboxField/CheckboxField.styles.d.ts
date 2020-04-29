@@ -12,7 +12,6 @@ declare const _default: (theme: any) => {
         color: any;
         fontFamily: any;
         fontWeight: any;
-        fontSize: number;
         display: string;
         alignItems: string;
         /** Checkmark */
@@ -129,7 +128,7 @@ declare const _default: (theme: any) => {
     };
     /** Placeholder */
     placeholder: {
-        padding: number;
+        padding: string;
     };
     placeholderInvalid: {
         color: any;
@@ -140,6 +139,68 @@ declare const _default: (theme: any) => {
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
+    };
+    /** Handle size */
+    small: {
+        fontSize: number;
+        '& $checkmark': {
+            height: number;
+            width: number;
+            '&:after': {
+                left: number;
+                top: number;
+                width: number;
+                height: number;
+            };
+        };
+        '& $switch': {
+            height: number;
+            width: number;
+            borderRadius: number;
+            '&:after': {
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            };
+        };
+        '& $input': {
+            '&:checked ~ $switch:after': {
+                left: number;
+            };
+        };
+    };
+    normal: {
+        fontSize: number;
+    };
+    large: {
+        fontSize: number;
+        '& $checkmark': {
+            height: number;
+            width: number;
+            '&:after': {
+                left: number;
+                top: number;
+                width: number;
+                height: number;
+            };
+        };
+        '& $switch': {
+            height: number;
+            width: number;
+            borderRadius: number;
+            '&:after': {
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            };
+        };
+        '& $input': {
+            '&:checked ~ $switch:after': {
+                left: number;
+            };
+        };
     };
 };
 export default _default;

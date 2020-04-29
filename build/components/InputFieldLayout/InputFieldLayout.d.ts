@@ -10,7 +10,7 @@ export interface IInputFieldLayoutProps {
     appendContent?: any;
     showPrependBackground?: boolean;
     children?: any;
-    sizeVariant?: 'normal' | 'mini';
+    sizeVariant?: 'normal' | 'mini' | 'micro';
     customPlaceholderFont?: boolean;
 }
 declare const PropsWrappedStyledInputFieldLayout: (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement>) => JSX.Element;

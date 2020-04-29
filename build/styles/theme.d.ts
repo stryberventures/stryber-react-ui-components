@@ -16,15 +16,36 @@ declare const _default: {
     fontWeightMedium: number;
     fontWeightSemiBold: number;
     fontWeightBold: number;
+    /** Fonts sizes */
+    bodyLargeFontSize: number;
+    bodyLargeLetterSpacing: number;
+    buttonsFontSize: number;
+    buttonsLetterSpacing: number;
+    subtitleFontSize: number;
+    subtitleLetterSpacing: number;
+    capsFontSize: number;
+    capsLetterSpacing: number;
+    smallLinkFontSize: number;
+    smallLinkLetterSpacing: number;
+    bodySmallFontSize: number;
+    bodySmallLetterSpacing: number;
+    capsSmallFontSize: number;
+    capsSmallLetterSpacing: number;
+    messageFontSize: number;
+    messageLetterSpacing: number;
+    finePrintFontSize: number;
+    finePrintLetterSpacing: number;
     /** Button colors */
     buttonColorPrimary: string;
     buttonColorSecondary: string;
     buttonBackgroundColorPrimary: string;
     buttonBackgroundColorPrimaryHover: string;
     buttonBackgroundColorPrimaryActive: string;
+    buttonBackgroundColorPrimaryDisabled: string;
     buttonBackgroundColorSecondary: string;
     buttonBackgroundColorSecondaryHover: string;
     buttonBackgroundColorSecondaryActive: string;
+    buttonBackgroundColorSecondaryDisabled: string;
     buttonBackgroundColorDisabled: string;
     buttonColorDisabled: string;
     /** Input fields */

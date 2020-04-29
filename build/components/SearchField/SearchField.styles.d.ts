@@ -9,6 +9,9 @@ declare const _default: (theme: any) => {
     searchIcon: {
         fill: any;
     };
+    searchIconMicro: {
+        width: number;
+    };
     /** Clear icon */
     clearIcon: {
         marginRight: number;

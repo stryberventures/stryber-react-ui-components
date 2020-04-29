@@ -93,6 +93,14 @@ declare const _default: (theme: any) => {
         paddingLeft: number;
         height: string;
     };
+    prependContentMicro: {
+        display: string;
+        alignItems: string;
+        justifyContent: string;
+        height: string;
+        padding: number;
+        color: any;
+    };
     prependBackgroundColor: {
         backgroundColor: any;
         fill: any;
