@@ -100,6 +100,14 @@ export default (theme: any) => ({
     paddingLeft: 17,
     height: '100%',
   },
+  prependContentMicro: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    padding: 5,
+    color: theme.inputBackgroundColor || '#fff',
+  },
   prependBackgroundColor: {
     backgroundColor: theme.inputColorHighlight || '#007aff',
     fill: theme.inputColorHighlight || '#007aff',

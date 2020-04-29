@@ -11,8 +11,6 @@ export default (theme: any) => ({
   },
   searchIconMicro: {
     width: 15,
-    marginLeft: -11,
-    marginRight: -3
   },
   /** Clear icon */
   clearIcon: {

@@ -15,7 +15,7 @@ export interface IInputFieldLayoutProps {
   appendContent?: any;
   showPrependBackground?: boolean;
   children?: any;
-  sizeVariant?: 'normal' | 'mini';
+  sizeVariant?: 'normal' | 'mini' | 'micro';
   customPlaceholderFont?: boolean;
 }
 
@@ -57,7 +57,15 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
             errorMsg ? classes.prependInvalid : null,
           ])}
         >
-          { prependContent ? <div className={classes.prependContent}>{prependContent}</div> : null}
+          { prependContent 
+            ? <div className={classNames({
+                [classes.prependContent]: ['mini', 'normal'].includes(sizeVariant),
+                [classes.prependContentMicro]: sizeVariant === 'micro'
+              })              
+              }>
+                {prependContent}
+              </div>
+            : null}
           { (prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon}/> : null}
         </div>
         <div className={classes.fieldWrapper}>

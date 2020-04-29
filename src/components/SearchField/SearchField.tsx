@@ -33,6 +33,9 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     sizeVariant = 'normal',
   } = props;
 
+  const micro = sizeVariant === 'micro';
+  const mini = sizeVariant === 'mini';
+
   /** Focus status (needed for styles) */
   const [isFocused, setFocused] = React.useState(false);
   /** Setting the internal value of the field from form initial values or from value provided to the field */
@@ -70,10 +73,9 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
   /** Prepend magnifying lens */
   const prependContent = (
     <Search className={classNames(
-      classes.searchIcon, 
-      {[classes.searchIconMicro]: sizeVariant === 'micro'}
-    )}
-    />
+      classes.searchIcon,
+      {[classes.searchIconMicro]: micro}
+    )} />
   );
 
   /** Append content arrow */
@@ -95,6 +97,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
       prependContent={prependContent}
       appendContent={appendContent}
       showPrependBackground={false}
+      sizeVariant={sizeVariant}
     >
       {/** Input field layout content */}
       <input
@@ -104,10 +107,9 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         onFocus={onFocusWrapper}
         value={inputValue}
         placeholder={collapsiblePlaceholder ? undefined : placeholder}
-        // onKeyDown={onKeyDownWrapper}
         className={classNames([
           classes.inputField,
-          ['mini', 'micro'].includes(sizeVariant) ? classes.inputFieldMini : classes.inputFieldNormal,
+          (micro || mini) ? classes.inputFieldMini : classes.inputFieldNormal,
           (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
         ])}
       />
