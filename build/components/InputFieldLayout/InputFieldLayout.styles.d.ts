@@ -93,7 +93,7 @@ declare const _default: (theme: any) => {
         paddingLeft: number;
         height: string;
     };
-    prependContentMicro: {
+    prependContentSmall: {
         display: string;
         alignItems: string;
         justifyContent: string;

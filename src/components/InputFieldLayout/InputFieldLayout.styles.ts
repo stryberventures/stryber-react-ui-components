@@ -100,7 +100,7 @@ export default (theme: any) => ({
     paddingLeft: 17,
     height: '100%',
   },
-  prependContentMicro: {
+  prependContentSmall: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

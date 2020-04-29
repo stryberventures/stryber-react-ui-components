@@ -15,7 +15,7 @@ export interface IInputFieldLayoutProps {
   appendContent?: any;
   showPrependBackground?: boolean;
   children?: any;
-  sizeVariant?: 'normal' | 'mini' | 'micro';
+  sizeVariant?: 'normal' | 'mini' | 'small';
   customPlaceholderFont?: boolean;
 }
 
@@ -60,7 +60,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
           { prependContent 
             ? <div className={classNames({
                 [classes.prependContent]: ['mini', 'normal'].includes(sizeVariant),
-                [classes.prependContentMicro]: sizeVariant === 'micro'
+                [classes.prependContentSmall]: sizeVariant === 'small'
               })              
               }>
                 {prependContent}

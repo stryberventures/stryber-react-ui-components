@@ -22,10 +22,10 @@ storiesOf('Search Field', module)
           onChange={ (d: any) => console.log('SearchBox value:', d) }
         />
         <SearchField
-          sizeVariant='micro'
-          placeholder='Search micro'
+          sizeVariant='small'
+          placeholder='Search small'
           collapsiblePlaceholder={false}
-          onChange={ (d: any) => console.log('SearchBox micro value:', d) }
+          onChange={ (d: any) => console.log('SearchBox small value:', d) }
         />
       </Wrapper>
     );
