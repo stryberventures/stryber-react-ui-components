@@ -878,7 +878,7 @@ var styles$3 = (function (theme) { return ({
         paddingLeft: 17,
         height: '100%',
     },
-    prependContentMicro: {
+    prependContentSmall: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -932,7 +932,7 @@ var InputFieldLayout = function (props) {
                 prependContent
                     ? createElement("div", { className: classnames((_a = {},
                             _a[classes.prependContent] = ['mini', 'normal'].includes(sizeVariant),
-                            _a[classes.prependContentMicro] = sizeVariant === 'micro',
+                            _a[classes.prependContentSmall] = sizeVariant === 'small',
                             _a)) }, prependContent)
                     : null,
                 (prependContent && showPrependBackground) ? createElement(PrependBackground, { className: classes.prependBackgroundIcon }) : null),
@@ -1942,7 +1942,7 @@ var styles$a = (function (theme) { return ({
     searchIcon: {
         fill: theme.inputPlaceholderColorIdle || '#95acbf',
     },
-    searchIconMicro: {
+    searchIconSmall: {
         width: 15,
     },
     /** Clear icon */
@@ -2053,7 +2053,7 @@ var styles$a = (function (theme) { return ({
 var SearchField = function (props) {
     var _a;
     var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _b = props.placeholder, placeholder = _b === void 0 ? 'Search' : _b, _c = props.collapsiblePlaceholder, collapsiblePlaceholder = _c === void 0 ? true : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d;
-    var micro = sizeVariant === 'micro';
+    var small = sizeVariant === 'small';
     var mini = sizeVariant === 'mini';
     /** Focus status (needed for styles) */
     var _e = __read(useState(false), 2), isFocused = _e[0], setFocused = _e[1];
@@ -2087,7 +2087,7 @@ var SearchField = function (props) {
         onChange && onChange('');
     };
     /** Prepend magnifying lens */
-    var prependContent = (createElement(Search, { className: classnames(classes.searchIcon, (_a = {}, _a[classes.searchIconMicro] = micro, _a)) }));
+    var prependContent = (createElement(Search, { className: classnames(classes.searchIcon, (_a = {}, _a[classes.searchIconSmall] = small, _a)) }));
     /** Append content arrow */
     var appendContent = inputValue !== '' ?
         (createElement(CloseOutline, { onClick: onClearClickWrapper, className: classnames([
@@ -2096,7 +2096,7 @@ var SearchField = function (props) {
     return (createElement(PropsWrappedStyledInputFieldLayout, { className: className, isPlaceholderCollapsed: isFocused || inputValue !== '', disabled: disabled, placeholder: collapsiblePlaceholder ? placeholder : undefined, prependContent: prependContent, appendContent: appendContent, showPrependBackground: false, sizeVariant: sizeVariant },
         createElement("input", { type: "text", onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper, value: inputValue, placeholder: collapsiblePlaceholder ? undefined : placeholder, className: classnames([
                 classes.inputField,
-                (micro || mini) ? classes.inputFieldMini : classes.inputFieldNormal,
+                (small || mini) ? classes.inputFieldMini : classes.inputFieldNormal,
                 (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
             ]) })));
 };
