@@ -9,6 +9,7 @@ export interface ISearchFieldProps {
     onChange?: (value: any) => void;
     onFocus?: (e: React.BaseSyntheticEvent) => void;
     onBlur?: (e: React.BaseSyntheticEvent) => void;
+    onEnter?: (value: string) => void;
     sizeVariant?: 'normal' | 'mini' | 'small';
 }
 declare const PropsWrappedStyledSearchField: (props: ISearchFieldProps) => JSX.Element;
