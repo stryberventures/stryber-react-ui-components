@@ -8,7 +8,6 @@ declare const _default: (theme: any) => {
         color: any;
         fontFamily: any;
         fontWeight: any;
-        fontSize: number;
         display: string;
         alignItems: string;
         '&:hover $input ~ $checkmark': {
@@ -66,12 +65,37 @@ declare const _default: (theme: any) => {
             backgroundColor: string;
         };
     };
-    placeholderNormal: {
-        padding: number;
+    placeholder: {
+        padding: string;
     };
-    placeholderMini: {
-        padding: number;
-        fontWeight: string;
+    small: {
+        fontSize: number;
+        '& $checkmark': {
+            height: number;
+            width: number;
+            '&:after': {
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            };
+        };
+    };
+    normal: {
+        fontSize: number;
+    };
+    large: {
+        fontSize: number;
+        '& $checkmark': {
+            height: number;
+            width: number;
+            '&:after': {
+                top: number;
+                left: number;
+                width: number;
+                height: number;
+            };
+        };
     };
 };
 export default _default;

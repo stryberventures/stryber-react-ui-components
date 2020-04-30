@@ -9,6 +9,9 @@ export default (theme: any) => ({
   searchIcon: {
     fill: theme.inputPlaceholderColorIdle || '#95acbf',
   },
+  searchIconSmall: {
+    width: 15,
+  },
   /** Clear icon */
   clearIcon: {
     marginRight: 10,

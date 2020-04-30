@@ -1,13 +1,11 @@
 declare const _default: (theme: any) => {
     root: {
-        borderRadius: number;
-        padding: number;
-        maxHeight: number;
         border: string;
         width: string;
-        fontSize: number;
         fontFamily: any;
         fontWeight: any;
+        fontSize: any;
+        letterSpacing: any;
         userSelect: string;
         cursor: string;
     };
@@ -19,17 +17,18 @@ declare const _default: (theme: any) => {
         color: any;
         backgroundColor: any;
         '&:hover': {
-            backgroundColor: any;
+            filter: any;
         };
         '&:active': {
             backgroundColor: any;
         };
         '&.disabled': {
             backgroundColor: any;
-            color: any;
+            color: string;
             borderColor: any;
             '&:hover': {
                 backgroundColor: any;
+                filter: string;
             };
             '&:active': {
                 backgroundColor: any;
@@ -42,13 +41,14 @@ declare const _default: (theme: any) => {
         backgroundColor: any;
         '&:hover': {
             backgroundColor: any;
+            color: any;
         };
         '&:active': {
             backgroundColor: any;
         };
         '&.disabled': {
             backgroundColor: any;
-            color: any;
+            color: string;
             borderColor: any;
             '&:hover': {
                 backgroundColor: any;
@@ -65,7 +65,7 @@ declare const _default: (theme: any) => {
         fontSize: number;
         border: string;
         color: any;
-        padding: number;
+        padding: string;
         '&:hover': {
             color: any;
         };
@@ -78,18 +78,38 @@ declare const _default: (theme: any) => {
                 textDecoration: string;
             };
         };
-        '&::after': {
-            content: string;
-        };
     };
     /** Sizes */
-    normal: {};
+    large: {
+        padding: string;
+        maxHeight: number;
+    };
+    normal: {
+        padding: string;
+        maxHeight: number;
+    };
+    small: {
+        padding: string;
+        fontWeight: any;
+        fontSize: any;
+        letterSpacing: any;
+        maxHeight: number;
+    };
     mini: {
         padding: string;
         fontSize: number;
         fontWeight: any;
         borderRadius: number;
         maxHeight: number;
+    };
+    round: {
+        borderRadius: number;
+    };
+    flat: {
+        borderRadius: number;
+    };
+    circle: {
+        borderRadius: number;
     };
 };
 export default _default;

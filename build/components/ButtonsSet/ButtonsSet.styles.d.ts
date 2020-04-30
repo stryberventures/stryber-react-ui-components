@@ -17,6 +17,9 @@ declare const _default: (theme: any) => {
         backgroundColor: string;
         position: string;
         zIndex: number;
+        '&:hover': {
+            backgroundColor: string;
+        };
     };
     active: {
         color: string;

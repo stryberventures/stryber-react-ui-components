@@ -2,6 +2,7 @@ declare const _default: {
     /** Primary */
     normal: string;
     normalHover: string;
+    darkHover: string;
     normalActive: string;
     /** Warning */
     warning: string;
@@ -23,6 +24,8 @@ declare const _default: {
     grayHover: string;
     grayActive: string;
     lightGray: string;
+    lightGray2: string;
+    lightGray3: string;
     white: string;
     whiteHover: string;
     whiteActive: string;

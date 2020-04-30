@@ -25,26 +25,43 @@ declare const WrappedGlobalStyles: React.ComponentType<Pick<IProps & WithStyles<
             fontSize: number;
             fontFamily: any;
             fontWeight: any;
+            letterSpacing: number;
         };
         h2: {
             fontSize: number;
             fontFamily: any;
             fontWeight: any;
+            letterSpacing: number;
         };
         h3: {
             fontSize: number;
             fontFamily: any;
             fontWeight: any;
+            letterSpacing: number;
         };
         h4: {
             fontSize: number;
             fontFamily: any;
             fontWeight: any;
+            letterSpacing: number;
+        };
+        h5: {
+            fontSize: number;
+            fontFamily: any;
+            fontWeight: any;
+            letterSpacing: number;
+        };
+        h6: {
+            fontSize: number;
+            fontFamily: any;
+            fontWeight: any;
+            letterSpacing: number;
         };
         p: {
             fontSize: number;
             fontFamily: any;
             fontWeight: any;
+            letterSpacing: number;
         };
         b: {
             fontFamily: any;

@@ -88,29 +88,46 @@ var styles = (function (theme) { return ({
             color: theme.textColorPrimary,
         },
         h1: {
-            fontSize: 42,
+            fontSize: 96,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightBold,
+            fontWeight: theme.fontWeightLight,
+            letterSpacing: -1.5,
         },
         h2: {
-            fontSize: 32,
+            fontSize: 60,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightBold,
+            fontWeight: theme.fontWeightLight,
+            letterSpacing: -0.5,
         },
         h3: {
-            fontSize: 28,
+            fontSize: 48,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightSemiBold,
+            fontWeight: theme.fontWeightRegular,
+            letterSpacing: 0,
         },
         h4: {
-            fontSize: 14,
+            fontSize: 34,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightBold,
+            fontWeight: theme.fontWeightRegular,
+            letterSpacing: 0.25,
+        },
+        h5: {
+            fontSize: 24,
+            fontFamily: theme.fontFamily,
+            fontWeight: theme.fontWeightRegular,
+            letterSpacing: 0,
+        },
+        h6: {
+            fontSize: 20,
+            fontFamily: theme.fontFamily,
+            fontWeight: theme.fontWeightSemiBold,
+            letterSpacing: 0.15,
         },
         p: {
-            fontSize: 12,
+            fontSize: 14,
             fontFamily: theme.fontFamily,
-            fontWeight: theme.fontWeightMedium,
+            fontWeight: theme.fontWeightRegular,
+            letterSpacing: 0.1,
         },
         b: {
             fontFamily: theme.fontFamily,
@@ -157,6 +174,7 @@ var colors = {
     /** Primary */
     normal: '#007aff',
     normalHover: '#278eff',
+    darkHover: 'brightness(85%)',
     normalActive: '#4ea3ff',
     /** Warning */
     warning: '#ff8c00',
@@ -178,6 +196,8 @@ var colors = {
     grayHover: '#a7b7bf',
     grayActive: '#bdc9cf',
     lightGray: '#eceff1',
+    lightGray2: '#cccccc',
+    lightGray3: '#f9f9f9',
     white: '#fff',
     whiteHover: '#f5f5f5',
     whiteActive: '#ebebeb',
@@ -205,15 +225,36 @@ var defaultTheme = {
     fontWeightMedium: 600,
     fontWeightSemiBold: 700,
     fontWeightBold: 800,
+    /** Fonts sizes */
+    bodyLargeFontSize: 16,
+    bodyLargeLetterSpacing: 0.15,
+    buttonsFontSize: 16,
+    buttonsLetterSpacing: 0.15,
+    subtitleFontSize: 14,
+    subtitleLetterSpacing: 0.1,
+    capsFontSize: 14,
+    capsLetterSpacing: 1.1,
+    smallLinkFontSize: 12,
+    smallLinkLetterSpacing: 0.4,
+    bodySmallFontSize: 12,
+    bodySmallLetterSpacing: 0.4,
+    capsSmallFontSize: 10,
+    capsSmallLetterSpacing: 1.5,
+    messageFontSize: 10,
+    messageLetterSpacing: 1.5,
+    finePrintFontSize: 8,
+    finePrintLetterSpacing: 1.5,
     /** Button colors */
     buttonColorPrimary: '#fff',
     buttonColorSecondary: colors.normal,
     buttonBackgroundColorPrimary: colors.normal,
-    buttonBackgroundColorPrimaryHover: colors.normalHover,
+    buttonBackgroundColorPrimaryHover: colors.darkHover,
     buttonBackgroundColorPrimaryActive: colors.normalActive,
+    buttonBackgroundColorPrimaryDisabled: colors.lightGray2,
     buttonBackgroundColorSecondary: colors.white,
     buttonBackgroundColorSecondaryHover: colors.whiteHover,
     buttonBackgroundColorSecondaryActive: colors.whiteActive,
+    buttonBackgroundColorSecondaryDisabled: colors.lightGray3,
     buttonBackgroundColorDisabled: colors.lightGray,
     buttonColorDisabled: colors.gray,
     /** Input fields */
@@ -420,10 +461,9 @@ var styles$1 = (function (theme) { return ({
         position: 'relative',
         cursor: 'pointer',
         userSelect: 'none',
-        color: theme.textColorSecondary,
+        color: theme.textColorPrimary,
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
-        fontSize: 14,
+        fontWeight: theme.fontWeightRegular,
         display: 'flex',
         alignItems: 'center',
         '&:hover $input ~ $checkmark': {
@@ -481,13 +521,39 @@ var styles$1 = (function (theme) { return ({
             backgroundColor: 'white',
         },
     },
-    placeholderNormal: {
-        padding: 10,
+    placeholder: {
+        padding: '8px 4px',
     },
-    placeholderMini: {
-        padding: 4,
-        fontWeight: 'normal',
+    /* Handle sizes */
+    small: {
+        fontSize: 14,
+        '& $checkmark': {
+            height: 16,
+            width: 16,
+            '&:after': {
+                top: 4,
+                left: 4,
+                width: 6,
+                height: 6,
+            },
+        },
     },
+    normal: {
+        fontSize: 14,
+    },
+    large: {
+        fontSize: 16,
+        '& $checkmark': {
+            height: 28,
+            width: 28,
+            '&:after': {
+                top: 8,
+                left: 8,
+                width: 10,
+                height: 10,
+            },
+        },
+    }
 }); });
 
 function createCommonjsModule(fn, module) {
@@ -575,10 +641,10 @@ var RadioField = function (props) {
             /** Clear Form value if needed */
         };
     }, []);
-    return (React.createElement("label", { className: classes.root },
+    return (React.createElement("label", { className: classnames(classes.root, classes[sizeVariant]) },
         React.createElement("input", __assign({}, rest, { ref: inputRef, type: "radio", className: classes.input, name: name, value: value, checked: checkedValue, onChange: onChangeWrapper })),
         React.createElement("span", { className: classes.checkmark }),
-        React.createElement("div", { className: classnames(sizeVariant === 'mini' ? classes.placeholderMini : classes.placeholderNormal) }, placeholder)));
+        React.createElement("div", { className: classes.placeholder }, placeholder)));
 };
 /** Wrappers */
 var StyledRadioField = withStyles__default(styles$1)(RadioField);
@@ -819,6 +885,14 @@ var styles$3 = (function (theme) { return ({
         paddingLeft: 17,
         height: '100%',
     },
+    prependContentSmall: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        padding: 5,
+        color: theme.inputBackgroundColor || '#fff',
+    },
     prependBackgroundColor: {
         backgroundColor: theme.inputColorHighlight || '#007aff',
         fill: theme.inputColorHighlight || '#007aff',
@@ -846,7 +920,8 @@ var styles$3 = (function (theme) { return ({
 
 /** Main component */
 var InputFieldLayout = function (props) {
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.showPrependBackground, showPrependBackground = _a === void 0 ? true : _a, _b = props.customPlaceholderFont, customPlaceholderFont = _b === void 0 ? false : _b, _c = props.sizeVariant, sizeVariant = _c === void 0 ? 'normal' : _c, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant"]);
+    var _a;
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _b = props.showPrependBackground, showPrependBackground = _b === void 0 ? true : _b, _c = props.customPlaceholderFont, customPlaceholderFont = _c === void 0 ? false : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant"]);
     return (React.createElement(React.Fragment, null,
         React.createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
@@ -861,7 +936,12 @@ var InputFieldLayout = function (props) {
                     disabled ? classes.prependDisabled : null,
                     errorMsg ? classes.prependInvalid : null,
                 ]) },
-                prependContent ? React.createElement("div", { className: classes.prependContent }, prependContent) : null,
+                prependContent
+                    ? React.createElement("div", { className: classnames((_a = {},
+                            _a[classes.prependContent] = ['mini', 'normal'].includes(sizeVariant),
+                            _a[classes.prependContentSmall] = sizeVariant === 'small',
+                            _a)) }, prependContent)
+                    : null,
                 (prependContent && showPrependBackground) ? React.createElement(PrependBackground, { className: classes.prependBackgroundIcon }) : null),
             React.createElement("div", { className: classes.fieldWrapper },
                 placeholder ?
@@ -899,14 +979,12 @@ var StyledTextInput = withStyles__default(styles$2)(TextInput);
 
 var styles$4 = (function (theme) { return ({
     root: {
-        borderRadius: 8,
-        padding: 10,
-        maxHeight: 44,
         border: "solid 1px",
         width: '100%',
-        fontSize: 16,
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
+        fontWeight: theme.fontWeightSemiBold,
+        fontSize: theme.buttonsFontSize,
+        letterSpacing: theme.buttonsLetterSpacing,
         userSelect: 'none',
         cursor: 'pointer',
     },
@@ -918,17 +996,18 @@ var styles$4 = (function (theme) { return ({
         color: theme.buttonBackgroundColorSecondary,
         backgroundColor: theme.buttonBackgroundColorPrimary,
         '&:hover': {
-            backgroundColor: theme.buttonBackgroundColorPrimaryHover,
+            filter: theme.buttonBackgroundColorPrimaryHover,
         },
         '&:active': {
             backgroundColor: theme.buttonBackgroundColorPrimaryActive,
         },
         '&.disabled': {
-            backgroundColor: theme.buttonBackgroundColorSecondary,
-            color: theme.buttonColorDisabled,
-            borderColor: theme.buttonColorDisabled,
+            backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
+            color: 'rgba(255, 255, 255, 0.5)',
+            borderColor: theme.buttonBackgroundColorPrimaryDisabled,
             '&:hover': {
-                backgroundColor: theme.buttonBackgroundColorSecondary,
+                backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
+                filter: 'brightness(100%)',
             },
             '&:active': {
                 backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -940,17 +1019,18 @@ var styles$4 = (function (theme) { return ({
         border: "solid 1px " + theme.buttonBackgroundColorPrimary,
         backgroundColor: theme.buttonBackgroundColorSecondary,
         '&:hover': {
-            backgroundColor: theme.buttonBackgroundColorSecondaryHover,
+            backgroundColor: theme.buttonBackgroundColorPrimary,
+            color: theme.buttonBackgroundColorSecondary
         },
         '&:active': {
             backgroundColor: theme.buttonBackgroundColorSecondaryActive,
         },
         '&.disabled': {
-            backgroundColor: theme.buttonBackgroundColorSecondary,
-            color: theme.buttonColorDisabled,
-            borderColor: theme.buttonColorDisabled,
+            backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,
+            color: 'rgba(204, 204, 204, 0.5)',
+            borderColor: theme.buttonBackgroundColorPrimaryDisabled,
             '&:hover': {
-                backgroundColor: theme.buttonBackgroundColorSecondary,
+                backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,
             },
             '&:active': {
                 backgroundColor: theme.buttonBackgroundColorSecondary,
@@ -964,7 +1044,7 @@ var styles$4 = (function (theme) { return ({
         fontSize: 14,
         border: "0px !important",
         color: theme.buttonBackgroundColorPrimary,
-        padding: 11,
+        padding: '20px 32px',
         '&:hover': {
             color: theme.buttonBackgroundColorPrimaryHover,
         },
@@ -977,24 +1057,44 @@ var styles$4 = (function (theme) { return ({
                 textDecoration: 'none',
             },
         },
-        '&::after': {
-            content: '" »"',
-        }
     },
     /** Sizes */
-    normal: {},
+    large: {
+        padding: '23px 44px',
+        maxHeight: 70
+    },
+    normal: {
+        padding: '16px 32px',
+        maxHeight: 56,
+    },
+    small: {
+        padding: '12px 24px',
+        fontWeight: theme.fontWeightRegular,
+        fontSize: theme.subtitleFontSize,
+        letterSpacing: theme.subtitleLetterSpacing,
+        maxHeight: 44,
+    },
     mini: {
-        padding: '4px 7px',
+        padding: '4px 12px',
         fontSize: 10,
         fontWeight: theme.fontWeightRegular,
         borderRadius: 4,
         maxHeight: 24
     },
+    round: {
+        borderRadius: 4,
+    },
+    flat: {
+        borderRadius: 0,
+    },
+    circle: {
+        borderRadius: 50,
+    }
 }); });
 
 /** Main component */
 var Button = function (props) {
-    var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, className = props.className, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant", "className"]);
+    var classes = props.classes, children = props.children, onClick = props.onClick, _a = props.disabled, disabled = _a === void 0 ? false : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.variant, variant = _c === void 0 ? 'primary' : _c, _d = props.shape, shape = _d === void 0 ? 'round' : _d, className = props.className, rest = __rest(props, ["classes", "children", "onClick", "disabled", "sizeVariant", "variant", "shape", "className"]);
     var BtnComponent = function (_a) {
         var children = _a.children, rest = __rest(_a, ["children"]);
         return (variant === 'tertiary'
@@ -1005,6 +1105,7 @@ var Button = function (props) {
             classes.root,
             classes[variant],
             classes[sizeVariant],
+            classes[shape],
             disabled && classes.disabled,
             disabled && 'disabled',
             className,
@@ -1141,10 +1242,9 @@ var styles$6 = (function (theme) { return ({
         position: 'relative',
         cursor: 'pointer',
         userSelect: 'none',
-        color: theme.textColorSecondary,
+        color: theme.textColorPrimary,
         fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightMedium,
-        fontSize: 14,
+        fontWeight: theme.fontWeightRegular,
         display: 'flex',
         alignItems: 'center',
         /** Checkmark */
@@ -1202,7 +1302,7 @@ var styles$6 = (function (theme) { return ({
             backgroundColor: theme.inputColorHighlight,
         },
         '&:checked ~ $switch:after': {
-            left: 15,
+            left: 19,
         },
         '&:disabled ~ $switch': {
             backgroundColor: theme.inputColorBorderIdle + " !important",
@@ -1213,9 +1313,9 @@ var styles$6 = (function (theme) { return ({
         position: 'relative',
         top: 0,
         left: 0,
-        height: 19,
-        width: 19,
-        minWidth: 19,
+        height: 24,
+        width: 24,
+        minWidth: 16,
         backgroundColor: theme.inputBackgroundColor,
         borderRadius: 3,
         border: "1px solid " + theme.inputColorBorderIdle,
@@ -1224,10 +1324,10 @@ var styles$6 = (function (theme) { return ({
             content: '""',
             position: 'absolute',
             display: 'none',
-            left: 5.5,
-            top: 1,
+            left: 7.5,
+            top: 2,
             width: 6,
-            height: 12,
+            height: 14,
             border: 'solid white',
             borderWidth: '0 2px 2px 0',
             transform: 'rotate(45deg)',
@@ -1239,10 +1339,10 @@ var styles$6 = (function (theme) { return ({
         position: 'relative',
         top: 0,
         left: 0,
-        height: 22,
-        width: 36,
+        height: 24,
+        width: 44,
         backgroundColor: theme.inputColorBorderIdle,
-        borderRadius: 11,
+        borderRadius: 12,
         border: "1px solid " + theme.inputColorBorderIdle,
         /** Switch */
         '&:after': {
@@ -1250,10 +1350,10 @@ var styles$6 = (function (theme) { return ({
             content: '""',
             position: 'absolute',
             display: 'block',
-            top: 2,
+            top: 1,
             left: 2,
-            width: 16,
-            height: 16,
+            width: 20,
+            height: 20,
             borderRadius: '50%',
             backgroundColor: theme.inputBackgroundColor,
             boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)',
@@ -1261,7 +1361,7 @@ var styles$6 = (function (theme) { return ({
     },
     /** Placeholder */
     placeholder: {
-        padding: 10,
+        padding: '8px 4px',
     },
     placeholderInvalid: {
         color: theme.inputColorError,
@@ -1273,15 +1373,77 @@ var styles$6 = (function (theme) { return ({
         fontWeight: theme.fontWeightLight,
         fontSize: 10,
     },
+    /** Handle size */
+    small: {
+        fontSize: 14,
+        '& $checkmark': {
+            height: 16,
+            width: 16,
+            '&:after': {
+                left: 4.4,
+                top: 2,
+                width: 5,
+                height: 8,
+            },
+        },
+        '& $switch': {
+            height: 16,
+            width: 26,
+            borderRadius: 8,
+            '&:after': {
+                top: 1,
+                left: 2,
+                width: 12,
+                height: 12,
+            }
+        },
+        '& $input': {
+            '&:checked ~ $switch:after': {
+                left: 10,
+            }
+        }
+    },
+    normal: {
+        fontSize: 14,
+    },
+    large: {
+        fontSize: 16,
+        '& $checkmark': {
+            height: 30,
+            width: 30,
+            '&:after': {
+                left: 9,
+                top: 4,
+                width: 8,
+                height: 16,
+            },
+        },
+        '& $switch': {
+            height: 32,
+            width: 60,
+            borderRadius: 16,
+            '&:after': {
+                top: 2,
+                left: 2,
+                width: 26,
+                height: 26,
+            }
+        },
+        '& $input': {
+            '&:checked ~ $switch:after': {
+                left: 29,
+            }
+        }
+    }
 }); });
 
 var CheckboxField = function (props) {
     /** Get props */
-    var classes = props.classes, className = props.className, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, errorMessage = props.errorMessage, onChange = props.onChange, onFocus = props.onFocus, variant = props.variant, rest = __rest(props, ["classes", "className", "value", "name", "checked", "placeholder", "errorMessage", "onChange", "onFocus", "variant"]);
+    var classes = props.classes, className = props.className, value = props.value, controlled = props.controlled, name = props.name, checked = props.checked, placeholder = props.placeholder, errorMessage = props.errorMessage, onChange = props.onChange, onFocus = props.onFocus, variant = props.variant, _a = props.sizeVariant, sizeVariant = _a === void 0 ? 'normal' : _a, rest = __rest(props, ["classes", "className", "value", "controlled", "name", "checked", "placeholder", "errorMessage", "onChange", "onFocus", "variant", "sizeVariant"]);
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = React.useContext(FormContext), updateFormValue = _a.updateFormValue, formValues = _a.formValues, formErrors = _a.formErrors, updateFormTouched = _a.updateFormTouched, formTouched = _a.formTouched;
+    var _b = React.useContext(FormContext), updateFormValue = _b.updateFormValue, formValues = _b.formValues, formErrors = _b.formErrors, updateFormTouched = _b.updateFormTouched, formTouched = _b.formTouched;
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _b = __read(React.useState((formValues && formValues[name]) || checked), 2), internalValue = _b[0], setInternalValue = _b[1];
+    var _c = __read(React.useState((formValues && formValues[name]) || checked), 2), internalValue = _c[0], setInternalValue = _c[1];
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Get checked value when using within a form or solo */
@@ -1316,9 +1478,9 @@ var CheckboxField = function (props) {
             formValues && updateFormValue(name, undefined, true);
         };
     }, []);
-    return (React.createElement("div", { className: classnames([classes.wrapper, className]) },
+    return (React.createElement("div", { className: classnames([classes.wrapper, classes[sizeVariant], className]) },
         React.createElement("label", { className: classes.root },
-            React.createElement("input", __assign({}, rest, { type: "checkbox", className: classes.input, name: name, value: value, checked: internalValue, onChange: onChangeWrapper, onFocus: onFocusWrapper })),
+            React.createElement("input", __assign({}, rest, { type: "checkbox", className: classes.input, name: name, value: value, checked: controlled ? checked : internalValue, onChange: onChangeWrapper, onFocus: onFocusWrapper })),
             React.createElement("span", { className: variant === 'switch' ? classes.switch : classes.checkmark }),
             React.createElement("div", { className: classnames([
                     classes.placeholder,
@@ -1787,6 +1949,9 @@ var styles$a = (function (theme) { return ({
     searchIcon: {
         fill: theme.inputPlaceholderColorIdle || '#95acbf',
     },
+    searchIconSmall: {
+        width: 15,
+    },
     /** Clear icon */
     clearIcon: {
         marginRight: 10,
@@ -1893,11 +2058,12 @@ var styles$a = (function (theme) { return ({
 
 /** Main component */
 var SearchField = function (props) {
-    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _a = props.placeholder, placeholder = _a === void 0 ? 'Search' : _a, _b = props.collapsiblePlaceholder, collapsiblePlaceholder = _b === void 0 ? true : _b, _c = props.sizeVariant, sizeVariant = _c === void 0 ? 'normal' : _c;
+    var _a;
+    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, _b = props.placeholder, placeholder = _b === void 0 ? 'Search' : _b, _c = props.collapsiblePlaceholder, collapsiblePlaceholder = _c === void 0 ? true : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d;
     /** Focus status (needed for styles) */
-    var _d = __read(React.useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var _e = __read(React.useState(false), 2), isFocused = _e[0], setFocused = _e[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _e = __read(React.useState(value || ''), 2), inputValue = _e[0], setInputValue = _e[1];
+    var _f = __read(React.useState(value || ''), 2), inputValue = _f[0], setInputValue = _f[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (e) {
         var value = e.target.value;
@@ -1926,18 +2092,16 @@ var SearchField = function (props) {
         onChange && onChange('');
     };
     /** Prepend magnifying lens */
-    var prependContent = (React.createElement(Search, { className: classes.searchIcon }));
+    var prependContent = (React.createElement(Search, { className: classnames(classes.searchIcon, (_a = {}, _a[classes.searchIconSmall] = sizeVariant === 'small', _a)) }));
     /** Append content arrow */
     var appendContent = inputValue !== '' ?
         (React.createElement(CloseOutline, { onClick: onClearClickWrapper, className: classnames([
                 classes.clearIcon,
             ]) })) : null;
-    return (React.createElement(PropsWrappedStyledInputFieldLayout, { className: className, isPlaceholderCollapsed: isFocused || inputValue !== '', disabled: disabled, placeholder: collapsiblePlaceholder ? placeholder : undefined, prependContent: prependContent, appendContent: appendContent, showPrependBackground: false },
-        React.createElement("input", { type: "text", onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper, value: inputValue, placeholder: collapsiblePlaceholder ? undefined : placeholder, 
-            // onKeyDown={onKeyDownWrapper}
-            className: classnames([
+    return (React.createElement(PropsWrappedStyledInputFieldLayout, { className: className, isPlaceholderCollapsed: isFocused || inputValue !== '', disabled: disabled, placeholder: collapsiblePlaceholder ? placeholder : undefined, prependContent: prependContent, appendContent: appendContent, showPrependBackground: false, sizeVariant: sizeVariant },
+        React.createElement("input", { type: "text", onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper, value: inputValue, placeholder: collapsiblePlaceholder ? undefined : placeholder, className: classnames([
                 classes.inputField,
-                sizeVariant === 'mini' ? classes.inputFieldMini : classes.inputFieldNormal,
+                sizeVariant === 'normal' ? classes.inputFieldNormal : classes.inputFieldMini,
                 (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
             ]) })));
 };
@@ -2570,7 +2734,10 @@ var styles$f = (function (theme) { return ({
         whiteSpace: "nowrap",
         backgroundColor: 'transparent',
         position: 'relative',
-        zIndex: 1
+        zIndex: 1,
+        '&:hover': {
+            backgroundColor: '#bdc9cf'
+        }
     },
     active: {
         color: '#fff',

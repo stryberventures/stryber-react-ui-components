@@ -5,7 +5,8 @@ export interface IButtonProps {
     disabled?: boolean;
     children: any;
     variant?: 'primary' | 'secondary' | 'tertiary';
-    sizeVariant?: 'normal' | 'mini';
+    sizeVariant?: 'normal' | 'mini' | 'small' | 'large';
+    shape?: 'flat' | 'round' | 'circle';
     className?: any;
 }
 declare const PropsWrappedStyledButton: (props: IButtonProps & React.HTMLProps<HTMLButtonElement>) => JSX.Element;
