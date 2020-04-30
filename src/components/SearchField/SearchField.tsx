@@ -15,6 +15,7 @@ export interface ISearchFieldProps {
   onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
+  onEnter?: (value: string) => void;
   sizeVariant?: 'normal' | 'mini' | 'small';
 }
 
@@ -27,6 +28,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     onChange,
     onFocus,
     onBlur,
+    onEnter,
     value,
     placeholder = 'Search',
     collapsiblePlaceholder = true,
@@ -67,6 +69,13 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     onChange && onChange('');
   };
 
+  const onKeyPressWrapper = (e: React.KeyboardEvent) => {
+    if(e.key === 'Enter') {
+      e.preventDefault();
+
+      onEnter && onEnter(inputValue);
+    }
+  }
   /** Prepend magnifying lens */
   const prependContent = (
     <Search className={classNames(
@@ -102,6 +111,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         onChange={onChangeWrapper}
         onBlur={onBlurWrapper}
         onFocus={onFocusWrapper}
+        onKeyPress={onKeyPressWrapper}
         value={inputValue}
         placeholder={collapsiblePlaceholder ? undefined : placeholder}
         className={classNames([
