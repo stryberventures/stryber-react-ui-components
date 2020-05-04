@@ -100,7 +100,8 @@ export default (theme: any) => ({
     fontSize: 10,
     fontWeight: theme.fontWeightRegular,
     borderRadius: 4,
-    maxHeight: 24
+    maxHeight: 24,
+    textTransform: 'uppercase',
   },
   round: {
     borderRadius: 4,
