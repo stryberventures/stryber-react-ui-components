@@ -61,9 +61,10 @@ export default {
   buttonColorDisabled: colors.gray,
 
   /** Input fields */
-  inputMaxHeightIdle: 43,
+  inputMaxHeightIdle: 44,
+  inputLargeMaxHeightIdle: 56,
   inputColorIdle: colors.darkGray,
-  inputColorBorderIdle: '#cfe2f2',
+  inputColorBorderIdle: '#cccccc',
   inputColorBorderIdleHover: '#deebf6',
   inputColorBorderIdleActive: '#eef5fa',
   inputColorHighlight: colors.normal,
@@ -80,6 +81,8 @@ export default {
   inputBackgroundColorHover: colors.whiteHover,
   inputBackgroundColorActive: colors.whiteActive,
   inputBackgroundColorDisabled: colors.lightGray,
+  inputPlaceholderColor: colors.lightGray2,
+  inputValueColor: colors.darkGray2,
 
   /** Navbar */
   navbarItemColor: colors.gray,

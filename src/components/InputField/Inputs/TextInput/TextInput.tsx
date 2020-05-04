@@ -3,6 +3,7 @@ import classNames from "classnames";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './TextInput.styles';
 import { InputFieldLayout } from '../../../InputFieldLayout';
+import { SimpleInputLayout } from '../../../SimpleInputLayout';
 
 interface ITextInputProps {
   name: string;
@@ -17,6 +18,10 @@ interface ITextInputProps {
   errorMsg?: string;
   prependContent?: any;
   appendContent?: any;
+  layout?: 'default' | 'simple';
+  label?: string;
+  large?: boolean;
+  labelClassName?: any;
 }
 
 const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
@@ -30,32 +35,42 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
     prependContent,
     appendContent,
     value,
+    label,
+    layout = 'default',
+    large,
+    labelClassName,
     ...rest
   } = props;
 
   const isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
+  const isSimpleLayout = layout === 'simple';
+  const LayoutComponent = isSimpleLayout ? SimpleInputLayout : InputFieldLayout;
 
   return (
-    <InputFieldLayout
+    <LayoutComponent
       appendContent={appendContent}
       prependContent={prependContent}
       errorMsg={errorMsg}
       disabled={disabled}
       placeholder={placeholder}
       isPlaceholderCollapsed={isPlaceholderCollapsed}
+      label={label}
+      large={large}
+      labelClassName={labelClassName}
     >
       <input
         {...rest}
         className={classNames([
           classes.input,
           placeholder ? classes.inputWithPlaceholder : null,
-          isPlaceholderCollapsed ? classes.inputWithPlaceholderCollapsed : null,
+          (isPlaceholderCollapsed && !isSimpleLayout) ? classes.inputWithPlaceholderCollapsed : null,
           errorMsg ? classes.inputInvalid : null,
         ])}
         disabled={disabled}
         value={value || ''}
+        placeholder={isSimpleLayout && placeholder || ''}
       />
-    </InputFieldLayout>
+    </LayoutComponent>
   );
 };
 

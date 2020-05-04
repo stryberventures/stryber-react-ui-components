@@ -61,10 +61,10 @@ storiesOf('Button', module)
       <Button sizeVariant="mini" style={{ width: 130 }}>
         Mini label
       </Button>
-      <Button sizeVariant="mini" style={{ width: 130 }} variant="secondary">
+      <Button sizeVariant="mini" style={{ width: 230 }} variant="secondary">
         Mini label Secondary
       </Button>
-      <Button sizeVariant="mini" disabled style={{ width: 130 }} variant="secondary">
+      <Button sizeVariant="mini" disabled style={{ width: 230 }} variant="secondary">
         Mini label Disabled
       </Button>
     </Wrapper>

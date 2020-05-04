@@ -27,7 +27,8 @@ export default (theme: any) => ({
     width: '100%',
     height: '100%',
     border: 0,
-    padding: 12,
+    padding: 18,
+    paddingLeft: 16,
     backgroundColor: 'rgba(0,0,0,0)',
 
     transition: 'color 0.5s',
@@ -39,9 +40,17 @@ export default (theme: any) => ({
     fontSize: 14,
 
     '&:focus': {
-      color: theme.inputColorHighlight || '#007aff',
+      color: theme.inputValueColor || '#007aff',
       outline: 'none',
     },
+    '&::placeholder': {
+      color: theme.inputPlaceholderColor,
+      fontSize: 14
+    },
+    '&:disabled': {
+      color: '#cccccc',
+
+    }
   },
   inputWithPlaceholder: {
 

@@ -26,6 +26,7 @@ export default {
   lightGray: '#eceff1',
   lightGray2: '#cccccc',
   lightGray3: '#f9f9f9',
+  darkGray2: '#3d3d3d',
   white: '#fff',
   whiteHover: '#f5f5f5',
   whiteActive: '#ebebeb',

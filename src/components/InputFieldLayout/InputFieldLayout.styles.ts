@@ -3,7 +3,7 @@ export default (theme: any) => ({
   root: {
     position: 'relative',
     maxHeight: theme.inputMaxHeightIdle,
-    borderRadius: 8,
+    borderRadius: 4,
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
     transition: 'color 0.5s, border 0.5s',
@@ -21,7 +21,8 @@ export default (theme: any) => ({
     border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
   rootDisabled: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f9f9f9',
+    borderColor: '#cccccc',
   },
   fieldWrapper: {
     flex: 1,
@@ -50,6 +51,7 @@ export default (theme: any) => ({
   },
   placeholderNormal: {
     padding: 12,
+    paddingLeft: 16,
   },
   placeholderMini: {
     lineHeight: '26px',
@@ -131,4 +133,12 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
+  large: {
+    '& $root': {
+      maxHeight: theme.inputLargeMaxHeightIdle,
+    },
+    '& $placeholderNormal': {
+      padding: 16
+    }
+  }
 });

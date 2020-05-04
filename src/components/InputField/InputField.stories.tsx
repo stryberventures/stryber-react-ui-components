@@ -84,6 +84,62 @@ storiesOf('Input field', module)
             value="Value"
           />
           <ControlledInputField/>
+        <InputField
+          large
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Some initial value 123"
+        />
+        <InputField
+          large
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value=""
+        />
+      </Wrapper>
+    );
+  })
+  .add('Simple input', () => {
+    return (
+      <Wrapper>
+        <InputField
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value=""
+        />
+        <InputField
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Text field with value"
+        />
+        <InputField
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Error value"
+          errorMessage="Error message"
+        />
+        <InputField
+          disabled
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Text field with value"
+        />
+        <InputField
+          large
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Text field with value"
+        />
       </Wrapper>
     );
   });
