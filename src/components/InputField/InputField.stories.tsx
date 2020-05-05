@@ -96,6 +96,33 @@ storiesOf('Input field', module)
           placeholder="Text field with initial value"
           value=""
         />
+        <InputField
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Bare component"
+          large
+          layout="bare"
+        />
+        <InputField
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Bare component ERROR"
+          large
+          layout="bare"
+          errorMessage="Error"
+        />
+        <InputField
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Bare component"
+          type="password"
+          layout="bare"
+        />
+        <InputField
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Bare component ERROR"
+          large
+          type="password"
+          layout="bare"
+          errorMessage="Error"
+        />
       </Wrapper>
     );
   })

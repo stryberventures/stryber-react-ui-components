@@ -20,6 +20,7 @@ declare const _default: (theme: any) => {
     };
     rootDisabled: {
         backgroundColor: string;
+        borderColor: string;
     };
     fieldWrapper: {
         flex: number;
@@ -48,6 +49,7 @@ declare const _default: (theme: any) => {
     };
     placeholderNormal: {
         padding: number;
+        paddingLeft: number;
     };
     placeholderMini: {
         lineHeight: string;
@@ -123,6 +125,14 @@ declare const _default: (theme: any) => {
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
+    };
+    large: {
+        '& $root': {
+            maxHeight: any;
+        };
+        '& $placeholderNormal': {
+            padding: number;
+        };
     };
 };
 export default _default;

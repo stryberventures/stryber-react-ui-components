@@ -42,6 +42,19 @@ storiesOf('Password field', module)
           value="Hello"
           errorMessage="Something is not right"
         />
+        <PasswordField
+          placeholder="Password BARE"
+          large
+          layout="bare"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+        />
+        <PasswordField
+          placeholder="Password BARE"
+          large
+          layout="bare"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          errorMessage="Something is not right"
+        />
       </Wrapper>
     );
   })

@@ -14,6 +14,10 @@ export interface IInputFieldProps {
     prependContent?: any;
     appendContent?: any;
     errorMessage?: string;
+    layout?: 'default' | 'simple' | 'bare';
+    label?: string;
+    large?: boolean;
+    labelClassName?: any;
 }
 /** Main component */
 declare const InputField: (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>) => JSX.Element;

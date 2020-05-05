@@ -191,6 +191,7 @@ var colors = {
     lightGray: '#eceff1',
     lightGray2: '#cccccc',
     lightGray3: '#f9f9f9',
+    darkGray2: '#3d3d3d',
     white: '#fff',
     whiteHover: '#f5f5f5',
     whiteActive: '#ebebeb',
@@ -251,9 +252,10 @@ var defaultTheme = {
     buttonBackgroundColorDisabled: colors.lightGray,
     buttonColorDisabled: colors.gray,
     /** Input fields */
-    inputMaxHeightIdle: 43,
+    inputMaxHeightIdle: 44,
+    inputLargeMaxHeightIdle: 56,
     inputColorIdle: colors.darkGray,
-    inputColorBorderIdle: '#cfe2f2',
+    inputColorBorderIdle: '#cccccc',
     inputColorBorderIdleHover: '#deebf6',
     inputColorBorderIdleActive: '#eef5fa',
     inputColorHighlight: colors.normal,
@@ -270,6 +272,8 @@ var defaultTheme = {
     inputBackgroundColorHover: colors.whiteHover,
     inputBackgroundColorActive: colors.whiteActive,
     inputBackgroundColorDisabled: colors.lightGray,
+    inputPlaceholderColor: colors.lightGray2,
+    inputValueColor: colors.darkGray2,
     /** Navbar */
     navbarItemColor: colors.gray,
     navbarItemColorHover: colors.grayHover,
@@ -760,7 +764,8 @@ var styles$2 = (function (theme) { return ({
         width: '100%',
         height: '100%',
         border: 0,
-        padding: 12,
+        padding: 18,
+        paddingLeft: function (props) { return props.layout === 'bare' ? 0 : 16; },
         backgroundColor: 'rgba(0,0,0,0)',
         transition: 'color 0.5s',
         color: theme.inputColorIdle || '#54738c',
@@ -768,9 +773,16 @@ var styles$2 = (function (theme) { return ({
         fontWeight: theme.fontWeightRegular,
         fontSize: 14,
         '&:focus': {
-            color: theme.inputColorHighlight || '#007aff',
+            color: theme.inputValueColor || '#007aff',
             outline: 'none',
         },
+        '&::placeholder': {
+            color: theme.inputPlaceholderColor,
+            fontSize: 14
+        },
+        '&:disabled': {
+            color: '#cccccc',
+        }
     },
     inputWithPlaceholder: {},
     inputWithPlaceholderCollapsed: {
@@ -788,7 +800,7 @@ var styles$3 = (function (theme) { return ({
     root: {
         position: 'relative',
         maxHeight: theme.inputMaxHeightIdle,
-        borderRadius: 8,
+        borderRadius: 4,
         overflow: 'hidden',
         border: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
         transition: 'color 0.5s, border 0.5s',
@@ -804,7 +816,8 @@ var styles$3 = (function (theme) { return ({
         border: "solid 1px " + (theme.inputColorError || '#d0021b') + " !important",
     },
     rootDisabled: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#f9f9f9',
+        borderColor: '#cccccc',
     },
     fieldWrapper: {
         flex: 1,
@@ -833,6 +846,7 @@ var styles$3 = (function (theme) { return ({
     },
     placeholderNormal: {
         padding: 12,
+        paddingLeft: 16,
     },
     placeholderMini: {
         lineHeight: '26px',
@@ -909,13 +923,21 @@ var styles$3 = (function (theme) { return ({
         fontWeight: theme.fontWeightLight,
         fontSize: 10,
     },
+    large: {
+        '& $root': {
+            maxHeight: theme.inputLargeMaxHeightIdle,
+        },
+        '& $placeholderNormal': {
+            padding: 16
+        }
+    }
 }); });
 
 /** Main component */
 var InputFieldLayout = function (props) {
     var _a;
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _b = props.showPrependBackground, showPrependBackground = _b === void 0 ? true : _b, _c = props.customPlaceholderFont, customPlaceholderFont = _c === void 0 ? false : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant"]);
-    return (createElement(Fragment, null,
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _b = props.showPrependBackground, showPrependBackground = _b === void 0 ? true : _b, _c = props.customPlaceholderFont, customPlaceholderFont = _c === void 0 ? false : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, _e = props.large, large = _e === void 0 ? false : _e, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant", "large"]);
+    return (createElement("div", { className: large ? classes.large : '' },
         createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
                 className,
@@ -957,20 +979,202 @@ var InputFieldLayout = function (props) {
 var StyledInputFieldLayout = withStyles(styles$3)(InputFieldLayout);
 var PropsWrappedStyledInputFieldLayout = function (props) { return createElement(StyledInputFieldLayout, __assign({}, props)); };
 
+var styles$4 = (function (theme) { return ({
+    /** Root Wrapper */
+    root: {
+        position: 'relative',
+        maxHeight: theme.inputMaxHeightIdle,
+        overflow: 'hidden',
+        borderBottom: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
+        transition: 'color 0.5s, border 0.5s',
+        backgroundColor: theme.inputBackgroundColor || '#fff',
+        display: 'flex',
+        justifyContent: 'space-between',
+        '&:focus-within': {
+            borderBottom: "solid 1px " + (theme.inputColorHighlight || '#007aff'),
+            outline: 'none',
+        },
+    },
+    rootInvalid: {
+        borderBottom: "solid 1px " + (theme.inputColorError || '#d0021b') + " !important",
+    },
+    rootDisabled: {
+        backgroundColor: '#f0f0f0',
+    },
+    fieldWrapper: {
+        flex: 1,
+        position: 'relative',
+    },
+    /** Append */
+    append: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    /** Error message */
+    errorMessage: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+    label: {
+        fontSize: 12,
+        marginBottom: 8,
+        color: theme.inputValueColor,
+        '&.error': {
+            color: theme.inputErrorMessageColor || '#ea3546',
+        },
+        '&.disabledLabel': {
+            color: '#cccccc'
+        }
+    },
+    large: {
+        '& $root': {
+            maxHeight: theme.inputLargeMaxHeightIdle,
+        },
+        '& $label': {
+            fontSize: 16,
+        }
+    }
+}); });
+
+/** Main component */
+var BareInputLayout = function (props) {
+    var labelClassName = props.labelClassName, className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.customPlaceholderFont, _b = props.sizeVariant, label = props.label, _c = props.large, large = _c === void 0 ? false : _c, rest = __rest(props, ["labelClassName", "className", "classes", "errorMsg", "disabled", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "customPlaceholderFont", "sizeVariant", "label", "large"]);
+    return (createElement("div", { className: large ? classes.large : '' },
+        label ? (createElement("div", { className: classnames([labelClassName, classes.label, { error: !!errorMsg }, { disabledLabel: disabled }]) }, label))
+            :
+                null,
+        createElement("div", __assign({}, rest, { className: classnames([
+                classes.root,
+                className,
+                disabled ? classes.rootDisabled : null,
+                errorMsg ? classes.rootInvalid : null,
+            ]) }),
+            createElement("div", { className: classes.fieldWrapper }, children),
+            createElement("div", { className: classnames([
+                    classes.append,
+                ]) }, appendContent)),
+        errorMsg ?
+            (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
+};
+/** Wrappers */
+var StyledInputFieldLayout$1 = withStyles(styles$4)(BareInputLayout);
+var PropsWrappedStyledBareInputLayout = function (props) { return createElement(StyledInputFieldLayout$1, __assign({}, props)); };
+
+var styles$5 = (function (theme) { return ({
+    /** Root Wrapper */
+    root: {
+        position: 'relative',
+        maxHeight: theme.inputMaxHeightIdle,
+        borderRadius: 4,
+        overflow: 'hidden',
+        border: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
+        transition: 'color 0.5s, border 0.5s',
+        backgroundColor: theme.inputBackgroundColor || '#fff',
+        display: 'flex',
+        justifyContent: 'space-between',
+        '&:focus-within': {
+            border: "solid 1px " + (theme.inputColorHighlight || '#007aff'),
+            outline: 'none',
+        },
+    },
+    rootInvalid: {
+        border: "solid 1px " + (theme.inputColorError || '#d0021b') + " !important",
+    },
+    rootDisabled: {
+        backgroundColor: '#f0f0f0',
+    },
+    fieldWrapper: {
+        flex: 1,
+        position: 'relative',
+    },
+    /** Append */
+    append: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    /** Error message */
+    errorMessage: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+    label: {
+        fontSize: 12,
+        marginBottom: 8,
+        color: theme.inputValueColor,
+        '&.error': {
+            color: theme.inputErrorMessageColor || '#ea3546',
+        },
+        '&.disabledLabel': {
+            color: '#cccccc'
+        }
+    },
+    large: {
+        '& $root': {
+            maxHeight: theme.inputLargeMaxHeightIdle,
+        },
+        '& $label': {
+            fontSize: 16,
+        }
+    }
+}); });
+
+/** Main component */
+var SimpleInputLayout = function (props) {
+    var labelClassName = props.labelClassName, className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.customPlaceholderFont, _b = props.sizeVariant, label = props.label, _c = props.large, large = _c === void 0 ? false : _c, rest = __rest(props, ["labelClassName", "className", "classes", "errorMsg", "disabled", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "customPlaceholderFont", "sizeVariant", "label", "large"]);
+    return (createElement("div", { className: large ? classes.large : '' },
+        label ? (createElement("div", { className: classnames([labelClassName, classes.label, { error: !!errorMsg }, { disabledLabel: disabled }]) }, label))
+            :
+                null,
+        createElement("div", __assign({}, rest, { className: classnames([
+                classes.root,
+                className,
+                disabled ? classes.rootDisabled : null,
+                errorMsg ? classes.rootInvalid : null,
+            ]) }),
+            createElement("div", { className: classes.fieldWrapper }, children),
+            createElement("div", { className: classnames([
+                    classes.append,
+                ]) }, appendContent)),
+        errorMsg ?
+            (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
+};
+/** Wrappers */
+var StyledInputFieldLayout$2 = withStyles(styles$5)(SimpleInputLayout);
+var PropsWrappedStyledSimpleInputLayout = function (props) { return createElement(StyledInputFieldLayout$2, __assign({}, props)); };
+
 var TextInput = function (props) {
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value"]);
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, label = props.label, _a = props.layout, layout = _a === void 0 ? 'default' : _a, large = props.large, labelClassName = props.labelClassName, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value", "label", "layout", "large", "labelClassName"]);
     var isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
-    return (createElement(PropsWrappedStyledInputFieldLayout, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed },
+    var isSimpleLayout = layout !== 'default';
+    var LayoutComponent = null;
+    switch (layout) {
+        case 'bare':
+            LayoutComponent = PropsWrappedStyledBareInputLayout;
+            break;
+        case 'simple':
+            LayoutComponent = PropsWrappedStyledSimpleInputLayout;
+            break;
+        default:
+            LayoutComponent = PropsWrappedStyledInputFieldLayout;
+            break;
+    }
+    return (createElement(LayoutComponent, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed, label: label, large: large, labelClassName: labelClassName },
         createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
                 placeholder ? classes.inputWithPlaceholder : null,
-                isPlaceholderCollapsed ? classes.inputWithPlaceholderCollapsed : null,
+                (isPlaceholderCollapsed && !isSimpleLayout) ? classes.inputWithPlaceholderCollapsed : null,
                 errorMsg ? classes.inputInvalid : null,
-            ]), disabled: disabled, value: value || '' }))));
+            ]), disabled: disabled, value: value || '', placeholder: isSimpleLayout && placeholder || '' }))));
 };
 var StyledTextInput = withStyles(styles$2)(TextInput);
 
-var styles$4 = (function (theme) { return ({
+var styles$6 = (function (theme) { return ({
     root: {
         border: "solid 1px",
         width: '100%',
@@ -1072,7 +1276,8 @@ var styles$4 = (function (theme) { return ({
         fontSize: 10,
         fontWeight: theme.fontWeightRegular,
         borderRadius: 4,
-        maxHeight: 24
+        maxHeight: 24,
+        textTransform: 'uppercase',
     },
     round: {
         borderRadius: 4,
@@ -1105,7 +1310,7 @@ var Button = function (props) {
         ]), onClick: onClick }), children));
 };
 /** Wrappings */
-var StyledButton = withStyles(styles$4)(Button);
+var StyledButton = withStyles(styles$6)(Button);
 var PropsWrappedStyledButton = function (props) { return createElement(StyledButton, __assign({}, props)); };
 
 
@@ -1185,7 +1390,7 @@ var index$8 = /*#__PURE__*/Object.freeze({
     InputField: InputField
 });
 
-var styles$5 = (function (theme) { return ({
+var styles$7 = (function (theme) { return ({
     root: {},
     append: {
         display: 'flex',
@@ -1213,7 +1418,7 @@ var PasswordField = function (props) {
     return (createElement(InputField, __assign({}, rest, { type: showPassword ? 'text' : 'password', appendContent: appendContent })));
 };
 /** Wrappers */
-var StyledPasswordField = withStyles(styles$5)(PasswordField);
+var StyledPasswordField = withStyles(styles$7)(PasswordField);
 var PropsWrappedStyledPasswordField = function (props) { return createElement(StyledPasswordField, __assign({}, props)); };
 
 
@@ -1224,7 +1429,7 @@ var index$9 = /*#__PURE__*/Object.freeze({
     PasswordField: PropsWrappedStyledPasswordField
 });
 
-var styles$6 = (function (theme) { return ({
+var styles$8 = (function (theme) { return ({
     wrapper: {
         display: 'flex',
         flexDirection: 'column',
@@ -1483,7 +1688,7 @@ var CheckboxField = function (props) {
             (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
 };
 /** Wrappings */
-var StyledCheckboxField = withStyles(styles$6)(CheckboxField);
+var StyledCheckboxField = withStyles(styles$8)(CheckboxField);
 var PropsWrappedStyledCheckboxField = function (props) { return createElement(StyledCheckboxField, __assign({}, props)); };
 
 
@@ -1494,7 +1699,7 @@ var index$a = /*#__PURE__*/Object.freeze({
     CheckboxField: PropsWrappedStyledCheckboxField
 });
 
-var styles$7 = (function (theme) { return ({
+var styles$9 = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -1709,7 +1914,7 @@ var SelectField = function (props) {
                 }))) : null)));
 };
 /** Wrappers */
-var StyledSelectField = withStyles(styles$7)(SelectField);
+var StyledSelectField = withStyles(styles$9)(SelectField);
 var PropsWrappedStyledSelectField = function (props) { return createElement(StyledSelectField, __assign({}, props)); };
 
 
@@ -1720,7 +1925,7 @@ var index$b = /*#__PURE__*/Object.freeze({
     SelectField: PropsWrappedStyledSelectField
 });
 
-var styles$8 = (function (theme) { return ({
+var styles$a = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -1867,7 +2072,7 @@ var styles$8 = (function (theme) { return ({
     }
 }); });
 
-var styles$9 = (function (theme) { return ({
+var styles$b = (function (theme) { return ({
     wrapper: {
         borderRadius: 8,
         backgroundColor: theme.inputColorHighlight,
@@ -1921,7 +2126,7 @@ var ValueBadge = function (props) {
         createElement("div", { className: classes.closeSection, onClick: onClose },
             createElement(Close, { className: classes.closeIcon }))));
 };
-var StyledValueBadge = withStyles(styles$9)(ValueBadge);
+var StyledValueBadge = withStyles(styles$b)(ValueBadge);
 
 
 
@@ -1931,7 +2136,7 @@ var index$c = /*#__PURE__*/Object.freeze({
     ValueBadge: StyledValueBadge
 });
 
-var styles$a = (function (theme) { return ({
+var styles$c = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -2105,7 +2310,7 @@ var SearchField = function (props) {
             ]) })));
 };
 /** Wrappers */
-var StyledSearchField = withStyles(styles$a)(SearchField);
+var StyledSearchField = withStyles(styles$c)(SearchField);
 var PropsWrappedStyledSearchField = function (props) { return createElement(StyledSearchField, __assign({}, props)); };
 
 
@@ -2266,7 +2471,7 @@ var MultiSelectField = function (props) {
                             ]) }, getSearchChoices(choices, searchValue)))) : getChoices(choices)))) : null)));
 };
 /** Wrappers */
-var StyledMultiSelectField = withStyles(styles$8)(MultiSelectField);
+var StyledMultiSelectField = withStyles(styles$a)(MultiSelectField);
 var PropsWrappedStyledMultiSelectField = forwardRef(function (props, ref) {
     return createElement(StyledMultiSelectField, __assign({}, props, { refApi: ref }));
 });
@@ -2279,7 +2484,7 @@ var index$e = /*#__PURE__*/Object.freeze({
     MultiSelectField: PropsWrappedStyledMultiSelectField
 });
 
-var styles$b = (function (theme) { return ({
+var styles$d = (function (theme) { return ({
     input: {
         display: 'none',
     },
@@ -2319,7 +2524,7 @@ var styles$b = (function (theme) { return ({
     },
 }); });
 
-var styles$c = (function (theme) { return ({
+var styles$e = (function (theme) { return ({
     selectedFile: {
         display: 'flex',
         alignItems: 'center',
@@ -2374,9 +2579,9 @@ var SelectedFile = function (_a) {
             createElement(Close, { className: classes.closeLogo }))));
 };
 /** Wrappers */
-var StyledSelectedFile = withStyles(styles$c)(SelectedFile);
+var StyledSelectedFile = withStyles(styles$e)(SelectedFile);
 
-var styles$d = (function (theme) { return ({
+var styles$f = (function (theme) { return ({
     uploadButton: {
         marginRight: 12,
         padding: '0 24px',
@@ -2422,7 +2627,7 @@ var UploadButton = function (props) {
         ]) }, noFilesSelected ? 'Upload' : 'Change'));
 };
 /** Wrappers */
-var StyledUploadButton = withStyles(styles$d)(UploadButton);
+var StyledUploadButton = withStyles(styles$f)(UploadButton);
 
 /** Main component */
 var FileField = function (props) {
@@ -2519,7 +2724,7 @@ var FileField = function (props) {
             (createElement("ul", { className: classes.selectedFiles }, getFileNames(internalValue).map(function (fileName) { return (createElement(StyledSelectedFile, { key: fileName, fileName: fileName, removeFile: removeFile })); }))) : null));
 };
 /** Wrappers */
-var StyledFileField = withStyles(styles$b)(FileField);
+var StyledFileField = withStyles(styles$d)(FileField);
 var PropsWrappedStyledStyledFileField = function (props) { return createElement(StyledFileField, __assign({}, props)); };
 
 
@@ -2530,7 +2735,7 @@ var index$f = /*#__PURE__*/Object.freeze({
     FileField: PropsWrappedStyledStyledFileField
 });
 
-var styles$e = (function (theme) { return ({
+var styles$g = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -2704,7 +2909,7 @@ var SearchBox = function (props) {
             }))) : null));
 };
 /** Wrappers */
-var StyledSearchBox = withStyles(styles$e)(SearchBox);
+var StyledSearchBox = withStyles(styles$g)(SearchBox);
 var PropsWrappedStyledSearchBox = function (props) { return createElement(StyledSearchBox, __assign({}, props)); };
 
 
@@ -2715,7 +2920,7 @@ var index$g = /*#__PURE__*/Object.freeze({
     SearchBox: PropsWrappedStyledSearchBox
 });
 
-var styles$f = (function (theme) { return ({
+var styles$h = (function (theme) { return ({
     root: {
         border: "1px solid " + theme.buttonBackgroundColorPrimary,
         display: "inline-block",
@@ -2780,7 +2985,7 @@ var ButtonsSet = function (props) {
         renderButtons()));
 };
 /** Wrappings */
-var StyledButtonsSet = withStyles(styles$f)(ButtonsSet);
+var StyledButtonsSet = withStyles(styles$h)(ButtonsSet);
 var PropsWrappedStyledBadge = function (props) { return (createElement(StyledButtonsSet, __assign({}, props))); };
 
 
@@ -2791,7 +2996,7 @@ var index$h = /*#__PURE__*/Object.freeze({
     ButtonsSet: PropsWrappedStyledBadge
 });
 
-var styles$g = (function (theme) { return ({
+var styles$i = (function (theme) { return ({
     root: {
         userSelect: 'none',
         display: 'flex',
@@ -2898,7 +3103,7 @@ var Pagination = function (props) {
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledPagination = withStyles(styles$g)(Pagination);
+var StyledPagination = withStyles(styles$i)(Pagination);
 var PropsWrappedStyledPagination = function (props) { return createElement(StyledPagination, __assign({}, props)); };
 
 
@@ -2917,7 +3122,7 @@ var getGridColumnStyle = function (breakpointValue) {
 var getGridTemplateColumns = function (columns) {
     return "repeat(" + columns + ", 1fr)";
 };
-var styles$h = (function (theme) {
+var styles$j = (function (theme) {
     var _a;
     return ({
         /** Row */
@@ -2962,9 +3167,9 @@ var Col = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledRow = withStyles(styles$h)(Row);
+var StyledRow = withStyles(styles$j)(Row);
 var PropsWrappedStyledRow = function (props) { return createElement(StyledRow, __assign({}, props)); };
-var StyledCol = withStyles(styles$h)(Col);
+var StyledCol = withStyles(styles$j)(Col);
 var PropsWrappedStyledCol = function (props) { return createElement(StyledCol, __assign({}, props)); };
 
 
@@ -2976,7 +3181,7 @@ var index$j = /*#__PURE__*/Object.freeze({
     Col: PropsWrappedStyledCol
 });
 
-var styles$i = (function (theme) {
+var styles$k = (function (theme) {
     var _a;
     return ({
         root: (_a = {
@@ -3010,7 +3215,7 @@ var Container = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledContainer = withStyles(styles$i)(Container);
+var StyledContainer = withStyles(styles$k)(Container);
 var PropsWrappedStyledContainer = function (props) { return createElement(StyledContainer, __assign({}, props)); };
 
 
@@ -3021,7 +3226,7 @@ var index$k = /*#__PURE__*/Object.freeze({
     Container: PropsWrappedStyledContainer
 });
 
-var styles$j = (function (theme) { return ({
+var styles$l = (function (theme) { return ({
     root: {
         borderRadius: 8,
         display: 'flex',
@@ -3066,9 +3271,9 @@ var Body = function (props) {
             className,
         ]) }), children));
 };
-var StyledCard = withStyles(styles$j)(Card);
-var StyledTitle = withStyles(styles$j)(Title);
-var StyledBody = withStyles(styles$j)(Body);
+var StyledCard = withStyles(styles$l)(Card);
+var StyledTitle = withStyles(styles$l)(Title);
+var StyledBody = withStyles(styles$l)(Body);
 /** Wrappings */
 var PropsWrappedStyledCard = function (props) { return createElement(StyledCard, __assign({}, props)); };
 var PropsWrappedStyledTitle = function (props) { return createElement(StyledTitle, __assign({}, props)); };
@@ -3084,7 +3289,7 @@ var index$l = /*#__PURE__*/Object.freeze({
     Body: PropsWrappedStyledBody
 });
 
-var styles$k = (function (theme) { return ({
+var styles$m = (function (theme) { return ({
     root: {
         '&.withBorder': {
             border: theme.tableBorderPrimary,
@@ -3133,7 +3338,7 @@ var Table = function (props) {
         createElement("table", { className: classes.table }, children)));
 };
 /** Wrappers */
-var StyledTable = withStyles(styles$k)(Table);
+var StyledTable = withStyles(styles$m)(Table);
 var PropsWrappedStyledTable = function (props) { return createElement(StyledTable, __assign({}, props)); };
 
 
@@ -3164,7 +3369,7 @@ var index$n = /*#__PURE__*/Object.freeze({
     TableBody: TableBody
 });
 
-var styles$l = (function (theme) { return ({
+var styles$n = (function (theme) { return ({
     root: {
         padding: '0 5px',
         '&:first-child': {
@@ -3193,7 +3398,7 @@ var TableCell = function (props) {
     }
     return (createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTableCell = withStyles(styles$l)(TableCell);
+var StyledTableCell = withStyles(styles$n)(TableCell);
 var PropsWrappedStyledTableCell = function (props) { return createElement(StyledTableCell, __assign({}, props)); };
 
 
@@ -3218,7 +3423,7 @@ var index$p = /*#__PURE__*/Object.freeze({
     TableHead: TableHead
 });
 
-var styles$m = (function (theme) { return ({
+var styles$o = (function (theme) { return ({
     root: {
         height: 40,
         '&:nth-child(even)': {
@@ -3231,7 +3436,7 @@ var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className, otherProps = __rest(props, ["children", "classes", "className"]);
     return (createElement("tr", __assign({ className: classnames(classes.root, className) }, otherProps), children));
 };
-var StyledTableRow = withStyles(styles$m)(TableRow);
+var StyledTableRow = withStyles(styles$o)(TableRow);
 var PropsWrappedStyledTableRow = function (props) { return createElement(StyledTableRow, __assign({}, props)); };
 
 
@@ -3266,7 +3471,7 @@ var index$r = /*#__PURE__*/Object.freeze({
     TableData: TableData
 });
 
-var styles$n = (function (theme) {
+var styles$p = (function (theme) {
     var _a, _b, _c;
     return ({
         navbar: {
@@ -3329,9 +3534,9 @@ var NavbarSection = function (props) {
         ]) }, rest), children));
 };
 /** Wrappers */
-var StyledNavbar = withStyles(styles$n)(Navbar);
+var StyledNavbar = withStyles(styles$p)(Navbar);
 var PropsWrappedStyledNavbar = function (props) { return createElement(StyledNavbar, __assign({}, props)); };
-var StyledNavbarSection = withStyles(styles$n)(NavbarSection);
+var StyledNavbarSection = withStyles(styles$p)(NavbarSection);
 var PropsWrappedStyledNavbarSection = function (props) { return createElement(StyledNavbarSection, __assign({}, props)); };
 
 
@@ -3343,7 +3548,7 @@ var index$s = /*#__PURE__*/Object.freeze({
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$o = (function (theme) {
+var styles$q = (function (theme) {
     var _a, _b;
     return ({
         container: (_a = {
@@ -3435,9 +3640,9 @@ var NavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledNavigationContainer = withStyles(styles$o)(NavigationContainer);
+var StyledNavigationContainer = withStyles(styles$q)(NavigationContainer);
 var PropsWrappedStyledNavigationContainer = function (props) { return createElement(StyledNavigationContainer, __assign({}, props)); };
-var StyledNavigationRoute = withStyles(styles$o)(NavigationRoute);
+var StyledNavigationRoute = withStyles(styles$q)(NavigationRoute);
 var PropsWrappedStyledNavigationRoute = function (props) { return createElement(StyledNavigationRoute, __assign({}, props)); };
 
 
@@ -3451,7 +3656,7 @@ var index$t = /*#__PURE__*/Object.freeze({
     NavigationContainer: PropsWrappedStyledNavigationContainer
 });
 
-var styles$p = (function (theme) { return ({
+var styles$r = (function (theme) { return ({
     /** Container / Wrapper */
     container: {
         padding: '10px 0px',
@@ -3627,11 +3832,11 @@ var SidebarNavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledSidebarNavigationContainer = withStyles(styles$p)(SidebarNavigationContainer);
+var StyledSidebarNavigationContainer = withStyles(styles$r)(SidebarNavigationContainer);
 var PropsWrappedStyledSidebarNavigationContainer = function (props) { return createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
-var StyledSidebarNavigationSection = withStyles(styles$p)(SidebarNavigationSection);
+var StyledSidebarNavigationSection = withStyles(styles$r)(SidebarNavigationSection);
 var PropsWrappedStyledSidebarNavigationSection = function (props) { return createElement(StyledSidebarNavigationSection, __assign({}, props)); };
-var StyledSidebarNavigationRoute = withStyles(styles$p)(SidebarNavigationRoute);
+var StyledSidebarNavigationRoute = withStyles(styles$r)(SidebarNavigationRoute);
 var PropsWrappedStyledSidebarNavigationRoute = function (props) { return createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
 
 
@@ -3646,7 +3851,7 @@ var index$u = /*#__PURE__*/Object.freeze({
     SidebarNavigationRoute: PropsWrappedStyledSidebarNavigationRoute
 });
 
-var styles$q = (function (theme) { return ({
+var styles$s = (function (theme) { return ({
     root: {
         position: 'relative',
         overflow: 'visible',
@@ -3687,7 +3892,7 @@ var Badge = function (props) {
         children));
 };
 /** Wrappings */
-var StyledBadge = withStyles(styles$q)(Badge);
+var StyledBadge = withStyles(styles$s)(Badge);
 var PropsWrappedStyledBadge$1 = function (props) { return createElement(StyledBadge, __assign({}, props)); };
 
 
@@ -3698,7 +3903,7 @@ var index$v = /*#__PURE__*/Object.freeze({
     Badge: PropsWrappedStyledBadge$1
 });
 
-var styles$r = (function (theme) { return ({
+var styles$t = (function (theme) { return ({
     root: {
         position: 'relative',
         cursor: 'pointer',
@@ -3780,7 +3985,7 @@ var DropDownField = function (props) {
             isDropdownOpen && (createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal) }, children)))));
 };
 /** Wrappings */
-var StyledDropDownField = withStyles(styles$r)(DropDownField);
+var StyledDropDownField = withStyles(styles$t)(DropDownField);
 var PropsWrappedStyledDropDownField = function (props) { return createElement(StyledDropDownField, __assign({}, props)); };
 
 

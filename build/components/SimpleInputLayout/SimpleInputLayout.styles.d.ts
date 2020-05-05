@@ -2,6 +2,7 @@ declare const _default: (theme: any) => {
     /** Root Wrapper */
     root: {
         position: string;
+        maxHeight: any;
         borderRadius: number;
         overflow: string;
         border: string;
@@ -20,38 +21,40 @@ declare const _default: (theme: any) => {
     rootDisabled: {
         backgroundColor: string;
     };
-    /** Input Wrapper */
-    input: {
-        width: string;
-        height: string;
-        border: number;
-        padding: number;
-        paddingLeft: (props: any) => 0 | 16;
-        backgroundColor: string;
-        transition: string;
+    fieldWrapper: {
+        flex: number;
+        position: string;
+    };
+    /** Append */
+    append: {
+        display: string;
+        alignItems: string;
+        justifyContent: string;
+    };
+    /** Error message */
+    errorMessage: {
         color: any;
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
-        '&:focus': {
+    };
+    label: {
+        fontSize: number;
+        marginBottom: number;
+        color: any;
+        '&.error': {
             color: any;
-            outline: string;
         };
-        '&::placeholder': {
-            color: any;
+        '&.disabledLabel': {
+            color: string;
+        };
+    };
+    large: {
+        '& $root': {
+            maxHeight: any;
+        };
+        '& $label': {
             fontSize: number;
-        };
-        '&:disabled': {
-            color: string;
-        };
-    };
-    inputWithPlaceholder: {};
-    inputWithPlaceholderCollapsed: {
-        transform: string;
-    };
-    inputInvalid: {
-        '&:focus': {
-            color: string;
         };
     };
 };
