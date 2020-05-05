@@ -28,7 +28,7 @@ export default (theme: any) => ({
     height: '100%',
     border: 0,
     padding: 18,
-    paddingLeft: 16,
+    paddingLeft: (props: any) => props.layout === 'bare' ? 0 : 16,
     backgroundColor: 'rgba(0,0,0,0)',
 
     transition: 'color 0.5s',

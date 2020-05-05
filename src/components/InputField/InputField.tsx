@@ -19,7 +19,7 @@ export interface IInputFieldProps {
   prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
-  layout?: 'default' | 'simple';
+  layout?: 'default' | 'simple' | 'bare';
   label?: string;
   large?: boolean;
   labelClassName?: any;

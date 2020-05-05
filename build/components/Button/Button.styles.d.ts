@@ -101,6 +101,7 @@ declare const _default: (theme: any) => {
         fontWeight: any;
         borderRadius: number;
         maxHeight: number;
+        textTransform: string;
     };
     round: {
         borderRadius: number;

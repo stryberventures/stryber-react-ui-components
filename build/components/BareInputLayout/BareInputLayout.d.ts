@@ -1,6 +1,6 @@
 import * as React from "react";
 /** Interfaces */
-export interface IInputFieldLayoutProps {
+export interface IBareInputLayoutProps {
     placeholder?: string;
     placeholderClassName?: string;
     disabled?: boolean;
@@ -10,12 +10,13 @@ export interface IInputFieldLayoutProps {
     appendContent?: any;
     showPrependBackground?: boolean;
     children?: any;
-    sizeVariant?: 'normal' | 'mini' | 'small';
+    sizeVariant?: 'normal' | 'mini';
     customPlaceholderFont?: boolean;
+    label?: string;
     large?: boolean;
     labelClassName?: any;
 }
-declare const PropsWrappedStyledInputFieldLayout: (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDivElement>) => JSX.Element;
+declare const PropsWrappedStyledBareInputLayout: (props: IBareInputLayoutProps & React.HTMLProps<HTMLDivElement>) => JSX.Element;
 /** Exports */
-export default PropsWrappedStyledInputFieldLayout;
-export { PropsWrappedStyledInputFieldLayout as InputFieldLayout, };
+export default PropsWrappedStyledBareInputLayout;
+export { PropsWrappedStyledBareInputLayout as BareInputLayout, };

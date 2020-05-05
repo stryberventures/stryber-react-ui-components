@@ -3,6 +3,7 @@ import classNames from "classnames";
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './TextInput.styles';
 import { InputFieldLayout } from '../../../InputFieldLayout';
+import { BareInputLayout } from '../../../BareInputLayout';
 import { SimpleInputLayout } from '../../../SimpleInputLayout';
 
 interface ITextInputProps {
@@ -18,7 +19,7 @@ interface ITextInputProps {
   errorMsg?: string;
   prependContent?: any;
   appendContent?: any;
-  layout?: 'default' | 'simple';
+  layout?: 'default' | 'simple' | 'bare';
   label?: string;
   large?: boolean;
   labelClassName?: any;
@@ -43,8 +44,19 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
   } = props;
 
   const isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
-  const isSimpleLayout = layout === 'simple';
-  const LayoutComponent = isSimpleLayout ? SimpleInputLayout : InputFieldLayout;
+  const isSimpleLayout = layout !== 'default';
+  let LayoutComponent = null;
+  switch (layout) {
+    case 'bare':
+      LayoutComponent = BareInputLayout;
+      break;
+    case 'simple':
+      LayoutComponent = SimpleInputLayout;
+      break;
+    default:
+      LayoutComponent = InputFieldLayout;
+      break;
+  }
 
   return (
     <LayoutComponent

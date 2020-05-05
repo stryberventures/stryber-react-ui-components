@@ -50,6 +50,7 @@ declare const _default: {
     buttonColorDisabled: string;
     /** Input fields */
     inputMaxHeightIdle: number;
+    inputLargeMaxHeightIdle: number;
     inputColorIdle: string;
     inputColorBorderIdle: string;
     inputColorBorderIdleHover: string;
@@ -68,6 +69,8 @@ declare const _default: {
     inputBackgroundColorHover: string;
     inputBackgroundColorActive: string;
     inputBackgroundColorDisabled: string;
+    inputPlaceholderColor: string;
+    inputValueColor: string;
     /** Navbar */
     navbarItemColor: string;
     navbarItemColorHover: string;
