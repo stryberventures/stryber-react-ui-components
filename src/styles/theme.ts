@@ -128,4 +128,14 @@ export default {
   gridLgBreakpoint: 992,
   gridXlBreakpointFallback: 1140,
   gridXlBreakpoint: 1200,
+
+  /** Slider */
+  sliderBgColor: colors.lightGray2,
+  sliderProgressColor: colors.normal,
+  sliderHeight: 8,
+  sliderThumbSize: 24,
+  sliderSmallHeight: 5,
+  sliderSmallThumbSize: 16,
+  sliderLargeHeight: 11,
+  sliderLargeThumbSize: 32,
 };
