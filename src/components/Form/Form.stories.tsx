@@ -5,6 +5,7 @@ import { InputField } from '../InputField';
 import { FileField } from '../FileField';
 import { RadioField } from '../RadioField';
 import { CheckboxField } from '../CheckboxField';
+import { Slider } from '../Slider';
 import { Button } from '../Button';
 import * as yup from 'yup';
 
@@ -121,6 +122,7 @@ storiesOf('Form', module)
             console.log('onReset external', formData);
           }}
           initialValues={{
+            slider: 10,
             id: 12,
             gender: 'Male',
             first_name: 'Elon',
@@ -159,6 +161,9 @@ storiesOf('Form', module)
             placeholder="Option 3"
             value="option 3"
             disabled
+          />
+          <Slider
+            name="slider"
           />
           <SelectField
             name="DropdownSelect"
