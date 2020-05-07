@@ -21,9 +21,9 @@ export default {
   fontFamily: 'Open Sans, sans-serif',
   fontWeightLight: 300,
   fontWeightRegular: 400,
-  fontWeightMedium: 600,
-  fontWeightSemiBold: 700,
-  fontWeightBold: 800,
+  fontWeightMedium: 500,
+  fontWeightSemiBold: 600,
+  fontWeightBold: 700,
 
   /** Fonts sizes */
   bodyLargeFontSize: 16,
@@ -32,18 +32,12 @@ export default {
   buttonsLetterSpacing: 0.15,
   subtitleFontSize: 14,
   subtitleLetterSpacing: 0.1,
-  capsFontSize: 14,
-  capsLetterSpacing: 1.1,
-  smallLinkFontSize: 12,
-  smallLinkLetterSpacing: 0.4,
-  bodySmallFontSize: 12,
-  bodySmallLetterSpacing: 0.4,
-  capsSmallFontSize: 10,
-  capsSmallLetterSpacing: 1.5,
+  descriptionFontSize: 12,
+  descriptionLetterSpacing: 0,
   messageFontSize: 10,
-  messageLetterSpacing: 1.5,
+  messageLetterSpacing: 0,
   finePrintFontSize: 8,
-  finePrintLetterSpacing: 1.5,
+  finePrintLetterSpacing: 0,
 
   /** Button colors */
   buttonColorPrimary: '#fff',
@@ -141,4 +135,7 @@ export default {
   sliderSmallThumbSize: 16,
   sliderLargeHeight: 11,
   sliderLargeThumbSize: 32,
+
+  /** Dropdown */
+  dropdownArrowSize: 18,
 };

@@ -170,6 +170,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               classes.dropdownItem,
               sizeVariant === 'mini' ? classes.dropdownItemMini : null,
             ])}
+            sizeVariant="small"
             key={search ? choice.value : i}
             placeholder={choice.label}
             name={choice.value}

@@ -6,33 +6,18 @@ export default (theme: any) => ({
   },
   buttons: {
     fontSize: theme.buttonsFontSize,
-    fontWeight: theme.fontWeightSemibold,
+    fontWeight: theme.fontWeightSemiBold,
     letterSpacing: theme.buttonsLetterSpacing,
   },
   subtitle: {
     fontSize: theme.subtitleFontSize,
-    fontWeight: theme.fontWeightSemibold,
+    fontWeight: theme.fontWeightSemiBold,
     letterSpacing: theme.subtitleLetterSpacing,
   },
-  caps: {
-    fontSize: theme.capsFontSize,
-    fontWeight: theme.fontWeightSemibold,
-    letterSpacing: theme.capsLetterSpacing,
-  },
-  smallLink: {
-    fontSize: theme.smallLinkFontSize,
-    fontWeight: theme.fontWeightSemibold,
-    letterSpacing: theme.smallLinkLetterSpacing,
-  },
-  bodySmall: {
-    fontSize: theme.bodySmallFontSize,
+  description: {
+    fontSize: theme.descriptionFontSize,
     fontWeight: theme.fontWeightRegular,
-    letterSpacing: theme.bodySmallLetterSpacing,
-  },
-  capsSmall: {
-    fontSize: theme.capsSmallFontSize,
-    fontWeight: theme.fontWeightRegular,
-    letterSpacing: theme.capsSmallLetterSpacing,
+    letterSpacing: theme.descriptionLetterSpacing,
   },
   message: {
     fontSize: theme.messageFontSize,

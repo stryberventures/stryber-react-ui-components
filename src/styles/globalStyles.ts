@@ -55,10 +55,10 @@ export default (theme: any) => ({
       letterSpacing: 0.15,
     },
     p: {
-      fontSize: 14,
+      fontSize: 16,
       fontFamily: theme.fontFamily,
       fontWeight: theme.fontWeightRegular,
-      letterSpacing: 0.1,
+      letterSpacing: 0.15,
     },
     b: {
       fontFamily: theme.fontFamily,
