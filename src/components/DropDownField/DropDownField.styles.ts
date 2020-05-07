@@ -35,8 +35,8 @@ export default (theme:any) => ({
   dropdownArrow: {
     transition: '0.3s',
     fill: theme.inputPlaceholderColorIdle,
-    width: 25,
-    height: 25,
+    width: theme.dropdownArrowSize,
+    height: theme.dropdownArrowSize,
   },
   dropdownArrowNormal: {
     marginRight: 10,

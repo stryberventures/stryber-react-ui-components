@@ -23,14 +23,10 @@ const TypographyExample = ({ classes}: WithStyles<typeof styles>) => {
       <h4>Headline 4</h4>
       <h5>Headline 5</h5>
       <h6>Headline 6</h6>
-      <p className={classes.bodyLarge}>Body Large</p>
+      <p>Body Regular</p>
       <p className={classes.buttons}>Buttons</p>
-      <p>Body / Small Button</p>
       <p className={classes.subtitle}>Subtitle</p>
-      <p className={classes.caps}>ALL CAPS</p>
-      <p className={classes.smallLink}>Small Link </p>
-      <p className={classes.bodySmall}>Body Small</p>
-      <p className={classes.capsSmall}>ALL CAPS SMALL</p>
+      <p className={classes.description}>Description</p>
       <p className={classes.message}>Message</p>
       <p className={classes.finePrint}>Fine Print</p>
   </div>

@@ -39,6 +39,9 @@ import * as SearchFieldElements from './components/SearchField';
 import SearchBox from './components/SearchBox';
 import * as SearchBoxElements from './components/SearchBox';
 
+import Slider from './components/Slider';
+import * as SliderElements from './components/Slider';
+
 /** Active elements */
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
@@ -112,6 +115,7 @@ export {
   InputField, InputFieldElements,
   CheckboxField, CheckboxFieldElements,
   SelectField, SelectFieldElements,
+  Slider, SliderElements,
   MultiSelectField, MultiSelectFieldElements,
   FileField, FileFieldElements,
   SearchField, SearchFieldElements,
