@@ -67,7 +67,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   const [hoverIndex, setHoverIndex] = React.useState(-1);
 
   /** Selected choice */
-  const selectChoiceIndex = choices.findIndex((d) => d.value === controlled ? value : internalValue);
+  const selectChoiceIndex = choices.findIndex((d) => d.value === (controlled ? value : internalValue));
   const selectedChoice = selectChoiceIndex > -1 ? choices[selectChoiceIndex] : null;
 
   /** Select Field State */
