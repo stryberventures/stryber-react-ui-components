@@ -17,6 +17,7 @@ export interface ISelectFieldProps {
   placeholder?: string;
   choices: IChoiceData[];
   value?: any;
+  controlled?: boolean;
   disabled?: boolean;
   onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -40,6 +41,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     onFocus,
     onBlur,
     value,
+    controlled,
     placeholder,
     choices,
     clearFormValueOnUnmount,
@@ -65,7 +67,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
   const [hoverIndex, setHoverIndex] = React.useState(-1);
 
   /** Selected choice */
-  const selectChoiceIndex = choices.findIndex((d) => d.value === internalValue);
+  const selectChoiceIndex = choices.findIndex((d) => d.value === controlled ? value : internalValue);
   const selectedChoice = selectChoiceIndex > -1 ? choices[selectChoiceIndex] : null;
 
   /** Select Field State */
