@@ -20,6 +20,7 @@ export interface IMultiSelectFieldProps {
   placeholder?: string;
   choices: IMultiChoiceData[];
   values?: any[];
+  controlled?: boolean;
   disabled?: boolean;
   onChange?: (value: any) => void;
   onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -46,6 +47,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     onFocus,
     onBlur,
     values,
+    controlled,
     placeholder,
     choices,
     clearFormValueOnUnmount,
@@ -77,7 +79,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   const [internalValues, setInternalValues] = React.useState(formValues ? formValues[name] : (values || []));
 
   /** Selected choice */
-  const selectedChoices = choices.filter((d: IMultiChoiceData) => (internalValues || []).indexOf(d.value.toString()) > -1);
+  const selectedChoices = choices.filter((d: IMultiChoiceData) => (controlled ? values : (internalValues || [])).indexOf(d.value.toString()) > -1);
 
   /** Select Field State */
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
