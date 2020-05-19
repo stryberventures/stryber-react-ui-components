@@ -97,6 +97,13 @@ storiesOf('Input field', module)
           value=""
         />
         <InputField
+          large
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value=""
+          errorMessage="Error"
+        />
+        <InputField
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
           placeholder="Bare component"
           large
@@ -161,6 +168,32 @@ storiesOf('Input field', module)
         />
         <InputField
           large
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value=""
+        />
+        <InputField
+          large
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Text field with value"
+        />
+        <InputField
+          large
+          label="Label"
+          layout="simple"
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          placeholder="Text field with initial value"
+          value="Error value"
+          errorMessage="Error message"
+        />
+        <InputField
+          large
+          disabled
           label="Label"
           layout="simple"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }

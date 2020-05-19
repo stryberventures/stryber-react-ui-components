@@ -22,6 +22,7 @@ storiesOf('Checkbox field', module)
           onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
         <CheckboxField
+          checked
           placeholder="Option with an error"
           value="c"
           name="answer"
@@ -83,6 +84,15 @@ storiesOf('Checkbox field', module)
           onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
         />
         <CheckboxField
+          placeholder="Option B"
+          checked
+          value="b"
+          name="answer"
+          variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
+        <CheckboxField
+          errorMessage="Something went wrong"
           placeholder="Option B"
           checked
           value="b"
