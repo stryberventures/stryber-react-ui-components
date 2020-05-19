@@ -19,9 +19,6 @@ export default (theme: any) => ({
     '&:hover': {
       filter: theme.buttonBackgroundColorPrimaryHover,
     },
-    '&:active': {
-      backgroundColor: theme.buttonBackgroundColorPrimaryActive,
-    },
     '&.disabled': {
       backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
       color: 'rgba(255, 255, 255, 0.5)',
@@ -42,9 +39,6 @@ export default (theme: any) => ({
     '&:hover': {
       backgroundColor: theme.buttonBackgroundColorPrimary,
       color: theme.buttonBackgroundColorSecondary
-    },
-    '&:active': {
-      backgroundColor: theme.buttonBackgroundColorSecondaryActive,
     },
     '&.disabled': {
       backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,

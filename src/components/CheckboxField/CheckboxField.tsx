@@ -89,7 +89,12 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
   }, []);
 
   return (
-    <div className={classNames([classes.wrapper, classes[sizeVariant], className])}>
+    <div className={classNames([
+      classes.wrapper,
+      classes[sizeVariant],
+      errorMsg ? classes.error : null,
+      className
+    ])}>
       <label className={classes.root}>
         <input
           {...rest}

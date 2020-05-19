@@ -62,6 +62,7 @@ export default (theme: any) => ({
     /** Checkmark */
     '&:checked ~ $checkmark': {
       backgroundColor: theme.inputColorHighlight,
+      borderWidth: 0,
     },
     '&:checked ~ $checkmark:after': {
       display: 'block',
@@ -74,7 +75,7 @@ export default (theme: any) => ({
       backgroundColor: theme.inputColorHighlight,
     },
     '&:checked ~ $switch:after': {
-      left: 19,
+      left: 20,
     },
     '&:disabled ~ $switch': {
       backgroundColor: `${theme.inputColorBorderIdle} !important`,
@@ -99,8 +100,8 @@ export default (theme: any) => ({
       display: 'none',
 
       left: 7.5,
-      top: 2,
-      width: 6,
+      top: 3,
+      width: 7,
       height: 14,
       border: 'solid white',
       borderWidth: '0 2px 2px 0',
@@ -118,7 +119,6 @@ export default (theme: any) => ({
     width: 44,
     backgroundColor: theme.inputColorBorderIdle,
     borderRadius: 12,
-    border: `1px solid ${theme.inputColorBorderIdle}`,
 
     /** Switch */
     '&:after': {
@@ -128,8 +128,8 @@ export default (theme: any) => ({
       position: 'absolute',
       display: 'block',
 
-      top: 1,
-      left: 2,
+      top: 2,
+      left: 3,
       width: 20,
       height: 20,
       borderRadius: '50%',
@@ -160,8 +160,8 @@ export default (theme: any) => ({
       width: 16,
       '&:after': {
         left: 4.4,
-        top: 2,
-        width: 5,
+        top: 3,
+        width: 6,
         height: 8,
       },
     },
@@ -170,15 +170,15 @@ export default (theme: any) => ({
       width: 26,
       borderRadius: 8,
       '&:after': {
-        top: 1,
-        left: 2,
+        top: 2,
+        left: 3,
         width: 12,
         height: 12,
       }
     },
     '& $input': {
       '&:checked ~ $switch:after': {
-        left: 10,
+        left: 11,
       }
     }
   },
@@ -191,8 +191,8 @@ export default (theme: any) => ({
       height: 30,
       width: 30,
       '&:after': {
-        left: 9,
-        top: 4,
+        left: 10,
+        top: 5,
         width: 8,
         height: 16,
       },
@@ -202,16 +202,45 @@ export default (theme: any) => ({
       width: 60,
       borderRadius: 16,
       '&:after': {
-        top: 2,
-        left: 2,
+        top: 3,
+        left: 3,
         width: 26,
         height: 26,
       }
     },
     '& $input': {
       '&:checked ~ $switch:after': {
-        left: 29,
+        left: 30,
       }
-    }
-  }
+    },
+  },
+  /** Handle error styles */
+  error: {
+    '& $checkmark': {
+      border: `1px solid ${theme.inputErrorMessageColor || '#ea3546'}`,
+    },
+    '& $input': {
+      '&:checked ~ $checkmark': {
+        backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+      },
+      '&:checked ~ $placeholder': {
+        color: theme.inputErrorMessageColor || '#ea3546',
+      },
+      '&:checked ~ $switch': {
+        backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+      },
+    },
+    '&:hover $input:checked ~ $checkmark': {
+      backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+    },
+    '&:active $input:checked ~ $checkmark': {
+      backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+    },
+    '&:hover $input:checked ~ $switch': {
+      backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+    },
+    '&:active $input:checked ~ $switch': {
+      backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+    },
+  },
 });

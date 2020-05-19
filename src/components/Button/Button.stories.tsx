@@ -51,11 +51,6 @@ storiesOf('Button', module)
       </div>
     </Wrapper>
   ))
-  .add('with some emoji', () => (
-    <Wrapper>
-      <Button>😀 😎 👍 💯</Button>
-    </Wrapper>
-  ))
   .add('Mini', () => (
     <Wrapper>
       <Button sizeVariant="mini" style={{ width: 130 }}>

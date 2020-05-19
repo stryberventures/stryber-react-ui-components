@@ -13,6 +13,7 @@ export interface IRadioFieldProps {
   disabled?: boolean;
   onChange?: (e: React.BaseSyntheticEvent) => void;
   sizeVariant?: 'small' | 'normal' | 'large';
+  errorMessage?: string;
 }
 
 /** Main component */
@@ -26,6 +27,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     placeholder,
     onChange,
     sizeVariant = 'normal',
+    errorMessage,
     ...rest
   } = props;
 
@@ -33,6 +35,8 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   const {
     updateFormValue,
     formValues,
+    formTouched,
+    formErrors,
   } = React.useContext(FormContext);
 
   /** Ref */
@@ -40,6 +44,9 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
 
   /** Get checked value when using within a form or solo */
   const checkedValue = formValues ? formValues[name] === value : undefined;
+
+  /** Getting error message from form errors */
+  const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
@@ -68,23 +75,30 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
   }, []);
 
   return (
-    <label className={classNames(classes.root, classes[sizeVariant])}>
-      <input
-        {...rest}
-        ref={inputRef}
-        type="radio"
-        className={classes.input}
-        name={name}
-        value={value}
-        checked={checkedValue}
-        onChange={onChangeWrapper}
-      />
-      <span className={classes.checkmark}>
-      </span>
-      <div className={classes.placeholder}>
-        { placeholder }
-      </div>
-    </label>
+    <div className={errorMsg ? classes.error : undefined}>
+      <label className={classNames(classes.root, classes[sizeVariant])}>
+        <input
+          {...rest}
+          ref={inputRef}
+          type="radio"
+          className={classes.input}
+          name={name}
+          value={value}
+          checked={checkedValue}
+          onChange={onChangeWrapper}
+        />
+        <span className={classes.checkmark}>
+        </span>
+        <div className={classes.placeholder}>
+          { placeholder }
+        </div>
+      </label>
+      { errorMsg ?
+        (<div className={classes.errorMessage}>
+          { errorMsg }
+        </div>) : null
+      }
+    </div>
   );
 };
 

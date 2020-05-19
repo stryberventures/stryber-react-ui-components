@@ -5,7 +5,7 @@ import { RadioField } from './RadioField';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
 storiesOf('Radio field', module)
-  .add('One checked default', () => {
+  .add('default', () => {
     return (
       <Wrapper>
         <RadioField
@@ -33,6 +33,13 @@ storiesOf('Radio field', module)
           placeholder="Option D"
           value="d"
           onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+        />
+        <RadioField
+          name="answer"
+          placeholder="Option E"
+          value="e"
+          onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+          errorMessage="Error"
         />
       </Wrapper>
     );

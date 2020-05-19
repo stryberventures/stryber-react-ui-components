@@ -35,6 +35,7 @@ export default (theme: any) => ({
 
     '&:checked ~ $checkmark': {
       backgroundColor: theme.inputColorHighlight,
+      borderWidth: 0,
     },
     '&:checked ~ $checkmark:after': {
       display: 'block',
@@ -64,8 +65,8 @@ export default (theme: any) => ({
       position: 'absolute',
       display: 'none',
 
-      top: 6,
-      left: 6,
+      top: 7,
+      left: 7,
       width: 8,
       height: 8,
       borderRadius: '50%',
@@ -82,8 +83,8 @@ export default (theme: any) => ({
       height: 16,
       width: 16,
       '&:after': {
-        top: 4,
-        left: 4,
+        top: 5,
+        left: 5,
         width: 6,
         height: 6,
       },
@@ -98,11 +99,42 @@ export default (theme: any) => ({
       height: 28,
       width: 28,
       '&:after': {
-        top: 8,
-        left: 8,
+        top: 9,
+        left: 9,
         width: 10,
         height: 10,
       },
     },
+  },
+  /** Handle error message */
+  errorMessage: {
+    color: theme.inputErrorMessageColor || '#ea3546',
+    fontFamily: theme.fontFamily,
+    fontWeight: theme.fontWeightLight,
+    fontSize: 10,
+  },
+  error: {
+    '& $root': {
+      '&:hover $input:checked ~ $checkmark': {
+        backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+      },
+      '&:active $input:checked ~ $checkmark': {
+        backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+      },
+    },
+    '& $input': {
+      '&:checked ~ $checkmark': {
+        backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+      },
+      '&:checked ~ $placeholder': {
+        color: theme.inputErrorMessageColor || '#ea3546',
+      },
+    },
+    '& $checkmark': {
+      border: `1px solid ${theme.inputErrorMessageColor || '#ea3546'}`,
+    },
+    '& $placeholder': {
+      color: theme.inputErrorMessageColor || '#ea3546',
+    }
   }
 });
