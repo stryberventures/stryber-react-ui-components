@@ -138,4 +138,7 @@ export default {
 
   /** Dropdown */
   dropdownArrowSize: 18,
+
+  /** Tag */
+  tagBackgroundColor: colors.normal,
 };

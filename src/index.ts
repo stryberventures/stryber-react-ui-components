@@ -52,6 +52,9 @@ import * as ButtonsSetElements from './components/ButtonsSet';
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
 
+import Tag from './components/Tag';
+import * as TagElements from './components/Tag';
+
 /** Layout */
 import Grid from './components/Grid';
 import * as GridElements from './components/Grid'
@@ -139,4 +142,5 @@ export {
   ButtonsSet, ButtonsSetElements,
   DropDownField, DropDownFieldElements,
   ValueBadge, ValueBadgeElements,
+  Tag, TagElements,
 };

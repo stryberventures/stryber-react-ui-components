@@ -5,9 +5,10 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './MultiSelectField.styles';
 import { defaultFormContextValues, FormContext} from '../Form';
 import { CheckboxField } from '../CheckboxField';
-import { ValueBadge } from '../ValueBadge';
 import { DownArrow } from '../Icons';
 import { SearchField } from '../SearchField';
+import {Tag} from '../Tag';
+import {SimpleInputLayout} from '../SimpleInputLayout';
 
 /** Interfaces */
 export interface IMultiChoiceData {
@@ -34,6 +35,8 @@ export interface IMultiSelectFieldProps {
   showBadgeChoices?: boolean;
   refApi?: any;
   search?: boolean;
+  layout?: 'default' | 'simple';
+  label?: string;
 }
 
 /** Main component */
@@ -58,6 +61,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     placeholderClassName,
     showBadgeChoices = true,
     sizeVariant = 'normal',
+    layout = 'default',
+    label,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -195,14 +200,28 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
 
   const getBadgeChoices = () => {
     return selectedChoices.map(({ label, value }: IMultiChoiceData) => {
-      return (
-        <ValueBadge
-          key={value}
-          onClose={selectedBadgeOnClose(value)}
-        >
-          { label }
-        </ValueBadge>
-      );
+      switch (layout) {
+        case 'simple':
+          return (
+            <Tag
+              key={value}
+              onClose={selectedBadgeOnClose(value)}
+            >
+              { label }
+            </Tag>
+          );
+        default:
+          return (
+            <Tag
+              key={value}
+              onClose={selectedBadgeOnClose(value)}
+              sizeVariant="small"
+              shape="flat"
+            >
+              { label }
+            </Tag>
+          );
+      }
     });
   };
 
@@ -221,6 +240,17 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       if (unsetFormValue && clearFormValueOnUnmount) unsetFormValue(name);
     };
   }, []);
+
+  let LayoutComponent;
+  switch (layout) {
+    case 'simple':
+      LayoutComponent = SimpleInputLayout;
+      break;
+    default:
+      LayoutComponent = InputFieldLayout;
+      break;
+  }
+
   return (
     <>
       {/** Clickaway element */}
@@ -239,11 +269,13 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
         ref={refApi}
         className={classNames([
           classes.root,
+          classes[layout],
           isDropdownOpen ? classes.rootOpen : null,
         ])}
       >
         {/** Value & Placeholder / Header */}
-        <InputFieldLayout
+        <LayoutComponent
+          label={label}
           isPlaceholderCollapsed={showBadgeChoices ? selectedChoices.length > 0 : false}
           errorMsg={errorMsg}
           disabled={disabled}
@@ -268,7 +300,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
           >
             {showBadgeChoices ? getBadgeChoices() : null}
           </div>
-        </InputFieldLayout>
+        </LayoutComponent>
         {/** Multi Select dropdown */}
         {
           isDropdownOpen
