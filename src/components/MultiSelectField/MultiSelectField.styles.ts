@@ -58,14 +58,14 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightMedium,
     color: theme.inputColorIdle || '#54738c',
-    padding: 8,
+    padding: 16,
     minHeight: 44,
     backgroundColor: theme.inputBackgroundColor,
     fontSize: 14,
   },
   selectLabelWithPlaceholder: {
     paddingBottom: 5,
-    paddingTop: 23,
+    paddingTop: 21,
   },
   selectLabelMini: {
     padding: 0,
@@ -145,5 +145,17 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
+  },
+  /** Handle layout */
+  default: {
+
+  },
+  simple: {
+    '& $selectLabelWithPlaceholder': {
+      paddingTop: 10,
+    },
+    '& $selectLabelNormal': {
+      paddingTop: 10
+    }
   }
 });

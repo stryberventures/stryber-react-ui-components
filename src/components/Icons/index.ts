@@ -10,6 +10,7 @@ import DownArrow from './DownArrow';
 import Download from './Download';
 import File from './File';
 import Delete from './Delete';
+import TagClose from './TagClose'
 
 export {
   DownArrow,
@@ -24,4 +25,5 @@ export {
   PrependBackground,
   Profile,
   Delete,
+  TagClose,
 }

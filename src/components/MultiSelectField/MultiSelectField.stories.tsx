@@ -74,6 +74,73 @@ storiesOf('Multi Select field', module)
       </Wrapper>
     );
   })
+  .add('Simple', () => {
+    return (
+      <Wrapper>
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          choices={CHOICES.slice(0, 8)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          placeholder="Option"
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          showBadgeChoices={false}
+          placeholder="SearchField"
+          search={true}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          placeholder="Append content"
+          appendContent={'Content '}
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          values={['1']}
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          placeholder="Option"
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          values={['1']}
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          values={['1']}
+        />
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          placeholder="No badge values"
+          showBadgeChoices={false}
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+        />
+      </Wrapper>
+    );
+  })
   .add('Mini' , () => {
     return (
       <Wrapper>
