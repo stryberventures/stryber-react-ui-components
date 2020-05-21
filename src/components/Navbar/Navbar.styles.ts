@@ -2,8 +2,7 @@ export default (theme: any) => ({
   navbar: {
     position: 'relative',
 
-    minHeight: 56,
-    backgroundColor: theme.backgroundColorPrimary,
+    minHeight: 32,
     width: '100%',
     boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
 
@@ -11,6 +10,7 @@ export default (theme: any) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    padding: '0 16px'
   },
   section: {
     padding: '0px 20px',

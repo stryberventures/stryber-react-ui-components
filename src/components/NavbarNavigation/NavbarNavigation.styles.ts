@@ -1,6 +1,5 @@
 export default (theme: any) => ({
   container: {
-    backgroundColor: theme.backgroundColorPrimary,
     display: 'flex',
     flexWrap: 'no-wrap',
     alignItems: 'center',
@@ -17,7 +16,7 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightMedium,
     color: theme.navbarItemColor,
     fontSize: 14,
-    padding: 15,
+    padding: '5px 24px',
     [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
       padding: 5,
     },
@@ -47,5 +46,17 @@ export default (theme: any) => ({
     '&.underlined': {
       borderBottom: `3px solid ${theme.navbarItemColorHighlight}`
     },
+    '& $icon': {
+      fill: theme.navbarItemColorHighlight,
+    },
   },
+  iconContainer: {
+    display: 'inline-block',
+    width: 14,
+    marginRight: 4,
+  },
+  icon: {
+    verticalAlign: 'middle',
+    fill: theme.navbarItemColor,
+  }
 });
