@@ -3,7 +3,6 @@ export default (theme: any) => ({
     borderRadius: 8,
     display: 'flex',
     flexFlow: 'column',
-    boxShadow: '0 2px 13px 0 rgba(0, 0, 0, 0.07)',
     overflow: 'hidden',
   },
   title: {
@@ -22,4 +21,10 @@ export default (theme: any) => ({
     fontFamily: theme.fontFamily,
     fontSize: 14,
   },
+  normal: {
+    boxShadow: '0 4px 8px 0 rgba(56, 96, 165, 0.15)',
+  },
+  bold: {
+    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12)',
+  }
 });

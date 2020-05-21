@@ -38,4 +38,24 @@ storiesOf('Card', module)
         </Card>
       </Wrapper>
     );
-  });
+  })
+  .add('Shadow variants', () => (
+      <Wrapper>
+        <Card>
+          <Title>
+            Default shadow
+          </Title>
+          <Body>
+            Body
+          </Body>
+        </Card>
+        <Card shadow="bold">
+          <Title>
+            Bold shadow
+          </Title>
+          <Body>
+            Body
+          </Body>
+        </Card>
+      </Wrapper>
+    ));
