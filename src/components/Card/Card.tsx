@@ -8,6 +8,7 @@ import styles from './Card.styles';
 export interface CardProps {
   className?: any;
   children: any;
+  shadow?: 'normal' | 'bold';
 }
 
 const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
@@ -15,6 +16,7 @@ const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<ty
     classes,
     className,
     children,
+    shadow = 'normal',
     ...rest
   } = props;
   return (
@@ -22,6 +24,7 @@ const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<ty
       { ...rest }
       className={ classNames([
         classes.root,
+        classes[shadow],
         className,
       ]) }
     >
