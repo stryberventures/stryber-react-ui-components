@@ -16,6 +16,7 @@ export interface INavigationRouteProps {
   route: any;
   children?: any;
   selected?: boolean;
+  iconComponent?: any;
 }
 
 /** Context used by navigation components */
@@ -78,6 +79,7 @@ const NavigationRoute = (props: INavigationRouteProps & React.HTMLProps<HTMLDivE
     onClick,
     selected = false,
     route,
+    iconComponent,
     ...rest
   } = props;
 
@@ -95,6 +97,8 @@ const NavigationRoute = (props: INavigationRouteProps & React.HTMLProps<HTMLDivE
     onClick && onClick(e);
   };
 
+  const Icon = iconComponent;
+
   return (
     <div
       className={classNames(
@@ -106,6 +110,9 @@ const NavigationRoute = (props: INavigationRouteProps & React.HTMLProps<HTMLDivE
       onClick={onClickWrapper}
       {...rest}
     >
+      {iconComponent && (<div className={classes.iconContainer}>
+        <Icon className={classes.icon} />
+      </div>)}
       { children }
     </div>
   );
