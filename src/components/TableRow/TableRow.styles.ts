@@ -1,8 +1,10 @@
 export default (theme: any) => ({
   root: {
     height: 40,
-    '&:nth-child(even)': {
+  },
+  bodyRow: {
+    '&:nth-child(odd)': {
       backgroundColor: theme.tableBackgroundColor,
     }
-  },
+  }
 });
