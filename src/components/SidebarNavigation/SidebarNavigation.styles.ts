@@ -1,22 +1,36 @@
 export default (theme: any) => ({
   /** Container / Wrapper */
   container: {
-    padding: '10px 0px',
+    padding: '24px 0px',
     backgroundColor: theme.backgroundColorPrimary,
     height: '100%',
 
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: '0 2px 13px 0 rgba(0, 0, 0, 0.07)',
   },
   /** Section */
   section: {
     cursor: 'pointer',
     userSelect: 'none',
-    borderRight: '3px solid rgba(0,0,0,0)',
-    borderLeft: '3px solid rgba(0,0,0,0)',
-    margin: '5px 0px',
-    padding: '2px 21px',
     transition: '0.2s',
+  },
+  sectionSelected: {
+    backgroundColor: '#fff',
+    '& $sectionHeader': {
+      backgroundColor: theme.sidebarItemBackgroundSelected,
+      borderLeft: `4px solid ${theme.sidebarItemColorHighlight}`,
+      '&:hover': {
+        color: '#000',
+      },
+    },
+  },
+  sectionHeader: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: '14.5px 24px',
+    borderRight: '4px solid rgba(0,0,0,0)',
+    borderLeft: '4px solid rgba(0,0,0,0)',
     '&:hover': {
       color: theme.sidebarItemColorHover,
     },
@@ -24,39 +38,16 @@ export default (theme: any) => ({
       color: theme.sidebarItemColorActive
     },
   },
-  sectionSelected: {
-    backgroundColor: theme.sidebarItemBackgroundSelected,
-    color: theme.sidebarItemColorHighlight,
-    borderLeft: `3px solid ${theme.sidebarItemColorHighlight}`,
-    '&:hover': {
-      color: theme.sidebarItemColorHighlightHover,
-    },
-    '&:active': {
-      color: theme.sidebarItemColorHighlightActive,
-    },
-  },
-  sectionHeader: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
   sectionInfoContainer: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
+    justifyContent: 'center'
   },
   sectionTitle: {
-    marginTop: 5,
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightMedium,
-    fontSize: 14,
-    color: theme.sidebarSectionColor,
-  },
-  sectionDescription: {
-    marginTop: 7,
-    fontFamily: theme.fontFamily,
-    fontWeight: theme.fontWeightLight,
-    fontSize: 12,
-    color: theme.sidebarSectionColor,
+    fontSize: 16,
   },
   expandIconContainer: {
     paddingTop: 5,
@@ -83,9 +74,9 @@ export default (theme: any) => ({
   item: {
     cursor: 'pointer',
     transition: '0.3s',
-    color: theme.sidebarItemColor,
-    fontSize: 12,
-    padding: '4px 0px',
+    color: '#969695',
+    fontSize: 14,
+    padding: '12px 24px',
     fontFamily: theme.fontFamily,
     fontWeight: theme.fontWeightRegular,
     '&:hover': {
@@ -94,15 +85,40 @@ export default (theme: any) => ({
     '&:active': {
       color: theme.sidebarItemColorActive,
     },
+    borderLeft: `4px solid ${theme.sidebarItemColorHighlight}`
   },
   itemSelected: {
     fontWeight: theme.fontWeightMedium,
     color: theme.sidebarItemColorSelected,
+    backgroundColor: theme.sidebarItemBackgroundSelected,
     '&:hover': {
       color: theme.sidebarItemColorSelected,
     },
     '&:active': {
       color: theme.sidebarItemColorSelected,
     },
+  },
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 24px'
+  },
+  avatar: {
+    width: 44,
+    height: 44,
+    backgroundColor: '#ccc',
+    borderRadius: 22,
+    marginRight: 10
+  },
+  titleSection: {},
+  title: {
+    margin: 0,
+    fontSize: 16,
+  },
+  description: {
+    margin: 0,
+    fontSize: 12,
+    color: '#1d1d1b',
+    opacity: 0.5,
   },
 });

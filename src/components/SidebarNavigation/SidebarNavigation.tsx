@@ -12,6 +12,8 @@ export interface ISidebarNavigationContainerProps {
   selectedSection?: any;
   selectedRoute?: any;
   children?: any;
+  title?: string;
+  description?: string;
 }
 
 export interface ISidebarNavigationSection {
@@ -56,6 +58,8 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     selectedRoute: propsSelectedRoute,
     onRouteChange,
     classes,
+    title,
+    description,
     ...rest
   } = props;
 
@@ -74,6 +78,14 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
 
   return (
     <div className={classNames(classes.container, className)} {...rest}>
+      {title && (<div className={classes.titleContainer}>
+        <div className={classes.avatar}/>
+        <div className={classes.titleSection}>
+          <p className={classes.title}>{title}</p>
+          {description && <p className={classes.description}>{description}</p>}
+        </div>
+      </div>)
+      }
       <SidebarNavigationContext.Provider
         value={{
           selectedSection: propsSelectedSection === undefined ? selectedSection : propsSelectedSection,
@@ -123,7 +135,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       className={classNames(
         classes.section,
         className,
-        (route === selectedSection) ? classes.sectionSelected : null,
+        (route === selectedSection && !children) ? classes.sectionSelected : null,
       )}
       onClick={onClickWrapper}
       {...rest}
@@ -131,13 +143,12 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       <div className={classes.sectionHeader}>
         <div className={classes.sectionInfoContainer}>
           <div className={classes.sectionTitle}>{title}</div>
-          <div className={classes.sectionDescription}>{description}</div>
         </div>
         <div className={classes.expandIconContainer}>
         {
           areChildrenVisible ? (
             <DownArrow
-              className={classNames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null)}
+              className={classNames(classes.expandIcon, isExpanded ? null : classes.expandIconCollapsed)}
             />
           ) : null
         }
@@ -146,7 +157,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       <div
         className={classNames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden)}
       >
-        { (areChildrenVisible && isExpanded) ? <><hr/>{children}</> : null }
+        { (areChildrenVisible && isExpanded) ? children : null }
       </div>
     </div>
   );
