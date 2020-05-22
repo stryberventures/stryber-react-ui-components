@@ -89,10 +89,10 @@ export default {
   /** Sidebar */
   sidebarSectionColor: colors.black,
   sidebarItemColor: colors.gray,
-  sidebarItemColorHover: colors.grayHover,
+  sidebarItemColorHover: colors.normal,
   sidebarItemColorActive: colors.grayActive,
   sidebarItemColorSelected: colors.black,
-  sidebarItemBackgroundSelected: colors.white,
+  sidebarItemBackgroundSelected: colors.lightGray4,
   sidebarItemColorHighlight: colors.normal,
   sidebarItemColorHighlightHover: colors.normalHover,
   sidebarItemColorHighlightActive: colors.normalActive,
