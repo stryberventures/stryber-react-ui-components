@@ -1,11 +1,11 @@
 export default (theme: any) => ({
   root: {
-    padding: '0 5px',
+    padding: '18px 5px',
     '&:first-child': {
-      paddingLeft: 45,
+      paddingLeft: 22,
     },
     '&:last-child': {
-      paddingRight: 20,
+      paddingRight: 22,
     },
     'th&': {
       whiteSpace: 'nowrap',

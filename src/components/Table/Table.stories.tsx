@@ -30,8 +30,6 @@ storiesOf('Table', module)
       switch(id) {
         case 'website':
           return <a href={content} target="_blank">{content}</a>;
-        case 'name':
-          return <h5>{content}</h5>;
         default:
           return content;
       }
@@ -46,7 +44,7 @@ storiesOf('Table', module)
                 {
                   HEAD_ROW.map(({label})=>
                     <TableCell key={label}>
-                      {label}
+                      <b>{label}</b>
                     </TableCell>
                   )
                 }
@@ -72,13 +70,11 @@ storiesOf('Table', module)
       </Wrapper>
     );
   })
-  .add('without border', () => {
+  .add('with border', () => {
     const getContent = (id:string, content: string) => {
       switch(id) {
         case 'website':
           return <a href={content} target="_blank">{content}</a>;
-        case 'name':
-          return <h5>{content}</h5>;
         default:
           return content;
       }
@@ -87,7 +83,7 @@ storiesOf('Table', module)
     return (
       <Wrapper>
         <div style={{width: '100%', padding: '15px'}}>
-          <Table border={false}>
+          <Table border={true}>
             <TableHead>
               <TableRow>
                 {

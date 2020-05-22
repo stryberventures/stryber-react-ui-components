@@ -13,7 +13,7 @@ interface ITableProps {
 }
 
 const Table = (props: ITableProps & WithStyles<typeof styles>) => {
-  const { border = true, children, classes, className, headerLabel, headerComponent, headerLabelClassName } = props;
+  const { border = false, children, classes, className, headerLabel, headerComponent, headerLabelClassName } = props;
 
   if (!headerLabel && !headerComponent) {
     return (
