@@ -16,7 +16,7 @@ interface ITableDataProps {
 }
 
 const TableData = (props: ITableDataProps) => {
-  const { headerLabel, headerComponent, headRow, rows, className } = props;
+  const { headerLabel, headerComponent, headRow, rows, className, ...rest } = props;
 
   const getHeadRow = () =>
     headRow.map(cell =>
@@ -33,7 +33,9 @@ const TableData = (props: ITableDataProps) => {
     <Table
       className={className}
       headerLabel={headerLabel}
-      headerComponent={headerComponent}>
+      headerComponent={headerComponent}
+      {...rest}
+    >
       <TableHead>
         <TableRow>
           {getHeadRow()}

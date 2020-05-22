@@ -10,7 +10,6 @@ export default (theme: any) => ({
     'th&': {
       whiteSpace: 'nowrap',
       fontWeight: 'normal',
-      borderBottom: `2px solid ${theme.tableBorderColor}`,
     },
   },
 });
