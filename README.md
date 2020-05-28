@@ -9,12 +9,10 @@ UI library for React
 1) Run following commands in the terminal:
 
 ```shell script
-npm i
-npm start
+docker-compose up --build dev
 ```
 
-2) Browse to 'http://localhost:9001/'
-(should normally open automatically after step 1)
+2) Browse to [http://localhost:9001/](http://localhost:9001/)
 
 ## Using the library within other projects ##
 
@@ -35,4 +33,11 @@ npm run build
 
 ```shell script
 npm publish --access public
+```
+
+## Testing
+
+To run tests:
+```bash
+docker-compose up --build test
 ```
