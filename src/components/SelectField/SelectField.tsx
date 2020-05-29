@@ -27,6 +27,7 @@ export interface ISelectFieldProps {
   appendContent?: any;
   errorMessage?: string;
   className?: any;
+  showPrependBackground?: boolean;
 }
 
 /** Main component */
@@ -45,6 +46,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     placeholder,
     choices,
     clearFormValueOnUnmount,
+    showPrependBackground = true,
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -168,6 +170,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
           placeholder={placeholder}
           appendContent={appendContent}
           onClick={() => setDropdownOpen(v => !v)}
+          showPrependBackground={showPrependBackground}
         >
           {/** Input filed layout content */}
           <div
