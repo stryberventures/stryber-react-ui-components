@@ -35,6 +35,7 @@ storiesOf('Select field', module)
           ]}
           onChange={ (d: any) => console.log('SelectField value:', d) }
           value={'1'}
+          showPrependBackground={false}
         />
         <SelectField
           name="option"
