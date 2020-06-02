@@ -16,6 +16,8 @@ export interface ISearchFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   onEnter?: (value: string) => void;
+  onClearClick?: (value: string) => void;
+  onSearchClick?: (value: string) => void;
   sizeVariant?: 'normal' | 'mini' | 'small';
 }
 
@@ -29,6 +31,8 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     onFocus,
     onBlur,
     onEnter,
+    onClearClick,
+    onSearchClick,
     value,
     placeholder = 'Search',
     collapsiblePlaceholder = true,
@@ -67,6 +71,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     e.stopPropagation();
     setInputValue(() => '');
     onChange && onChange('');
+    onClearClick && onClearClick(inputValue);
   };
 
   const onKeyPressWrapper = (e: React.KeyboardEvent) => {
@@ -76,12 +81,20 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
       onEnter && onEnter(inputValue);
     }
   }
+
+  const onSearchClickWrapper = (e: React.MouseEvent) => {
+    onSearchClick && onSearchClick(inputValue);
+  };
+
   /** Prepend magnifying lens */
   const prependContent = (
-    <Search className={classNames(
-      classes.searchIcon,
-      {[classes.searchIconSmall]: sizeVariant === 'small'}
-    )} />
+    <Search 
+      className={classNames(classes.searchIcon, {
+        [classes.searchIconSmall]: sizeVariant === 'small',
+        [classes.searchIconClickable]: onSearchClick
+      })}
+      onClick={onSearchClickWrapper} 
+    />
   );
 
   /** Append content arrow */

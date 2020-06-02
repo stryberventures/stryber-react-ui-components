@@ -9,27 +9,36 @@ storiesOf('Search Field', module)
     return (
       <Wrapper>
         <SearchField
-          onChange={ (d: any) => console.log('SearchBox value:', d) }
-          onEnter={ value => console.log(`onEnter('${value}')`)}
+          onChange={ (d: string) => console.log('SearchBox value:', d) }
+          onEnter={ (d: string) => console.log(`onEnter('${d}')`)}
         />
         <SearchField
           collapsiblePlaceholder={false}
-          onChange={ (d: any) => console.log('SearchBox value:', d) }
-          onEnter={ value => console.log(`onEnter('${value}')`)}
+          onChange={ (d: string) => console.log('SearchBox value:', d) }
+          onEnter={ (d: string) => console.log(`onEnter('${d}')`)}
         />
         <SearchField
           sizeVariant='mini'
           placeholder='Search mini'
           collapsiblePlaceholder={false}
-          onChange={ (d: any) => console.log('SearchBox value:', d) }
-          onEnter={ value => console.log(`onEnter('${value}')`)}
+          onChange={ (d: string) => console.log('SearchBox value:', d) }
+          onEnter={ (d: string) => console.log(`onEnter('${d}')`)}
         />
         <SearchField
           sizeVariant='small'
           placeholder='Search small'
           collapsiblePlaceholder={false}
-          onChange={ (d: any) => console.log('SearchBox small value:', d) }
-          onEnter={ value => console.log(`onEnter('${value}')`)}
+          onChange={ (d: string) => console.log('SearchBox small value:', d) }
+          onEnter={ (d: string) => console.log(`onEnter('${d}')`)}
+        />
+        <SearchField
+          sizeVariant='small'
+          placeholder='Search Clickable'
+          collapsiblePlaceholder={false}
+          onChange={ (d: string) => console.log('SearchBox small value:', d) }
+          onEnter={ (d: string) => console.log(`onEnter('${d}')`)}
+          onSearchClick={ (d: string) => { console.log('Search clicked with value:', d)}}
+          onClearClick={ (d: string) => { console.log('Clear clicked with value:', d)}}
         />
       </Wrapper>
     );

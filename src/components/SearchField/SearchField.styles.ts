@@ -9,6 +9,11 @@ export default (theme: any) => ({
   searchIcon: {
     fill: theme.inputPlaceholderColorIdle || '#95acbf',
   },
+  searchIconClickable: {
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  },
   searchIconSmall: {
     width: 15,
   },
@@ -17,6 +22,9 @@ export default (theme: any) => ({
     marginRight: 10,
     width: 18,
     fill: theme.inputColorBorderIdle || '#95acbf',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   },
   /** Selected values Wrapper */
   selectElement: {
