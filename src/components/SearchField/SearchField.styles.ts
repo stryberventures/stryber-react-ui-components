@@ -14,7 +14,7 @@ export default (theme: any) => ({
   },
   /** Clear icon */
   clearIcon: {
-    marginRight: 10,
+    marginRight: 16,
     width: 18,
     fill: theme.inputColorBorderIdle || '#95acbf',
   },
@@ -122,4 +122,10 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
+  searchIconContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 16
+  }
 });

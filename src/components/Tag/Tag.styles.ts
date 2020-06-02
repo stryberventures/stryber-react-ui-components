@@ -8,7 +8,8 @@ export default (theme: any) => ({
   },
   closeBlock: {
     display: 'inline-block',
-    marginLeft: 12
+    marginLeft: 12,
+    cursor: 'pointer'
   },
   flat: {
 
