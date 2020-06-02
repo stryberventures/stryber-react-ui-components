@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { InputFieldLayout } from '../InputFieldLayout';
+// import { InputFieldLayout } from '../InputFieldLayout';
 import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './SearchField.styles';
 import { CloseOutline, Search } from '../Icons';
+import { TextInput } from '../InputField/Inputs/TextInput';
 
 /** Interfaces */
 export interface ISearchFieldProps {
@@ -17,6 +18,9 @@ export interface ISearchFieldProps {
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   onEnter?: (value: string) => void;
   sizeVariant?: 'normal' | 'mini' | 'small';
+  layout?: 'default' | 'simple' | 'bare';
+  label?: string;
+  large?: boolean;
 }
 
 /** Main component */
@@ -33,6 +37,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     placeholder = 'Search',
     collapsiblePlaceholder = true,
     sizeVariant = 'normal',
+    ...rest
   } = props;
 
   /** Focus status (needed for styles) */
@@ -76,13 +81,6 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
       onEnter && onEnter(inputValue);
     }
   }
-  /** Prepend magnifying lens */
-  const prependContent = (
-    <Search className={classNames(
-      classes.searchIcon,
-      {[classes.searchIconSmall]: sizeVariant === 'small'}
-    )} />
-  );
 
   /** Append content arrow */
   const appendContent =
@@ -92,35 +90,25 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         className={classNames([
           classes.clearIcon,
         ])}
-      />) : null;
+      />) : (<div className={classes.searchIconContainer}><Search className={classNames(
+      classes.searchIcon,
+      )} /></div>);
 
   return (
-    <InputFieldLayout
-      className={className}
-      isPlaceholderCollapsed={isFocused || inputValue !== ''}
+    <TextInput
+      {...rest}
+      isFocused={isFocused}
+      onFocus={onFocusWrapper}
+      onBlur={onBlurWrapper}
+      onChange={onChangeWrapper}
+      onKeyPress={onKeyPressWrapper}
       disabled={disabled}
-      placeholder={collapsiblePlaceholder ? placeholder : undefined}
-      prependContent={prependContent}
+      placeholder={placeholder}
+      type="text"
+      value={inputValue}
       appendContent={appendContent}
-      showPrependBackground={false}
-      sizeVariant={sizeVariant}
-    >
-      {/** Input field layout content */}
-      <input
-        type="text"
-        onChange={onChangeWrapper}
-        onBlur={onBlurWrapper}
-        onFocus={onFocusWrapper}
-        onKeyPress={onKeyPressWrapper}
-        value={inputValue}
-        placeholder={collapsiblePlaceholder ? undefined : placeholder}
-        className={classNames([
-          classes.inputField,
-          sizeVariant === 'normal' ? classes.inputFieldNormal : classes.inputFieldMini,
-          (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
-        ])}
-      />
-    </InputFieldLayout>
+      name="search"
+    />
   );
 };
 
