@@ -51,12 +51,28 @@ export default (theme: any) => ({
       color: '#cccccc'
     }
   },
+  /* handle size */
   large: {
     '& $root': {
       maxHeight: theme.inputLargeMaxHeightIdle,
     },
     '& $label': {
       fontSize: 16,
+    }
+  },
+  normal: {
+
+  },
+  mini: {
+    '& $root': {
+      maxHeight: theme.inputMiniMaxHeightIdle,
+      '& input': {
+        padding: 4,
+        paddingLeft: 16,
+      }
+    },
+    '& $label': {
+      fontSize: 10,
     }
   }
 });

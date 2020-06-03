@@ -67,6 +67,21 @@ storiesOf('Search Field', module)
           <Tag shape="circle">Option 1</Tag>
           <Tag shape="circle">Option 2</Tag>
         </div>
+        <SearchField
+          layout="simple"
+          placeholder='Mini simple search'
+          collapsiblePlaceholder={false}
+          onChange={ (d: any) => console.log('SearchBox value:', d) }
+          onEnter={ value => console.log(`onEnter('${value}')`)}
+          sizeVariant="mini"
+        />
+        <SearchField
+          collapsiblePlaceholder={false}
+          onChange={ (d: any) => console.log('SearchBox value:', d) }
+          onEnter={ value => console.log(`onEnter('${value}')`)}
+          sizeVariant="mini"
+          placeholder="Mini defoult search"
+        />
       </Wrapper>
     );
   });

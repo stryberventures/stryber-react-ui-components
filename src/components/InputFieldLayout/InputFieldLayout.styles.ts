@@ -55,6 +55,7 @@ export default (theme: any) => ({
   },
   placeholderMini: {
     lineHeight: '26px',
+    paddingLeft: 16,
   },
   placeholderInvalid: {
   },
@@ -139,6 +140,20 @@ export default (theme: any) => ({
     },
     '& $placeholderNormal': {
       padding: 16
+    }
+  },
+  normal: {},
+  mini: {
+    '& $root': {
+      maxHeight: theme.inputMiniMaxHeightIdle,
+      '& input': {
+        padding: 4,
+        paddingLeft: 16,
+        transform: 'none'
+      },
+      '& $placeholderCollapsed': {
+        transform: 'translate(0, -20px)',
+      }
     }
   }
 });
