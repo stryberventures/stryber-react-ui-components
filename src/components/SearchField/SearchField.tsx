@@ -17,7 +17,7 @@ export interface ISearchFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   onEnter?: (value: string) => void;
-  sizeVariant?: 'normal' | 'mini' | 'small';
+  sizeVariant?: 'normal' | 'mini';
   layout?: 'default' | 'simple' | 'bare';
   label?: string;
   large?: boolean;
@@ -90,7 +90,10 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
         className={classNames([
           classes.clearIcon,
         ])}
-      />) : (<div className={classes.searchIconContainer}><Search className={classNames(
+      />) : (<div className={classes.searchIconContainer}>
+        <Search
+          width={sizeVariant === 'mini' ? 16 : 24}
+          className={classNames(
       classes.searchIcon,
       )} /></div>);
 
@@ -108,6 +111,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
       value={inputValue}
       appendContent={appendContent}
       name="search"
+      sizeVariant={sizeVariant}
     />
   );
 };

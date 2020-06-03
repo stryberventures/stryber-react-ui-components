@@ -23,6 +23,7 @@ interface ITextInputProps {
   label?: string;
   large?: boolean;
   labelClassName?: any;
+  sizeVariant?: 'mini' | 'normal';
 }
 
 const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
@@ -40,6 +41,7 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
     layout = 'default',
     large,
     labelClassName,
+    sizeVariant = 'normal',
     ...rest
   } = props;
 
@@ -69,6 +71,7 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
       label={label}
       large={large}
       labelClassName={labelClassName}
+      sizeVariant={sizeVariant}
     >
       <input
         {...rest}

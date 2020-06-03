@@ -41,7 +41,7 @@ const SimpleInputLayout = (props: ISimpleInputLayoutProps & React.HTMLProps<HTML
     ...rest
   } = props;
   return (
-    <div className={large ? classes.large : ''}>
+    <div className={classNames([large ? classes.large : ''], classes[sizeVariant])}>
       {label ? (<div className={classNames([labelClassName, classes.label, {error: !!errorMsg}, {disabledLabel: disabled}])}>
         {label}
         </div>)
