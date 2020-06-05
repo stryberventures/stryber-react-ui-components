@@ -11,6 +11,7 @@ import Download from './Download';
 import File from './File';
 import Delete from './Delete';
 import TagClose from './TagClose'
+import Plus from './Plus'
 
 export {
   DownArrow,
@@ -26,4 +27,5 @@ export {
   Profile,
   Delete,
   TagClose,
+  Plus,
 }

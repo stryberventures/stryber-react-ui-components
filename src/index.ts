@@ -55,6 +55,9 @@ import * as PaginationElements from './components/Pagination';
 import Tag from './components/Tag';
 import * as TagElements from './components/Tag';
 
+import Avatar from './components/Avatar';
+import * as AvatarElements from './components/Avatar';
+
 /** Layout */
 import Grid from './components/Grid';
 import * as GridElements from './components/Grid'
@@ -143,4 +146,5 @@ export {
   DropDownField, DropDownFieldElements,
   ValueBadge, ValueBadgeElements,
   Tag, TagElements,
+  Avatar, AvatarElements,
 };
