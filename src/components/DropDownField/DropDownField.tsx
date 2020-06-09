@@ -4,9 +4,10 @@ import withStyles, { WithStyles } from 'react-jss';
 import { DownArrow } from '../Icons';
 import classNames from 'classnames';
 import { InputFieldLayout } from '../InputFieldLayout';
+import {SimpleInputLayout} from '../SimpleInputLayout';
 
 interface IDropDownFieldProps {
-  placeholder: string;
+  placeholder?: string;
   children: React.ReactNode;
   appendContent?: any;
   onClose?: () => void;
@@ -15,6 +16,8 @@ interface IDropDownFieldProps {
   sizeVariant?: 'normal' | 'mini';
   customPlaceholderFont?: boolean;
   placeholderClassName?: string;
+  layout?: 'default' | 'simple';
+  label?: string;
 }
 
 const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) => {
@@ -29,6 +32,8 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     placeholderClassName,
     customPlaceholderFont,
     sizeVariant = 'normal',
+    layout = 'default',
+    label,
   } = props;
 
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
@@ -59,6 +64,16 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     isDropdownOpen && onClose && onClose();
   };
 
+  let LayoutComponent;
+  switch (layout) {
+    case 'simple':
+      LayoutComponent = SimpleInputLayout;
+      break;
+    default:
+      LayoutComponent = InputFieldLayout;
+      break;
+  }
+
   return (
     <>
       {isDropdownOpen && (
@@ -68,7 +83,7 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
         />
       )}
       <div className={classNames(classes.root, {[classes.rootOpen]: isDropdownOpen}, className)}>
-        <InputFieldLayout
+        <LayoutComponent
           className={classNames({
             [classes.inputNormal]: sizeVariant === 'normal',
           })}
@@ -84,6 +99,7 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
           appendContent={appendContentWithArrow}
           onClick={toggleDropdown}
           tabIndex={0}
+          label={label}
         />
         {isDropdownOpen && (
           <div className={classNames(classes.dropdownWrapper,
