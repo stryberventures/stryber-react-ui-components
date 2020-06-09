@@ -53,6 +53,58 @@ storiesOf('DropDownField', module)
         </DropDownField>
       </Wrapper>
     );
+  })
+  .add('simple', () => {
+    return (
+      <Wrapper>
+        <DropDownField
+          layout="simple"
+          onClose={() => {console.log("Dropdown onClose")}}
+          label="Simple DropDownField"
+        >
+          Some custom content here
+        </DropDownField>
+        <DropDownField
+          layout="simple"
+          label="Simple DropDownField with append content"
+          onClose={() => {console.log("Dropdown onClose")}}
+          appendContent={"append content"}
+        >
+          Some custom content here
+        </DropDownField>
+        <DropDownField
+          layout="simple"
+          label="Simple DropDownField with radio options"
+        >
+          <RadioField
+            name="answer"
+            placeholder="Option A"
+            checked
+            value="a"
+            onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+          />
+          <RadioField
+            name="answer"
+            placeholder="Option B"
+            value="b"
+            onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+          />
+          <RadioField
+            name="answer"
+            placeholder="Option C"
+            checked
+            value="c"
+            onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+          />
+          <RadioField
+            name="answer"
+            placeholder="Option D"
+            value="d"
+            onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
+          />
+        </DropDownField>
+      </Wrapper>
+    );
   }).add('mini', () => {
     return (
       <Wrapper>

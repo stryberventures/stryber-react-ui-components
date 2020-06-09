@@ -11,14 +11,16 @@ interface ITagProps {
   className?: any;
   initials?: string;
   image?: string;
+  onClick?: (e: React.SyntheticEvent) => void;
 }
 
-const Avatar = (props: ITagProps) => {
+const Avatar = (props: ITagProps & React.HTMLAttributes<HTMLInputElement>) => {
   const {
     sizeVariant = 'normal',
     initials,
     image,
     className,
+    onClick,
     ...rest
   } = props;
   const classes = useStyles(image)
@@ -48,7 +50,7 @@ const Avatar = (props: ITagProps) => {
       classes[sizeVariant],
       initials ? classes.initials : null,
       className,
-    ])}>
+    ])} onClick={onClick}>
       {!image && getContent()}
       <div className={classes.avatarWrapper}>
         <div className={classes.octagon}>
