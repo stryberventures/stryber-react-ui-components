@@ -6,7 +6,6 @@ import styles from './Navbar.styles';
 /** Interfaces */
 export interface INavbarProps extends React.HTMLProps<HTMLDivElement> {
   children?: any;
-  background?: string;
 }
 
 export interface INavbarSectionProps extends React.HTMLProps<HTMLDivElement> {
@@ -19,12 +18,11 @@ const Navbar = (props: INavbarProps & WithStyles<typeof styles>) => {
     className,
     children,
     classes,
-    background = '#fff',
     ...rest
   } = props;
 
   return (
-    <div style={{ backgroundColor: background }} className={classNames(classes.navbar, className)} {...rest}>
+    <div className={classNames(classes.navbar, className)} {...rest}>
       { children }
     </div>
   );

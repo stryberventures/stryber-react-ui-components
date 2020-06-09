@@ -1,5 +1,6 @@
 export default (theme: any) => ({
   container: {
+    backgroundColor: theme.backgroundColorPrimary,
     display: 'flex',
     flexWrap: 'no-wrap',
     alignItems: 'center',
@@ -16,7 +17,7 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightMedium,
     color: theme.navbarItemColor,
     fontSize: 14,
-    padding: '5px 24px',
+    padding: '15px 12px',
     [`@media (max-width: ${theme.gridSmBreakpoint || 576}px)`]: {
       padding: 5,
     },
@@ -25,11 +26,14 @@ export default (theme: any) => ({
     textAlign: 'center',
     verticalAlign: 'middle',
     transition: '0.2s',
+    opacity: .5,
     '&:hover': {
       color: theme.navbarItemColorHover,
+      opacity: 1
     },
     '&:active': {
       color: theme.navbarItemColorActive,
+      opacity: 1
     },
     margin: 0,
     borderTop: '3px solid rgba(0,0,0,0)',
@@ -37,6 +41,7 @@ export default (theme: any) => ({
   },
   itemSelected: {
     color: theme.navbarItemColorHighlight,
+    opacity: 1,
     '&:hover': {
       color: theme.navbarItemColorHighlightHover,
     },
@@ -46,17 +51,5 @@ export default (theme: any) => ({
     '&.underlined': {
       borderBottom: `3px solid ${theme.navbarItemColorHighlight}`
     },
-    '& $icon': {
-      fill: theme.navbarItemColorHighlight,
-    },
   },
-  iconContainer: {
-    display: 'inline-block',
-    width: 14,
-    marginRight: 4,
-  },
-  icon: {
-    verticalAlign: 'middle',
-    fill: theme.navbarItemColor,
-  }
 });

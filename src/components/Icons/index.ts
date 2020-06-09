@@ -10,8 +10,9 @@ import DownArrow from './DownArrow';
 import Download from './Download';
 import File from './File';
 import Delete from './Delete';
-import TagClose from './TagClose'
-import Plus from './Plus'
+import TagClose from './TagClose';
+import Hamburger from './Hamburger';
+import Plus from './Plus';
 
 export {
   DownArrow,
@@ -28,4 +29,5 @@ export {
   Delete,
   TagClose,
   Plus,
+  Hamburger,
 }

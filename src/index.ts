@@ -100,6 +100,10 @@ import * as NavbarNavigationElements from './components/NavbarNavigation';
 
 import SidebarNavigation from './components/SidebarNavigation';
 import * as SidebarNavigationElements from './components/SidebarNavigation';
+
+import NavBurger from './components/NavBurger';
+import * as NavBurgerElements from './components/NavBurger';
+
 /** Misc */
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
@@ -147,4 +151,5 @@ export {
   ValueBadge, ValueBadgeElements,
   Tag, TagElements,
   Avatar, AvatarElements,
+  NavBurger, NavBurgerElements,
 };
