@@ -12,6 +12,7 @@ interface IDropDownFieldProps {
   onClose?: () => void;
   disabled?: boolean;
   className?: string;
+  listClassName?: string;
   sizeVariant?: 'normal' | 'mini';
   customPlaceholderFont?: boolean;
   placeholderClassName?: string;
@@ -24,6 +25,7 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     placeholder,
     children,
     className,
+    listClassName,
     appendContent,
     onClose,
     placeholderClassName,
@@ -87,7 +89,8 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
         />
         {isDropdownOpen && (
           <div className={classNames(classes.dropdownWrapper,
-            sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal
+            sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal,
+            listClassName
           )}>
             {children}
           </div>
