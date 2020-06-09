@@ -80,12 +80,12 @@ export default {
   inputValueColor: colors.darkGray2,
 
   /** Navbar */
-  navbarItemColor: colors.gray,
-  navbarItemColorHover: colors.grayHover,
-  navbarItemColorActive: colors.grayActive,
-  navbarItemColorHighlight: colors.normal,
-  navbarItemColorHighlightHover: colors.normalHover,
-  navbarItemColorHighlightActive: colors.normalActive,
+  navbarItemColor: colors.black,
+  navbarItemColorHover: colors.black,
+  navbarItemColorActive: colors.black,
+  navbarItemColorHighlight: colors.black,
+  navbarItemColorHighlightHover: colors.black,
+  navbarItemColorHighlightActive: colors.black,
 
   /** Sidebar */
   sidebarSectionColor: colors.black,
