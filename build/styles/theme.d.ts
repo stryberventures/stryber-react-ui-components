@@ -23,14 +23,8 @@ declare const _default: {
     buttonsLetterSpacing: number;
     subtitleFontSize: number;
     subtitleLetterSpacing: number;
-    capsFontSize: number;
-    capsLetterSpacing: number;
-    smallLinkFontSize: number;
-    smallLinkLetterSpacing: number;
-    bodySmallFontSize: number;
-    bodySmallLetterSpacing: number;
-    capsSmallFontSize: number;
-    capsSmallLetterSpacing: number;
+    descriptionFontSize: number;
+    descriptionLetterSpacing: number;
     messageFontSize: number;
     messageLetterSpacing: number;
     finePrintFontSize: number;
@@ -49,6 +43,7 @@ declare const _default: {
     buttonBackgroundColorDisabled: string;
     buttonColorDisabled: string;
     /** Input fields */
+    inputMiniMaxHeightIdle: number;
     inputMaxHeightIdle: number;
     inputLargeMaxHeightIdle: number;
     inputColorIdle: string;
@@ -112,5 +107,18 @@ declare const _default: {
     gridLgBreakpoint: number;
     gridXlBreakpointFallback: number;
     gridXlBreakpoint: number;
+    /** Slider */
+    sliderBgColor: string;
+    sliderProgressColor: string;
+    sliderHeight: number;
+    sliderThumbSize: number;
+    sliderSmallHeight: number;
+    sliderSmallThumbSize: number;
+    sliderLargeHeight: number;
+    sliderLargeThumbSize: number;
+    /** Dropdown */
+    dropdownArrowSize: number;
+    /** Tag */
+    tagBackgroundColor: string;
 };
 export default _default;

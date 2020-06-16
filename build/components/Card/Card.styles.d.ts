@@ -3,7 +3,6 @@ declare const _default: (theme: any) => {
         borderRadius: number;
         display: string;
         flexFlow: string;
-        boxShadow: string;
         overflow: string;
     };
     title: {
@@ -19,6 +18,12 @@ declare const _default: (theme: any) => {
         fontWeight: any;
         fontFamily: any;
         fontSize: number;
+    };
+    normal: {
+        boxShadow: string;
+    };
+    bold: {
+        boxShadow: string;
     };
 };
 export default _default;

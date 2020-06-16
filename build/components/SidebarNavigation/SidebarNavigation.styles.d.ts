@@ -6,56 +6,47 @@ declare const _default: (theme: any) => {
         height: string;
         display: string;
         flexDirection: string;
+        boxShadow: string;
     };
     /** Section */
     section: {
         cursor: string;
         userSelect: string;
-        borderRight: string;
-        borderLeft: string;
-        margin: string;
-        padding: string;
         transition: string;
-        '&:hover': {
-            color: any;
-        };
-        '&:active': {
-            color: any;
-        };
     };
     sectionSelected: {
-        backgroundColor: any;
-        color: any;
-        borderLeft: string;
-        '&:hover': {
-            color: any;
-        };
-        '&:active': {
-            color: any;
+        backgroundColor: string;
+        '& $sectionHeader': {
+            backgroundColor: any;
+            borderLeft: string;
+            '&:hover': {
+                color: string;
+            };
         };
     };
     sectionHeader: {
         display: string;
         flexDirection: string;
+        padding: string;
+        borderRight: string;
+        borderLeft: string;
+        '&:hover': {
+            color: any;
+        };
+        '&:active': {
+            color: any;
+        };
     };
     sectionInfoContainer: {
         display: string;
         flexDirection: string;
         flex: number;
+        justifyContent: string;
     };
     sectionTitle: {
-        marginTop: number;
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
-        color: any;
-    };
-    sectionDescription: {
-        marginTop: number;
-        fontFamily: any;
-        fontWeight: any;
-        fontSize: number;
-        color: any;
     };
     expandIconContainer: {
         paddingTop: number;
@@ -82,7 +73,7 @@ declare const _default: (theme: any) => {
     item: {
         cursor: string;
         transition: string;
-        color: any;
+        color: string;
         fontSize: number;
         padding: string;
         fontFamily: any;
@@ -93,16 +84,41 @@ declare const _default: (theme: any) => {
         '&:active': {
             color: any;
         };
+        borderLeft: string;
     };
     itemSelected: {
         fontWeight: any;
         color: any;
+        backgroundColor: any;
         '&:hover': {
             color: any;
         };
         '&:active': {
             color: any;
         };
+    };
+    titleContainer: {
+        display: string;
+        alignItems: string;
+        padding: string;
+    };
+    avatar: {
+        width: number;
+        height: number;
+        backgroundColor: string;
+        borderRadius: number;
+        marginRight: number;
+    };
+    titleSection: {};
+    title: {
+        margin: number;
+        fontSize: number;
+    };
+    description: {
+        margin: number;
+        fontSize: number;
+        color: string;
+        opacity: number;
     };
 };
 export default _default;

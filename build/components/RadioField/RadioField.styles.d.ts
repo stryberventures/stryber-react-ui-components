@@ -30,6 +30,7 @@ declare const _default: (theme: any) => {
         backgroundColor: any;
         '&:checked ~ $checkmark': {
             backgroundColor: any;
+            borderWidth: number;
         };
         '&:checked ~ $checkmark:after': {
             display: string;
@@ -95,6 +96,37 @@ declare const _default: (theme: any) => {
                 width: number;
                 height: number;
             };
+        };
+    };
+    /** Handle error message */
+    errorMessage: {
+        color: any;
+        fontFamily: any;
+        fontWeight: any;
+        fontSize: number;
+    };
+    error: {
+        '& $root': {
+            '&:hover $input:checked ~ $checkmark': {
+                backgroundColor: any;
+            };
+            '&:active $input:checked ~ $checkmark': {
+                backgroundColor: any;
+            };
+        };
+        '& $input': {
+            '&:checked ~ $checkmark': {
+                backgroundColor: any;
+            };
+            '&:checked ~ $placeholder': {
+                color: any;
+            };
+        };
+        '& $checkmark': {
+            border: string;
+        };
+        '& $placeholder': {
+            color: any;
         };
     };
 };

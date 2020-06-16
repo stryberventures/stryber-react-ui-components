@@ -9,6 +9,7 @@ export interface IMultiSelectFieldProps {
     placeholder?: string;
     choices: IMultiChoiceData[];
     values?: any[];
+    controlled?: boolean;
     disabled?: boolean;
     onChange?: (value: any) => void;
     onFocus?: (e: React.BaseSyntheticEvent) => void;
@@ -22,6 +23,8 @@ export interface IMultiSelectFieldProps {
     showBadgeChoices?: boolean;
     refApi?: any;
     search?: boolean;
+    layout?: 'default' | 'simple';
+    label?: string;
 }
 declare const PropsWrappedStyledMultiSelectField: React.ForwardRefExoticComponent<IMultiSelectFieldProps & React.RefAttributes<{}>>;
 /** Exports */

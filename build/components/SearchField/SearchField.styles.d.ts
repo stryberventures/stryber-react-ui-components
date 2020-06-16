@@ -18,6 +18,10 @@ declare const _default: (theme: any) => {
         width: number;
         fill: any;
     };
+    clearIconMini: {
+        marginRight: number;
+        width: number;
+    };
     /** Selected values Wrapper */
     selectElement: {
         position: string;
@@ -112,6 +116,15 @@ declare const _default: (theme: any) => {
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
+    };
+    searchIconContainer: {
+        display: string;
+        alignItems: string;
+        justifyContent: string;
+        marginRight: number;
+    };
+    searchIconContainerMini: {
+        marginRight: number;
     };
 };
 export default _default;

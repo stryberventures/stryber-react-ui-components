@@ -26,6 +26,7 @@ declare const _default: {
     lightGray: string;
     lightGray2: string;
     lightGray3: string;
+    lightGray4: string;
     darkGray2: string;
     white: string;
     whiteHover: string;

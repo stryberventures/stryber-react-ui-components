@@ -18,6 +18,10 @@ export default (theme: any) => ({
     width: 18,
     fill: theme.inputColorBorderIdle || '#95acbf',
   },
+  clearIconMini: {
+    marginRight: 8,
+    width: 15,
+  },
   /** Selected values Wrapper */
   selectElement: {
     position: 'absolute',
@@ -127,5 +131,8 @@ export default (theme: any) => ({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16
+  },
+  searchIconContainerMini: {
+    marginRight: 8
   }
 });

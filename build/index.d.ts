@@ -27,6 +27,8 @@ import SearchField from './components/SearchField';
 import * as SearchFieldElements from './components/SearchField';
 import SearchBox from './components/SearchBox';
 import * as SearchBoxElements from './components/SearchBox';
+import Slider from './components/Slider';
+import * as SliderElements from './components/Slider';
 /** Active elements */
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
@@ -34,6 +36,10 @@ import ButtonsSet from './components/ButtonsSet';
 import * as ButtonsSetElements from './components/ButtonsSet';
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
+import Tag from './components/Tag';
+import * as TagElements from './components/Tag';
+import Avatar from './components/Avatar';
+import * as AvatarElements from './components/Avatar';
 /** Layout */
 import Grid from './components/Grid';
 import * as GridElements from './components/Grid';
@@ -64,6 +70,8 @@ import NavbarNavigation from './components/NavbarNavigation';
 import * as NavbarNavigationElements from './components/NavbarNavigation';
 import SidebarNavigation from './components/SidebarNavigation';
 import * as SidebarNavigationElements from './components/SidebarNavigation';
+import NavBurger from './components/NavBurger';
+import * as NavBurgerElements from './components/NavBurger';
 /** Misc */
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
@@ -72,4 +80,4 @@ import * as DropDownFieldElements from './components/DropDownField';
 import ValueBadge from './components/ValueBadge';
 import * as ValueBadgeElements from './components/ValueBadge';
 /** Exports */
-export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, TableBody, TableBodyElements, TableCell, TableCellElements, TableRow, TableRowElements, TableHead, TableHeadElements, TableData, TableDataElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, ButtonsSet, ButtonsSetElements, DropDownField, DropDownFieldElements, ValueBadge, ValueBadgeElements, };
+export { ThemeProvider, colors, theme, Form, FormElements, RadioField, RadioFieldElements, PasswordField, PasswordFieldElements, InputField, InputFieldElements, CheckboxField, CheckboxFieldElements, SelectField, SelectFieldElements, Slider, SliderElements, MultiSelectField, MultiSelectFieldElements, FileField, FileFieldElements, SearchField, SearchFieldElements, SearchBox, SearchBoxElements, Card, CardElements, Container, ContainerElements, Grid, GridElements, Button, ButtonElements, Pagination, PaginationElements, Table, TableElements, TableBody, TableBodyElements, TableCell, TableCellElements, TableRow, TableRowElements, TableHead, TableHeadElements, TableData, TableDataElements, Icons, Navbar, NavbarElements, NavbarNavigation, NavbarNavigationElements, SidebarNavigation, SidebarNavigationElements, Badge, BadgeElements, ButtonsSet, ButtonsSetElements, DropDownField, DropDownFieldElements, ValueBadge, ValueBadgeElements, Tag, TagElements, Avatar, AvatarElements, NavBurger, NavBurgerElements, };
