@@ -35,8 +35,8 @@ declare const _default: (theme: any) => {
     dropdownArrow: {
         transition: string;
         fill: any;
-        width: number;
-        height: number;
+        width: any;
+        height: any;
     };
     dropdownArrowNormal: {
         marginRight: number;

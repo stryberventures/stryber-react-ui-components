@@ -7,6 +7,8 @@ export interface ISidebarNavigationContainerProps {
     selectedSection?: any;
     selectedRoute?: any;
     children?: any;
+    title?: string;
+    description?: string;
 }
 export interface ISidebarNavigationSection {
     title: any;

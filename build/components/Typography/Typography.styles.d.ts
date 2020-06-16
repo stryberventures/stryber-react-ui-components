@@ -14,22 +14,7 @@ declare const _default: (theme: any) => {
         fontWeight: any;
         letterSpacing: any;
     };
-    caps: {
-        fontSize: any;
-        fontWeight: any;
-        letterSpacing: any;
-    };
-    smallLink: {
-        fontSize: any;
-        fontWeight: any;
-        letterSpacing: any;
-    };
-    bodySmall: {
-        fontSize: any;
-        fontWeight: any;
-        letterSpacing: any;
-    };
-    capsSmall: {
+    description: {
         fontSize: any;
         fontWeight: any;
         letterSpacing: any;

@@ -10,4 +10,7 @@ import DownArrow from './DownArrow';
 import Download from './Download';
 import File from './File';
 import Delete from './Delete';
-export { DownArrow, Download, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, Delete, };
+import TagClose from './TagClose';
+import Hamburger from './Hamburger';
+import Plus from './Plus';
+export { DownArrow, Download, Close, Check, CloseOutline, Search, Eye, EyeDisabled, File, PrependBackground, Profile, Delete, TagClose, Plus, Hamburger, };

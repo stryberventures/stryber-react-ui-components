@@ -53,6 +53,7 @@ declare const _default: (theme: any) => {
     };
     placeholderMini: {
         lineHeight: string;
+        paddingLeft: number;
     };
     placeholderInvalid: {};
     placeholderCollapsed: {
@@ -132,6 +133,20 @@ declare const _default: (theme: any) => {
         };
         '& $placeholderNormal': {
             padding: number;
+        };
+    };
+    normal: {};
+    mini: {
+        '& $root': {
+            maxHeight: any;
+            '& input': {
+                padding: number;
+                paddingLeft: number;
+                transform: string;
+            };
+            '& $placeholderCollapsed': {
+                transform: string;
+            };
         };
     };
 };

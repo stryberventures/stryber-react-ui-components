@@ -10,7 +10,7 @@ export interface IInputFieldLayoutProps {
     appendContent?: any;
     showPrependBackground?: boolean;
     children?: any;
-    sizeVariant?: 'normal' | 'mini' | 'small';
+    sizeVariant?: 'normal' | 'mini';
     customPlaceholderFont?: boolean;
     large?: boolean;
     labelClassName?: any;

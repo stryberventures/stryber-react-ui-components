@@ -57,5 +57,18 @@ declare const _default: (theme: any) => {
             fontSize: number;
         };
     };
+    normal: {};
+    mini: {
+        '& $root': {
+            maxHeight: any;
+            '& input': {
+                padding: number;
+                paddingLeft: number;
+            };
+        };
+        '& $label': {
+            fontSize: number;
+        };
+    };
 };
 export default _default;

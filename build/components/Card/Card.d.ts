@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface CardProps {
     className?: any;
     children: any;
+    shadow?: 'normal' | 'bold';
 }
 /** Title */
 interface TitleProps {

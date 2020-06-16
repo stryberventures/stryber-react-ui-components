@@ -57,6 +57,7 @@ declare const _default: (theme: any) => {
         /** Checkmark */
         '&:checked ~ $checkmark': {
             backgroundColor: any;
+            borderWidth: number;
         };
         '&:checked ~ $checkmark:after': {
             display: string;
@@ -110,7 +111,6 @@ declare const _default: (theme: any) => {
         width: number;
         backgroundColor: any;
         borderRadius: number;
-        border: string;
         /** Switch */
         '&:after': {
             transition: string;
@@ -200,6 +200,35 @@ declare const _default: (theme: any) => {
             '&:checked ~ $switch:after': {
                 left: number;
             };
+        };
+    };
+    /** Handle error styles */
+    error: {
+        '& $checkmark': {
+            border: string;
+        };
+        '& $input': {
+            '&:checked ~ $checkmark': {
+                backgroundColor: any;
+            };
+            '&:checked ~ $placeholder': {
+                color: any;
+            };
+            '&:checked ~ $switch': {
+                backgroundColor: any;
+            };
+        };
+        '&:hover $input:checked ~ $checkmark': {
+            backgroundColor: any;
+        };
+        '&:active $input:checked ~ $checkmark': {
+            backgroundColor: any;
+        };
+        '&:hover $input:checked ~ $switch': {
+            backgroundColor: any;
+        };
+        '&:active $input:checked ~ $switch': {
+            backgroundColor: any;
         };
     };
 };

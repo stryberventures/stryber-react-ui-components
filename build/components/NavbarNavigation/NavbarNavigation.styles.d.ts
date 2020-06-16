@@ -15,17 +15,20 @@ declare const _default: (theme: any) => {
         fontWeight: any;
         color: any;
         fontSize: number;
-        padding: number;
+        padding: string;
         cursor: string;
         userSelect: string;
         textAlign: string;
         verticalAlign: string;
         transition: string;
+        opacity: number;
         '&:hover': {
             color: any;
+            opacity: number;
         };
         '&:active': {
             color: any;
+            opacity: number;
         };
         margin: number;
         borderTop: string;
@@ -33,6 +36,7 @@ declare const _default: (theme: any) => {
     };
     itemSelected: {
         color: any;
+        opacity: number;
         '&:hover': {
             color: any;
         };

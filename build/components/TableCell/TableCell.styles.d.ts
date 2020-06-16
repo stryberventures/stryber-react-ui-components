@@ -10,7 +10,6 @@ declare const _default: (theme: any) => {
         'th&': {
             whiteSpace: string;
             fontWeight: string;
-            borderBottom: string;
         };
     };
 };

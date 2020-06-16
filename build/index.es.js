@@ -1,5 +1,5 @@
 import { createElement, Fragment, createContext, useState, useEffect, useContext, createRef, forwardRef, useImperativeHandle, useRef } from 'react';
-import withStyles, { ThemeProvider as ThemeProvider$1 } from 'react-jss';
+import withStyles, { ThemeProvider as ThemeProvider$1, createUseStyles } from 'react-jss';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -117,10 +117,10 @@ var styles = (function (theme) { return ({
             letterSpacing: 0.15,
         },
         p: {
-            fontSize: 14,
+            fontSize: 16,
             fontFamily: theme.fontFamily,
             fontWeight: theme.fontWeightRegular,
-            letterSpacing: 0.1,
+            letterSpacing: 0.15,
         },
         b: {
             fontFamily: theme.fontFamily,
@@ -191,6 +191,7 @@ var colors = {
     lightGray: '#eceff1',
     lightGray2: '#cccccc',
     lightGray3: '#f9f9f9',
+    lightGray4: '#f6f7f8',
     darkGray2: '#3d3d3d',
     white: '#fff',
     whiteHover: '#f5f5f5',
@@ -216,9 +217,9 @@ var defaultTheme = {
     fontFamily: 'Open Sans, sans-serif',
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 600,
-    fontWeightSemiBold: 700,
-    fontWeightBold: 800,
+    fontWeightMedium: 500,
+    fontWeightSemiBold: 600,
+    fontWeightBold: 700,
     /** Fonts sizes */
     bodyLargeFontSize: 16,
     bodyLargeLetterSpacing: 0.15,
@@ -226,18 +227,12 @@ var defaultTheme = {
     buttonsLetterSpacing: 0.15,
     subtitleFontSize: 14,
     subtitleLetterSpacing: 0.1,
-    capsFontSize: 14,
-    capsLetterSpacing: 1.1,
-    smallLinkFontSize: 12,
-    smallLinkLetterSpacing: 0.4,
-    bodySmallFontSize: 12,
-    bodySmallLetterSpacing: 0.4,
-    capsSmallFontSize: 10,
-    capsSmallLetterSpacing: 1.5,
+    descriptionFontSize: 12,
+    descriptionLetterSpacing: 0,
     messageFontSize: 10,
-    messageLetterSpacing: 1.5,
+    messageLetterSpacing: 0,
     finePrintFontSize: 8,
-    finePrintLetterSpacing: 1.5,
+    finePrintLetterSpacing: 0,
     /** Button colors */
     buttonColorPrimary: '#fff',
     buttonColorSecondary: colors.normal,
@@ -252,6 +247,7 @@ var defaultTheme = {
     buttonBackgroundColorDisabled: colors.lightGray,
     buttonColorDisabled: colors.gray,
     /** Input fields */
+    inputMiniMaxHeightIdle: 30,
     inputMaxHeightIdle: 44,
     inputLargeMaxHeightIdle: 56,
     inputColorIdle: colors.darkGray,
@@ -275,19 +271,19 @@ var defaultTheme = {
     inputPlaceholderColor: colors.lightGray2,
     inputValueColor: colors.darkGray2,
     /** Navbar */
-    navbarItemColor: colors.gray,
-    navbarItemColorHover: colors.grayHover,
-    navbarItemColorActive: colors.grayActive,
-    navbarItemColorHighlight: colors.normal,
-    navbarItemColorHighlightHover: colors.normalHover,
-    navbarItemColorHighlightActive: colors.normalActive,
+    navbarItemColor: colors.black,
+    navbarItemColorHover: colors.black,
+    navbarItemColorActive: colors.black,
+    navbarItemColorHighlight: colors.black,
+    navbarItemColorHighlightHover: colors.black,
+    navbarItemColorHighlightActive: colors.black,
     /** Sidebar */
     sidebarSectionColor: colors.black,
     sidebarItemColor: colors.gray,
-    sidebarItemColorHover: colors.grayHover,
+    sidebarItemColorHover: colors.normal,
     sidebarItemColorActive: colors.grayActive,
     sidebarItemColorSelected: colors.black,
-    sidebarItemBackgroundSelected: colors.white,
+    sidebarItemBackgroundSelected: colors.lightGray4,
     sidebarItemColorHighlight: colors.normal,
     sidebarItemColorHighlightHover: colors.normalHover,
     sidebarItemColorHighlightActive: colors.normalActive,
@@ -296,7 +292,7 @@ var defaultTheme = {
     /** Table */
     tableBorderPrimary: '1px solid rgba(151, 151, 151, 0.39)',
     tableBoxShadow: '0 1px 1px 0 rgba(218, 218, 218, 0.5)',
-    tableBackgroundColor: colors.lightGray,
+    tableBackgroundColor: colors.lightGray4,
     tableBorderColor: colors.lightGray,
     tableHeaderTextColor: colors.darkerGray,
     /** Pagination */
@@ -315,6 +311,19 @@ var defaultTheme = {
     gridLgBreakpoint: 992,
     gridXlBreakpointFallback: 1140,
     gridXlBreakpoint: 1200,
+    /** Slider */
+    sliderBgColor: colors.lightGray2,
+    sliderProgressColor: colors.normal,
+    sliderHeight: 8,
+    sliderThumbSize: 24,
+    sliderSmallHeight: 5,
+    sliderSmallThumbSize: 16,
+    sliderLargeHeight: 11,
+    sliderLargeThumbSize: 32,
+    /** Dropdown */
+    dropdownArrowSize: 18,
+    /** Tag */
+    tagBackgroundColor: colors.normal,
 };
 
 /** Main component */
@@ -483,6 +492,7 @@ var styles$1 = (function (theme) { return ({
         backgroundColor: theme.inputBackgroundColor,
         '&:checked ~ $checkmark': {
             backgroundColor: theme.inputColorHighlight,
+            borderWidth: 0,
         },
         '&:checked ~ $checkmark:after': {
             display: 'block',
@@ -510,8 +520,8 @@ var styles$1 = (function (theme) { return ({
             content: '""',
             position: 'absolute',
             display: 'none',
-            top: 6,
-            left: 6,
+            top: 7,
+            left: 7,
             width: 8,
             height: 8,
             borderRadius: '50%',
@@ -528,8 +538,8 @@ var styles$1 = (function (theme) { return ({
             height: 16,
             width: 16,
             '&:after': {
-                top: 4,
-                left: 4,
+                top: 5,
+                left: 5,
                 width: 6,
                 height: 6,
             },
@@ -544,12 +554,43 @@ var styles$1 = (function (theme) { return ({
             height: 28,
             width: 28,
             '&:after': {
-                top: 8,
-                left: 8,
+                top: 9,
+                left: 9,
                 width: 10,
                 height: 10,
             },
         },
+    },
+    /** Handle error message */
+    errorMessage: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+    },
+    error: {
+        '& $root': {
+            '&:hover $input:checked ~ $checkmark': {
+                backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+            },
+            '&:active $input:checked ~ $checkmark': {
+                backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+            },
+        },
+        '& $input': {
+            '&:checked ~ $checkmark': {
+                backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+            },
+            '&:checked ~ $placeholder': {
+                color: theme.inputErrorMessageColor || '#ea3546',
+            },
+        },
+        '& $checkmark': {
+            border: "1px solid " + (theme.inputErrorMessageColor || '#ea3546'),
+        },
+        '& $placeholder': {
+            color: theme.inputErrorMessageColor || '#ea3546',
+        }
     }
 }); });
 
@@ -609,13 +650,15 @@ var classnames = createCommonjsModule(function (module) {
 /** Main component */
 var RadioField = function (props) {
     /** Get props */
-    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, onChange = props.onChange, _a = props.sizeVariant, sizeVariant = _a === void 0 ? 'normal' : _a, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder", "onChange", "sizeVariant"]);
+    var classes = props.classes, value = props.value, name = props.name, checked = props.checked, placeholder = props.placeholder, onChange = props.onChange, _a = props.sizeVariant, sizeVariant = _a === void 0 ? 'normal' : _a, errorMessage = props.errorMessage, rest = __rest(props, ["classes", "value", "name", "checked", "placeholder", "onChange", "sizeVariant", "errorMessage"]);
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _b = useContext(FormContext), updateFormValue = _b.updateFormValue, formValues = _b.formValues;
+    var _b = useContext(FormContext), updateFormValue = _b.updateFormValue, formValues = _b.formValues, formTouched = _b.formTouched, formErrors = _b.formErrors;
     /** Ref */
     var inputRef = createRef();
     /** Get checked value when using within a form or solo */
     var checkedValue = formValues ? formValues[name] === value : undefined;
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (e) {
         var _a = e.target, name = _a.name, targetValue = _a.value;
@@ -638,10 +681,13 @@ var RadioField = function (props) {
             /** Clear Form value if needed */
         };
     }, []);
-    return (createElement("label", { className: classnames(classes.root, classes[sizeVariant]) },
-        createElement("input", __assign({}, rest, { ref: inputRef, type: "radio", className: classes.input, name: name, value: value, checked: checkedValue, onChange: onChangeWrapper })),
-        createElement("span", { className: classes.checkmark }),
-        createElement("div", { className: classes.placeholder }, placeholder)));
+    return (createElement("div", { className: errorMsg ? classes.error : undefined },
+        createElement("label", { className: classnames(classes.root, classes[sizeVariant]) },
+            createElement("input", __assign({}, rest, { ref: inputRef, type: "radio", className: classes.input, name: name, value: value, checked: checkedValue, onChange: onChangeWrapper })),
+            createElement("span", { className: classes.checkmark }),
+            createElement("div", { className: classes.placeholder }, placeholder)),
+        errorMsg ?
+            (createElement("div", { className: classes.errorMessage }, errorMsg)) : null));
 };
 /** Wrappers */
 var StyledRadioField = withStyles(styles$1)(RadioField);
@@ -688,9 +734,8 @@ var index$3 = (function (props) { return (createElement("svg", __assign({}, prop
         createElement("g", { transform: "translate(-3.000000, -4.000000)", fillRule: "nonzero" },
             createElement("path", { d: "M3.89188126,9.9653644 L7.16423288,14.3097417 C7.49578779,14.7509044 7.97264341,15 8.48091541,15 C8.49830662,15 8.51681984,15 8.53477205,14.999462 C9.06267928,14.9811699 9.54177893,14.6960281 9.85033257,14.2177431 L15.5899913,5.30571715 C15.8486153,4.90382863 15.7184618,4.37550931 15.2988289,4.12748976 C14.8791959,3.8794702 14.3288484,4.00428698 14.0702244,4.40671351 L8.46240219,13.1094561 L5.34040036,8.96360211 C5.05148195,8.58054371 4.49384137,8.49392516 4.09384365,8.7709969 C3.69384593,9.04806864 3.60296286,9.58230599 3.89188126,9.9653644 Z" }))))); });
 
-var Search = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 20 20", width: 20 }, props),
-    createElement("g", { stroke: "none", strokeWidth: "1", fillRule: "evenodd" },
-        createElement("path", { d: "M13.8571582,7.85714626 C13.8571582,5.10045251 11.6138519,2.85714626 8.85714626,2.85714626 C6.10045251,2.85714626 3.85714626,5.10045251 3.85714626,7.85714626 C3.85714626,10.6138519 6.10045251,12.8571582 8.85714626,12.8571582 C11.6138519,12.8571582 13.8571582,10.6138519 13.8571582,7.85714626 Z M19.5714507,17.1428776 C19.5714507,17.9241285 18.9241285,18.5714507 18.1428776,18.5714507 C17.7634128,18.5714507 17.3951088,18.4152005 17.1384121,18.1473431 L13.3102825,14.3303742 C12.0044774,15.2343932 10.4419755,15.7143044 8.85715222,15.7143044 C4.51562919,15.7143044 1,12.1986753 1,7.85715222 C1,3.51562919 4.51562919,0 8.85715222,0 C13.1986753,0 16.7143044,3.51562919 16.7143044,7.85715222 C16.7143044,9.44197554 16.2343932,11.0044774 15.3303742,12.3102825 L19.1585038,16.1384121 C19.4152005,16.3951088 19.5714507,16.7634128 19.5714507,17.1428776 Z" })))); });
+var Search = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 24 24", width: 24 }, props),
+    createElement("path", { fill: "#757575", fillRule: "evenodd", d: "M23.79 22.531l-6.036-6.035c-.107-.108-.248-.164-.397-.164h-.482c1.605-1.736 2.587-4.051 2.587-6.601C19.462 4.356 15.106 0 9.731 0S0 4.356 0 9.731s4.356 9.731 9.731 9.731c2.55 0 4.865-.982 6.601-2.582v.477c0 .15.061.29.164.397l6.035 6.035c.22.22.575.22.795 0l.463-.463c.22-.22.22-.575 0-.795zM9.73 17.965c-4.552 0-8.234-3.682-8.234-8.234S5.18 1.497 9.731 1.497s8.234 3.682 8.234 8.234-3.682 8.234-8.234 8.234z" }))); });
 
 var Close = (function (props) { return (createElement("svg", __assign({ width: 24, viewBox: "0 0 24 24" }, props),
     createElement("path", { d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" }))); });
@@ -698,8 +743,8 @@ var Close = (function (props) { return (createElement("svg", __assign({ width: 2
 var CloseOutline = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 24 24" }, props),
     createElement("path", { d: "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" }))); });
 
-var DownArrow = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 24 24" }, props),
-    createElement("path", { d: "M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" }))); });
+var DownArrow = (function (props) { return (createElement("svg", __assign({ xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 18 18" }, props),
+    createElement("path", { fillRule: "evenodd", d: "M9 6L15 12 3 12z", transform: "matrix(1 0 0 -1 0 18)" }))); });
 
 var index$4 = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 512 512" }, props),
     createElement("path", { d: "m409.785156 278.5-153.785156 153.785156-153.785156-153.785156 28.285156-28.285156 105.5 105.5v-355.714844h40v355.714844l105.5-105.5zm102.214844 193.5h-512v40h512zm0 0" }))); });
@@ -719,6 +764,18 @@ var index$5 = (function (props) { return (createElement("svg", __assign({ viewBo
         createElement("g", null,
             createElement("path", { d: "M321.504,0H190.496c-18.428,0-33.42,14.992-33.42,33.42v63.499h40.104V40.104h117.64v56.815h40.104V33.42\n\t\t\tC354.924,14.992,339.932,0,321.504,0z" }))))); });
 
+var TagClose = (function (props) { return (createElement("svg", __assign({ width: "6", height: "6", viewBox: "0 0 6 6" }, props),
+    createElement("path", { fill: "#FFF", "fill-rule": "evenodd", d: "M5.28.794L3.387 2.689 5.28 4.583c.128.129.128.337 0 .465l-.233.233c-.128.128-.336.128-.465 0L2.69 3.386.794 5.28c-.129.128-.337.128-.465 0l-.233-.233c-.128-.128-.128-.336 0-.465L1.991 2.69.096.794C-.032.665-.032.457.096.329L.33.096c.128-.128.336-.128.465 0l1.895 1.895L4.583.096c.129-.128.337-.128.465 0l.233.233c.126.128.126.336 0 .465z" }))); });
+
+var Hamburger = (function (props) { return (createElement("svg", __assign({ width: 24, viewBox: "0 0 24 24" }, props),
+    createElement("g", { id: "\uD83C\uDFD4UI-Components-Web", stroke: "none", "stroke-width": "1", fill: "none", "fill-rule": "evenodd" },
+        createElement("g", { id: "Top-Navigation", transform: "translate(-136.000000, -294.000000)", fill: "#000000" },
+            createElement("g", { id: "Icons/bars", transform: "translate(136.000000, 294.000000)" },
+                createElement("path", { d: "M22.2187501,5.34374995 L1.78124993,5.34374995 C1.62591984,5.34374995 1.49999992,5.21783004 1.49999992,5.06249995 L1.49999992,3.93749994 C1.49999992,3.78216986 1.62591984,3.65624994 1.78124993,3.65624994 L22.2187501,3.65624994 C22.3740802,3.65624994 22.4999999,3.78216986 22.4999999,3.93749994 L22.4999999,5.06249995 C22.4999999,5.21783004 22.3740802,5.34374995 22.2187501,5.34374995 Z M22.2187501,12.84375 L1.78124993,12.84375 C1.62591984,12.84375 1.49999992,12.7178301 1.49999992,12.5625 L1.49999992,11.4375 C1.49999992,11.2821699 1.62591984,11.15625 1.78124993,11.15625 L22.2187501,11.15625 C22.3740802,11.15625 22.4999999,11.2821699 22.4999999,11.4375 L22.4999999,12.5625 C22.4999999,12.7178301 22.3740802,12.84375 22.2187501,12.84375 Z M22.2187501,20.3437501 L1.78124993,20.3437501 C1.62591984,20.3437501 1.49999992,20.2178301 1.49999992,20.0625001 L1.49999992,18.9375 C1.49999992,18.78217 1.62591984,18.65625 1.78124993,18.65625 L22.2187501,18.65625 C22.3740802,18.65625 22.4999999,18.78217 22.4999999,18.9375 L22.4999999,20.0625001 C22.4999999,20.2178301 22.3740802,20.3437501 22.2187501,20.3437501 Z", id: "bars" })))))); });
+
+var Plus = (function (props) { return (createElement("svg", __assign({ viewBox: "0 0 14 14" }, props),
+    createElement("path", { fill: "#3D3D3D", fillRule: "evenodd", d: "M12.031 6.344H7.656V1.969c0-.121-.098-.219-.218-.219h-.875c-.121 0-.22.098-.22.219v4.375H1.97c-.121 0-.219.098-.219.218v.875c0 .121.098.22.219.22h4.375v4.374c0 .121.098.219.218.219h.875c.121 0 .22-.098.22-.219V7.656h4.374c.121 0 .219-.098.219-.218v-.875c0-.121-.098-.22-.219-.22z" }))); });
+
 
 
 var index$6 = /*#__PURE__*/Object.freeze({
@@ -734,7 +791,10 @@ var index$6 = /*#__PURE__*/Object.freeze({
     File: File,
     PrependBackground: PrependBackground,
     Profile: index$2,
-    Delete: index$5
+    Delete: index$5,
+    TagClose: TagClose,
+    Plus: Plus,
+    Hamburger: Hamburger
 });
 
 var styles$2 = (function (theme) { return ({
@@ -850,6 +910,7 @@ var styles$3 = (function (theme) { return ({
     },
     placeholderMini: {
         lineHeight: '26px',
+        paddingLeft: 16,
     },
     placeholderInvalid: {},
     placeholderCollapsed: {
@@ -930,6 +991,20 @@ var styles$3 = (function (theme) { return ({
         '& $placeholderNormal': {
             padding: 16
         }
+    },
+    normal: {},
+    mini: {
+        '& $root': {
+            maxHeight: theme.inputMiniMaxHeightIdle,
+            '& input': {
+                padding: 4,
+                paddingLeft: 16,
+                transform: 'none'
+            },
+            '& $placeholderCollapsed': {
+                transform: 'translate(0, -20px)',
+            }
+        }
     }
 }); });
 
@@ -937,7 +1012,7 @@ var styles$3 = (function (theme) { return ({
 var InputFieldLayout = function (props) {
     var _a;
     var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _b = props.showPrependBackground, showPrependBackground = _b === void 0 ? true : _b, _c = props.customPlaceholderFont, customPlaceholderFont = _c === void 0 ? false : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, _e = props.large, large = _e === void 0 ? false : _e, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant", "large"]);
-    return (createElement("div", { className: large ? classes.large : '' },
+    return (createElement("div", { className: classnames([large ? classes.large : '', classes[sizeVariant]]) },
         createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
                 className,
@@ -954,7 +1029,6 @@ var InputFieldLayout = function (props) {
                 prependContent
                     ? createElement("div", { className: classnames((_a = {},
                             _a[classes.prependContent] = ['mini', 'normal'].includes(sizeVariant),
-                            _a[classes.prependContentSmall] = sizeVariant === 'small',
                             _a)) }, prependContent)
                     : null,
                 (prependContent && showPrependBackground) ? createElement(PrependBackground, { className: classes.prependBackgroundIcon }) : null),
@@ -1114,6 +1188,7 @@ var styles$5 = (function (theme) { return ({
             color: '#cccccc'
         }
     },
+    /* handle size */
     large: {
         '& $root': {
             maxHeight: theme.inputLargeMaxHeightIdle,
@@ -1121,13 +1196,26 @@ var styles$5 = (function (theme) { return ({
         '& $label': {
             fontSize: 16,
         }
+    },
+    normal: {},
+    mini: {
+        '& $root': {
+            maxHeight: theme.inputMiniMaxHeightIdle,
+            '& input': {
+                padding: 4,
+                paddingLeft: 16,
+            }
+        },
+        '& $label': {
+            fontSize: 10,
+        }
     }
 }); });
 
 /** Main component */
 var SimpleInputLayout = function (props) {
-    var labelClassName = props.labelClassName, className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.customPlaceholderFont, _b = props.sizeVariant, label = props.label, _c = props.large, large = _c === void 0 ? false : _c, rest = __rest(props, ["labelClassName", "className", "classes", "errorMsg", "disabled", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "customPlaceholderFont", "sizeVariant", "label", "large"]);
-    return (createElement("div", { className: large ? classes.large : '' },
+    var labelClassName = props.labelClassName, className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _a = props.customPlaceholderFont, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, label = props.label, _c = props.large, large = _c === void 0 ? false : _c, rest = __rest(props, ["labelClassName", "className", "classes", "errorMsg", "disabled", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "customPlaceholderFont", "sizeVariant", "label", "large"]);
+    return (createElement("div", { className: classnames([large ? classes.large : ''], classes[sizeVariant]) },
         label ? (createElement("div", { className: classnames([labelClassName, classes.label, { error: !!errorMsg }, { disabledLabel: disabled }]) }, label))
             :
                 null,
@@ -1149,7 +1237,7 @@ var StyledInputFieldLayout$2 = withStyles(styles$5)(SimpleInputLayout);
 var PropsWrappedStyledSimpleInputLayout = function (props) { return createElement(StyledInputFieldLayout$2, __assign({}, props)); };
 
 var TextInput = function (props) {
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, label = props.label, _a = props.layout, layout = _a === void 0 ? 'default' : _a, large = props.large, labelClassName = props.labelClassName, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value", "label", "layout", "large", "labelClassName"]);
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, placeholder = props.placeholder, isFocused = props.isFocused, prependContent = props.prependContent, appendContent = props.appendContent, value = props.value, label = props.label, _a = props.layout, layout = _a === void 0 ? 'default' : _a, large = props.large, labelClassName = props.labelClassName, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "placeholder", "isFocused", "prependContent", "appendContent", "value", "label", "layout", "large", "labelClassName", "sizeVariant"]);
     var isPlaceholderCollapsed = !!(placeholder && ((typeof value !== 'undefined' && value !== '') || isFocused));
     var isSimpleLayout = layout !== 'default';
     var LayoutComponent = null;
@@ -1164,7 +1252,7 @@ var TextInput = function (props) {
             LayoutComponent = PropsWrappedStyledInputFieldLayout;
             break;
     }
-    return (createElement(LayoutComponent, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed, label: label, large: large, labelClassName: labelClassName },
+    return (createElement(LayoutComponent, { appendContent: appendContent, prependContent: prependContent, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, isPlaceholderCollapsed: isPlaceholderCollapsed, label: label, large: large, labelClassName: labelClassName, sizeVariant: sizeVariant },
         createElement("input", __assign({}, rest, { className: classnames([
                 classes.input,
                 placeholder ? classes.inputWithPlaceholder : null,
@@ -1195,9 +1283,6 @@ var styles$6 = (function (theme) { return ({
         '&:hover': {
             filter: theme.buttonBackgroundColorPrimaryHover,
         },
-        '&:active': {
-            backgroundColor: theme.buttonBackgroundColorPrimaryActive,
-        },
         '&.disabled': {
             backgroundColor: theme.buttonBackgroundColorPrimaryDisabled,
             color: 'rgba(255, 255, 255, 0.5)',
@@ -1218,9 +1303,6 @@ var styles$6 = (function (theme) { return ({
         '&:hover': {
             backgroundColor: theme.buttonBackgroundColorPrimary,
             color: theme.buttonBackgroundColorSecondary
-        },
-        '&:active': {
-            backgroundColor: theme.buttonBackgroundColorSecondaryActive,
         },
         '&.disabled': {
             backgroundColor: theme.buttonBackgroundColorSecondaryDisabled,
@@ -1488,6 +1570,7 @@ var styles$8 = (function (theme) { return ({
         /** Checkmark */
         '&:checked ~ $checkmark': {
             backgroundColor: theme.inputColorHighlight,
+            borderWidth: 0,
         },
         '&:checked ~ $checkmark:after': {
             display: 'block',
@@ -1500,7 +1583,7 @@ var styles$8 = (function (theme) { return ({
             backgroundColor: theme.inputColorHighlight,
         },
         '&:checked ~ $switch:after': {
-            left: 19,
+            left: 20,
         },
         '&:disabled ~ $switch': {
             backgroundColor: theme.inputColorBorderIdle + " !important",
@@ -1523,8 +1606,8 @@ var styles$8 = (function (theme) { return ({
             position: 'absolute',
             display: 'none',
             left: 7.5,
-            top: 2,
-            width: 6,
+            top: 3,
+            width: 7,
             height: 14,
             border: 'solid white',
             borderWidth: '0 2px 2px 0',
@@ -1541,15 +1624,14 @@ var styles$8 = (function (theme) { return ({
         width: 44,
         backgroundColor: theme.inputColorBorderIdle,
         borderRadius: 12,
-        border: "1px solid " + theme.inputColorBorderIdle,
         /** Switch */
         '&:after': {
             transition: '0.3s',
             content: '""',
             position: 'absolute',
             display: 'block',
-            top: 1,
-            left: 2,
+            top: 2,
+            left: 3,
             width: 20,
             height: 20,
             borderRadius: '50%',
@@ -1579,8 +1661,8 @@ var styles$8 = (function (theme) { return ({
             width: 16,
             '&:after': {
                 left: 4.4,
-                top: 2,
-                width: 5,
+                top: 3,
+                width: 6,
                 height: 8,
             },
         },
@@ -1589,15 +1671,15 @@ var styles$8 = (function (theme) { return ({
             width: 26,
             borderRadius: 8,
             '&:after': {
-                top: 1,
-                left: 2,
+                top: 2,
+                left: 3,
                 width: 12,
                 height: 12,
             }
         },
         '& $input': {
             '&:checked ~ $switch:after': {
-                left: 10,
+                left: 11,
             }
         }
     },
@@ -1610,8 +1692,8 @@ var styles$8 = (function (theme) { return ({
             height: 30,
             width: 30,
             '&:after': {
-                left: 9,
-                top: 4,
+                left: 10,
+                top: 5,
                 width: 8,
                 height: 16,
             },
@@ -1621,18 +1703,47 @@ var styles$8 = (function (theme) { return ({
             width: 60,
             borderRadius: 16,
             '&:after': {
-                top: 2,
-                left: 2,
+                top: 3,
+                left: 3,
                 width: 26,
                 height: 26,
             }
         },
         '& $input': {
             '&:checked ~ $switch:after': {
-                left: 29,
+                left: 30,
             }
-        }
-    }
+        },
+    },
+    /** Handle error styles */
+    error: {
+        '& $checkmark': {
+            border: "1px solid " + (theme.inputErrorMessageColor || '#ea3546'),
+        },
+        '& $input': {
+            '&:checked ~ $checkmark': {
+                backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+            },
+            '&:checked ~ $placeholder': {
+                color: theme.inputErrorMessageColor || '#ea3546',
+            },
+            '&:checked ~ $switch': {
+                backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+            },
+        },
+        '&:hover $input:checked ~ $checkmark': {
+            backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+        },
+        '&:active $input:checked ~ $checkmark': {
+            backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+        },
+        '&:hover $input:checked ~ $switch': {
+            backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+        },
+        '&:active $input:checked ~ $switch': {
+            backgroundColor: theme.inputErrorMessageColor || '#ea3546',
+        },
+    },
 }); });
 
 var CheckboxField = function (props) {
@@ -1676,7 +1787,12 @@ var CheckboxField = function (props) {
             formValues && updateFormValue(name, undefined, true);
         };
     }, []);
-    return (createElement("div", { className: classnames([classes.wrapper, classes[sizeVariant], className]) },
+    return (createElement("div", { className: classnames([
+            classes.wrapper,
+            classes[sizeVariant],
+            errorMsg ? classes.error : null,
+            className
+        ]) },
         createElement("label", { className: classes.root },
             createElement("input", __assign({}, rest, { type: "checkbox", className: classes.input, name: name, value: value, checked: controlled ? checked : internalValue, onChange: onChangeWrapper, onFocus: onFocusWrapper })),
             createElement("span", { className: variant === 'switch' ? classes.switch : classes.checkmark }),
@@ -1710,8 +1826,8 @@ var styles$9 = (function (theme) { return ({
     dropdownArrow: {
         transition: '0.3s',
         fill: theme.inputPlaceholderColorIdle,
-        width: 25,
-        height: 25,
+        width: theme.dropdownArrowSize,
+        height: theme.dropdownArrowSize,
         marginRight: 10,
     },
     dropdownArrowOpen: {
@@ -1812,21 +1928,21 @@ var styles$9 = (function (theme) { return ({
 
 /** Main component */
 var SelectField = function (props) {
-    var name = props.name, classes = props.classes, className = props.className, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount;
+    var name = props.name, classes = props.classes, className = props.className, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, value = props.value, controlled = props.controlled, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, _a = props.showPrependBackground, showPrependBackground = _a === void 0 ? true : _a;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _a = useContext(FormContext), updateFormValue = _a.updateFormValue, updateFormTouched = _a.updateFormTouched, unsetFormValue = _a.unsetFormValue, formValues = _a.formValues, formErrors = _a.formErrors, formTouched = _a.formTouched;
+    var _b = useContext(FormContext), updateFormValue = _b.updateFormValue, updateFormTouched = _b.updateFormTouched, unsetFormValue = _b.unsetFormValue, formValues = _b.formValues, formErrors = _b.formErrors, formTouched = _b.formTouched;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
-    var _b = __read(useState(false), 2), isFocused = _b[0], setFocused = _b[1];
+    var _c = __read(useState(false), 2), isFocused = _c[0], setFocused = _c[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _c = __read(useState((formValues && formValues[name]) || value), 2), internalValue = _c[0], setInternalValue = _c[1];
-    var _d = __read(useState(-1), 2), hoverIndex = _d[0], setHoverIndex = _d[1];
+    var _d = __read(useState((formValues && formValues[name]) || value), 2), internalValue = _d[0], setInternalValue = _d[1];
+    var _e = __read(useState(-1), 2), hoverIndex = _e[0], setHoverIndex = _e[1];
     /** Selected choice */
-    var selectChoiceIndex = choices.findIndex(function (d) { return d.value === internalValue; });
+    var selectChoiceIndex = choices.findIndex(function (d) { return d.value === (controlled ? value : internalValue); });
     var selectedChoice = selectChoiceIndex > -1 ? choices[selectChoiceIndex] : null;
     /** Select Field State */
-    var _e = __read(useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
+    var _f = __read(useState(false), 2), isDropdownOpen = _f[0], setDropdownOpen = _f[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (value) {
         /** Internal value update */
@@ -1897,7 +2013,7 @@ var SelectField = function (props) {
                 classes.root,
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
-            createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: !!selectedChoice, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContent, onClick: function () { return setDropdownOpen(function (v) { return !v; }); } },
+            createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: !!selectedChoice, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContent, onClick: function () { return setDropdownOpen(function (v) { return !v; }); }, showPrependBackground: showPrependBackground },
                 createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, onKeyDown: onKeyDownWrapper, className: classnames([
                         classes.selectLabel,
                         placeholder ? classes.selectLabelWithPlaceholder : null,
@@ -1936,8 +2052,8 @@ var styles$a = (function (theme) { return ({
     dropdownArrow: {
         transition: '0.3s',
         fill: theme.inputPlaceholderColorIdle,
-        width: 25,
-        height: 25,
+        width: theme.dropdownArrowSize,
+        height: theme.dropdownArrowSize,
     },
     dropdownArrowNormal: {
         marginRight: 10,
@@ -1984,14 +2100,14 @@ var styles$a = (function (theme) { return ({
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightMedium,
         color: theme.inputColorIdle || '#54738c',
-        padding: 8,
+        padding: 16,
         minHeight: 44,
         backgroundColor: theme.inputBackgroundColor,
         fontSize: 14,
     },
     selectLabelWithPlaceholder: {
         paddingBottom: 5,
-        paddingTop: 23,
+        paddingTop: 21,
     },
     selectLabelMini: {
         padding: 0,
@@ -2069,74 +2185,20 @@ var styles$a = (function (theme) { return ({
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightLight,
         fontSize: 10,
+    },
+    /** Handle layout */
+    default: {},
+    simple: {
+        '& $selectLabelWithPlaceholder': {
+            paddingTop: 10,
+        },
+        '& $selectLabelNormal': {
+            paddingTop: 10
+        }
     }
 }); });
 
 var styles$b = (function (theme) { return ({
-    wrapper: {
-        borderRadius: 8,
-        backgroundColor: theme.inputColorHighlight,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'stretch',
-        justifyContent: 'space-evenly',
-        marginRight: 6,
-        height: 28,
-    },
-    content: {
-        color: theme.textColorHighlight,
-        flex: 1,
-        textAlign: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 9,
-        whiteSpace: 'nowrap',
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightRegular,
-        fontSize: 12,
-    },
-    closeSection: {
-        pointerEvents: 'auto',
-        color: theme.textColorLight,
-        height: '100%',
-        width: 22,
-        backgroundColor: theme.inputColorSpecial,
-        borderRadius: '0px 8px 8px 0px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        '&:hover': {
-            backgroundColor: theme.inputColorSpecialHover,
-        },
-        '&:active': {
-            backgroundColor: theme.inputColorSpecialActive,
-        },
-    },
-    closeIcon: {
-        width: 12,
-        fill: '#fff',
-    },
-}); });
-
-var ValueBadge = function (props) {
-    var classes = props.classes, onClose = props.onClose, children = props.children;
-    return (createElement("div", { className: classes.wrapper },
-        createElement("div", { className: classes.content }, children),
-        createElement("div", { className: classes.closeSection, onClick: onClose },
-            createElement(Close, { className: classes.closeIcon }))));
-};
-var StyledValueBadge = withStyles(styles$b)(ValueBadge);
-
-
-
-var index$c = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': StyledValueBadge,
-    ValueBadge: StyledValueBadge
-});
-
-var styles$c = (function (theme) { return ({
     root: {
         position: 'relative',
     },
@@ -2152,9 +2214,13 @@ var styles$c = (function (theme) { return ({
     },
     /** Clear icon */
     clearIcon: {
-        marginRight: 10,
+        marginRight: 16,
         width: 18,
         fill: theme.inputColorBorderIdle || '#95acbf',
+    },
+    clearIconMini: {
+        marginRight: 8,
+        width: 15,
     },
     /** Selected values Wrapper */
     selectElement: {
@@ -2252,16 +2318,25 @@ var styles$c = (function (theme) { return ({
         fontWeight: theme.fontWeightLight,
         fontSize: 10,
     },
+    searchIconContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 16
+    },
+    searchIconContainerMini: {
+        marginRight: 8
+    }
 }); });
 
 /** Main component */
 var SearchField = function (props) {
-    var _a;
-    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, onEnter = props.onEnter, value = props.value, _b = props.placeholder, placeholder = _b === void 0 ? 'Search' : _b, _c = props.collapsiblePlaceholder, collapsiblePlaceholder = _c === void 0 ? true : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d;
+    var _a, _b;
+    var className = props.className, classes = props.classes, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, onEnter = props.onEnter, onClear = props.onClear, value = props.value, _c = props.placeholder, placeholder = _c === void 0 ? 'Search' : _c, _d = props.collapsiblePlaceholder, _e = props.sizeVariant, sizeVariant = _e === void 0 ? 'normal' : _e, rest = __rest(props, ["className", "classes", "disabled", "onChange", "onFocus", "onBlur", "onEnter", "onClear", "value", "placeholder", "collapsiblePlaceholder", "sizeVariant"]);
     /** Focus status (needed for styles) */
-    var _e = __read(useState(false), 2), isFocused = _e[0], setFocused = _e[1];
+    var _f = __read(useState(false), 2), isFocused = _f[0], setFocused = _f[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _f = __read(useState(value || ''), 2), inputValue = _f[0], setInputValue = _f[1];
+    var _g = __read(useState(value || ''), 2), inputValue = _g[0], setInputValue = _g[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (e) {
         var value = e.target.value;
@@ -2288,6 +2363,7 @@ var SearchField = function (props) {
         e.stopPropagation();
         setInputValue(function () { return ''; });
         onChange && onChange('');
+        onClear && onClear(inputValue);
     };
     var onKeyPressWrapper = function (e) {
         if (e.key === 'Enter') {
@@ -2295,49 +2371,102 @@ var SearchField = function (props) {
             onEnter && onEnter(inputValue);
         }
     };
-    /** Prepend magnifying lens */
-    var prependContent = (createElement(Search, { className: classnames(classes.searchIcon, (_a = {}, _a[classes.searchIconSmall] = sizeVariant === 'small', _a)) }));
     /** Append content arrow */
     var appendContent = inputValue !== '' ?
         (createElement(CloseOutline, { onClick: onClearClickWrapper, className: classnames([
                 classes.clearIcon,
-            ]) })) : null;
-    return (createElement(PropsWrappedStyledInputFieldLayout, { className: className, isPlaceholderCollapsed: isFocused || inputValue !== '', disabled: disabled, placeholder: collapsiblePlaceholder ? placeholder : undefined, prependContent: prependContent, appendContent: appendContent, showPrependBackground: false, sizeVariant: sizeVariant },
-        createElement("input", { type: "text", onChange: onChangeWrapper, onBlur: onBlurWrapper, onFocus: onFocusWrapper, onKeyPress: onKeyPressWrapper, value: inputValue, placeholder: collapsiblePlaceholder ? undefined : placeholder, className: classnames([
-                classes.inputField,
-                sizeVariant === 'normal' ? classes.inputFieldNormal : classes.inputFieldMini,
-                (placeholder && collapsiblePlaceholder) ? classes.inputFieldWithPlaceholder : null,
-            ]) })));
+                (_a = {}, _a[classes.clearIconMini] = sizeVariant === 'mini', _a)
+            ]) })) : (createElement("div", { className: classnames(classes.searchIconContainer, (_b = {}, _b[classes.searchIconContainerMini] = sizeVariant === 'mini', _b)) },
+        createElement(Search, { width: sizeVariant === 'mini' ? 16 : 24, className: classnames(classes.searchIcon) })));
+    return (createElement(StyledTextInput, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, onKeyPress: onKeyPressWrapper, disabled: disabled, placeholder: placeholder, type: "text", value: inputValue, appendContent: appendContent, name: "search", sizeVariant: sizeVariant })));
 };
 /** Wrappers */
-var StyledSearchField = withStyles(styles$c)(SearchField);
+var StyledSearchField = withStyles(styles$b)(SearchField);
 var PropsWrappedStyledSearchField = function (props) { return createElement(StyledSearchField, __assign({}, props)); };
 
 
 
-var index$d = /*#__PURE__*/Object.freeze({
+var index$c = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSearchField,
     SearchField: PropsWrappedStyledSearchField
 });
 
+var styles$c = (function (theme) { return ({
+    root: {
+        color: '#FFF',
+        padding: '5px 8px 5px 8px',
+        backgroundColor: theme.tagBackgroundColor,
+        fontSize: 10,
+        marginRight: 4
+    },
+    closeBlock: {
+        display: 'inline-block',
+        marginLeft: 12,
+        cursor: 'pointer'
+    },
+    flat: {},
+    round: {
+        borderRadius: 4
+    },
+    circle: {
+        borderRadius: 100
+    },
+    normal: {
+        maxHeight: 24,
+    },
+    small: {
+        padding: '1px 4px 1px 4px',
+        '& $closeBlock': {
+            marginLeft: 6
+        },
+        maxHeight: 16
+    },
+    large: {
+        padding: '6px 16px 6px 16px',
+        fontSize: 12
+    }
+}); });
+
+var Tag = function (props) {
+    var children = props.children, classes = props.classes, _a = props.shape, shape = _a === void 0 ? 'circle' : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, className = props.className, onClick = props.onClick, onClose = props.onClose;
+    return (createElement("span", { onClick: function (e) { onClick && onClick(e); }, className: classnames([
+            classes.root,
+            classes[shape]
+        ], classes[sizeVariant], className) },
+        children,
+        createElement("div", { onClick: function (e) { onClose && onClose(e); }, className: classes.closeBlock },
+            createElement(TagClose, null))));
+};
+/** Wrappers */
+var StyledTag = withStyles(styles$c)(Tag);
+var PropsWrappedStyledTag = function (props) { return createElement(StyledTag, __assign({}, props)); };
+
+
+
+var index$d = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledTag,
+    Tag: PropsWrappedStyledTag
+});
+
 /** Main component */
 var MultiSelectField = function (props) {
-    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, appendContent = props.appendContent, refApi = props.refApi, search = props.search, customPlaceholderFont = props.customPlaceholderFont, placeholderClassName = props.placeholderClassName, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b;
+    var name = props.name, classes = props.classes, errorMessage = props.errorMessage, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, values = props.values, controlled = props.controlled, placeholder = props.placeholder, choices = props.choices, clearFormValueOnUnmount = props.clearFormValueOnUnmount, appendContent = props.appendContent, refApi = props.refApi, search = props.search, customPlaceholderFont = props.customPlaceholderFont, placeholderClassName = props.placeholderClassName, _a = props.showBadgeChoices, showBadgeChoices = _a === void 0 ? true : _a, _b = props.sizeVariant, sizeVariant = _b === void 0 ? 'normal' : _b, _c = props.layout, layout = _c === void 0 ? 'default' : _c, label = props.label;
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _c = useContext(FormContext), updateFormValue = _c.updateFormValue, updateFormTouched = _c.updateFormTouched, formValues = _c.formValues, formErrors = _c.formErrors, formTouched = _c.formTouched, unsetFormValue = _c.unsetFormValue;
+    var _d = useContext(FormContext), updateFormValue = _d.updateFormValue, updateFormTouched = _d.updateFormTouched, formValues = _d.formValues, formErrors = _d.formErrors, formTouched = _d.formTouched, unsetFormValue = _d.unsetFormValue;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Focus status (needed for styles) */
-    var _d = __read(useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var _e = __read(useState(false), 2), isFocused = _e[0], setFocused = _e[1];
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _e = __read(useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _e[0], setInternalValues = _e[1];
+    var _f = __read(useState(formValues ? formValues[name] : (values || [])), 2), internalValues = _f[0], setInternalValues = _f[1];
     /** Selected choice */
-    var selectedChoices = choices.filter(function (d) { return (internalValues || []).indexOf(d.value.toString()) > -1; });
+    var selectedChoices = choices.filter(function (d) { return (controlled ? values : (internalValues || [])).indexOf(d.value.toString()) > -1; });
     /** Select Field State */
-    var _f = __read(useState(false), 2), isDropdownOpen = _f[0], setDropdownOpen = _f[1];
+    var _g = __read(useState(false), 2), isDropdownOpen = _g[0], setDropdownOpen = _g[1];
     /** Search Value State */
-    var _g = __read(useState(''), 2), searchValue = _g[0], setSearchValue = _g[1];
+    var _h = __read(useState(''), 2), searchValue = _h[0], setSearchValue = _h[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (values) {
         /** Passthrough to form context */
@@ -2410,7 +2539,7 @@ var MultiSelectField = function (props) {
             return (createElement(PropsWrappedStyledCheckboxField, { className: classnames([
                     classes.dropdownItem,
                     sizeVariant === 'mini' ? classes.dropdownItemMini : null,
-                ]), key: search ? choice.value : i, placeholder: choice.label, name: choice.value, checked: isChoiceSelected(choice), onChange: checkboxOnChangeWrapper }));
+                ]), sizeVariant: "small", key: search ? choice.value : i, placeholder: choice.label, name: choice.value, checked: isChoiceSelected(choice), onChange: checkboxOnChangeWrapper }));
         }));
     };
     var getSearchChoices = function (choices, value) {
@@ -2422,7 +2551,12 @@ var MultiSelectField = function (props) {
     var getBadgeChoices = function () {
         return selectedChoices.map(function (_a) {
             var label = _a.label, value = _a.value;
-            return (createElement(StyledValueBadge, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+            switch (layout) {
+                case 'simple':
+                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+                default:
+                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value), sizeVariant: "small", shape: "flat" }, label));
+            }
         });
     };
     useImperativeHandle(refApi, function () { return ({
@@ -2441,14 +2575,24 @@ var MultiSelectField = function (props) {
                 unsetFormValue(name);
         };
     }, []);
+    var LayoutComponent;
+    switch (layout) {
+        case 'simple':
+            LayoutComponent = PropsWrappedStyledSimpleInputLayout;
+            break;
+        default:
+            LayoutComponent = PropsWrappedStyledInputFieldLayout;
+            break;
+    }
     return (createElement(Fragment, null,
         isDropdownOpen
             ? (createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })) : null,
         createElement("div", { ref: refApi, className: classnames([
                 classes.root,
+                classes[layout],
                 isDropdownOpen ? classes.rootOpen : null,
             ]) },
-            createElement(PropsWrappedStyledInputFieldLayout, { isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContentWithArrow, sizeVariant: sizeVariant, showPrependBackground: sizeVariant !== 'mini', customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, onClick: inputLabelOnClick },
+            createElement(LayoutComponent, { label: label, isPlaceholderCollapsed: showBadgeChoices ? selectedChoices.length > 0 : false, errorMsg: errorMsg, disabled: disabled, placeholder: placeholder, appendContent: appendContentWithArrow, sizeVariant: sizeVariant, showPrependBackground: sizeVariant !== 'mini', customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, onClick: inputLabelOnClick },
                 createElement("div", { tabIndex: 0, onBlur: onBlurWrapper, onFocus: onFocusWrapper, className: classnames([
                         classes.selectLabel,
                         placeholder ? classes.selectLabelWithPlaceholder : null,
@@ -2922,6 +3066,242 @@ var index$g = /*#__PURE__*/Object.freeze({
 
 var styles$h = (function (theme) { return ({
     root: {
+        width: '100%',
+        padding: 8,
+    },
+    slider: {
+        '--webkitProgressPercent': '0%',
+        '-webkit-appearance': 'none',
+        '-moz-appearance': 'none',
+        appearance: 'none',
+        width: '100%',
+        height: theme.sliderHeight,
+        background: theme.sliderBgColor,
+        outline: 'none',
+        borderRadius: theme.sliderHeight / 2,
+        margin: 0,
+        padding: 0,
+        '&::-webkit-slider-thumb': {
+            '-webkit-appearance': 'none',
+            appearance: 'none',
+            width: theme.sliderThumbSize,
+            height: theme.sliderThumbSize,
+            background: '#fff',
+            cursor: 'pointer',
+            marginTop: ((theme.sliderThumbSize - theme.sliderHeight) / 2) * -1,
+            borderRadius: theme.sliderThumbSize / 2,
+            boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)'
+        },
+        '&::-moz-range-thumb': {
+            '-moz-appearance': 'none',
+            appearance: 'none',
+            width: theme.sliderThumbSize,
+            height: theme.sliderThumbSize,
+            background: '#fff',
+            cursor: 'pointer',
+            marginTop: ((theme.sliderThumbSize - theme.sliderHeight) / 2) * -1,
+            borderRadius: theme.sliderThumbSize / 2,
+            boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)'
+        },
+        '&::-ms-thumb': {
+            '-ms-appearance': 'none',
+            appearance: 'none',
+            width: theme.sliderThumbSize,
+            height: theme.sliderThumbSize,
+            background: '#fff',
+            cursor: 'pointer',
+            marginTop: ((theme.sliderThumbSize - theme.sliderHeight) / 2) * -1,
+            borderRadius: theme.sliderThumbSize / 2,
+            boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.32)'
+        },
+        '&::-webkit-slider-runnable-track': {
+            height: theme.sliderHeight,
+            backgroundImage: "linear-gradient(\n            90deg,\n            " + theme.sliderProgressColor + " var(--webkitProgressPercent),\n            " + theme.sliderBgColor + " var(--webkitProgressPercent)\n          )",
+            borderRadius: theme.sliderHeight / 2,
+        },
+        '&::-moz-range-progress': {
+            height: theme.sliderHeight,
+            backgroundColor: theme.sliderProgressColor,
+            borderRadius: theme.sliderHeight / 2
+        },
+        '&::-ms-fill-lower': {
+            height: theme.sliderHeight,
+            backgroundColor: theme.sliderProgressColor,
+            borderRadius: theme.sliderHeight / 2
+        },
+        '&::-moz-focus-outer': {
+            border: 0,
+        }
+    },
+    error: {
+        color: theme.inputErrorMessageColor || '#ea3546',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightLight,
+        fontSize: 10,
+        marginTop: 4,
+    },
+    /* Sizes */
+    normal: {
+        minWidth: 256,
+        '& $slider': {
+            minWidth: 256,
+        },
+    },
+    small: {
+        minWidth: 171,
+        '& $slider': {
+            minWidth: 171,
+            height: theme.sliderSmallHeight,
+            '&::-webkit-slider-thumb': {
+                width: theme.sliderSmallThumbSize,
+                height: theme.sliderSmallThumbSize,
+                marginTop: ((theme.sliderSmallThumbSize - theme.sliderSmallHeight) / 2) * -1,
+            },
+            '&::-moz-range-thumb': {
+                width: theme.sliderSmallThumbSize,
+                height: theme.sliderSmallThumbSize,
+                marginTop: ((theme.sliderSmallThumbSize - theme.sliderSmallHeight) / 2) * -1,
+            },
+            '&::-ms-thumb': {
+                width: theme.sliderSmallThumbSize,
+                height: theme.sliderSmallThumbSize,
+                marginTop: ((theme.sliderSmallThumbSize - theme.sliderSmallHeight) / 2) * -1,
+            },
+            '&::-webkit-slider-runnable-track': {
+                height: theme.sliderSmallHeight,
+            },
+            '&::-moz-range-progress': {
+                height: theme.sliderSmallHeight,
+            },
+            '&::-ms-fill-lower': {
+                height: theme.sliderSmallHeight,
+            },
+        }
+    },
+    large: {
+        minWidth: 342,
+        '& $slider': {
+            minWidth: 342,
+            height: theme.sliderLargeHeight,
+            borderRadius: theme.sliderLargeHeight / 2,
+            '&::-webkit-slider-thumb': {
+                width: theme.sliderLargeThumbSize,
+                height: theme.sliderLargeThumbSize,
+                marginTop: ((theme.sliderLargeThumbSize - theme.sliderLargeHeight) / 2) * -1,
+                borderRadius: theme.sliderLargeThumbSize / 2,
+            },
+            '&::-moz-range-thumb': {
+                width: theme.sliderLargeThumbSize,
+                height: theme.sliderLargeThumbSize,
+                marginTop: ((theme.sliderLargeThumbSize - theme.sliderLargeHeight) / 2) * -1,
+                borderRadius: theme.sliderLargeThumbSize / 2,
+            },
+            '&::-ms-thumb': {
+                width: theme.sliderLargeThumbSize,
+                height: theme.sliderLargeThumbSize,
+                marginTop: ((theme.sliderLargeThumbSize - theme.sliderLargeHeight) / 2) * -1,
+                borderRadius: theme.sliderLargeThumbSize / 2,
+            },
+            '&::-webkit-slider-runnable-track': {
+                height: theme.sliderLargeHeight,
+                borderRadius: theme.sliderLargeHeight / 2,
+            },
+            '&::-moz-range-progress': {
+                height: theme.sliderLargeHeight,
+                borderRadius: theme.sliderLargeHeight / 2,
+            },
+            '&::-ms-fill-lower': {
+                height: theme.sliderLargeHeight,
+                borderRadius: theme.sliderLargeHeight / 2,
+            },
+        }
+    },
+}); });
+
+var Slider = function (props) {
+    var classes = props.classes, _a = props.name, name = _a === void 0 ? 'unnamed' : _a, _b = props.min, min = _b === void 0 ? 0 : _b, _c = props.max, max = _c === void 0 ? 100 : _c, _d = props.step, step = _d === void 0 ? 1 : _d, _e = props.value, value = _e === void 0 ? 0 : _e, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, errorMessage = props.errorMessage, _f = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _f === void 0 ? true : _f, controlled = props.controlled, _g = props.sizeVariant, sizeVariant = _g === void 0 ? 'normal' : _g, containerClassName = props.containerClassName, className = props.className, rest = __rest(props, ["classes", "name", "min", "max", "step", "value", "onChange", "onFocus", "onBlur", "errorMessage", "clearFormValueOnUnmount", "controlled", "sizeVariant", "containerClassName", "className"]);
+    /** Form-methods start */
+    /** Getting values from Form context (if the field is wrapped inside a form */
+    var _h = useContext(FormContext), updateFormValue = _h.updateFormValue, unsetFormValue = _h.unsetFormValue, formValues = _h.formValues, formErrors = _h.formErrors, formTouched = _h.formTouched, updateFormTouched = _h.updateFormTouched;
+    /** Getting error message from form errors */
+    var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
+    /** Setting the internal value of the field from form initial values or from value provided to the field */
+    var _j = __read(useState((name && formValues && formValues[name]) || value), 2), internalValue = _j[0], setInternalValue = _j[1];
+    /** Wrappers to merge form and props methods */
+    var onChangeWrapper = function (e) {
+        var _a = e.target, name = _a.name, targetValue = _a.value;
+        /** Internal value update */
+        setInternalValue(targetValue);
+        /** Passthrough to form context */
+        formValues && updateFormValue(name, targetValue);
+        /** Independent callback */
+        onChange && onChange(e);
+    };
+    var onFocusWrapper = function (e) {
+        /** Independent callback */
+        onFocus && onFocus(e);
+    };
+    var onBlurWrapper = function (e) {
+        var name = e.target.name;
+        /** Passthrough to form context */
+        formTouched && updateFormTouched(name, true);
+        /** Independent callback */
+        onBlur && onBlur(e);
+    };
+    /** On mount/unmount logic */
+    useEffect(function () {
+        /** On mount */
+        /** Update form with internal value on mount */
+        formValues && updateFormValue(name, internalValue, true);
+        return function () {
+            /** On unmount */
+            /** Clear Form value if needed */
+            clearFormValueOnUnmount && formValues && unsetFormValue(name);
+        };
+    }, []);
+    /** Form-methods end */
+    var inputRef = useRef();
+    var _k = __read(useState(false), 2), isChanging = _k[0], setIsChanging = _k[1];
+    useEffect(function () {
+        var inputElement = inputRef.current;
+        var getPercent = function () { return ((inputElement.value - inputElement.min) / (inputElement.max - inputElement.min)) * 100; };
+        inputElement.style.setProperty('--webkitProgressPercent', getPercent() + "%");
+        var handleMove = function () {
+            if (!isChanging)
+                return;
+            inputElement.style.setProperty("--webkitProgressPercent", getPercent() + "%");
+        };
+        var handleUpAndLeave = function () { return setIsChanging(false); };
+        var handleDown = function () { return setIsChanging(true); };
+        inputElement.addEventListener("mousemove", handleMove);
+        inputElement.addEventListener("mousedown", handleDown);
+        inputElement.addEventListener("mouseup", handleUpAndLeave);
+        inputElement.addEventListener("mouseleave", handleUpAndLeave);
+        return function () {
+            inputElement.removeEventListener("mousemove", handleMove);
+            inputElement.removeEventListener("mousedown", handleDown);
+            inputElement.removeEventListener("mouseup", handleUpAndLeave);
+            inputElement.removeEventListener("mouseleave", handleUpAndLeave);
+        };
+    }, [isChanging]);
+    return createElement("div", { className: classnames([containerClassName, classes.root, classes[sizeVariant]]) },
+        createElement("input", __assign({ type: "range", ref: inputRef, min: min, max: max, value: controlled ? value : internalValue, step: step, onChange: onChangeWrapper, onFocus: onFocusWrapper, onBlur: onBlurWrapper, className: classnames([className, classes.slider]), name: name }, rest)),
+        createElement("div", { className: classes.error }, errorMsg));
+};
+/** Wrappings */
+var StyledSlider = withStyles(styles$h)(Slider);
+var PropsWrappedStyledSlider = function (props) { return createElement(StyledSlider, __assign({}, props)); };
+
+
+
+var index$h = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledSlider,
+    Slider: PropsWrappedStyledSlider
+});
+
+var styles$i = (function (theme) { return ({
+    root: {
         border: "1px solid " + theme.buttonBackgroundColorPrimary,
         display: "inline-block",
         borderRadius: 6,
@@ -2985,18 +3365,18 @@ var ButtonsSet = function (props) {
         renderButtons()));
 };
 /** Wrappings */
-var StyledButtonsSet = withStyles(styles$h)(ButtonsSet);
+var StyledButtonsSet = withStyles(styles$i)(ButtonsSet);
 var PropsWrappedStyledBadge = function (props) { return (createElement(StyledButtonsSet, __assign({}, props))); };
 
 
 
-var index$h = /*#__PURE__*/Object.freeze({
+var index$i = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge,
     ButtonsSet: PropsWrappedStyledBadge
 });
 
-var styles$i = (function (theme) { return ({
+var styles$j = (function (theme) { return ({
     root: {
         userSelect: 'none',
         display: 'flex',
@@ -3103,15 +3483,192 @@ var Pagination = function (props) {
         collapseFactor ? getCollapsedItems(collapseFactor) : getAllItems(),
         createElement("div", { onClick: function () { onClick(currPage + 1); }, className: classnames(classes.item, classes.arrow, classes.rightArrow, (_b = {}, _b[classes.disabled] = currPage === pageCount - 1, _b)) })));
 };
-var StyledPagination = withStyles(styles$i)(Pagination);
+var StyledPagination = withStyles(styles$j)(Pagination);
 var PropsWrappedStyledPagination = function (props) { return createElement(StyledPagination, __assign({}, props)); };
 
 
 
-var index$i = /*#__PURE__*/Object.freeze({
+var index$j = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledPagination,
     Pagination: PropsWrappedStyledPagination
+});
+
+var useStyles = createUseStyles({
+    root: {
+        display: 'inline-block',
+        width: '106px',
+        height: '96px',
+        position: 'relative'
+    },
+    octagonInner: {
+        transform: 'skewX(-30deg) rotate(60deg) skewX(30deg)',
+        opacity: 1,
+        cursor: 'pointer',
+    },
+    octagon: {
+        overflow: 'hidden',
+        display: 'inline-block',
+        margin: '0 0',
+        width: 'inherit',
+        height: 'inherit',
+        transform: 'rotate(0deg) skewX(30deg)',
+        borderRadius: '.5em',
+        '& *, *:before': {
+            display: 'block',
+            overflow: 'hidden',
+            width: 'inherit',
+            height: 'inherit',
+            borderRadius: 'inherit',
+        },
+        '&:first-child $octagonInner:before, $image': {
+            transform: 'skewX(-30deg) rotate(60deg) skewX(30deg)',
+            background: '#cccccc',
+            content: '""',
+        }
+    },
+    avatarWrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 'inherit',
+        height: 'inherit',
+    },
+    contentContainer: {
+        position: 'absolute',
+        zIndex: 2,
+        width: 'inherit',
+        height: 'inherit',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: 0,
+        top: 0,
+        color: '#fff',
+        fontSize: 28,
+    },
+    input: {
+        width: 0.1,
+        height: 0.1,
+        opacity: 0,
+        overflow: 'hidden',
+        position: 'absolute',
+        zIndex: -1,
+    },
+    inputLabel: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: 'inherit',
+        height: 'inherit',
+        cursor: 'pointer'
+    },
+    plusIcon: {
+        width: 32,
+    },
+    image: function (image) { return ({
+        marginTop: -96,
+        '&::before': {
+            marginTop: '-0.5em',
+            height: '106px',
+            transform: 'skewX(-30deg) rotate(-120deg)',
+            background: "url(" + image + ")",
+            backgroundSize: 'cover',
+            lineHeight: '106px',
+            textAlign: 'center',
+            content: '""',
+        }
+    }); },
+    mini: {
+        width: '48.6px',
+        height: '44px',
+        '& $plusIcon': {
+            width: 16
+        },
+        '& $octagon': {
+            borderRadius: '.3em',
+        },
+        '& $contentContainer': {
+            fontSize: 16
+        },
+        '& $image': {
+            marginTop: -44,
+            '&::before': {
+                height: 55
+            }
+        }
+    },
+    small: {
+        width: '61.8px',
+        height: '56px',
+        '& $plusIcon': {
+            width: 18
+        },
+        '& $octagon': {
+            borderRadius: '.3em',
+        },
+        '& $contentContainer': {
+            fontSize: 20
+        },
+        '& $image': {
+            marginTop: -56,
+            '&::before': {
+                height: 67,
+            }
+        },
+    },
+    normal: {
+        width: '79.5px',
+        height: '72px',
+        '& $plusIcon': {
+            width: 24
+        },
+        '& $contentContainer': {
+            fontSize: 22
+        },
+        '& $image': {
+            marginTop: -72,
+            '&::before': {
+                height: 79.5
+            }
+        },
+    },
+    large: {},
+    initials: {
+        '& $octagon': {
+            '&:first-child $octagonInner:before': {
+                background: '#007aff'
+            }
+        }
+    },
+});
+
+var Avatar = function (props) {
+    var _a = props.sizeVariant, sizeVariant = _a === void 0 ? 'normal' : _a, initials = props.initials, image = props.image, className = props.className, onClick = props.onClick, rest = __rest(props, ["sizeVariant", "initials", "image", "className", "onClick"]);
+    var classes = useStyles(image);
+    var getContent = function () { return (createElement("div", { className: classes.contentContainer }, !initials ? (createElement(Fragment, null,
+        createElement(Plus, { className: classes.plusIcon }),
+        createElement("label", { htmlFor: "avatarInput", className: classes.inputLabel }),
+        createElement("input", __assign({ type: "file", className: classes.input, id: "avatarInput", name: "avatar", accept: "image/*" }, rest))))
+        :
+            initials)); };
+    return (createElement("div", { className: classnames([
+            classes.root,
+            classes[sizeVariant],
+            initials ? classes.initials : null,
+            className,
+        ]), onClick: onClick },
+        !image && getContent(),
+        createElement("div", { className: classes.avatarWrapper },
+            createElement("div", { className: classes.octagon },
+                createElement("div", { className: classes.octagonInner }, image && createElement("div", { className: classes.image }))))));
+};
+
+
+
+var index$k = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': Avatar
 });
 
 var getGridColumnStyle = function (breakpointValue) {
@@ -3122,7 +3679,7 @@ var getGridColumnStyle = function (breakpointValue) {
 var getGridTemplateColumns = function (columns) {
     return "repeat(" + columns + ", 1fr)";
 };
-var styles$j = (function (theme) {
+var styles$k = (function (theme) {
     var _a;
     return ({
         /** Row */
@@ -3167,21 +3724,21 @@ var Col = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledRow = withStyles(styles$j)(Row);
+var StyledRow = withStyles(styles$k)(Row);
 var PropsWrappedStyledRow = function (props) { return createElement(StyledRow, __assign({}, props)); };
-var StyledCol = withStyles(styles$j)(Col);
+var StyledCol = withStyles(styles$k)(Col);
 var PropsWrappedStyledCol = function (props) { return createElement(StyledCol, __assign({}, props)); };
 
 
 
-var index$j = /*#__PURE__*/Object.freeze({
+var index$l = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': Row,
     Row: PropsWrappedStyledRow,
     Col: PropsWrappedStyledCol
 });
 
-var styles$k = (function (theme) {
+var styles$l = (function (theme) {
     var _a;
     return ({
         root: (_a = {
@@ -3215,23 +3772,22 @@ var Container = function (props) {
         ]) }), children));
 };
 /** Wrappers */
-var StyledContainer = withStyles(styles$k)(Container);
+var StyledContainer = withStyles(styles$l)(Container);
 var PropsWrappedStyledContainer = function (props) { return createElement(StyledContainer, __assign({}, props)); };
 
 
 
-var index$k = /*#__PURE__*/Object.freeze({
+var index$m = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledContainer,
     Container: PropsWrappedStyledContainer
 });
 
-var styles$l = (function (theme) { return ({
+var styles$m = (function (theme) { return ({
     root: {
         borderRadius: 8,
         display: 'flex',
         flexFlow: 'column',
-        boxShadow: '0 2px 13px 0 rgba(0, 0, 0, 0.07)',
         overflow: 'hidden',
     },
     title: {
@@ -3248,12 +3804,19 @@ var styles$l = (function (theme) { return ({
         fontFamily: theme.fontFamily,
         fontSize: 14,
     },
+    normal: {
+        boxShadow: '0 4px 8px 0 rgba(56, 96, 165, 0.15)',
+    },
+    bold: {
+        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12)',
+    }
 }); });
 
 var Card = function (props) {
-    var classes = props.classes, className = props.className, children = props.children, rest = __rest(props, ["classes", "className", "children"]);
+    var classes = props.classes, className = props.className, children = props.children, _a = props.shadow, shadow = _a === void 0 ? 'normal' : _a, rest = __rest(props, ["classes", "className", "children", "shadow"]);
     return (createElement("div", __assign({}, rest, { className: classnames([
             classes.root,
+            classes[shadow],
             className,
         ]) }), children));
 };
@@ -3271,9 +3834,9 @@ var Body = function (props) {
             className,
         ]) }), children));
 };
-var StyledCard = withStyles(styles$l)(Card);
-var StyledTitle = withStyles(styles$l)(Title);
-var StyledBody = withStyles(styles$l)(Body);
+var StyledCard = withStyles(styles$m)(Card);
+var StyledTitle = withStyles(styles$m)(Title);
+var StyledBody = withStyles(styles$m)(Body);
 /** Wrappings */
 var PropsWrappedStyledCard = function (props) { return createElement(StyledCard, __assign({}, props)); };
 var PropsWrappedStyledTitle = function (props) { return createElement(StyledTitle, __assign({}, props)); };
@@ -3281,7 +3844,7 @@ var PropsWrappedStyledBody = function (props) { return createElement(StyledBody,
 
 
 
-var index$l = /*#__PURE__*/Object.freeze({
+var index$n = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledCard,
     Wrapper: PropsWrappedStyledCard,
@@ -3289,7 +3852,7 @@ var index$l = /*#__PURE__*/Object.freeze({
     Body: PropsWrappedStyledBody
 });
 
-var styles$m = (function (theme) { return ({
+var styles$n = (function (theme) { return ({
     root: {
         '&.withBorder': {
             border: theme.tableBorderPrimary,
@@ -3323,7 +3886,7 @@ var styles$m = (function (theme) { return ({
 }); });
 
 var Table = function (props) {
-    var _a = props.border, border = _a === void 0 ? true : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent, headerLabelClassName = props.headerLabelClassName;
+    var _a = props.border, border = _a === void 0 ? false : _a, children = props.children, classes = props.classes, className = props.className, headerLabel = props.headerLabel, headerComponent = props.headerComponent, headerLabelClassName = props.headerLabelClassName;
     if (!headerLabel && !headerComponent) {
         return (createElement("table", { className: classnames(classes.root, classes.table, className, {
                 'withBorder': border,
@@ -3338,12 +3901,12 @@ var Table = function (props) {
         createElement("table", { className: classes.table }, children)));
 };
 /** Wrappers */
-var StyledTable = withStyles(styles$m)(Table);
+var StyledTable = withStyles(styles$n)(Table);
 var PropsWrappedStyledTable = function (props) { return createElement(StyledTable, __assign({}, props)); };
 
 
 
-var index$m = /*#__PURE__*/Object.freeze({
+var index$o = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTable,
     Table: PropsWrappedStyledTable
@@ -3363,25 +3926,24 @@ var TableBody = function (_a) {
 
 
 
-var index$n = /*#__PURE__*/Object.freeze({
+var index$p = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableBody,
     TableBody: TableBody
 });
 
-var styles$n = (function (theme) { return ({
+var styles$o = (function (theme) { return ({
     root: {
-        padding: '0 5px',
+        padding: '18px 5px',
         '&:first-child': {
-            paddingLeft: 45,
+            paddingLeft: 22,
         },
         '&:last-child': {
-            paddingRight: 20,
+            paddingRight: 22,
         },
         'th&': {
             whiteSpace: 'nowrap',
             fontWeight: 'normal',
-            borderBottom: "2px solid " + theme.tableBorderColor,
         },
     },
 }); });
@@ -3398,12 +3960,12 @@ var TableCell = function (props) {
     }
     return (createElement(Component, { className: classnames(classes.root, className) }, children));
 };
-var StyledTableCell = withStyles(styles$n)(TableCell);
+var StyledTableCell = withStyles(styles$o)(TableCell);
 var PropsWrappedStyledTableCell = function (props) { return createElement(StyledTableCell, __assign({}, props)); };
 
 
 
-var index$o = /*#__PURE__*/Object.freeze({
+var index$q = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTableCell,
     TableCell: PropsWrappedStyledTableCell
@@ -3417,38 +3979,41 @@ var TableHead = function (_a) {
 
 
 
-var index$p = /*#__PURE__*/Object.freeze({
+var index$r = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableHead,
     TableHead: TableHead
 });
 
-var styles$o = (function (theme) { return ({
+var styles$p = (function (theme) { return ({
     root: {
         height: 40,
-        '&:nth-child(even)': {
+    },
+    bodyRow: {
+        '&:nth-child(odd)': {
             backgroundColor: theme.tableBackgroundColor,
         }
-    },
+    }
 }); });
 
 var TableRow = function (props) {
     var children = props.children, classes = props.classes, className = props.className, otherProps = __rest(props, ["children", "classes", "className"]);
-    return (createElement("tr", __assign({ className: classnames(classes.root, className) }, otherProps), children));
+    var variant = useContext(TableContext).variant;
+    return (createElement("tr", __assign({ className: classnames(classes.root, variant === VARIANT_BODY ? classes.bodyRow : null, className) }, otherProps), children));
 };
-var StyledTableRow = withStyles(styles$o)(TableRow);
+var StyledTableRow = withStyles(styles$p)(TableRow);
 var PropsWrappedStyledTableRow = function (props) { return createElement(StyledTableRow, __assign({}, props)); };
 
 
 
-var index$q = /*#__PURE__*/Object.freeze({
+var index$s = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledTableRow,
     TableRow: PropsWrappedStyledTableRow
 });
 
 var TableData = function (props) {
-    var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className;
+    var headerLabel = props.headerLabel, headerComponent = props.headerComponent, headRow = props.headRow, rows = props.rows, className = props.className, rest = __rest(props, ["headerLabel", "headerComponent", "headRow", "rows", "className"]);
     var getHeadRow = function () {
         return headRow.map(function (cell) {
             return createElement(PropsWrappedStyledTableCell, { key: cell.id }, cell.label);
@@ -3457,7 +4022,7 @@ var TableData = function (props) {
     var getRows = function () { return rows.map(function (row) { return (createElement(PropsWrappedStyledTableRow, { key: row.id }, headRow.map(function (cell, index) {
         return createElement(PropsWrappedStyledTableCell, { key: index }, row[cell.id]);
     }))); }); };
-    return (createElement(PropsWrappedStyledTable, { className: className, headerLabel: headerLabel, headerComponent: headerComponent },
+    return (createElement(PropsWrappedStyledTable, __assign({ className: className, headerLabel: headerLabel, headerComponent: headerComponent }, rest),
         createElement(TableHead, null,
             createElement(PropsWrappedStyledTableRow, null, getHeadRow())),
         createElement(TableBody, null, getRows())));
@@ -3465,29 +4030,27 @@ var TableData = function (props) {
 
 
 
-var index$r = /*#__PURE__*/Object.freeze({
+var index$t = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': TableData,
     TableData: TableData
 });
 
-var styles$p = (function (theme) {
+var styles$q = (function (theme) {
     var _a, _b, _c;
     return ({
         navbar: {
             position: 'relative',
-            minHeight: 56,
+            minHeight: 60,
             backgroundColor: theme.backgroundColorPrimary,
             width: '100%',
-            boxShadow: '0 1px 1px 0 rgba(0, 0, 0, 0.1)',
+            padding: '0 16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
         },
-        section: {
-            padding: '0px 20px',
-        },
+        section: {},
         align: (_a = {
                 display: 'flex',
                 flexDirection: 'row',
@@ -3534,21 +4097,21 @@ var NavbarSection = function (props) {
         ]) }, rest), children));
 };
 /** Wrappers */
-var StyledNavbar = withStyles(styles$p)(Navbar);
+var StyledNavbar = withStyles(styles$q)(Navbar);
 var PropsWrappedStyledNavbar = function (props) { return createElement(StyledNavbar, __assign({}, props)); };
-var StyledNavbarSection = withStyles(styles$p)(NavbarSection);
+var StyledNavbarSection = withStyles(styles$q)(NavbarSection);
 var PropsWrappedStyledNavbarSection = function (props) { return createElement(StyledNavbarSection, __assign({}, props)); };
 
 
 
-var index$s = /*#__PURE__*/Object.freeze({
+var index$u = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavbar,
     Navbar: PropsWrappedStyledNavbar,
     NavbarSection: PropsWrappedStyledNavbarSection
 });
 
-var styles$q = (function (theme) {
+var styles$r = (function (theme) {
     var _a, _b;
     return ({
         container: (_a = {
@@ -3569,7 +4132,7 @@ var styles$q = (function (theme) {
                 fontWeight: theme.fontWeightMedium,
                 color: theme.navbarItemColor,
                 fontSize: 14,
-                padding: 15
+                padding: '15px 12px'
             },
             _b["@media (max-width: " + (theme.gridSmBreakpoint || 576) + "px)"] = {
                 padding: 5,
@@ -3579,11 +4142,14 @@ var styles$q = (function (theme) {
             _b.textAlign = 'center',
             _b.verticalAlign = 'middle',
             _b.transition = '0.2s',
+            _b.opacity = .5,
             _b['&:hover'] = {
                 color: theme.navbarItemColorHover,
+                opacity: 1
             },
             _b['&:active'] = {
                 color: theme.navbarItemColorActive,
+                opacity: 1
             },
             _b.margin = 0,
             _b.borderTop = '3px solid rgba(0,0,0,0)',
@@ -3591,6 +4157,7 @@ var styles$q = (function (theme) {
             _b),
         itemSelected: {
             color: theme.navbarItemColorHighlight,
+            opacity: 1,
             '&:hover': {
                 color: theme.navbarItemColorHighlightHover,
             },
@@ -3640,14 +4207,14 @@ var NavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute || selected) ? classes.itemSelected : null, variant), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledNavigationContainer = withStyles(styles$q)(NavigationContainer);
+var StyledNavigationContainer = withStyles(styles$r)(NavigationContainer);
 var PropsWrappedStyledNavigationContainer = function (props) { return createElement(StyledNavigationContainer, __assign({}, props)); };
-var StyledNavigationRoute = withStyles(styles$q)(NavigationRoute);
+var StyledNavigationRoute = withStyles(styles$r)(NavigationRoute);
 var PropsWrappedStyledNavigationRoute = function (props) { return createElement(StyledNavigationRoute, __assign({}, props)); };
 
 
 
-var index$t = /*#__PURE__*/Object.freeze({
+var index$v = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledNavigationContainer,
     defaultNavbarNavigationContextValues: defaultNavbarNavigationContextValues,
@@ -3656,24 +4223,38 @@ var index$t = /*#__PURE__*/Object.freeze({
     NavigationContainer: PropsWrappedStyledNavigationContainer
 });
 
-var styles$r = (function (theme) { return ({
+var styles$s = (function (theme) { return ({
     /** Container / Wrapper */
     container: {
-        padding: '10px 0px',
+        padding: '24px 0px',
         backgroundColor: theme.backgroundColorPrimary,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        boxShadow: '0 2px 13px 0 rgba(0, 0, 0, 0.07)',
     },
     /** Section */
     section: {
         cursor: 'pointer',
         userSelect: 'none',
-        borderRight: '3px solid rgba(0,0,0,0)',
-        borderLeft: '3px solid rgba(0,0,0,0)',
-        margin: '5px 0px',
-        padding: '2px 21px',
         transition: '0.2s',
+    },
+    sectionSelected: {
+        backgroundColor: '#fff',
+        '& $sectionHeader': {
+            backgroundColor: theme.sidebarItemBackgroundSelected,
+            borderLeft: "4px solid " + theme.sidebarItemColorHighlight,
+            '&:hover': {
+                color: '#000',
+            },
+        },
+    },
+    sectionHeader: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '14.5px 24px',
+        borderRight: '4px solid rgba(0,0,0,0)',
+        borderLeft: '4px solid rgba(0,0,0,0)',
         '&:hover': {
             color: theme.sidebarItemColorHover,
         },
@@ -3681,39 +4262,16 @@ var styles$r = (function (theme) { return ({
             color: theme.sidebarItemColorActive
         },
     },
-    sectionSelected: {
-        backgroundColor: theme.sidebarItemBackgroundSelected,
-        color: theme.sidebarItemColorHighlight,
-        borderLeft: "3px solid " + theme.sidebarItemColorHighlight,
-        '&:hover': {
-            color: theme.sidebarItemColorHighlightHover,
-        },
-        '&:active': {
-            color: theme.sidebarItemColorHighlightActive,
-        },
-    },
-    sectionHeader: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
     sectionInfoContainer: {
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
+        justifyContent: 'center'
     },
     sectionTitle: {
-        marginTop: 5,
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightMedium,
-        fontSize: 14,
-        color: theme.sidebarSectionColor,
-    },
-    sectionDescription: {
-        marginTop: 7,
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeightLight,
-        fontSize: 12,
-        color: theme.sidebarSectionColor,
+        fontSize: 16,
     },
     expandIconContainer: {
         paddingTop: 5,
@@ -3740,9 +4298,9 @@ var styles$r = (function (theme) { return ({
     item: {
         cursor: 'pointer',
         transition: '0.3s',
-        color: theme.sidebarItemColor,
-        fontSize: 12,
-        padding: '4px 0px',
+        color: '#969695',
+        fontSize: 14,
+        padding: '12px 24px',
         fontFamily: theme.fontFamily,
         fontWeight: theme.fontWeightRegular,
         '&:hover': {
@@ -3751,16 +4309,41 @@ var styles$r = (function (theme) { return ({
         '&:active': {
             color: theme.sidebarItemColorActive,
         },
+        borderLeft: "4px solid " + theme.sidebarItemColorHighlight
     },
     itemSelected: {
         fontWeight: theme.fontWeightMedium,
         color: theme.sidebarItemColorSelected,
+        backgroundColor: theme.sidebarItemBackgroundSelected,
         '&:hover': {
             color: theme.sidebarItemColorSelected,
         },
         '&:active': {
             color: theme.sidebarItemColorSelected,
         },
+    },
+    titleContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 24px'
+    },
+    avatar: {
+        width: 44,
+        height: 44,
+        backgroundColor: '#ccc',
+        borderRadius: 22,
+        marginRight: 10
+    },
+    titleSection: {},
+    title: {
+        margin: 0,
+        fontSize: 16,
+    },
+    description: {
+        margin: 0,
+        fontSize: 12,
+        color: '#1d1d1b',
+        opacity: 0.5,
     },
 }); });
 
@@ -3774,7 +4357,7 @@ var defaultSidebarNavigationContext = {
 var SidebarNavigationContext = createContext(defaultSidebarNavigationContext);
 /** Main component */
 var SidebarNavigationContainer = function (props) {
-    var className = props.className, children = props.children, _a = props.initialSection, initialSection = _a === void 0 ? null : _a, _b = props.initialRoute, initialRoute = _b === void 0 ? null : _b, propsSelectedSection = props.selectedSection, propsSelectedRoute = props.selectedRoute, onRouteChange = props.onRouteChange, classes = props.classes, rest = __rest(props, ["className", "children", "initialSection", "initialRoute", "selectedSection", "selectedRoute", "onRouteChange", "classes"]);
+    var className = props.className, children = props.children, _a = props.initialSection, initialSection = _a === void 0 ? null : _a, _b = props.initialRoute, initialRoute = _b === void 0 ? null : _b, propsSelectedSection = props.selectedSection, propsSelectedRoute = props.selectedRoute, onRouteChange = props.onRouteChange, classes = props.classes, title = props.title, description = props.description, rest = __rest(props, ["className", "children", "initialSection", "initialRoute", "selectedSection", "selectedRoute", "onRouteChange", "classes", "title", "description"]);
     /** Update selected value */
     var _c = __read(useState(initialSection), 2), selectedSection = _c[0], setSelectedSection = _c[1];
     var _d = __read(useState(initialRoute), 2), selectedRoute = _d[0], setSelectedRoute = _d[1];
@@ -3788,6 +4371,11 @@ var SidebarNavigationContainer = function (props) {
         onRouteChange && onRouteChange(selectedSection, route);
     };
     return (createElement("div", __assign({ className: classnames(classes.container, className) }, rest),
+        title && (createElement("div", { className: classes.titleContainer },
+            createElement("div", { className: classes.avatar }),
+            createElement("div", { className: classes.titleSection },
+                createElement("p", { className: classes.title }, title),
+                description && createElement("p", { className: classes.description }, description)))),
         createElement(SidebarNavigationContext.Provider, { value: {
                 selectedSection: propsSelectedSection === undefined ? selectedSection : propsSelectedSection,
                 selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
@@ -3809,15 +4397,12 @@ var SidebarNavigationSection = function (props) {
         updateSelectedSection(route);
         onClick && onClick(e);
     };
-    return (createElement("div", __assign({ className: classnames(classes.section, className, (route === selectedSection) ? classes.sectionSelected : null), onClick: onClickWrapper }, rest),
+    return (createElement("div", __assign({ className: classnames(classes.section, className, (route === selectedSection && !children) ? classes.sectionSelected : null), onClick: onClickWrapper }, rest),
         createElement("div", { className: classes.sectionHeader },
             createElement("div", { className: classes.sectionInfoContainer },
-                createElement("div", { className: classes.sectionTitle }, title),
-                createElement("div", { className: classes.sectionDescription }, description)),
-            createElement("div", { className: classes.expandIconContainer }, areChildrenVisible ? (createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? classes.expandIconCollapsed : null) })) : null)),
-        createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (areChildrenVisible && isExpanded) ? createElement(Fragment, null,
-            createElement("hr", null),
-            children) : null)));
+                createElement("div", { className: classes.sectionTitle }, title)),
+            createElement("div", { className: classes.expandIconContainer }, areChildrenVisible ? (createElement(DownArrow, { className: classnames(classes.expandIcon, isExpanded ? null : classes.expandIconCollapsed) })) : null)),
+        createElement("div", { className: classnames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden) }, (areChildrenVisible && isExpanded) ? children : null)));
 };
 var SidebarNavigationRoute = function (props) {
     var className = props.className, children = props.children, classes = props.classes, onClick = props.onClick, route = props.route, rest = __rest(props, ["className", "children", "classes", "onClick", "route"]);
@@ -3832,16 +4417,16 @@ var SidebarNavigationRoute = function (props) {
     return (createElement("div", __assign({ className: classnames(classes.item, className, (route === selectedRoute) ? classes.itemSelected : null), onClick: onClickWrapper }, rest), children));
 };
 /** Wrappers */
-var StyledSidebarNavigationContainer = withStyles(styles$r)(SidebarNavigationContainer);
+var StyledSidebarNavigationContainer = withStyles(styles$s)(SidebarNavigationContainer);
 var PropsWrappedStyledSidebarNavigationContainer = function (props) { return createElement(StyledSidebarNavigationContainer, __assign({}, props)); };
-var StyledSidebarNavigationSection = withStyles(styles$r)(SidebarNavigationSection);
+var StyledSidebarNavigationSection = withStyles(styles$s)(SidebarNavigationSection);
 var PropsWrappedStyledSidebarNavigationSection = function (props) { return createElement(StyledSidebarNavigationSection, __assign({}, props)); };
-var StyledSidebarNavigationRoute = withStyles(styles$r)(SidebarNavigationRoute);
+var StyledSidebarNavigationRoute = withStyles(styles$s)(SidebarNavigationRoute);
 var PropsWrappedStyledSidebarNavigationRoute = function (props) { return createElement(StyledSidebarNavigationRoute, __assign({}, props)); };
 
 
 
-var index$u = /*#__PURE__*/Object.freeze({
+var index$w = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledSidebarNavigationContainer,
     defaultSidebarNavigationContext: defaultSidebarNavigationContext,
@@ -3851,7 +4436,79 @@ var index$u = /*#__PURE__*/Object.freeze({
     SidebarNavigationRoute: PropsWrappedStyledSidebarNavigationRoute
 });
 
-var styles$s = (function (theme) { return ({
+var styles$t = (function () { return ({
+    root: {
+        width: 52,
+        height: 52,
+        position: 'relative',
+        cursor: 'pointer',
+        display: 'inline-block',
+    },
+    navburgerWrapper: {
+        width: 'inherit',
+        height: 'inherit',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    octagonInner: {
+        transform: 'skewX(-30deg) rotate(60deg) skewX(30deg)',
+        opacity: 1,
+        cursor: 'pointer',
+    },
+    octagon: {
+        overflow: 'hidden',
+        display: 'inline-block',
+        margin: '0 0',
+        width: 'inherit',
+        height: 'inherit',
+        transform: 'rotate(0deg) skewX(30deg)',
+        borderRadius: '.2em',
+        '& *, *:before': {
+            display: 'block',
+            overflow: 'hidden',
+            width: 'inherit',
+            height: 'inherit',
+            borderRadius: 'inherit',
+        },
+        '&:first-child $octagonInner:before, $image': {
+            transform: 'skewX(-30deg) rotate(60deg) skewX(30deg)',
+            background: '#000000',
+            opacity: 0.05,
+            content: '""',
+        }
+    },
+    octagonWrapper: {
+        width: 'inherit',
+        height: 'inherit',
+        position: 'absolute',
+        left: 0,
+        top: 0,
+    }
+}); });
+
+var NavBurger = function (props) {
+    var classes = props.classes, active = props.active, onClick = props.onClick, rest = __rest(props, ["classes", "active", "onClick"]);
+    return (createElement("div", __assign({ className: classnames([classes.root, classnames]), onClick: onClick }, rest),
+        createElement("div", { className: classes.navburgerWrapper },
+            createElement(Hamburger, null),
+            active && (createElement("div", { className: classes.octagonWrapper },
+                createElement("div", { className: classes.octagon },
+                    createElement("div", { className: classes.octagonInner })))))));
+};
+/** Wrappers */
+var StyledNavBurger = withStyles(styles$t)(NavBurger);
+var PropsWrappedStyledNavBurger = function (props) { return createElement(StyledNavBurger, __assign({}, props)); };
+
+
+
+var index$x = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': PropsWrappedStyledNavBurger,
+    NavBurger: PropsWrappedStyledNavBurger
+});
+
+var styles$u = (function (theme) { return ({
     root: {
         position: 'relative',
         overflow: 'visible',
@@ -3892,18 +4549,18 @@ var Badge = function (props) {
         children));
 };
 /** Wrappings */
-var StyledBadge = withStyles(styles$s)(Badge);
+var StyledBadge = withStyles(styles$u)(Badge);
 var PropsWrappedStyledBadge$1 = function (props) { return createElement(StyledBadge, __assign({}, props)); };
 
 
 
-var index$v = /*#__PURE__*/Object.freeze({
+var index$y = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledBadge$1,
     Badge: PropsWrappedStyledBadge$1
 });
 
-var styles$t = (function (theme) { return ({
+var styles$v = (function (theme) { return ({
     root: {
         position: 'relative',
         cursor: 'pointer',
@@ -3940,8 +4597,8 @@ var styles$t = (function (theme) { return ({
     dropdownArrow: {
         transition: '0.3s',
         fill: theme.inputPlaceholderColorIdle,
-        width: 25,
-        height: 25,
+        width: theme.dropdownArrowSize,
+        height: theme.dropdownArrowSize,
     },
     dropdownArrowNormal: {
         marginRight: 10,
@@ -3956,9 +4613,9 @@ var styles$t = (function (theme) { return ({
 
 var DropDownField = function (props) {
     var _a, _b, _c;
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, appendContent = props.appendContent, onClose = props.onClose, placeholderClassName = props.placeholderClassName, customPlaceholderFont = props.customPlaceholderFont, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d;
-    var _e = __read(useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
-    var _f = __read(useState(false), 2), isFocused = _f[0], setFocused = _f[1];
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, listClassName = props.listClassName, appendContent = props.appendContent, onClose = props.onClose, placeholderClassName = props.placeholderClassName, customPlaceholderFont = props.customPlaceholderFont, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, _e = props.layout, layout = _e === void 0 ? 'default' : _e, label = props.label;
+    var _f = __read(useState(false), 2), isDropdownOpen = _f[0], setDropdownOpen = _f[1];
+    var _g = __read(useState(false), 2), isFocused = _g[0], setFocused = _g[1];
     var appendContentWithArrow = (createElement(Fragment, null,
         appendContent ? appendContent : null,
         createElement(DownArrow, { className: classnames(classes.dropdownArrow, (_a = {},
@@ -3976,25 +4633,98 @@ var DropDownField = function (props) {
         setDropdownOpen(!isDropdownOpen);
         isDropdownOpen && onClose && onClose();
     };
+    var LayoutComponent;
+    switch (layout) {
+        case 'simple':
+            LayoutComponent = PropsWrappedStyledSimpleInputLayout;
+            break;
+        default:
+            LayoutComponent = PropsWrappedStyledInputFieldLayout;
+            break;
+    }
     return (createElement(Fragment, null,
         isDropdownOpen && (createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })),
         createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
-            createElement(PropsWrappedStyledInputFieldLayout, { className: classnames((_c = {},
+            createElement(LayoutComponent, { className: classnames((_c = {},
                     _c[classes.inputNormal] = sizeVariant === 'normal',
-                    _c)), isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0 }),
-            isDropdownOpen && (createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal) }, children)))));
+                    _c)), isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0, label: label }),
+            isDropdownOpen && (createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal, listClassName) }, children)))));
 };
 /** Wrappings */
-var StyledDropDownField = withStyles(styles$t)(DropDownField);
+var StyledDropDownField = withStyles(styles$v)(DropDownField);
 var PropsWrappedStyledDropDownField = function (props) { return createElement(StyledDropDownField, __assign({}, props)); };
 
 
 
-var index$w = /*#__PURE__*/Object.freeze({
+var index$z = /*#__PURE__*/Object.freeze({
     __proto__: null,
     'default': PropsWrappedStyledDropDownField,
     DropDownField: PropsWrappedStyledDropDownField
 });
 
-export { PropsWrappedStyledBadge$1 as Badge, index$v as BadgeElements, PropsWrappedStyledButton as Button, index$7 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$h as ButtonsSetElements, PropsWrappedStyledCard as Card, index$l as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$a as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$k as ContainerElements, PropsWrappedStyledDropDownField as DropDownField, index$w as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$f as FileFieldElements, Form, index as FormElements, Row as Grid, index$j as GridElements, index$6 as Icons, InputField, index$8 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$e as MultiSelectFieldElements, PropsWrappedStyledNavbar as Navbar, index$s as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$t as NavbarNavigationElements, PropsWrappedStyledPagination as Pagination, index$i as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$9 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$g as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$d as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$b as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$u as SidebarNavigationElements, PropsWrappedStyledTable as Table, TableBody, index$n as TableBodyElements, PropsWrappedStyledTableCell as TableCell, index$o as TableCellElements, TableData, index$r as TableDataElements, index$m as TableElements, TableHead, index$p as TableHeadElements, PropsWrappedStyledTableRow as TableRow, index$q as TableRowElements, ThemeProvider, StyledValueBadge as ValueBadge, index$c as ValueBadgeElements, colors, defaultTheme as theme };
+var styles$w = (function (theme) { return ({
+    wrapper: {
+        borderRadius: 8,
+        backgroundColor: theme.inputColorHighlight,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        justifyContent: 'space-evenly',
+        marginRight: 6,
+        height: 28,
+    },
+    content: {
+        color: theme.textColorHighlight,
+        flex: 1,
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 9,
+        whiteSpace: 'nowrap',
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeightRegular,
+        fontSize: 12,
+    },
+    closeSection: {
+        pointerEvents: 'auto',
+        color: theme.textColorLight,
+        height: '100%',
+        width: 22,
+        backgroundColor: theme.inputColorSpecial,
+        borderRadius: '0px 8px 8px 0px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        '&:hover': {
+            backgroundColor: theme.inputColorSpecialHover,
+        },
+        '&:active': {
+            backgroundColor: theme.inputColorSpecialActive,
+        },
+    },
+    closeIcon: {
+        width: 12,
+        fill: '#fff',
+    },
+}); });
+
+var ValueBadge = function (props) {
+    var classes = props.classes, onClose = props.onClose, children = props.children;
+    return (createElement("div", { className: classes.wrapper },
+        createElement("div", { className: classes.content }, children),
+        createElement("div", { className: classes.closeSection, onClick: onClose },
+            createElement(Close, { className: classes.closeIcon }))));
+};
+var StyledValueBadge = withStyles(styles$w)(ValueBadge);
+
+
+
+var index$A = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    'default': StyledValueBadge,
+    ValueBadge: StyledValueBadge
+});
+
+export { Avatar, index$k as AvatarElements, PropsWrappedStyledBadge$1 as Badge, index$y as BadgeElements, PropsWrappedStyledButton as Button, index$7 as ButtonElements, PropsWrappedStyledBadge as ButtonsSet, index$i as ButtonsSetElements, PropsWrappedStyledCard as Card, index$n as CardElements, PropsWrappedStyledCheckboxField as CheckboxField, index$a as CheckboxFieldElements, PropsWrappedStyledContainer as Container, index$m as ContainerElements, PropsWrappedStyledDropDownField as DropDownField, index$z as DropDownFieldElements, PropsWrappedStyledStyledFileField as FileField, index$f as FileFieldElements, Form, index as FormElements, Row as Grid, index$l as GridElements, index$6 as Icons, InputField, index$8 as InputFieldElements, PropsWrappedStyledMultiSelectField as MultiSelectField, index$e as MultiSelectFieldElements, PropsWrappedStyledNavBurger as NavBurger, index$x as NavBurgerElements, PropsWrappedStyledNavbar as Navbar, index$u as NavbarElements, PropsWrappedStyledNavigationContainer as NavbarNavigation, index$v as NavbarNavigationElements, PropsWrappedStyledPagination as Pagination, index$j as PaginationElements, PropsWrappedStyledPasswordField as PasswordField, index$9 as PasswordFieldElements, PropsWrappedStyledRadioField as RadioField, index$1 as RadioFieldElements, PropsWrappedStyledSearchBox as SearchBox, index$g as SearchBoxElements, PropsWrappedStyledSearchField as SearchField, index$c as SearchFieldElements, PropsWrappedStyledSelectField as SelectField, index$b as SelectFieldElements, PropsWrappedStyledSidebarNavigationContainer as SidebarNavigation, index$w as SidebarNavigationElements, PropsWrappedStyledSlider as Slider, index$h as SliderElements, PropsWrappedStyledTable as Table, TableBody, index$p as TableBodyElements, PropsWrappedStyledTableCell as TableCell, index$q as TableCellElements, TableData, index$t as TableDataElements, index$o as TableElements, TableHead, index$r as TableHeadElements, PropsWrappedStyledTableRow as TableRow, index$s as TableRowElements, PropsWrappedStyledTag as Tag, index$d as TagElements, ThemeProvider, StyledValueBadge as ValueBadge, index$A as ValueBadgeElements, colors, defaultTheme as theme };
 //# sourceMappingURL=index.es.js.map

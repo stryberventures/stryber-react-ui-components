@@ -9,8 +9,8 @@ declare const _default: (theme: any) => {
     dropdownArrow: {
         transition: string;
         fill: any;
-        width: number;
-        height: number;
+        width: any;
+        height: any;
     };
     dropdownArrowNormal: {
         marginRight: number;
@@ -142,6 +142,16 @@ declare const _default: (theme: any) => {
         fontFamily: any;
         fontWeight: any;
         fontSize: number;
+    };
+    /** Handle layout */
+    default: {};
+    simple: {
+        '& $selectLabelWithPlaceholder': {
+            paddingTop: number;
+        };
+        '& $selectLabelNormal': {
+            paddingTop: number;
+        };
     };
 };
 export default _default;

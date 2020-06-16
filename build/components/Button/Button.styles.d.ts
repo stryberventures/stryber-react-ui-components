@@ -19,9 +19,6 @@ declare const _default: (theme: any) => {
         '&:hover': {
             filter: any;
         };
-        '&:active': {
-            backgroundColor: any;
-        };
         '&.disabled': {
             backgroundColor: any;
             color: string;
@@ -42,9 +39,6 @@ declare const _default: (theme: any) => {
         '&:hover': {
             backgroundColor: any;
             color: any;
-        };
-        '&:active': {
-            backgroundColor: any;
         };
         '&.disabled': {
             backgroundColor: any;

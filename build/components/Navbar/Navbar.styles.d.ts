@@ -4,15 +4,13 @@ declare const _default: (theme: any) => {
         minHeight: number;
         backgroundColor: any;
         width: string;
-        boxShadow: string;
+        padding: string;
         display: string;
         alignItems: string;
         justifyContent: string;
         flexWrap: string;
     };
-    section: {
-        padding: string;
-    };
+    section: {};
     align: {
         [x: string]: string | number | {
             minWidth: string;

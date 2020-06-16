@@ -1,7 +1,9 @@
 declare const _default: (theme: any) => {
     root: {
         height: number;
-        '&:nth-child(even)': {
+    };
+    bodyRow: {
+        '&:nth-child(odd)': {
             backgroundColor: any;
         };
     };
