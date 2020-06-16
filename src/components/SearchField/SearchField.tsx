@@ -17,6 +17,7 @@ export interface ISearchFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   onEnter?: (value: string) => void;
+  onClear?: (value: string) => void;
   sizeVariant?: 'normal' | 'mini';
   layout?: 'default' | 'simple' | 'bare';
   label?: string;
@@ -33,6 +34,7 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     onFocus,
     onBlur,
     onEnter,
+    onClear,
     value,
     placeholder = 'Search',
     collapsiblePlaceholder = true,
@@ -72,10 +74,11 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     e.stopPropagation();
     setInputValue(() => '');
     onChange && onChange('');
+    onClear && onClear(inputValue);
   };
 
   const onKeyPressWrapper = (e: React.KeyboardEvent) => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       e.preventDefault();
 
       onEnter && onEnter(inputValue);
@@ -88,14 +91,15 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
       (<CloseOutline
         onClick={onClearClickWrapper}
         className={classNames([
-          classes.clearIcon,
+          classes.clearIcon, { [classes.clearIconMini]: sizeVariant === 'mini' }
         ])}
-      />) : (<div className={classes.searchIconContainer}>
+      />) : (<div className={classNames(
+        classes.searchIconContainer, { [classes.searchIconContainerMini]: sizeVariant === 'mini' })}>
         <Search
           width={sizeVariant === 'mini' ? 16 : 24}
           className={classNames(
-      classes.searchIcon,
-      )} /></div>);
+            classes.searchIcon,
+          )} /></div>);
 
   return (
     <TextInput
