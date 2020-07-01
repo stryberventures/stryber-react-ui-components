@@ -909,8 +909,8 @@ var styles$3 = (function (theme) { return ({
         paddingLeft: 16,
     },
     placeholderMini: {
-        lineHeight: '26px',
-        paddingLeft: 16,
+        padding: 4,
+        paddingLeft: 12,
     },
     placeholderInvalid: {},
     placeholderCollapsed: {
@@ -922,7 +922,6 @@ var styles$3 = (function (theme) { return ({
     prepend: {
         transition: 'color 0.5s, border 0.5s',
         position: 'relative',
-        minWidth: 7,
         overflow: 'visible',
         display: 'flex',
         alignItems: 'center',
@@ -964,6 +963,7 @@ var styles$3 = (function (theme) { return ({
     prependBackgroundColor: {
         backgroundColor: theme.inputColorHighlight || '#007aff',
         fill: theme.inputColorHighlight || '#007aff',
+        minWidth: 7,
     },
     prependBackgroundIcon: {
         right: -20,
@@ -1203,7 +1203,7 @@ var styles$5 = (function (theme) { return ({
             maxHeight: theme.inputMiniMaxHeightIdle,
             '& input': {
                 padding: 4,
-                paddingLeft: 16,
+                paddingLeft: 10,
             }
         },
         '& $label': {
@@ -1405,15 +1405,15 @@ var index$7 = /*#__PURE__*/Object.freeze({
 
 /** Main component */
 var InputField = function (props) {
-    var _a = props.name, name = _a === void 0 ? 'unnamed' : _a, value = props.value, _b = props.type, type = _b === void 0 ? 'text' : _b, placeholder = props.placeholder, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, _c = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _c === void 0 ? true : _c, prependContent = props.prependContent, appendContent = props.appendContent, controlled = props.controlled, errorMessage = props.errorMessage, rest = __rest(props, ["name", "value", "type", "placeholder", "disabled", "onChange", "onFocus", "onBlur", "clearFormValueOnUnmount", "prependContent", "appendContent", "controlled", "errorMessage"]);
+    var _a = props.name, name = _a === void 0 ? 'unnamed' : _a, value = props.value, _b = props.type, type = _b === void 0 ? 'text' : _b, _c = props.layout, layout = _c === void 0 ? "default" : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? "normal" : _d, placeholder = props.placeholder, disabled = props.disabled, onChange = props.onChange, onFocus = props.onFocus, onBlur = props.onBlur, _e = props.clearFormValueOnUnmount, clearFormValueOnUnmount = _e === void 0 ? true : _e, prependContent = props.prependContent, appendContent = props.appendContent, controlled = props.controlled, errorMessage = props.errorMessage, rest = __rest(props, ["name", "value", "type", "layout", "sizeVariant", "placeholder", "disabled", "onChange", "onFocus", "onBlur", "clearFormValueOnUnmount", "prependContent", "appendContent", "controlled", "errorMessage"]);
     /** Focus status (needed for styles) */
-    var _d = __read(useState(false), 2), isFocused = _d[0], setFocused = _d[1];
+    var _f = __read(useState(false), 2), isFocused = _f[0], setFocused = _f[1];
     /** Getting values from Form context (if the field is wrapped inside a form */
-    var _e = useContext(FormContext), updateFormValue = _e.updateFormValue, updateFormTouched = _e.updateFormTouched, unsetFormValue = _e.unsetFormValue, formValues = _e.formValues, formErrors = _e.formErrors, formTouched = _e.formTouched;
+    var _g = useContext(FormContext), updateFormValue = _g.updateFormValue, updateFormTouched = _g.updateFormTouched, unsetFormValue = _g.unsetFormValue, formValues = _g.formValues, formErrors = _g.formErrors, formTouched = _g.formTouched;
     /** Getting error message from form errors */
     var errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
     /** Setting the internal value of the field from form initial values or from value provided to the field */
-    var _f = __read(useState((name && formValues && formValues[name]) || value), 2), internalValue = _f[0], setInternalValue = _f[1];
+    var _h = __read(useState((name && formValues && formValues[name]) || value), 2), internalValue = _h[0], setInternalValue = _h[1];
     /** Wrappers to merge form and props methods */
     var onChangeWrapper = function (e) {
         var _a = e.target, name = _a.name, targetValue = _a.value;
@@ -1459,7 +1459,7 @@ var InputField = function (props) {
         case 'number':
         case 'email':
         case 'password':
-            return (createElement(StyledTextInput, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, disabled: disabled, placeholder: placeholder, type: type, name: name, errorMsg: errorMsg, value: controlled ? value : internalValue, appendContent: appendContent, prependContent: prependContent })));
+            return (createElement(StyledTextInput, __assign({}, rest, { isFocused: isFocused, onFocus: onFocusWrapper, onBlur: onBlurWrapper, onChange: onChangeWrapper, disabled: disabled, placeholder: placeholder, type: type, name: name, errorMsg: errorMsg, value: controlled ? value : internalValue, appendContent: appendContent, prependContent: prependContent, layout: layout, sizeVariant: sizeVariant })));
     }
     return createElement("input", __assign({}, props));
 };
@@ -4571,6 +4571,9 @@ var styles$v = (function (theme) { return ({
     inputNormal: {
         height: 47,
     },
+    inputMini: {
+        height: 29,
+    },
     clickaway: {
         zIndex: 98,
         position: 'fixed',
@@ -4647,6 +4650,7 @@ var DropDownField = function (props) {
         createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
             createElement(LayoutComponent, { className: classnames((_c = {},
                     _c[classes.inputNormal] = sizeVariant === 'normal',
+                    _c[classes.inputMini] = sizeVariant === 'mini',
                     _c)), isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0, label: label }),
             isDropdownOpen && (createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal, listClassName) }, children)))));
 };
