@@ -4,7 +4,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import { DownArrow } from '../Icons';
 import classNames from 'classnames';
 import { InputFieldLayout } from '../InputFieldLayout';
-import {SimpleInputLayout} from '../SimpleInputLayout';
+import { SimpleInputLayout } from '../SimpleInputLayout';
 
 interface IDropDownFieldProps {
   placeholder?: string;
@@ -84,10 +84,11 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
           onClick={clickAwayOnClick}
         />
       )}
-      <div className={classNames(classes.root, {[classes.rootOpen]: isDropdownOpen}, className)}>
+      <div className={classNames(classes.root, { [classes.rootOpen]: isDropdownOpen }, className)}>
         <LayoutComponent
           className={classNames({
             [classes.inputNormal]: sizeVariant === 'normal',
+            [classes.inputMini]: sizeVariant === 'mini',
           })}
           isPlaceholderCollapsed={false}
           disabled={disabled}
@@ -96,8 +97,8 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
           customPlaceholderFont={customPlaceholderFont}
           placeholderClassName={placeholderClassName}
           showPrependBackground={sizeVariant !== 'mini'}
-          onFocus={() => {setFocused(true)}}
-          onBlur={()=> {setFocused(false)}}
+          onFocus={() => { setFocused(true) }}
+          onBlur={() => { setFocused(false) }}
           appendContent={appendContentWithArrow}
           onClick={toggleDropdown}
           tabIndex={0}

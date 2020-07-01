@@ -9,6 +9,9 @@ declare const _default: (theme: any) => {
     inputNormal: {
         height: number;
     };
+    inputMini: {
+        height: number;
+    };
     clickaway: {
         zIndex: number;
         position: string;

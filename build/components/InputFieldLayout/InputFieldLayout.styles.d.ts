@@ -52,7 +52,7 @@ declare const _default: (theme: any) => {
         paddingLeft: number;
     };
     placeholderMini: {
-        lineHeight: string;
+        padding: number;
         paddingLeft: number;
     };
     placeholderInvalid: {};
@@ -65,7 +65,6 @@ declare const _default: (theme: any) => {
     prepend: {
         transition: string;
         position: string;
-        minWidth: number;
         overflow: string;
         display: string;
         alignItems: string;
@@ -107,6 +106,7 @@ declare const _default: (theme: any) => {
     prependBackgroundColor: {
         backgroundColor: any;
         fill: any;
+        minWidth: number;
     };
     prependBackgroundIcon: {
         right: number;

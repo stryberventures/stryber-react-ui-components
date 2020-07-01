@@ -1,4 +1,4 @@
-export default (theme:any) => ({
+export default (theme: any) => ({
   root: {
     position: 'relative',
     cursor: 'pointer',
@@ -8,6 +8,9 @@ export default (theme:any) => ({
   },
   inputNormal: {
     height: 47,
+  },
+  inputMini: {
+    height: 29,
   },
   clickaway: {
     zIndex: 98,
