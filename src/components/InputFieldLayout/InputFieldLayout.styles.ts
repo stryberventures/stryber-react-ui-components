@@ -54,7 +54,8 @@ export default (theme: any) => ({
     paddingLeft: 16,
   },
   placeholderMini: {
-    paddingLeft: 10,
+    padding: 4,
+    paddingLeft: 12,
   },
   placeholderInvalid: {
   },
@@ -67,7 +68,6 @@ export default (theme: any) => ({
   prepend: {
     transition: 'color 0.5s, border 0.5s',
     position: 'relative',
-    minWidth: 7,
     overflow: 'visible',
     display: 'flex',
     alignItems: 'center',
@@ -113,6 +113,7 @@ export default (theme: any) => ({
   prependBackgroundColor: {
     backgroundColor: theme.inputColorHighlight || '#007aff',
     fill: theme.inputColorHighlight || '#007aff',
+    minWidth: 7,
   },
   prependBackgroundIcon: {
     right: -20,
