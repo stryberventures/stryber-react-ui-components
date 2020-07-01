@@ -54,8 +54,7 @@ export default (theme: any) => ({
     paddingLeft: 16,
   },
   placeholderMini: {
-    lineHeight: '26px',
-    paddingLeft: 16,
+    paddingLeft: 10,
   },
   placeholderInvalid: {
   },

@@ -28,102 +28,102 @@ storiesOf('Input field', module)
     return (
       <Wrapper>
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Some text field"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Some initial value 123"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Disabled text field"
           disabled
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          placeholder="Disabled text field"
-          value="Some uneditable value"
-          disabled
-        />
-        <InputField
-          prependContent={<ProfileIcon />}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Disabled text field"
           value="Some uneditable value"
           disabled
         />
         <InputField
           prependContent={<ProfileIcon />}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
+          placeholder="Disabled text field"
+          value="Some uneditable value"
+          disabled
+        />
+        <InputField
+          prependContent={<ProfileIcon />}
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Error text field"
           value="Error value"
           errorMessage="Error message"
         />
         <InputField
           prependContent={<ProfileIcon />}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with prepend"
           value="Hello"
         />
         <InputField
           appendContent={<div>yyy</div>}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with append"
           value="Value"
         />
-          <InputField
-            prependContent={<ProfileIcon />}
-            appendContent={<div>yyy</div>}
-            onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-            placeholder="Text field with append and prepend"
-            value="Value"
-          />
-          <ControlledInputField/>
+        <InputField
+          prependContent={<ProfileIcon />}
+          appendContent={<div>yyy</div>}
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
+          placeholder="Text field with append and prepend"
+          value="Value"
+        />
+        <ControlledInputField />
         <InputField
           large
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Some initial value 123"
         />
         <InputField
           large
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value=""
         />
         <InputField
           large
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value=""
           errorMessage="Error"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Bare component"
           large
           layout="bare"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Bare component ERROR"
           large
           layout="bare"
           errorMessage="Error"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Bare component"
           type="password"
           layout="bare"
         />
         <InputField
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Bare component ERROR"
           large
           type="password"
@@ -139,21 +139,21 @@ storiesOf('Input field', module)
         <InputField
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value=""
         />
         <InputField
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Text field with value"
         />
         <InputField
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Error value"
           errorMessage="Error message"
@@ -162,7 +162,7 @@ storiesOf('Input field', module)
           disabled
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Text field with value"
         />
@@ -170,7 +170,7 @@ storiesOf('Input field', module)
           large
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value=""
         />
@@ -178,7 +178,7 @@ storiesOf('Input field', module)
           large
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Text field with value"
         />
@@ -186,7 +186,7 @@ storiesOf('Input field', module)
           large
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Error value"
           errorMessage="Error message"
@@ -196,7 +196,16 @@ storiesOf('Input field', module)
           disabled
           label="Label"
           layout="simple"
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
+          placeholder="Text field with initial value"
+          value="Text field with value"
+        />
+        <InputField
+          large
+          label="Label InputField(simmple, mini)"
+          layout="simple"
+          sizeVariant="mini"
+          onChange={(d: any) => console.log('InputField value:', d.target.value)}
           placeholder="Text field with initial value"
           value="Text field with value"
         />

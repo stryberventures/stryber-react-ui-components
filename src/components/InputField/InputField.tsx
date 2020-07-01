@@ -20,6 +20,7 @@ export interface IInputFieldProps {
   appendContent?: any;
   errorMessage?: string;
   layout?: 'default' | 'simple' | 'bare';
+  sizeVariant?: 'mini' | "normal"
   label?: string;
   large?: boolean;
   labelClassName?: any;
@@ -31,6 +32,8 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
     name = 'unnamed',
     value,
     type = 'text',
+    layout = "default",
+    sizeVariant = "normal",
     placeholder,
     disabled,
     onChange,
@@ -102,14 +105,14 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
   }, []);
 
   /** Switch depending on the type of the desired input field */
-  switch(type) {
+  switch (type) {
     case 'submit':
     case 'reset':
       return (
         <Button
           type={type}
         >
-          { value || type }
+          {value || type}
         </Button>
       );
     case 'text':
@@ -131,10 +134,12 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
           value={controlled ? value : internalValue}
           appendContent={appendContent}
           prependContent={prependContent}
+          layout={layout}
+          sizeVariant={sizeVariant}
         />
       );
   }
-  return <input {...props}/>;
+  return <input {...props} />;
 };
 
 /** Exports */

@@ -52,7 +52,6 @@ declare const _default: (theme: any) => {
         paddingLeft: number;
     };
     placeholderMini: {
-        lineHeight: string;
         paddingLeft: number;
     };
     placeholderInvalid: {};

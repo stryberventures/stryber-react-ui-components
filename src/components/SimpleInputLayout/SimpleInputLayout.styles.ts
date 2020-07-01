@@ -68,7 +68,7 @@ export default (theme: any) => ({
       maxHeight: theme.inputMiniMaxHeightIdle,
       '& input': {
         padding: 4,
-        paddingLeft: 16,
+        paddingLeft: 10,
       }
     },
     '& $label': {

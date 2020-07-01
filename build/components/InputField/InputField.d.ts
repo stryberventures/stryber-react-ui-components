@@ -15,6 +15,7 @@ export interface IInputFieldProps {
     appendContent?: any;
     errorMessage?: string;
     layout?: 'default' | 'simple' | 'bare';
+    sizeVariant?: 'mini' | "normal";
     label?: string;
     large?: boolean;
     labelClassName?: any;
