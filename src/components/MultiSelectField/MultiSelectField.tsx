@@ -3,12 +3,12 @@ import { InputFieldLayout } from '../InputFieldLayout';
 import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './MultiSelectField.styles';
-import { defaultFormContextValues, FormContext} from '../Form';
+import { defaultFormContextValues, FormContext } from '../Form';
 import { CheckboxField } from '../CheckboxField';
 import { DownArrow } from '../Icons';
 import { SearchField } from '../SearchField';
-import {Tag} from '../Tag';
-import {SimpleInputLayout} from '../SimpleInputLayout';
+import { Tag } from '../Tag';
+import { SimpleInputLayout } from '../SimpleInputLayout';
 
 /** Interfaces */
 export interface IMultiChoiceData {
@@ -166,9 +166,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     </>
   );
 
-  const isChoiceSelected = (option:IMultiChoiceData) => !!selectedChoices.find(d => d.value === option.value);
+  const isChoiceSelected = (option: IMultiChoiceData) => !!selectedChoices.find(d => d.value === option.value);
 
-  const getChoices = (choices:IMultiChoiceData[]) => {
+  const getChoices = (choices: IMultiChoiceData[]) => {
     return (
       choices.map((choice: IMultiChoiceData, i: number) => {
         return (
@@ -189,7 +189,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     );
   };
 
-  const getSearchChoices = (choices:IMultiChoiceData[], value: string) => {
+  const getSearchChoices = (choices: IMultiChoiceData[], value: string) => {
     const matchedChoices = choices.filter(choice => choice.label.toUpperCase().indexOf(value.toUpperCase()) === 0);
 
     const pickedChoices = matchedChoices.filter(choice => isChoiceSelected(choice));
@@ -206,8 +206,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
             <Tag
               key={value}
               onClose={selectedBadgeOnClose(value)}
+              className={classes.badgeChoice}
             >
-              { label }
+              {label}
             </Tag>
           );
         default:
@@ -217,8 +218,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               onClose={selectedBadgeOnClose(value)}
               sizeVariant="small"
               shape="flat"
+              className={classes.badgeChoice}
             >
-              { label }
+              {label}
             </Tag>
           );
       }
@@ -308,34 +310,34 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               <FormContext.Provider
                 value={defaultFormContextValues}
               >
-              <div
-                className={classNames([
-                  classes.dropdownWrapper,
-                  !search && (sizeVariant === 'mini'
-                    ? classes.dropdownWrapperMini
-                    : classes.dropdownWrapperNormal),
-                ])}
-              >
-                {
-                  search ? (
-                    <>
-                      <SearchField
-                        value={searchValue}
-                        collapsiblePlaceholder={false}
-                        onChange={value => {setSearchValue(value)}}
-                        sizeVariant={sizeVariant}
-                      />
-                      <div className={classNames(classes.dropdownSearchItemsWrapper, [
-                        sizeVariant === 'mini'
-                          ? classes.dropdownSearchItemsWrapperMini
-                          : classes.dropdownSearchItemsWrapperNormal,
-                      ])}>
-                        {getSearchChoices(choices, searchValue)}
-                      </div>
-                    </>
-                  ) : getChoices(choices)
-                }
-              </div>
+                <div
+                  className={classNames([
+                    classes.dropdownWrapper,
+                    !search && (sizeVariant === 'mini'
+                      ? classes.dropdownWrapperMini
+                      : classes.dropdownWrapperNormal),
+                  ])}
+                >
+                  {
+                    search ? (
+                      <>
+                        <SearchField
+                          value={searchValue}
+                          collapsiblePlaceholder={false}
+                          onChange={value => { setSearchValue(value) }}
+                          sizeVariant={sizeVariant}
+                        />
+                        <div className={classNames(classes.dropdownSearchItemsWrapper, [
+                          sizeVariant === 'mini'
+                            ? classes.dropdownSearchItemsWrapperMini
+                            : classes.dropdownSearchItemsWrapperNormal,
+                        ])}>
+                          {getSearchChoices(choices, searchValue)}
+                        </div>
+                      </>
+                    ) : getChoices(choices)
+                  }
+                </div>
               </FormContext.Provider>
             ) : null
         }
@@ -347,7 +349,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
 /** Wrappers */
 const StyledMultiSelectField = withStyles(styles)(MultiSelectField);
 const PropsWrappedStyledMultiSelectField = React.forwardRef((props: IMultiSelectFieldProps, ref) =>
-  <StyledMultiSelectField {...props} refApi={ref}/>
+  <StyledMultiSelectField {...props} refApi={ref} />
 );
 
 /** Exports */
