@@ -41,7 +41,6 @@ export default (theme: any) => ({
     cursor: 'pointer',
     userSelect: 'none',
     width: '100%',
-    height: '100%',
     border: 0,
     transition: '0.5s',
 
@@ -59,12 +58,13 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightMedium,
     color: theme.inputColorIdle || '#54738c',
     padding: 16,
-    minHeight: 44,
+    paddingTop: 13,
+    paddingBottom: 0,
+    minHeight: 42,
     backgroundColor: theme.inputBackgroundColor,
     fontSize: 14,
   },
   selectLabelWithPlaceholder: {
-    paddingBottom: 5,
     paddingTop: 21,
   },
   selectLabelMini: {

@@ -6,12 +6,6 @@ export default (theme: any) => ({
   rootOpen: {
     zIndex: 99,
   },
-  inputNormal: {
-    height: 47,
-  },
-  inputMini: {
-    height: 29,
-  },
   clickaway: {
     zIndex: 98,
     position: 'fixed',

@@ -54,23 +54,26 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
         <div
           className={classNames([
             classes.prepend,
-            showPrependBackground ? classes.prependBackgroundColor: null,
+            showPrependBackground ? classes.prependBackgroundColor : null,
             (showPrependBackground && prependContent) ? classes.prependMargin : null,
             disabled ? classes.prependDisabled : null,
             errorMsg ? classes.prependInvalid : null,
           ])}
         >
-          { prependContent
+          {prependContent
             ? <div className={classNames({
-                [classes.prependContent]: ['mini', 'normal'].includes(sizeVariant),
-              })
-              }>
-                {prependContent}
-              </div>
+              [classes.prependContent]: ['mini', 'normal'].includes(sizeVariant),
+            })
+            }>
+              {prependContent}
+            </div>
             : null}
-          { (prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon}/> : null}
+          {(prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon} /> : null}
         </div>
-        <div className={classes.fieldWrapper}>
+        <div className={classNames(classes.fieldWrapper, {
+          [classes.fieldWrapperMini]: sizeVariant === 'mini',
+          [classes.fieldWrapperNormal]: sizeVariant === 'normal',
+        })}>
           {
             placeholder ?
               (<div
@@ -83,17 +86,17 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
                   errorMsg ? classes.placeholderInvalid : null,
                 ])}
               >
-                { placeholder }
+                {placeholder}
               </div>) : null
           }
-          { children }
+          {children}
         </div>
         <div
           className={classNames([
             classes.append,
           ])}
         >
-          { appendContent }
+          {appendContent}
         </div>
       </div>
       {/** Error message */}
@@ -103,7 +106,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
             <div
               className={classes.errorMessage}
             >
-              { errorMsg }
+              {errorMsg}
             </div>
           ) : null
       }

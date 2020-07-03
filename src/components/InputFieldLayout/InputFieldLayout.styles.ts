@@ -2,7 +2,6 @@ export default (theme: any) => ({
   /** Root Wrapper */
   root: {
     position: 'relative',
-    maxHeight: theme.inputMaxHeightIdle,
     borderRadius: 4,
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
@@ -28,6 +27,12 @@ export default (theme: any) => ({
     flex: 1,
     position: 'relative',
   },
+  fieldWrapperNormal: {
+    minHeight: 42,
+  },
+  fieldWrapperMini: {
+    minHeight: 29,
+  },
   /** Placeholder */
   placeholder: {
     pointerEvents: 'none',
@@ -39,7 +44,6 @@ export default (theme: any) => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     width: '100%',
-    height: '100%',
     margin: 0,
     transform: 'translate(0, 0px)',
     transformOrigin: 'left',
@@ -135,9 +139,6 @@ export default (theme: any) => ({
     fontSize: 10,
   },
   large: {
-    '& $root': {
-      maxHeight: theme.inputLargeMaxHeightIdle,
-    },
     '& $placeholderNormal': {
       padding: 16
     }

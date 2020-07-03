@@ -86,10 +86,6 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
       )}
       <div className={classNames(classes.root, { [classes.rootOpen]: isDropdownOpen }, className)}>
         <LayoutComponent
-          className={classNames({
-            [classes.inputNormal]: sizeVariant === 'normal',
-            [classes.inputMini]: sizeVariant === 'mini',
-          })}
           isPlaceholderCollapsed={false}
           disabled={disabled}
           placeholder={placeholder}
