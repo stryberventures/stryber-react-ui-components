@@ -157,5 +157,8 @@ export default (theme: any) => ({
     '& $selectLabelNormal': {
       paddingTop: 10
     }
+  },
+  badgeChoice: {
+    marginBottom: 5,
   }
 });

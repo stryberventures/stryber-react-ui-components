@@ -25,7 +25,6 @@ export default (theme: any) => ({
   },
   small: {
     padding: '1px 4px 1px 4px',
-    marginBottom: 5,
     '& $closeBlock': {
       marginLeft: 6
     },
