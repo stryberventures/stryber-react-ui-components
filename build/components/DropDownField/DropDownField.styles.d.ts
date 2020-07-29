@@ -6,12 +6,6 @@ declare const _default: (theme: any) => {
     rootOpen: {
         zIndex: number;
     };
-    inputNormal: {
-        height: number;
-    };
-    inputMini: {
-        height: number;
-    };
     clickaway: {
         zIndex: number;
         position: string;

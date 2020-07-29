@@ -141,6 +141,7 @@ export default (theme: any) => ({
   /** Placeholder */
   placeholder: {
     padding: '8px 4px',
+    color: theme.checkboxTextColor
   },
   placeholderInvalid: {
     color: theme.inputColorError,

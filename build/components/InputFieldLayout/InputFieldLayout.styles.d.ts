@@ -2,7 +2,6 @@ declare const _default: (theme: any) => {
     /** Root Wrapper */
     root: {
         position: string;
-        maxHeight: any;
         borderRadius: number;
         overflow: string;
         border: string;
@@ -26,6 +25,12 @@ declare const _default: (theme: any) => {
         flex: number;
         position: string;
     };
+    fieldWrapperNormal: {
+        minHeight: number;
+    };
+    fieldWrapperMini: {
+        minHeight: number;
+    };
     /** Placeholder */
     placeholder: {
         pointerEvents: string;
@@ -37,7 +42,6 @@ declare const _default: (theme: any) => {
         textOverflow: string;
         whiteSpace: string;
         width: string;
-        height: string;
         margin: number;
         transform: string;
         transformOrigin: string;
@@ -128,9 +132,6 @@ declare const _default: (theme: any) => {
         fontSize: number;
     };
     large: {
-        '& $root': {
-            maxHeight: any;
-        };
         '& $placeholderNormal': {
             padding: number;
         };
