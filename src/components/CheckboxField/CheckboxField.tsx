@@ -15,6 +15,7 @@ export interface ICheckboxFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   variant?: 'checkmark' | 'switch';
   errorMessage?: string;
+  textColor?: string;
   sizeVariant?: 'small' | 'normal' | 'large'
 }
 
@@ -32,6 +33,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     onChange,
     onFocus,
     variant,
+    textColor,
     sizeVariant = 'normal',
     ...rest
   } = props;
@@ -113,6 +115,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
             classes.placeholder,
             errorMsg ? classes.placeholderInvalid : null,
           ])}
+          style={{color:textColor ? textColor : undefined}}
         >
           { placeholder }
         </div>
