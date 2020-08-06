@@ -5,6 +5,7 @@ import styles from './Container.styles';
 
 /** Interfaces */
 export interface IContainerProps {
+  className?: string;
   children?: any;
 }
 
@@ -12,6 +13,7 @@ export interface IContainerProps {
 const Container = (props: IContainerProps & WithStyles<typeof styles>) => {
   const {
     children,
+    className,
     classes,
     ...rest
   } = props;
@@ -19,6 +21,7 @@ const Container = (props: IContainerProps & WithStyles<typeof styles>) => {
     <div
       { ...rest }
       className={ classNames([
+        className,
         classes.root,
       ]) }
     >
