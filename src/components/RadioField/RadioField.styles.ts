@@ -56,6 +56,7 @@ export default (theme: any) => ({
     left: 0,
     height: 22,
     width: 22,
+    minWidth: 22,
     backgroundColor: theme.inputBackgroundColor,
     borderRadius: '50%',
     border: `1px solid ${theme.inputColorBorderIdle}`,

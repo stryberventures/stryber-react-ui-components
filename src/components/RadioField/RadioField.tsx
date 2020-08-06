@@ -14,6 +14,7 @@ export interface IRadioFieldProps {
   onChange?: (e: React.BaseSyntheticEvent) => void;
   sizeVariant?: 'small' | 'normal' | 'large';
   errorMessage?: string;
+  textColor?: string;
 }
 
 /** Main component */
@@ -28,6 +29,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     onChange,
     sizeVariant = 'normal',
     errorMessage,
+    textColor,
     ...rest
   } = props;
 
@@ -89,7 +91,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
         />
         <span className={classes.checkmark}>
         </span>
-        <div className={classes.placeholder}>
+        <div className={classes.placeholder} style={{color:textColor ? textColor : undefined}}>
           { placeholder }
         </div>
       </label>
