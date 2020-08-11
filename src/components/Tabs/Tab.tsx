@@ -5,6 +5,7 @@ export interface TabInputs {
   id: string;
   title?: string;
   tabIndex?: string | number;
+  icon?: any;
 }
 
 class Tab extends React.Component<TabInputs & { children: React.ReactNode; }, {}> {
@@ -16,7 +17,8 @@ class Tab extends React.Component<TabInputs & { children: React.ReactNode; }, {}
     this.context.context.addTab({
       id: this.props.id,
       title: this.props.title,
-      tabIndex: this.props.tabIndex
+      tabIndex: this.props.tabIndex,
+      icon: this.props.icon || null,
     });
   }
 

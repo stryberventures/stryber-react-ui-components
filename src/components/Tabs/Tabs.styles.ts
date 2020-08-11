@@ -21,29 +21,44 @@ const useStyles = createUseStyles({
     left: props && props.activeTabElement && props.activeTabElement.offsetLeft,
   }),
   tabAnchorItem: (props: any) => {
-    const activeTabStyles: any = {};
+    let activeTabStyles: any = {};
 
     if (props && props.isActiveTab) {
-      activeTabStyles.transition = "all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms";
-      activeTabStyles.cursor = "default";
-      activeTabStyles.color = '#007aff';
+      activeTabStyles = {
+        transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        cursor: "default",
+        color: '#007aff',
+        '& svg': {
+          fill: '#007aff',
+          marginRight: 5,
+        }
+      }
     }
 
     return {
-      color: "#757575",
-      padding: "5px 24px",
+      color: '#757575',
+      padding: '5px 24px',
       paddingBottom: 7,
-      cursor: "pointer",
+      cursor: 'pointer',
       fontSize: 16,
-      display: "block",
-      textDecoration: "none",
-      backgroundColor: "transparent",
-      outline: "none",
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textDecoration: 'none',
+      backgroundColor: 'transparent',
+      outline: 'none',
       border: 0,
       '&:hover': {
-        color: '#007aff'
+        color: '#007aff',
+        '& svg': {
+          fill: '#007aff',
+        }
       },
-      ...activeTabStyles
+      '& svg': {
+        fill: '#757575',
+        marginRight: 5,
+      },
+      ...activeTabStyles,
     }
   },
   tabsContainer: {

@@ -136,6 +136,7 @@ class Tabs extends React.Component<ITabsProps, ITabsState> {
                           }
                         }}
                       >
+                        {tab.icon && tab.icon}
                         {tab.title}
                       </TabAnchorItem>
                     </TabTitleItem>

@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { Tabs } from './index';
 import { Wrapper } from '../../storybook/components/Wrapper';
+import { Eye } from '../Icons';
 
 storiesOf('Tabs', module)
   .add('Default', () => {
@@ -10,7 +11,7 @@ storiesOf('Tabs', module)
       <Wrapper>
         <Tabs
           activeTab={{
-            id: "tab1"
+            id: "tab2"
           }}
         >
           <Tabs.Tab id="tab1" title="Tab 1">
@@ -134,12 +135,12 @@ storiesOf('Tabs', module)
             id: "tab1"
           }}
         >
-          <Tabs.Tab id="tab1" title="Tab 1">
+          <Tabs.Tab id="tab1" title="Tab 1" icon={<Eye width={18} />}>
             <div style={{ padding: 10 }}>
               This is tab 1
             </div>
           </Tabs.Tab>
-          <Tabs.Tab id="tab2" title="Tab 2">
+          <Tabs.Tab id="tab2" title="Tab 2" icon={<Eye width={18} />}>
             <div style={{ padding: 10 }}>
               This is tab 2
             </div>
