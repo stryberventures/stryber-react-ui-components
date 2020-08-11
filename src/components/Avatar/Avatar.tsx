@@ -23,7 +23,7 @@ const Avatar = (props: ITagProps & React.HTMLAttributes<HTMLInputElement>) => {
     onClick,
     ...rest
   } = props;
-  const classes = useStyles(image)
+  const classes = useStyles(image);
 
   const getContent = () => (
     <div className={classes.contentContainer}>
