@@ -78,6 +78,7 @@ export default {
   inputBackgroundColorDisabled: colors.lightGray,
   inputPlaceholderColor: colors.lightGray2,
   inputValueColor: colors.darkGray2,
+  checkboxTextColor: colors.black,
 
   /** Navbar */
   navbarItemColor: colors.black,

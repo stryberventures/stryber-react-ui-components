@@ -41,7 +41,6 @@ declare const _default: (theme: any) => {
         cursor: string;
         userSelect: string;
         width: string;
-        height: string;
         border: number;
         transition: string;
         '&:focus': {
@@ -58,12 +57,13 @@ declare const _default: (theme: any) => {
         fontWeight: any;
         color: any;
         padding: number;
+        paddingTop: number;
+        paddingBottom: number;
         minHeight: number;
         backgroundColor: any;
         fontSize: number;
     };
     selectLabelWithPlaceholder: {
-        paddingBottom: number;
         paddingTop: number;
     };
     selectLabelMini: {
@@ -152,6 +152,9 @@ declare const _default: (theme: any) => {
         '& $selectLabelNormal': {
             paddingTop: number;
         };
+    };
+    badgeChoice: {
+        marginBottom: number;
     };
 };
 export default _default;

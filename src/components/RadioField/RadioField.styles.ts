@@ -76,6 +76,7 @@ export default (theme: any) => ({
   },
   placeholder: {
     padding: '8px 4px',
+    color: theme.checkboxTextColor
   },
   /* Handle sizes */
   small: {

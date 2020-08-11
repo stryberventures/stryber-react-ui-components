@@ -859,7 +859,6 @@ var styles$3 = (function (theme) { return ({
     /** Root Wrapper */
     root: {
         position: 'relative',
-        maxHeight: theme.inputMaxHeightIdle,
         borderRadius: 4,
         overflow: 'hidden',
         border: "solid 1px " + (theme.inputColorBorderIdle || '#cfe2f2'),
@@ -883,6 +882,12 @@ var styles$3 = (function (theme) { return ({
         flex: 1,
         position: 'relative',
     },
+    fieldWrapperNormal: {
+        minHeight: 42,
+    },
+    fieldWrapperMini: {
+        minHeight: 29,
+    },
     /** Placeholder */
     placeholder: {
         pointerEvents: 'none',
@@ -894,7 +899,6 @@ var styles$3 = (function (theme) { return ({
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         width: '100%',
-        height: '100%',
         margin: 0,
         transform: 'translate(0, 0px)',
         transformOrigin: 'left',
@@ -985,9 +989,6 @@ var styles$3 = (function (theme) { return ({
         fontSize: 10,
     },
     large: {
-        '& $root': {
-            maxHeight: theme.inputLargeMaxHeightIdle,
-        },
         '& $placeholderNormal': {
             padding: 16
         }
@@ -1010,8 +1011,8 @@ var styles$3 = (function (theme) { return ({
 
 /** Main component */
 var InputFieldLayout = function (props) {
-    var _a;
-    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _b = props.showPrependBackground, showPrependBackground = _b === void 0 ? true : _b, _c = props.customPlaceholderFont, customPlaceholderFont = _c === void 0 ? false : _c, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, _e = props.large, large = _e === void 0 ? false : _e, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant", "large"]);
+    var _a, _b;
+    var className = props.className, classes = props.classes, errorMsg = props.errorMsg, disabled = props.disabled, prependContent = props.prependContent, appendContent = props.appendContent, placeholder = props.placeholder, isPlaceholderCollapsed = props.isPlaceholderCollapsed, children = props.children, placeholderClassName = props.placeholderClassName, _c = props.showPrependBackground, showPrependBackground = _c === void 0 ? true : _c, _d = props.customPlaceholderFont, customPlaceholderFont = _d === void 0 ? false : _d, _e = props.sizeVariant, sizeVariant = _e === void 0 ? 'normal' : _e, _f = props.large, large = _f === void 0 ? false : _f, rest = __rest(props, ["className", "classes", "errorMsg", "disabled", "prependContent", "appendContent", "placeholder", "isPlaceholderCollapsed", "children", "placeholderClassName", "showPrependBackground", "customPlaceholderFont", "sizeVariant", "large"]);
     return (createElement("div", { className: classnames([large ? classes.large : '', classes[sizeVariant]]) },
         createElement("div", __assign({}, rest, { className: classnames([
                 classes.root,
@@ -1032,7 +1033,10 @@ var InputFieldLayout = function (props) {
                             _a)) }, prependContent)
                     : null,
                 (prependContent && showPrependBackground) ? createElement(PrependBackground, { className: classes.prependBackgroundIcon }) : null),
-            createElement("div", { className: classes.fieldWrapper },
+            createElement("div", { className: classnames(classes.fieldWrapper, (_b = {},
+                    _b[classes.fieldWrapperMini] = sizeVariant === 'mini',
+                    _b[classes.fieldWrapperNormal] = sizeVariant === 'normal',
+                    _b)) },
                 placeholder ?
                     (createElement("div", { className: classnames([
                             classes.placeholder,
@@ -2084,7 +2088,6 @@ var styles$a = (function (theme) { return ({
         cursor: 'pointer',
         userSelect: 'none',
         width: '100%',
-        height: '100%',
         border: 0,
         transition: '0.5s',
         '&:focus': {
@@ -2101,12 +2104,13 @@ var styles$a = (function (theme) { return ({
         fontWeight: theme.fontWeightMedium,
         color: theme.inputColorIdle || '#54738c',
         padding: 16,
-        minHeight: 44,
+        paddingTop: 13,
+        paddingBottom: 0,
+        minHeight: 42,
         backgroundColor: theme.inputBackgroundColor,
         fontSize: 14,
     },
     selectLabelWithPlaceholder: {
-        paddingBottom: 5,
         paddingTop: 21,
     },
     selectLabelMini: {
@@ -2195,6 +2199,9 @@ var styles$a = (function (theme) { return ({
         '& $selectLabelNormal': {
             paddingTop: 10
         }
+    },
+    badgeChoice: {
+        marginBottom: 5,
     }
 }); });
 
@@ -2553,9 +2560,9 @@ var MultiSelectField = function (props) {
             var label = _a.label, value = _a.value;
             switch (layout) {
                 case 'simple':
-                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value) }, label));
+                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value), className: classes.badgeChoice }, label));
                 default:
-                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value), sizeVariant: "small", shape: "flat" }, label));
+                    return (createElement(PropsWrappedStyledTag, { key: value, onClose: selectedBadgeOnClose(value), sizeVariant: "small", shape: "flat", className: classes.badgeChoice }, label));
             }
         });
     };
@@ -4568,12 +4575,6 @@ var styles$v = (function (theme) { return ({
     rootOpen: {
         zIndex: 99,
     },
-    inputNormal: {
-        height: 47,
-    },
-    inputMini: {
-        height: 29,
-    },
     clickaway: {
         zIndex: 98,
         position: 'fixed',
@@ -4615,10 +4616,10 @@ var styles$v = (function (theme) { return ({
 }); });
 
 var DropDownField = function (props) {
-    var _a, _b, _c;
-    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, listClassName = props.listClassName, appendContent = props.appendContent, onClose = props.onClose, placeholderClassName = props.placeholderClassName, customPlaceholderFont = props.customPlaceholderFont, _d = props.sizeVariant, sizeVariant = _d === void 0 ? 'normal' : _d, _e = props.layout, layout = _e === void 0 ? 'default' : _e, label = props.label;
-    var _f = __read(useState(false), 2), isDropdownOpen = _f[0], setDropdownOpen = _f[1];
-    var _g = __read(useState(false), 2), isFocused = _g[0], setFocused = _g[1];
+    var _a, _b;
+    var classes = props.classes, disabled = props.disabled, placeholder = props.placeholder, children = props.children, className = props.className, listClassName = props.listClassName, appendContent = props.appendContent, onClose = props.onClose, placeholderClassName = props.placeholderClassName, customPlaceholderFont = props.customPlaceholderFont, _c = props.sizeVariant, sizeVariant = _c === void 0 ? 'normal' : _c, _d = props.layout, layout = _d === void 0 ? 'default' : _d, label = props.label;
+    var _e = __read(useState(false), 2), isDropdownOpen = _e[0], setDropdownOpen = _e[1];
+    var _f = __read(useState(false), 2), isFocused = _f[0], setFocused = _f[1];
     var appendContentWithArrow = (createElement(Fragment, null,
         appendContent ? appendContent : null,
         createElement(DownArrow, { className: classnames(classes.dropdownArrow, (_a = {},
@@ -4648,10 +4649,7 @@ var DropDownField = function (props) {
     return (createElement(Fragment, null,
         isDropdownOpen && (createElement("div", { className: classes.clickaway, onClick: clickAwayOnClick })),
         createElement("div", { className: classnames(classes.root, (_b = {}, _b[classes.rootOpen] = isDropdownOpen, _b), className) },
-            createElement(LayoutComponent, { className: classnames((_c = {},
-                    _c[classes.inputNormal] = sizeVariant === 'normal',
-                    _c[classes.inputMini] = sizeVariant === 'mini',
-                    _c)), isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0, label: label }),
+            createElement(LayoutComponent, { isPlaceholderCollapsed: false, disabled: disabled, placeholder: placeholder, sizeVariant: sizeVariant, customPlaceholderFont: customPlaceholderFont, placeholderClassName: placeholderClassName, showPrependBackground: sizeVariant !== 'mini', onFocus: function () { setFocused(true); }, onBlur: function () { setFocused(false); }, appendContent: appendContentWithArrow, onClick: toggleDropdown, tabIndex: 0, label: label }),
             isDropdownOpen && (createElement("div", { className: classnames(classes.dropdownWrapper, sizeVariant === 'mini' ? classes.dropdownWrapperMini : classes.dropdownWrapperNormal, listClassName) }, children)))));
 };
 /** Wrappings */
