@@ -8,7 +8,10 @@ storiesOf('TextEditor', module)
   .add('Default', () => {
     return (
       <Wrapper>
-        <TextEditor />
+        <TextEditor
+          placeholder="Text Editor"
+          label="Text editor"
+        />
       </Wrapper>
     );
   });

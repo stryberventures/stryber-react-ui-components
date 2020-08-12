@@ -9,28 +9,28 @@ const useStyles = createUseStyles({
       minHeight: '100px'
     },
     '& .ck .ck-placeholder:before': {
-      color: '#ccc'
+      color: '#95acbf'
     },
     '& .ck .ck-toolbar.ck-toolbar_grouping': {
-      borderColor: '#cdcdcd'
+      borderColor: '#eaeff7'
     },
     '& .ck-reset_all': {
       color: 'red',
 
       '& *': {
-        color: '#cacaca'
+        color: '#242e42'
       }
     },
     '& .ck.ck-editor__main>.ck-editor__editable': {
-      borderColor: '#cdcdcd',
-      color: '#cfcfcf',
+      borderColor: '#eaeff7',
+      color: '#54738c',
       transition: '.5s'
     },
     '& .ck.ck-editor__main>.ck-editor__editable.ck-focused': {
-      borderColor: '#cdcdcd'
+      borderColor: '#eaeff7'
     },
     '& label': {
-      color: '#000',
+      color: '#242e42',
       fontSize: '16px',
       lineHeight: '1.57',
       marginBottom: '20px',
