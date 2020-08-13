@@ -58,6 +58,9 @@ import * as TagElements from './components/Tag';
 import Avatar from './components/Avatar';
 import * as AvatarElements from './components/Avatar';
 
+import TextEditor from './components/TextEditor';
+import * as TextEditorElements from './components/TextEditor'
+
 /** Layout */
 import Grid from './components/Grid';
 import * as GridElements from './components/Grid'
@@ -152,4 +155,5 @@ export {
   Tag, TagElements,
   Avatar, AvatarElements,
   NavBurger, NavBurgerElements,
+  TextEditor, TextEditorElements,
 };
