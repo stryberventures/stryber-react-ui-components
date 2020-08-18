@@ -2,6 +2,7 @@ export default (theme: any) => ({
   /** Root Wrapper */
   root: {
     position: 'relative',
+    maxHeight: theme.inputMaxHeightIdle,
     borderRadius: 4,
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
@@ -106,14 +107,6 @@ export default (theme: any) => ({
     paddingLeft: 17,
     height: '100%',
   },
-  prependContentSmall: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    padding: 5,
-    color: theme.inputBackgroundColor || '#fff',
-  },
   prependBackgroundColor: {
     backgroundColor: theme.inputColorHighlight || '#007aff',
     fill: theme.inputColorHighlight || '#007aff',
@@ -139,6 +132,9 @@ export default (theme: any) => ({
     fontSize: 10,
   },
   large: {
+    '& $root': {
+      maxHeight: theme.inputLargeMaxHeightIdle,
+    },
     '& $placeholderNormal': {
       padding: 16
     }

@@ -34,7 +34,6 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
     disabled,
     placeholder,
     isFocused,
-    prependContent,
     appendContent,
     value,
     label,
@@ -63,7 +62,6 @@ const TextInput = (props: ITextInputProps & React.HTMLProps<HTMLInputElement> & 
   return (
     <LayoutComponent
       appendContent={appendContent}
-      prependContent={prependContent}
       errorMsg={errorMsg}
       disabled={disabled}
       placeholder={placeholder}

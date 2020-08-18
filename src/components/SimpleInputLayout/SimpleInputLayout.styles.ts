@@ -3,6 +3,7 @@ export default (theme: any) => ({
   root: {
     position: 'relative',
     maxHeight: theme.inputMaxHeightIdle,
+    minHeight: theme.inputMaxHeightIdle,
     borderRadius: 4,
     overflow: 'hidden',
     border: `solid 1px ${theme.inputColorBorderIdle || '#cfe2f2'}`,
@@ -66,6 +67,7 @@ export default (theme: any) => ({
   mini: {
     '& $root': {
       maxHeight: theme.inputMiniMaxHeightIdle,
+      minHeight: theme.inputMiniMaxHeightIdle,
       '& input': {
         padding: 4,
         paddingLeft: 10,
