@@ -16,7 +16,6 @@ export interface IInputFieldProps {
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   clearFormValueOnUnmount?: boolean;
-  prependContent?: any;
   appendContent?: any;
   errorMessage?: string;
   layout?: 'default' | 'simple' | 'bare';
@@ -40,7 +39,6 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
     onFocus,
     onBlur,
     clearFormValueOnUnmount = true,
-    prependContent,
     appendContent,
     controlled,
     errorMessage,
@@ -133,7 +131,6 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
           errorMsg={errorMsg}
           value={controlled ? value : internalValue}
           appendContent={appendContent}
-          prependContent={prependContent}
           layout={layout}
           sizeVariant={sizeVariant}
         />

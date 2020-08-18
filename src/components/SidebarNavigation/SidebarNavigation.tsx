@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './SidebarNavigation.styles';
 import { DownArrow } from '../Icons';
+import { useContext, useState } from 'react';
 
 /** Interfaces */
 export interface ISidebarNavigationContainerProps {
@@ -117,17 +118,16 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
   /** Get navigation context */
   const {
     updateSelectedSection,
-    selectedSection,
-  } = React.useContext(SidebarNavigationContext);
+  } = useContext(SidebarNavigationContext);
 
-  // const isExpanded, setExpanded] = React.useState(false);
-  const isExpanded = route === selectedSection;
+  const [isExpanded, setExpanded] = useState(false);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
     updateSelectedSection(route);
     onClick && onClick(e);
+    setExpanded(!isExpanded);
   };
 
   return (
@@ -135,7 +135,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       className={classNames(
         classes.section,
         className,
-        (route === selectedSection && !children) ? classes.sectionSelected : null,
+        (isExpanded && !children) ? classes.sectionSelected : null,
       )}
       onClick={onClickWrapper}
       {...rest}

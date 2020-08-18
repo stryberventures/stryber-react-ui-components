@@ -19,7 +19,6 @@ export interface IFileFieldProps {
   onBlur?: (e: React.BaseSyntheticEvent) => void;
   errorMessage?: string;
   inputText?: (filesNumber: number) => string;
-  prependContent?: any;
   appendContent?: (files: any, errorMsg: string, clickFileInput: (e: any) => any, disabled: boolean) => any;
   clearFormValueOnUnmount?: boolean;
 }
@@ -40,7 +39,6 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     placeholder,
     value,
     clearFormValueOnUnmount = true,
-    prependContent,
     appendContent,
   } = props;
 
@@ -146,7 +144,6 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   return (
     <>
       <InputFieldLayout
-        prependContent={prependContent}
         appendContent={appendContent ? appendContent(internalValue, errorMsg, clickFileInput, disabled) : appendContentDefault}
         isPlaceholderCollapsed={isPlaceholderCollapsed}
         errorMsg={errorMsg}

@@ -11,7 +11,6 @@ import TextEditor from '../TextEditor';
 import * as yup from 'yup';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
-import { Profile as ProfileIcon } from "../Icons";
 import { SelectField } from '../SelectField';
 import { MultiSelectField } from '../MultiSelectField';
 
@@ -233,12 +232,6 @@ storiesOf('Form', module)
           })}
         >
           <FileField
-            name="cv"
-            accept=".pdf"
-            placeholder="Single file input"
-            prependContent={<ProfileIcon />}
-          />
-          <FileField
             name="additionalDocuments"
             accept=".pdf"
             placeholder="Multiple files input"
@@ -257,16 +250,6 @@ storiesOf('Form', module)
               { label: 'Hello', value: 'hello' },
               { label: 'World', value: 'world' },
             ]}
-          />
-          <InputField
-            prependContent={<ProfileIcon />}
-            name="email"
-            placeholder="Email"
-          />
-          <InputField
-            prependContent={<ProfileIcon />}
-            name="age"
-            placeholder="Age"
           />
           <RadioField
             name="select"
