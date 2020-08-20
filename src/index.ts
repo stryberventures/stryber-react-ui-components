@@ -117,6 +117,9 @@ import * as DropDownFieldElements from './components/DropDownField';
 import ValueBadge from './components/ValueBadge';
 import * as ValueBadgeElements from './components/ValueBadge';
 
+import { Tabs } from './components/Tabs';
+import * as TabsElements from './components/Tabs';
+
 /** Exports */
 export {
   ThemeProvider,
@@ -155,5 +158,6 @@ export {
   Avatar, AvatarElements,
   NavBurger, NavBurgerElements,
   TextEditor, TextEditorElements,
-  NavbarDropdown, NavbarDropdownElements
+  NavbarDropdown, NavbarDropdownElements,
+  Tabs, TabsElements
 };
