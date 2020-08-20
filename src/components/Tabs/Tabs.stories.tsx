@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { Tabs } from './index';
+import { Tabs } from '../../index';
 import { Wrapper } from '../../storybook/components/Wrapper';
 import { Eye } from '../Icons';
 
