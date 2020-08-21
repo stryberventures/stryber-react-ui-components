@@ -26,8 +26,8 @@ storiesOf('Card', module)
           <Title
             style={{
               backgroundImage: `url('https://forums.unrealengine.com/filedata/fetch?id=1189160&d=1470406352')`,
-              backgroundRepeat: 'repeat',
-              backgroundSize: 'auto',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
             }}
           >
             Test card

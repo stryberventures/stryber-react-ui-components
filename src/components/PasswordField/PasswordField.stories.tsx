@@ -2,7 +2,6 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { PasswordField } from './PasswordField';
 import { Wrapper } from '../../storybook/components/Wrapper';
-import { Profile as ProfileIcon } from "../Icons";
 
 storiesOf('Password field', module)
   .add('Normal', () => {
@@ -28,19 +27,6 @@ storiesOf('Password field', module)
           value="difjsdfs"
           placeholder="Password field with placeholder"
           onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-        />
-        <PasswordField
-          prependContent={<ProfileIcon />}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          placeholder="Password field with prepend"
-          value="Hello"
-        />
-        <PasswordField
-          prependContent={<ProfileIcon />}
-          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
-          placeholder="Password field with prepend"
-          value="Hello"
-          errorMessage="Something is not right"
         />
         <PasswordField
           placeholder="Password BARE"

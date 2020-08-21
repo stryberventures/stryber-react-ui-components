@@ -83,6 +83,7 @@ export default (theme: any) => ({
     '& $checkmark': {
       height: 16,
       width: 16,
+      minWidth: 16,
       '&:after': {
         top: 5,
         left: 5,

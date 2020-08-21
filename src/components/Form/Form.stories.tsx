@@ -7,10 +7,10 @@ import { RadioField } from '../RadioField';
 import { CheckboxField } from '../CheckboxField';
 import { Slider } from '../Slider';
 import { Button } from '../Button';
+import TextEditor from '../TextEditor';
 import * as yup from 'yup';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
-import { Profile as ProfileIcon } from "../Icons";
 import { SelectField } from '../SelectField';
 import { MultiSelectField } from '../MultiSelectField';
 
@@ -128,6 +128,7 @@ storiesOf('Form', module)
             first_name: 'Elon',
             last_name: 'Musk',
             select: 'option 1',
+            textEditor: 'This is text editor'
           }}
         >
           <InputField
@@ -187,6 +188,10 @@ storiesOf('Form', module)
               { value: 5, label: 'Five' },
             ]}
           />
+          <TextEditor
+          name="textEditor"
+          placeholder="Text Editor"
+          />
           <CheckboxField
             name="agree"
             placeholder="Terms and conditions"
@@ -223,14 +228,9 @@ storiesOf('Form', module)
             agree: yup.boolean().oneOf([true], 'Field must be checked'),
             someSelectField: yup.string().required(),
             someMultiSelectField: yup.string().required(),
+            textEditor: yup.string().required()
           })}
         >
-          <FileField
-            name="cv"
-            accept=".pdf"
-            placeholder="Single file input"
-            prependContent={<ProfileIcon />}
-          />
           <FileField
             name="additionalDocuments"
             accept=".pdf"
@@ -251,16 +251,6 @@ storiesOf('Form', module)
               { label: 'World', value: 'world' },
             ]}
           />
-          <InputField
-            prependContent={<ProfileIcon />}
-            name="email"
-            placeholder="Email"
-          />
-          <InputField
-            prependContent={<ProfileIcon />}
-            name="age"
-            placeholder="Age"
-          />
           <RadioField
             name="select"
             placeholder="Option 1"
@@ -275,6 +265,10 @@ storiesOf('Form', module)
             variant="switch"
             name="lights"
             placeholder="Lights"
+          />
+          <TextEditor
+            name="textEditor"
+            placeholder="Text Editor"
           />
           <CheckboxField
             name="agree"

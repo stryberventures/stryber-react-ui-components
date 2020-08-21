@@ -1,6 +1,5 @@
 import * as React from "react";
 import classNames from "classnames";
-import { PrependBackground } from '../Icons';
 import withStyles, { WithStyles } from 'react-jss';
 import styles from './InputFieldLayout.styles';
 
@@ -11,7 +10,6 @@ export interface IInputFieldLayoutProps {
   disabled?: boolean;
   isPlaceholderCollapsed: boolean;
   errorMsg?: string;
-  prependContent?: any;
   appendContent?: any;
   showPrependBackground?: boolean;
   children?: any;
@@ -28,7 +26,6 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
     classes,
     errorMsg,
     disabled,
-    prependContent,
     appendContent,
     placeholder,
     isPlaceholderCollapsed,
@@ -55,21 +52,10 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
           className={classNames([
             classes.prepend,
             showPrependBackground ? classes.prependBackgroundColor : null,
-            (showPrependBackground && prependContent) ? classes.prependMargin : null,
             disabled ? classes.prependDisabled : null,
             errorMsg ? classes.prependInvalid : null,
           ])}
-        >
-          {prependContent
-            ? <div className={classNames({
-              [classes.prependContent]: ['mini', 'normal'].includes(sizeVariant),
-            })
-            }>
-              {prependContent}
-            </div>
-            : null}
-          {(prependContent && showPrependBackground) ? <PrependBackground className={classes.prependBackgroundIcon} /> : null}
-        </div>
+        />
         <div className={classNames(classes.fieldWrapper, {
           [classes.fieldWrapperMini]: sizeVariant === 'mini',
           [classes.fieldWrapperNormal]: sizeVariant === 'normal',

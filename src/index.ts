@@ -46,9 +46,6 @@ import * as SliderElements from './components/Slider';
 import Button from './components/Button';
 import * as ButtonElements from './components/Button';
 
-import ButtonsSet from './components/ButtonsSet';
-import * as ButtonsSetElements from './components/ButtonsSet';
-
 import Pagination from './components/Pagination';
 import * as PaginationElements from './components/Pagination';
 
@@ -57,6 +54,9 @@ import * as TagElements from './components/Tag';
 
 import Avatar from './components/Avatar';
 import * as AvatarElements from './components/Avatar';
+
+import TextEditor from './components/TextEditor';
+import * as TextEditorElements from './components/TextEditor'
 
 /** Layout */
 import Grid from './components/Grid';
@@ -104,6 +104,9 @@ import * as SidebarNavigationElements from './components/SidebarNavigation';
 import NavBurger from './components/NavBurger';
 import * as NavBurgerElements from './components/NavBurger';
 
+import NavbarDropdown from './components/Navbar/NavbarDropdown';
+import * as NavbarDropdownElements from './components/Navbar/NavbarDropdown';
+
 /** Misc */
 import Badge from './components/Badge';
 import * as BadgeElements from './components/Badge';
@@ -113,6 +116,9 @@ import * as DropDownFieldElements from './components/DropDownField';
 
 import ValueBadge from './components/ValueBadge';
 import * as ValueBadgeElements from './components/ValueBadge';
+
+import { Tabs } from './components/Tabs';
+import * as TabsElements from './components/Tabs';
 
 /** Exports */
 export {
@@ -146,10 +152,12 @@ export {
   NavbarNavigation, NavbarNavigationElements,
   SidebarNavigation, SidebarNavigationElements,
   Badge, BadgeElements,
-  ButtonsSet, ButtonsSetElements,
   DropDownField, DropDownFieldElements,
   ValueBadge, ValueBadgeElements,
   Tag, TagElements,
   Avatar, AvatarElements,
   NavBurger, NavBurgerElements,
+  TextEditor, TextEditorElements,
+  NavbarDropdown, NavbarDropdownElements,
+  Tabs, TabsElements
 };
