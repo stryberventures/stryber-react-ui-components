@@ -118,16 +118,19 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
   /** Get navigation context */
   const {
     updateSelectedSection,
+    selectedSection,
   } = useContext(SidebarNavigationContext);
 
-  const [isExpanded, setExpanded] = useState(false);
+  const [isExpanded, setExpanded] = useState(true);
+  const isSelected = route === selectedSection;
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
+    setExpanded(true);
     updateSelectedSection(route);
     onClick && onClick(e);
-    setExpanded(!isExpanded);
+    if (isSelected) setExpanded(!isExpanded);
   };
 
   return (
@@ -135,7 +138,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
       className={classNames(
         classes.section,
         className,
-        (isExpanded && !children) ? classes.sectionSelected : null,
+        (isSelected && !children) ? classes.sectionSelected : null,
       )}
       onClick={onClickWrapper}
       {...rest}
@@ -148,16 +151,16 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
         {
           areChildrenVisible ? (
             <DownArrow
-              className={classNames(classes.expandIcon, isExpanded ? null : classes.expandIconCollapsed)}
+              className={classNames(classes.expandIcon, (isSelected && isExpanded) ? null : classes.expandIconCollapsed)}
             />
           ) : null
         }
         </div>
       </div>
       <div
-        className={classNames(classes.sectionChildren, isExpanded ? null : classes.sectionChildrenHidden)}
+        className={classNames(classes.sectionChildren, isSelected ? null : classes.sectionChildrenHidden)}
       >
-        { (areChildrenVisible && isExpanded) ? children : null }
+        { (areChildrenVisible && isSelected && isExpanded) ? children : null }
       </div>
     </div>
   );
