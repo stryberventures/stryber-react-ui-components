@@ -47,27 +47,24 @@ export default () => ({
     left: 0,
     top: 0,
   },
-  inactiveBurger: ({ animationDuration = 0.5 }: any) => ({
-    transform: 'rotate(0deg)',
-    transition: `all ${animationDuration}s ease`,
-    '& $middleRectangle2': {
-      transform: 'rotate(180deg)',
-      transformOrigin: '70.15% 47.55%',
-    },
-    '& $middleRectangle': {
-      animationName: '$middleRectangle',
-      animationDuration: `${animationDuration}s`,
-      width: 21,
-    },
-  }),
   middleRectangle: {
 
   },
   middleRectangle2: {
 
   },
-  activeBurger: ({ animationDuration = 0.5 }: any) => ({
+  inactiveBurger: ({ animationDuration = 0.5 }: any) => ({
+    transition: `all ${animationDuration}s ease`,
+  }),
+  activeBurger: {
     transform: 'rotate(90deg)',
+  },
+  '@keyframes middleRectangle': {
+    from: { width: 21 },
+    to: { width: 21 },
+    '50%': { width: 0 }
+  },
+  animate: ({ animationDuration = 0.5 }: any) => ({
     '& $middleRectangle2': {
       transform: 'rotate(180deg)',
       transformOrigin: '70.15% 47.55%',
@@ -77,10 +74,5 @@ export default () => ({
       animationDuration: `${animationDuration}s`,
       width: 21,
     },
-  }),
-  '@keyframes middleRectangle': {
-    from: { width: 21 },
-    to: { width: 21 },
-    '50%': { width: 0 }
-  },
+  })
 });
