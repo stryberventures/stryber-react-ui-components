@@ -41,11 +41,6 @@ const SidebarExternalControl = (props: any) => {
             <SidebarNavigationRoute route="here">Here</SidebarNavigationRoute>
           </SidebarNavigationSection>
         </SidebarNavigationContainer>
-        <SidebarNavigationSection
-          route="section4"
-          title="Section 4"
-          description="sdfsdfdsfsd"
-        />
       </Card>
     </Wrapper>
   );
