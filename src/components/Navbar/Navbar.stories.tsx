@@ -45,6 +45,7 @@ const NavbarExamples = (props: any) => {
             <NavBurger
               active={activeBurger}
               style={{marginRight: 12}}
+              animationDuration={0.5}
               onClick={() => {
                 setActiveBurger(!activeBurger)
                 console.log('active navburger', activeBurger)
