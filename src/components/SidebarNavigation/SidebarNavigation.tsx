@@ -20,13 +20,15 @@ export interface ISidebarNavigationContainerProps {
 export interface ISidebarNavigationSection {
   title: any;
   description: any;
-  route: any;
+  route?: any;
   children?: any;
+  open?: boolean;
 }
 
 export interface ISidebarNavigationRouteProps {
   route: any;
   children?: any;
+  section?: any;
 }
 
 /** Context used by navigation components */
@@ -109,6 +111,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     route,
     title,
     description,
+    open = false,
     ...rest
   } = props;
 
@@ -121,16 +124,15 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     selectedSection,
   } = useContext(SidebarNavigationContext);
 
-  const [isExpanded, setExpanded] = useState(true);
+  const [isExpanded, setExpanded] = useState(open);
   const isSelected = route === selectedSection;
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
-    setExpanded(true);
-    updateSelectedSection(route);
+    setExpanded(!isExpanded);
+    !areChildrenVisible && updateSelectedSection(route);
     onClick && onClick(e);
-    if (isSelected) setExpanded(!isExpanded);
   };
 
   return (
@@ -151,16 +153,17 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
         {
           areChildrenVisible ? (
             <DownArrow
-              className={classNames(classes.expandIcon, (isSelected && isExpanded) ? null : classes.expandIconCollapsed)}
+              className={classNames(classes.expandIcon, (isExpanded) ? null : classes.expandIconCollapsed)}
             />
           ) : null
         }
         </div>
       </div>
       <div
-        className={classNames(classes.sectionChildren, isSelected ? null : classes.sectionChildrenHidden)}
+        className={classNames(classes.sectionChildren, areChildrenVisible ? isExpanded ? null : classes.sectionChildrenHidden : isSelected ? null : classes.sectionChildrenHidden)}
       >
-        { (areChildrenVisible && isSelected && isExpanded) ? children : null }
+        { (areChildrenVisible && isExpanded) ? children
+          .map((child: any, i: number) => React.cloneElement(child, { section: route, key: i })) : null }
       </div>
     </div>
   );
@@ -171,6 +174,7 @@ const SidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTML
     className,
     children,
     classes,
+    section,
     onClick,
     route,
     ...rest
@@ -180,11 +184,13 @@ const SidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTML
   const {
     updateSelectedRoute,
     selectedRoute,
+    updateSelectedSection,
   } = React.useContext(SidebarNavigationContext);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
+    updateSelectedSection(section);
     updateSelectedRoute(route);
     onClick && onClick(e);
   };

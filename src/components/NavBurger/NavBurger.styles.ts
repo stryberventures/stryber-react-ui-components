@@ -1,4 +1,6 @@
-export default () => ({
+import { createUseStyles } from 'react-jss'
+
+export default createUseStyles({
   root: {
     width: 52,
     height: 52,
@@ -53,7 +55,7 @@ export default () => ({
   middleRectangle2: {
 
   },
-  inactiveBurger: ({ animationDuration = 0.5 }: any) => ({
+  inactiveBurger: ({ animationDuration = 0.3 }: any) => ({
     transition: `all ${animationDuration}s ease`,
   }),
   activeBurger: {
@@ -64,7 +66,7 @@ export default () => ({
     to: { width: 21 },
     '50%': { width: 0 }
   },
-  animate: ({ animationDuration = 0.5 }: any) => ({
+  animate: ({ animationDuration = 0.3 }: any) => ({
     '& $middleRectangle2': {
       transform: 'rotate(180deg)',
       transformOrigin: '70.15% 47.55%',

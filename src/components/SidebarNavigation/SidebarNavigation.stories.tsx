@@ -57,6 +57,7 @@ storiesOf('Sidebar navigation', module)
               route="section1"
               title="Section 1"
               description="Lorem ipsum dolor sit amet"
+              open
             >
               <SidebarNavigationRoute route="hello">Hello</SidebarNavigationRoute>
               <SidebarNavigationRoute route="world">World</SidebarNavigationRoute>
@@ -76,6 +77,11 @@ storiesOf('Sidebar navigation', module)
               <SidebarNavigationRoute route="stuff">Stuff</SidebarNavigationRoute>
               <SidebarNavigationRoute route="here">Here</SidebarNavigationRoute>
             </SidebarNavigationSection>
+            <SidebarNavigationSection
+              route="section4"
+              title="Section 4"
+              description="Empty section"
+            />
           </SidebarNavigationContainer>
       </Wrapper>
     );
