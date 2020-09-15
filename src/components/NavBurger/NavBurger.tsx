@@ -1,10 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import withStyles, { WithStyles } from 'react-jss';
 
-import styles from './NavBurger.styles';
+import useStyles from './NavBurger.styles';
 import { useState } from 'react';
-
 
 interface INavBurgerProps {
   onClick?: (e: React.SyntheticEvent) => void;
@@ -13,14 +11,15 @@ interface INavBurgerProps {
   animationDuration?: number;
 }
 
-const NavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement> & WithStyles<typeof styles>) => {
+const NavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement>) => {
   const {
-    classes,
     active,
     onClick,
-    animationDuration = 0.5,
+    animationDuration = 0.3,
     ...rest
   } = props;
+
+  const classes = useStyles({ animationDuration })
 
   const [animation, setAnimation] = useState(false);
 
@@ -57,12 +56,5 @@ const NavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement>
     </div>)
 }
 
-/** Wrappers */
-const StyledNavBurger = withStyles(styles)(NavBurger);
-const PropsWrappedStyledNavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement>) => <StyledNavBurger {...props} />;
-
 /** Exports */
-export default PropsWrappedStyledNavBurger;
-export {
-  PropsWrappedStyledNavBurger as NavBurger,
-};
+export default NavBurger;
