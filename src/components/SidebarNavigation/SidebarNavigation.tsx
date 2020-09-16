@@ -35,6 +35,7 @@ export interface ISidebarNavigationRouteProps {
 export interface ISidebarNavigationContext {
   updateSelectedSection: (section: any) => void;
   updateSelectedRoute: (route: any) => void;
+  updateSectionAndRoute: (section: any, route: any) => void;
   selectedSection: any;
   selectedRoute: any;
 }
@@ -43,6 +44,7 @@ export interface ISidebarNavigationContext {
 export const defaultSidebarNavigationContext = {
   updateSelectedSection: () => {},
   updateSelectedRoute: () => {},
+  updateSectionAndRoute: () => {},
   selectedSection: undefined,
   selectedRoute: undefined,
 };
@@ -79,6 +81,12 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
     onRouteChange && onRouteChange(selectedSection, route);
   };
 
+  const updateSectionAndRoute = (section: any, route: any) => {
+    setSelectedSection(() => section);
+    setSelectedRoute(() => route);
+    onRouteChange && onRouteChange(section, route);
+  };
+
   return (
     <div className={classNames(classes.container, className)} {...rest}>
       {title && (<div className={classes.titleContainer}>
@@ -95,6 +103,7 @@ const SidebarNavigationContainer = (props: ISidebarNavigationContainerProps & Re
           selectedRoute: propsSelectedRoute === undefined ? selectedRoute : propsSelectedRoute,
           updateSelectedSection,
           updateSelectedRoute,
+          updateSectionAndRoute,
         }}
       >
         { children }
@@ -182,16 +191,14 @@ const SidebarNavigationRoute = (props: ISidebarNavigationRouteProps & React.HTML
 
   /** Get navigation context */
   const {
-    updateSelectedRoute,
     selectedRoute,
-    updateSelectedSection,
+    updateSectionAndRoute,
   } = React.useContext(SidebarNavigationContext);
 
   /** On click event wrapper */
   const onClickWrapper = (e: any) => {
     e.stopPropagation();
-    updateSelectedSection(section);
-    updateSelectedRoute(route);
+    updateSectionAndRoute(section, route);
     onClick && onClick(e);
   };
 
