@@ -8,18 +8,16 @@ interface INavBurgerProps {
   onClick?: (e: React.SyntheticEvent) => void;
   className?: any;
   active?: boolean;
-  animationDuration?: number;
 }
 
 const NavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement>) => {
   const {
     active,
     onClick,
-    animationDuration = 0.3,
     ...rest
   } = props;
 
-  const classes = useStyles({ animationDuration })
+  const classes = useStyles();
 
   const [animation, setAnimation] = useState(false);
 
@@ -40,11 +38,11 @@ const NavBurger = (props: INavBurgerProps & React.HTMLAttributes<HTMLDivElement>
         )} width="24px" height="24px" viewBox="0 0 49 40" version="1.1">
           <title>icon</title>
           <desc>Created with Sketch.</desc>
-          <g id="icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <rect id="topRectangle" fill="#000000" x="3" y="3" width="42" height="4"></rect>
-            <rect id="middleRectangle" onAnimationEnd={() => setAnimation(false)} className={classes.middleRectangle} fill="#000000" x="3" y="17" width="21" height="4"></rect>
-            <rect id="middleRectangle2" onAnimationEnd={() => setAnimation(false)} className={classNames(classes.middleRectangle2, classes.middleRectangle)} fill="#000000" x="24" y="17" width="21" height="4"></rect>
-            <rect id="bottomRectangle" fill="#000000" x="3" y="31" width="42" height="4"></rect>
+          <g id="icon" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+            <rect id="topRectangle" fill="#000000" x="3" y="3" width="42" height="4"/>
+            <rect id="middleRectangle" onAnimationEnd={() => setAnimation(false)} className={classes.middleRectangle} fill="#000000" x="3" y="17" width="21" height="4"/>
+            <rect id="middleRectangle2" onAnimationEnd={() => setAnimation(false)} className={classNames(classes.middleRectangle2, classes.middleRectangle)} fill="#000000" x="24" y="17" width="21" height="4"/>
+            <rect id="bottomRectangle" fill="#000000" x="3" y="31" width="42" height="4"/>
           </g>
         </svg>
         {active && (<div className={classes.octagonWrapper}>

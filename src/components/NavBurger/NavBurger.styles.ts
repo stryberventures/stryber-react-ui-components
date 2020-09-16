@@ -55,9 +55,9 @@ export default createUseStyles({
   middleRectangle2: {
 
   },
-  inactiveBurger: ({ animationDuration = 0.3 }: any) => ({
-    transition: `all ${animationDuration}s ease`,
-  }),
+  inactiveBurger: {
+    transition: 'all 0.3s ease',
+  },
   activeBurger: {
     transform: 'rotate(90deg)',
   },
@@ -66,15 +66,15 @@ export default createUseStyles({
     to: { width: 21 },
     '50%': { width: 0 }
   },
-  animate: ({ animationDuration = 0.3 }: any) => ({
+  animate: {
     '& $middleRectangle2': {
       transform: 'rotate(180deg)',
       transformOrigin: '70.15% 47.55%',
     },
     '& $middleRectangle': {
       animationName: '$middleRectangle',
-      animationDuration: `${animationDuration}s`,
+      animationDuration: '0.3s',
       width: 21,
     },
-  })
+  }
 });
