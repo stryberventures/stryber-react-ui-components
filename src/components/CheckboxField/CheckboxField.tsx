@@ -16,7 +16,7 @@ export interface ICheckboxFieldProps {
   variant?: 'checkmark' | 'switch';
   errorMessage?: string;
   textColor?: string;
-  sizeVariant?: 'small' | 'normal' | 'large'
+  sizeVariant?: 'small' | 'normal' | 'large';
 }
 
 const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {

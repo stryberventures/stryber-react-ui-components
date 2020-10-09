@@ -23,6 +23,8 @@ export interface ISidebarNavigationSection {
   route?: any;
   children?: any;
   open?: boolean;
+  icon?: any
+  iconSize?: 'large' | 'mini';
 }
 
 export interface ISidebarNavigationRouteProps {
@@ -121,6 +123,8 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     title,
     description,
     open = false,
+    icon = false,
+    iconSize = 'large',
     ...rest
   } = props;
 
@@ -156,6 +160,7 @@ const SidebarNavigationSection = (props: ISidebarNavigationSection & React.HTMLP
     >
       <div className={classes.sectionHeader}>
         <div className={classes.sectionInfoContainer}>
+          {icon && React.cloneElement(icon, { className: classes.sectionIcon,  })}
           <div className={classes.sectionTitle}>{title}</div>
         </div>
         <div className={classes.expandIconContainer}>
