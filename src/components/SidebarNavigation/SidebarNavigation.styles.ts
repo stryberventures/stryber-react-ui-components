@@ -33,16 +33,21 @@ export default (theme: any) => ({
     borderLeft: '4px solid rgba(0,0,0,0)',
     '&:hover': {
       color: theme.sidebarItemColorHover,
+      '& $sectionIcon': {
+        fill: theme.sidebarItemColorHover
+      }
     },
     '&:active': {
-      color: theme.sidebarItemColorActive
+      color: theme.sidebarItemColorActive,
+      '& $sectionIcon': {
+        fill: theme.sidebarItemColorActive
+      }
     },
   },
   sectionInfoContainer: {
     display: 'flex',
-    flexDirection: 'column',
     flex: 1,
-    justifyContent: 'center'
+    alignItems: 'center',
   },
   sectionTitle: {
     fontFamily: theme.fontFamily,
@@ -56,9 +61,10 @@ export default (theme: any) => ({
     transition: '0.3s',
     width: 20,
     fill: theme.sidebarItemColor,
+    transform: 'rotate(0deg)',
   },
   expandIconCollapsed: {
-    transform: 'rotate(180deg)',
+    transform: 'rotate(-90deg)',
   },
   sectionChildren: {
     padding: 0,
@@ -121,4 +127,10 @@ export default (theme: any) => ({
     color: '#1d1d1b',
     opacity: 0.5,
   },
+  sectionIcon: ({ iconSize }: any) => ({
+      fill: '#233340',
+      width: iconSize === 'mini' ? 24 : 32,
+      height: iconSize === 'mini' ? 24 : 32,
+      marginRight: 8,
+    })
 });

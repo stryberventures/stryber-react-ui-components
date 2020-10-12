@@ -12,6 +12,12 @@ storiesOf('TextEditor', module)
           placeholder="Text Editor"
           label="Text editor"
         />
+        <TextEditor
+          placeholder="Text Editor"
+          label="Text editor"
+          errorMessage="Something went wrong"
+          value="Default value"
+        />
       </Wrapper>
     );
   });

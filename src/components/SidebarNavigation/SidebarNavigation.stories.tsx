@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import CalendarIcon from '../Icons/Calendar';
 import { SidebarNavigationContainer, SidebarNavigationSection, SidebarNavigationRoute } from './SidebarNavigation';
 import Card, { Body as CardBody  } from '../Card';
 import { Row, Col } from '../Grid';
@@ -83,6 +84,51 @@ storiesOf('Sidebar navigation', module)
               description="Empty section"
             />
           </SidebarNavigationContainer>
+      </Wrapper>
+    );
+  })
+  .add('with icon', () => {
+    return (
+      <Wrapper>
+        <SidebarNavigationContainer
+          onRouteChange={(section: any, item: any) => console.log('Route changed!', [section, item])}
+        >
+          <SidebarNavigationSection
+            route="section1"
+            title="Section 1"
+            description="Lorem ipsum dolor sit amet"
+            icon={<CalendarIcon/>}
+            open
+          >
+            <SidebarNavigationRoute route="hello">Hello</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="world">World</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="!">!</SidebarNavigationRoute>
+          </SidebarNavigationSection>
+          <SidebarNavigationSection
+            route="section2"
+            title="Section 2"
+            description="Empty section"
+            icon={<CalendarIcon/>}
+          />
+          <SidebarNavigationSection
+            route="section3"
+            title="Section 3"
+            description="Lorem ipsum dolor sit amet"
+            icon={<CalendarIcon/>}
+            iconSize="mini"
+          >
+            <SidebarNavigationRoute route="other">Other</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="stuff">Stuff</SidebarNavigationRoute>
+            <SidebarNavigationRoute route="here">Here</SidebarNavigationRoute>
+          </SidebarNavigationSection>
+          <SidebarNavigationSection
+            route="section4"
+            title="Section 4"
+            description="Empty section"
+            icon={<CalendarIcon/>}
+            iconSize="mini"
+          />
+        </SidebarNavigationContainer>
       </Wrapper>
     );
   })

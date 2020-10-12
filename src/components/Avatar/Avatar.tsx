@@ -5,16 +5,15 @@ import { Plus } from '../Icons';
 import useStyles from './Avatar.styles';
 
 
-interface ITagProps {
+interface IAvatarProps {
   sizeVariant?: 'normal' | 'small' | 'large' | 'mini';
-  shape?: 'flat' | 'round' | 'circle';
   className?: any;
   initials?: string;
   image?: string;
   onClick?: (e: React.SyntheticEvent) => void;
 }
 
-const Avatar = (props: ITagProps & React.HTMLAttributes<HTMLInputElement>) => {
+const Avatar = (props: IAvatarProps & React.HTMLAttributes<HTMLInputElement>) => {
   const {
     sizeVariant = 'normal',
     initials,
