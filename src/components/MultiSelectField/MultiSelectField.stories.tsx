@@ -1,7 +1,10 @@
 import * as React from 'react';
+import * as Yup from 'yup';
 import { storiesOf } from '@storybook/react';
 import { MultiSelectField } from './MultiSelectField';
 import { Wrapper } from '../../storybook/components/Wrapper';
+import { Form } from '../Form';
+import { Button } from '../Button';
 
 const CHOICES = [
   { value: '1', label: 'One' },
@@ -19,6 +22,16 @@ const CHOICES = [
   { value: '13', label: 'Thirteen' },
   { value: '14', label: 'Fourteen' },
 ];
+const LANGUAGES_CHOICES = [
+  { value: 'de_CH', label: 'DE' },
+  { value: 'en_US', label: 'EN' },
+];
+const initialValues = {
+  languages: ['de_CH'],
+}
+const InfoSchema = Yup.object().shape({
+  languages: Yup.array().required('Field is required'),
+});
 
 storiesOf('Multi Select field', module)
   .add('Normal', () => {
@@ -201,6 +214,24 @@ storiesOf('Multi Select field', module)
           onChange={ (d: any) => console.log('SelectField value:', d) }
           disabled
         />
+      </Wrapper>
+    );
+  })
+  .add('In form', () => {
+    return (
+      <Wrapper>
+        <Form
+          initialValues={initialValues}
+          validationSchema={InfoSchema}
+        >
+          <MultiSelectField
+            name="languages"
+            placeholder="Option"
+            choices={LANGUAGES_CHOICES}
+            onChange={ (d: any) => console.log('SelectField value:', d) }
+          />
+          <Button type="submit">Submit</Button>
+        </Form>
       </Wrapper>
     );
   });
