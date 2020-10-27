@@ -22,4 +22,13 @@ storiesOf('Tag', module)
         <div style={{margin: 20}}><Tag sizeVariant="large">Option 1</Tag></div>
       </Wrapper>
     );
+  })
+  .add('disabled', () => {
+    return (
+      <Wrapper>
+        <div style={{margin: 20}}><Tag shape="flat" disabled>Option 1</Tag></div>
+        <div style={{margin: 20}}><Tag shape="round" disabled>Option 1</Tag></div>
+        <div style={{margin: 20}}><Tag shape="circle" disabled>Option 1</Tag></div>
+      </Wrapper>
+    );
   });

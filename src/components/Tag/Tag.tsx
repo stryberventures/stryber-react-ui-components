@@ -14,6 +14,7 @@ interface ITagProps {
   onClick?: (e: React.SyntheticEvent) => void;
   onClose?: (e: React.SyntheticEvent) => void;
   className?: any;
+  disabled?: boolean;
 }
 
 const Tag = (props: ITagProps & WithStyles<typeof styles>) => {
@@ -23,6 +24,7 @@ const Tag = (props: ITagProps & WithStyles<typeof styles>) => {
     shape = 'circle',
     sizeVariant = 'normal',
     className,
+    disabled,
     onClick,
     onClose,
   } = props;
@@ -31,6 +33,7 @@ const Tag = (props: ITagProps & WithStyles<typeof styles>) => {
       onClick={(e) => {onClick && onClick(e)}}
       className={classNames([
         classes.root,
+        disabled ? classes.rootDisabled : null,
         classes[shape]],
         classes[sizeVariant],
         className)}
