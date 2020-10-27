@@ -129,6 +129,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   const selectedBadgeOnClose = (value: any) => {
     return (e: React.BaseSyntheticEvent) => {
       e.stopPropagation();
+      formTouched && updateFormTouched(props.name, true);
       removeSelectionLabel(value);
     };
   };
@@ -138,6 +139,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   };
   const checkboxOnChangeWrapper = (e: React.BaseSyntheticEvent) => {
     const { name, checked } = e.target;
+    formTouched && updateFormTouched(props.name, true);
     setInternalValues((oiv: any[]) => {
       let newValues = [];
       if (checked) {
