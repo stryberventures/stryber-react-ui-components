@@ -21,7 +21,8 @@ export default (theme: any) => ({
     border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
   rootDisabled: {
-    backgroundColor: '#f9f9f9',
+    pointerEvents: 'none',
+    backgroundColor: theme.inputBackgroundColorDisabled,
     borderColor: '#cccccc',
   },
   fieldWrapper: {

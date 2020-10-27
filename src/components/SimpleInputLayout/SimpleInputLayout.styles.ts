@@ -22,7 +22,8 @@ export default (theme: any) => ({
     border: `solid 1px ${theme.inputColorError || '#d0021b'} !important`,
   },
   rootDisabled: {
-    backgroundColor: '#f0f0f0',
+    pointerEvents: 'none',
+    backgroundColor: theme.inputBackgroundColorDisabled,
   },
   fieldWrapper: {
     flex: 1,

@@ -6,6 +6,10 @@ export default (theme: any) => ({
     fontSize: 10,
     marginRight: 4
   },
+  rootDisabled: {
+    pointerEvents: 'none',
+    backgroundColor: '#ccc',
+  },
   closeBlock: {
     display: 'inline-block',
     marginLeft: 12,
