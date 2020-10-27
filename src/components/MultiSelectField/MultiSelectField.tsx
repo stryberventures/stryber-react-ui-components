@@ -207,6 +207,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               key={value}
               onClose={selectedBadgeOnClose(value)}
               className={classes.badgeChoice}
+              disabled={disabled}
             >
               {label}
             </Tag>
@@ -219,6 +220,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               sizeVariant="small"
               shape="flat"
               className={classes.badgeChoice}
+              disabled={disabled}
             >
               {label}
             </Tag>
@@ -298,6 +300,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               placeholder ? classes.selectLabelWithPlaceholder : null,
               sizeVariant === 'mini' ? classes.selectLabelMini : classes.selectLabelNormal,
               errorMsg ? classes.selectLabelInvalid : null,
+              disabled ? classes.selectLabelDisabled : null,
             ])}
           >
             {showBadgeChoices ? getBadgeChoices() : null}

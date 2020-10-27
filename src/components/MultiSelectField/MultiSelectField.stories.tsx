@@ -172,4 +172,35 @@ storiesOf('Multi Select field', module)
         />
       </Wrapper>
     );
+  })
+  .add('Disabled' , () => {
+    return (
+      <Wrapper>
+        <MultiSelectField
+          name="option"
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          values={['1']}
+          disabled
+        />
+        <MultiSelectField
+          name="option"
+          placeholder="Mini multiselect custom font placeholder"
+          customPlaceholderFont={true}
+          showBadgeChoices={false}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          disabled
+        />
+        <MultiSelectField
+          search
+          name="option"
+          placeholder="Mini multiselect with search"
+          showBadgeChoices={false}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          disabled
+        />
+      </Wrapper>
+    );
   });

@@ -76,6 +76,9 @@ export default (theme: any) => ({
       color: `${theme.inputColorError || '#d0021b'} !important`,
     },
   },
+  selectLabelDisabled: {
+    backgroundColor: theme.inputBackgroundColorDisabled,
+  },
   /** Dropdown */
   dropdownWrapper: {
     position: 'absolute',
