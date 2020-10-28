@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/stryber-react-ui-components",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
