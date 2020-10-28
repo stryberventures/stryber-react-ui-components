@@ -25,6 +25,7 @@ const UploadButton = (props: IAppendContentProps & WithStyles<typeof styles>) =>
 
   return (
     <button
+      type="button"
       onClick={onClick}
       disabled={disabled}
       className={classNames([
