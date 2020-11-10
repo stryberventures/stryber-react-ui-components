@@ -47,7 +47,7 @@ const SidebarExternalControl = (props: any) => {
   );
 };
 
-storiesOf('Sidebar navigation', module)
+storiesOf('Navigation/Sidebar navigation', module)
   .add('Normal', () => {
     return (
       <Wrapper>

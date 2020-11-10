@@ -4,7 +4,7 @@ import { CheckboxField } from './CheckboxField';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
-storiesOf('Checkbox field', module)
+storiesOf('Selection Controls/Checkbox field', module)
   .add('Checkbox', () => {
     return (
       <Wrapper>

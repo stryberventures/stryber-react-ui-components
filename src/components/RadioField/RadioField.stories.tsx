@@ -4,7 +4,7 @@ import { RadioField } from './RadioField';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
-storiesOf('Radio field', module)
+storiesOf('Selection Controls/Radio field', module)
   .add('default', () => {
     return (
       <Wrapper>
