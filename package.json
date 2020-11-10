@@ -37,6 +37,7 @@
   "scripts": {
     "start": "start-storybook -p 9001 -c .storybook",
     "build": "npm run cleanup && npm run build:rollup",
+    "build-storybook": "build-storybook -o docs-build",
     "watch:ts": "tsc -w",
     "build:ts": "tsc",
     "build:rollup": "rollup -c",
