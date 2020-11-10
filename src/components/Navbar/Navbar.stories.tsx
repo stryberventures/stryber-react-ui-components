@@ -179,7 +179,7 @@ const NavbarExamples = (props: any) => {
   );
 };
 
-storiesOf('Navbar', module)
+storiesOf('Navigation/Navbar', module)
   .add('Normal', () => {
     return <NavbarExamples />;
   })

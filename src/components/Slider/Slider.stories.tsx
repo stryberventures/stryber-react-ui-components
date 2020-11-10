@@ -17,7 +17,7 @@ const SliderPreview = () => {
   )
 }
 
-storiesOf('Slider', module)
+storiesOf('Selection Controls/Slider', module)
   .add('default', () => {
     return (
       <Wrapper>

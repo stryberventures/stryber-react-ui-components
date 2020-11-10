@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import NavBurger from './NavBurger';
 import { Wrapper } from '../../storybook/components/Wrapper';
 
-storiesOf('NavBurger', module)
+storiesOf('Navigation/NavBurger', module)
   .add('default', () => {
     return (
       <Wrapper>

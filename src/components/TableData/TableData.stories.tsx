@@ -19,7 +19,7 @@ const rows = [
   {date: '2019-01-01', city: 'Denver', id: 'http://authenticbrandsgroup.com', name: 'Cygnus'},
   {date: '2019-01-01', city: 'Manchester', id: 'https://www.cavalcademidstream.com/', name: 'Zhidou'},
 ];
-storiesOf('TableData', module)
+storiesOf('Data Table', module)
   .add('default', () => (
     <Wrapper>
       <div style={{width: '100%', padding: '15px'}}>

@@ -2,20 +2,53 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from './Button';
 import {Profile} from '../Icons';
+import * as Grid from '../Grid';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
 storiesOf('Button', module)
-  .add('with text', () => {
-    const fakedClickHandler = () => console.log('Button clicked!');
+  .add('all variants', () => {
     return (
       <Wrapper>
-        <Button type="submit" variant="primary" onClick={ fakedClickHandler }>Primary</Button>
-        <Button variant="primary" disabled onClick={ fakedClickHandler }>Primary Disabled</Button>
-        <Button variant="secondary" onClick={ fakedClickHandler }>Secondary</Button>
-        <Button variant="secondary" disabled onClick={ fakedClickHandler }>Secondary Disabled</Button>
-        <Button variant="tertiary" onClick={ fakedClickHandler }>Tertiary</Button>
-        <Button variant="tertiary" onClick={ fakedClickHandler } disabled>Tertiary Disabled</Button>
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button>Button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button style={{ whiteSpace: 'nowrap' }} disabled>Disabled button</Button>
+          </Grid.Col>
+        </Grid.Row>
+        <div style={{ marginTop: 20 }} />
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="secondary">Button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="secondary" style={{ whiteSpace: 'nowrap' }} disabled>Disabled button</Button>
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="tertiary">Button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="tertiary" style={{ whiteSpace: 'nowrap' }} disabled>Disabled button</Button>
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="primary"  style={{ whiteSpace: 'nowrap' }} sizeVariant="mini">Primary Mini button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="secondary"  style={{ whiteSpace: 'nowrap' }} sizeVariant="mini">Secondary Mini button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button variant="tertiary" style={{ whiteSpace: 'nowrap' }} sizeVariant="mini">Tertiary Mini button</Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button style={{ whiteSpace: 'nowrap' }} sizeVariant="mini" disabled>Disabled Mini button</Button>
+          </Grid.Col>
+        </Grid.Row>
       </Wrapper>
     );
   })

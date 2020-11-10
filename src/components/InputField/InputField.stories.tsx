@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { InputField } from './InputField';
+import * as Grid from '../Grid';
 
 import { Wrapper } from '../../storybook/components/Wrapper';
 
@@ -23,6 +24,210 @@ const ControlledInputField = () => {
 };
 
 storiesOf('Input field', module)
+  .add('All types', () => {
+    return (
+      <Wrapper>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="name"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="id"
+                errorMessage="Some generic error message"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="name"
+                placeholder="First name"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="id"
+                placeholder="Last name"
+                errorMessage="Some generic error message"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="password"
+                name="pass"
+                placeholder="Password"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="password"
+                name="pass"
+                placeholder="Password"
+                errorMessage="Some generic error message"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="number"
+                name="age"
+                placeholder="Age"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="number"
+                name="age"
+                placeholder="Age"
+                errorMessage="Some generic error message"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Email"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Email"
+                errorMessage="Some generic error message"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="name"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="id"
+                errorMessage="Some generic error message"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="name"
+                placeholder="First name"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                name="id"
+                placeholder="Last name"
+                errorMessage="Some generic error message"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="password"
+                name="pass"
+                placeholder="Password"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="password"
+                name="pass"
+                placeholder="Password"
+                errorMessage="Some generic error message"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="number"
+                name="age"
+                placeholder="Age"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="number"
+                name="age"
+                placeholder="Age"
+                errorMessage="Some generic error message"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+        <div>
+          <Grid.Row>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Email"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+            <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Email"
+                errorMessage="Some generic error message"
+                layout="simple"
+                label="Label"
+              />
+            </Grid.Col>
+          </Grid.Row>
+        </div>
+      </Wrapper>
+    )
+  })
   .add('Text input', () => {
     return (
       <Wrapper>
