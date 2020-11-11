@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default (props: any) => (
+export default (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} width="13px" height="11px" viewBox="0 0 13 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
     <g stroke="none" strokeWidth="1" fillRule="evenodd">
       <g transform="translate(-3.000000, -4.000000)" fillRule="nonzero">
