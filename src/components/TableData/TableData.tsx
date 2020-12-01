@@ -4,6 +4,8 @@ import { TableRow } from '../TableRow';
 import { TableHead } from '../TableHead';
 import { TableBody } from '../TableBody';
 import { Table } from '../Table';
+import classNames from 'classnames';
+import useStyles from './TableData.styles';
 
 interface ITableDataProps {
   rows: any[];
@@ -13,10 +15,25 @@ interface ITableDataProps {
   perPage?: number;
   currPage?: number;
   className?: any;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const TableData = (props: ITableDataProps) => {
-  const { headerLabel, headerComponent, headRow, rows, className, ...rest } = props;
+  const {
+    headerLabel,
+    headerComponent,
+    headRow,
+    rows,
+    className,
+    loading,
+    loadingClassName,
+    loadingStyle = {},
+    ...rest
+  } = props;
+
+  const classes = useStyles();
 
   const getHeadRow = () =>
     headRow.map(cell =>
@@ -28,6 +45,14 @@ const TableData = (props: ITableDataProps) => {
         <TableCell key={index}>{row[cell.id]}</TableCell>)}
     </TableRow>
   ));
+
+  if (loading) {
+    return <div className={classNames(
+      'loadingAnimation',
+      classes.tableLoading,
+      loadingClassName
+    )} style={loadingStyle} />
+  }
 
   return (
     <Table

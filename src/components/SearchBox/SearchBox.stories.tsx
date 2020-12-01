@@ -23,6 +23,26 @@ const SearchBoxTestComponent1 = (props: any) => {
   );
 };
 
+const SearchBoxTestComponentLoading = (props: any) => {
+  const [results, setResults] = React.useState([{ label: 'one' }, { label: 'two' }]);
+
+  React.useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then((data) => setResults(data.map((d: any) => ({
+        label: d.name,
+        href: 'https://jsonplaceholder.typicode.com/users',
+      }))));
+  }, []);
+  return(
+    <SearchBox
+      onChange={ (d: any) => console.log('SearchBox value:', d) }
+      results={results}
+      loading={true}
+    />
+  );
+};
+
 const SearchBoxTestComponent2 = (props: any) => {
   const names = ["Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter"];
   const filterResults = (value: string) => {
@@ -64,6 +84,13 @@ storiesOf('Search Box', module)
         <SearchBoxTestComponent1 />
         <SearchBoxTestComponent2 />
         <SearchBoxTestComponent3 />
+      </Wrapper>
+    );
+  })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <SearchBoxTestComponentLoading />
       </Wrapper>
     );
   });

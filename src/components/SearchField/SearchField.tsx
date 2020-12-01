@@ -5,6 +5,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import styles from './SearchField.styles';
 import { CloseOutline, Search } from '../Icons';
 import { TextInput } from '../InputField/Inputs/TextInput';
+import { FormContext } from '../Form';
 
 /** Interfaces */
 export interface ISearchFieldProps {
@@ -22,6 +23,9 @@ export interface ISearchFieldProps {
   layout?: 'default' | 'simple' | 'bare';
   label?: string;
   large?: boolean;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -39,6 +43,11 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
     placeholder = 'Search',
     collapsiblePlaceholder = true,
     sizeVariant = 'normal',
+    label,
+    large,
+    loading,
+    loadingClassName,
+    loadingStyle = {},
     ...rest
   } = props;
 
@@ -46,6 +55,9 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
   const [isFocused, setFocused] = React.useState(false);
   /** Setting the internal value of the field from form initial values or from value provided to the field */
   const [inputValue, setInputValue] = React.useState(value || '');
+
+  /** Getting values from Form context (if the field is wrapped inside a form */
+  const { loading: formLoading } = React.useContext(FormContext);
 
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (e: React.BaseSyntheticEvent) => {
@@ -101,9 +113,27 @@ const SearchField = (props: ISearchFieldProps & WithStyles<typeof styles>) => {
             classes.searchIcon,
           )} /></div>);
 
+  if (formLoading || loading) {
+    return (<div style={loadingStyle} className={loadingClassName}>
+      {label && <div className={classNames(
+        'loadingAnimation',
+        classes.labelLoading,
+        { [classes.labelLargeLoading]: label && large }
+      )}/>}
+      <div className={classNames(
+        'loadingAnimation',
+        classes.inputLoading,
+        { [classes.inputLargeLoading]: large },
+        { [classes.inputMiniLoading]: sizeVariant === 'mini' }
+      )}/>
+    </div>)
+  }
+
   return (
     <TextInput
       {...rest}
+      large={large}
+      label={label}
       isFocused={isFocused}
       onFocus={onFocusWrapper}
       onBlur={onBlurWrapper}

@@ -69,6 +69,16 @@ storiesOf('Button', module)
       </div>
     </Wrapper>
   ))
+  .add('loading', () =>  (
+    <Wrapper>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+        <Button loadingStyle={{width: 152}} loading={true} style={{width: 152}} type="submit" sizeVariant='large' variant="primary">Primary</Button>
+        <Button loadingStyle={{width: 128}} loading={true} style={{width: 128}} type="submit" sizeVariant='normal' variant="primary" >Primary</Button>
+        <Button loadingStyle={{width: 102}} loading={true} style={{width: 102}} type="submit" sizeVariant='small' variant="primary">Primary</Button>
+        <Button loadingStyle={{width: 69}} loading={true} style={{width: 69}} type="submit" sizeVariant='mini' variant="primary">Primary</Button>
+      </div>
+    </Wrapper>
+  ))
   .add('with icon', () => (
     <Wrapper>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>

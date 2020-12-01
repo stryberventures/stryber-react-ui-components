@@ -17,6 +17,9 @@ export interface ICheckboxFieldProps {
   errorMessage?: string;
   textColor?: string;
   sizeVariant?: 'small' | 'normal' | 'large';
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
@@ -35,6 +38,9 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     variant,
     textColor,
     sizeVariant = 'normal',
+    loading = false,
+    loadingClassName,
+    loadingStyle = {},
     ...rest
   } = props;
 
@@ -45,6 +51,7 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
     formErrors,
     updateFormTouched,
     formTouched,
+    loading: formLoading,
   } = React.useContext(FormContext);
 
   /** Setting the internal value of the field from form initial values or from value provided to the field */
@@ -89,6 +96,25 @@ const CheckboxField = (props: ICheckboxFieldProps & React.HTMLProps<HTMLInputEle
       formValues && updateFormValue(name, undefined, true);
     };
   }, []);
+
+  if (formLoading || loading) {
+    return <div className={classNames(classes.loadingContainer, loadingClassName)} style={loadingStyle}>
+      <div className={classNames(
+        'loadingAnimation',
+        classes.checkboxLoading,
+        { [classes.checkboxSmallLoading]: sizeVariant === 'small' },
+        { [classes.checkboxLargeLoading]: sizeVariant === 'large' },
+        { [classes.switchLoading]: variant === 'switch'},
+        { [classes.switchSmallLoading]: sizeVariant === 'small' && variant === 'switch' },
+        { [classes.switchLargeLoading]: sizeVariant === 'large' && variant === 'switch' },
+      )}/>
+      <div className={classNames(
+        classes.labelLoading,
+        'loadingAnimation',
+        { [classes.labelLargeLoading]: sizeVariant === 'large' }
+      )}/>
+    </div>
+  }
 
   return (
     <div className={classNames([

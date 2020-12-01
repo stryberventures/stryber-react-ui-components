@@ -86,6 +86,141 @@ const ExternalFormControlExample = (props: any) => {
   );
 };
 
+const FormLoadingExample = () => {
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 4000)
+  });
+
+  return (
+    <Wrapper>
+      <Form
+        onSubmit={(formData: any) => {
+          console.log('onSubmit external', formData);
+        }}
+        onReset={(formData: any) => {
+          console.log('onReset external', formData);
+        }}
+        initialValues={{
+          id: 12,
+          gender: 'Male',
+          first_name: 'John',
+          last_name: 'Doe',
+          select: 'option 1',
+        }}
+        loading={loading}
+      >
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <InputField
+              name="id"
+              placeholder="ID"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <InputField
+              name="email"
+              placeholder="Email"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <InputField
+              name="first_name"
+              placeholder="First Name"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <InputField
+              name="last_name"
+              placeholder="Last Name"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <InputField
+              name="gender"
+              placeholder="Gender"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <RadioField
+              name="select"
+              placeholder="Option 1"
+              value="option 1"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <RadioField
+              name="select"
+              placeholder="Option 2"
+              value="option 2"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <RadioField
+              name="select"
+              placeholder="Option 3"
+              value="option 3"
+              disabled
+            />
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <SelectField
+              name="DropdownSelect"
+              placeholder="Dropdown select value"
+              choices={[
+                {value: 1, label: 'One'},
+                {value: 2, label: 'Two'},
+                {value: 3, label: 'Three'},
+                {value: 4, label: 'Four'},
+                {value: 5, label: 'Five'},
+              ]}
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={4} xl={3}>
+            <MultiSelectField
+              name="DropdownMultiSelect"
+              placeholder="Dropdown multi select value"
+              choices={[
+                {value: 1, label: 'One'},
+                {value: 2, label: 'Two'},
+                {value: 3, label: 'Three'},
+                {value: 4, label: 'Four'},
+                {value: 5, label: 'Five'},
+              ]}
+            />
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <CheckboxField
+              name="agree"
+              placeholder="Terms and conditions"
+            />
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button
+              type="submit"
+            >
+              Submit
+            </Button>
+          </Grid.Col>
+          <Grid.Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <Button
+              type="reset"
+              variant="secondary"
+            >
+              Reset
+            </Button>
+          </Grid.Col>
+        </Grid.Row>
+      </Form>
+    </Wrapper>
+  );
+}
+
 storiesOf('Form', module)
   .add('default', () => (
     <Wrapper>
@@ -212,6 +347,9 @@ storiesOf('Form', module)
       </Form>
     </Wrapper>
   ))
+  .add('Loading', () => {
+    return <FormLoadingExample/>;
+  })
   .add('Login', () => {
     return (
       <Wrapper>

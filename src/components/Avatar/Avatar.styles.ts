@@ -149,6 +149,24 @@ const useStyles = createUseStyles({
       }
     }
   },
+  avatarLoading: {
+    width: 72,
+    height: 72,
+    borderRadius: '50%',
+    display: 'inline-block'
+  },
+  avatarSmallLoading: {
+    width: 56,
+    height: 56,
+  },
+  avatarMiniLoading: {
+    width: 44,
+    height: 44,
+  },
+  avatarLargeLoading: {
+    width: 96,
+    height: 96,
+  },
 });
 
 export default useStyles;

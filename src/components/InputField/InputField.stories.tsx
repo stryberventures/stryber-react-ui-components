@@ -11,7 +11,7 @@ const ControlledInputField = () => {
   React.useEffect(() => {
     if (value === 'clear') {
       setValue('');
-    };
+    }
   }, [value]);
 
   return (
@@ -22,6 +22,56 @@ const ControlledInputField = () => {
     />
   );
 };
+
+const LoadingExample = () => {
+  const [isLoading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 3000)
+  })
+
+  return (
+    <>
+      <InputField
+        onChange={(d: any) => console.log('InputField value:', d.target.value)}
+        placeholder="Text field with initial value"
+        value="Text field with value"
+        loading={isLoading}
+      />
+      <InputField
+        onChange={(d: any) => console.log('InputField value:', d.target.value)}
+        placeholder="Text field with initial value"
+        value="Text field with value"
+        loading={isLoading}
+        large
+      />
+      <InputField
+        onChange={(d: any) => console.log('InputField value:', d.target.value)}
+        placeholder="Text field with initial value"
+        value="Text field with value"
+        loading={isLoading}
+        large
+        layout="simple"
+        label="Test"
+      />
+      <InputField
+        onChange={(d: any) => console.log('InputField value:', d.target.value)}
+        placeholder="Text field with initial value"
+        value="Text field with value"
+        loading={isLoading}
+        layout="simple"
+        label="Test"
+      />
+      <InputField
+        onChange={(d: any) => console.log('InputField value:', d.target.value)}
+        placeholder="Text field with initial value"
+        value="Text field with value"
+        loading={isLoading}
+        sizeVariant="mini"
+      />
+    </>
+  )
+}
 
 storiesOf('Input field', module)
   .add('All types', () => {
@@ -386,6 +436,23 @@ storiesOf('Input field', module)
           placeholder="Text field with initial value"
           value="Text field with value"
         />
+      </Wrapper>
+    );
+  })
+  .add('Loading state', () => {
+    return (
+      <Wrapper>
+        {/*<InputField*/}
+        {/*  large*/}
+        {/*  label="Label InputField(simmple, mini)"*/}
+        {/*  layout="simple"*/}
+        {/*  sizeVariant="mini"*/}
+        {/*  onChange={(d: any) => console.log('InputField value:', d.target.value)}*/}
+        {/*  placeholder="Text field with initial value"*/}
+        {/*  value="Text field with value"*/}
+        {/*  loading*/}
+        {/*/>*/}
+        <LoadingExample />
       </Wrapper>
     );
   });

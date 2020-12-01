@@ -20,4 +20,15 @@ storiesOf('TextEditor', module)
         />
       </Wrapper>
     );
+  })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <TextEditor
+          placeholder="Text Editor"
+          label="Text editor"
+          loading={true}
+        />
+      </Wrapper>
+    );
   });

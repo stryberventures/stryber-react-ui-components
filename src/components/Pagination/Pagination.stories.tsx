@@ -41,5 +41,19 @@ storiesOf('Pagination', module)
       </Wrapper>
     );
   })
-  .add('with collapse factor', () => <PaginationWithCollapseFactorExample/>);
+  .add('with collapse factor', () => <PaginationWithCollapseFactorExample/>)
+  .add('loading', () => {
+    return (
+      <Wrapper>
+        <div style={{width: '100%', padding: '15px'}}>
+          <Pagination
+            onChange={(index)=>{console.log('Move to ', index + 1)}}
+            currPage={2}
+            pageCount={9}
+            loading={true}
+          />
+        </div>
+      </Wrapper>
+    );
+  });
 

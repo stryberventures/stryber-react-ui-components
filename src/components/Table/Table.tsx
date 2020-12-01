@@ -10,10 +10,32 @@ interface ITableProps {
   border?: boolean;
   headerLabel?: string;
   headerLabelClassName?: string;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Table = (props: ITableProps & WithStyles<typeof styles>) => {
-  const { border = false, children, classes, className, headerLabel, headerComponent, headerLabelClassName } = props;
+  const {
+    border = false,
+    children,
+    classes,
+    className,
+    headerLabel,
+    headerComponent,
+    headerLabelClassName,
+    loading,
+    loadingStyle = {},
+    loadingClassName,
+  } = props;
+
+  if (loading) {
+    return <div className={classNames(
+      'loadingAnimation',
+      classes.tableLoading,
+      loadingClassName
+    )} style={loadingStyle} />
+  }
 
   if (!headerLabel && !headerComponent) {
     return (

@@ -28,6 +28,9 @@ export interface ISelectFieldProps {
   errorMessage?: string;
   className?: any;
   showPrependBackground?: boolean;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -47,6 +50,9 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     choices,
     clearFormValueOnUnmount,
     showPrependBackground = true,
+    loading = false,
+    loadingClassName,
+    loadingStyle = {},
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -57,6 +63,7 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
     formValues,
     formErrors,
     formTouched,
+    loading: formLoading
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
@@ -140,6 +147,18 @@ const SelectField = (props: ISelectFieldProps & WithStyles<typeof styles>) => {
       if (unsetFormValue && clearFormValueOnUnmount) unsetFormValue(name);
     };
   }, []);
+
+  if (formLoading || loading) {
+    return (
+        <div className={classNames(
+          'loadingAnimation',
+          classes.inputLoading,
+          loadingClassName,
+        )}
+          style={loadingStyle}
+        />
+      )
+  }
 
   return (
     <>

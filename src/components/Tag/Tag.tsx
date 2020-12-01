@@ -15,6 +15,9 @@ interface ITagProps {
   onClose?: (e: React.SyntheticEvent) => void;
   className?: any;
   disabled?: boolean;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Tag = (props: ITagProps & WithStyles<typeof styles>) => {
@@ -27,7 +30,21 @@ const Tag = (props: ITagProps & WithStyles<typeof styles>) => {
     disabled,
     onClick,
     onClose,
+    loading,
+    loadingClassName,
+    loadingStyle = {},
   } = props;
+
+  if (loading) {
+    return <div className={classNames(
+      'loadingAnimation',
+      classes.tagLoading,
+      { [classes.tagSmallLoading]: sizeVariant === 'small' },
+      { [classes.tagLargeLoading]: sizeVariant === 'large' },
+      loadingClassName
+    )} style={loadingStyle} />
+  }
+
   return (
     <span
       onClick={(e) => {onClick && onClick(e)}}

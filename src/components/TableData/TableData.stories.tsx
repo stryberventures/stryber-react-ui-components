@@ -30,6 +30,17 @@ storiesOf('Data Table', module)
       </div>
     </Wrapper>
   ))
+  .add('loading', () => (
+    <Wrapper>
+      <div style={{width: '100%', padding: '15px'}}>
+        <TableData
+          loading={true}
+          headRow={headRow}
+          rows={rows}
+        />
+      </div>
+    </Wrapper>
+  ))
   .add('With title', () => (
     <Wrapper>
       <div style={{width: '100%', padding: '15px'}}>

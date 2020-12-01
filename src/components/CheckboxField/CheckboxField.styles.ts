@@ -244,4 +244,45 @@ export default (theme: any) => ({
       backgroundColor: theme.inputErrorMessageColor || '#ea3546',
     },
   },
+  /** Handle loading */
+  // checkbox
+  checkboxLoading: {
+    width: 24,
+    height: 24,
+    borderRadius: 3,
+  },
+  loadingContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  labelLoading: {
+    height: 19,
+    margin: [8, 4],
+    width: 120,
+    borderRadius: 5
+  },
+  checkboxSmallLoading: {
+    height: 16,
+    width: 16,
+  },
+  checkboxLargeLoading: {
+    height: 30,
+    width: 30,
+  },
+  labelLargeLoading: {
+    height: 22
+  },
+  //switch
+  switchLoading: {
+    width: 44,
+    borderRadius: 12
+  },
+  switchSmallLoading: {
+    width: 26,
+    borderRadius: 16
+  },
+  switchLargeLoading: {
+    width: 60,
+    borderRadius: 32
+  }
 });

@@ -21,6 +21,9 @@ export interface ISliderProps {
   containerClassName?: any;
   className?: any;
   sizeVariant?: 'normal' | 'small' | 'large';
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Slider = (props: ISliderProps & React.HTMLProps<HTMLInputElement> & WithStyles<typeof styles>) => {
@@ -40,6 +43,9 @@ const Slider = (props: ISliderProps & React.HTMLProps<HTMLInputElement> & WithSt
     sizeVariant = 'normal',
     containerClassName,
     className,
+    loading,
+    loadingStyle = {},
+    loadingClassName,
     ...rest
   } = props;
 
@@ -52,6 +58,7 @@ const Slider = (props: ISliderProps & React.HTMLProps<HTMLInputElement> & WithSt
     formErrors,
     formTouched,
     updateFormTouched,
+    loading: formLoading
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
@@ -103,8 +110,6 @@ const Slider = (props: ISliderProps & React.HTMLProps<HTMLInputElement> & WithSt
     const inputElement: any = inputRef.current;
     const getPercent = (): number => ((inputElement.value - inputElement.min) / (inputElement.max - inputElement.min)) * 100;
 
-    inputElement.style.setProperty('--webkitProgressPercent', `${getPercent()}%`);
-
     const handleMove = () => {
       if (!isChanging) return;
       inputElement.style.setProperty("--webkitProgressPercent", `${getPercent()}%`);
@@ -112,17 +117,41 @@ const Slider = (props: ISliderProps & React.HTMLProps<HTMLInputElement> & WithSt
     const handleUpAndLeave = () => setIsChanging(false);
     const handleDown = () => setIsChanging(true);
 
-    inputElement.addEventListener("mousemove", handleMove);
-    inputElement.addEventListener("mousedown", handleDown);
-    inputElement.addEventListener("mouseup", handleUpAndLeave);
-    inputElement.addEventListener("mouseleave", handleUpAndLeave);
+    if (!formLoading && !loading) {
+      inputElement.style.setProperty('--webkitProgressPercent', `${getPercent()}%`);
+      inputElement.addEventListener("mousemove", handleMove);
+      inputElement.addEventListener("mousedown", handleDown);
+      inputElement.addEventListener("mouseup", handleUpAndLeave);
+      inputElement.addEventListener("mouseleave", handleUpAndLeave);
+    }
     return () => {
-      inputElement.removeEventListener("mousemove", handleMove);
-      inputElement.removeEventListener("mousedown", handleDown);
-      inputElement.removeEventListener("mouseup", handleUpAndLeave);
-      inputElement.removeEventListener("mouseleave", handleUpAndLeave);
+      if (!formLoading && !loading) {
+        inputElement.removeEventListener("mousemove", handleMove);
+        inputElement.removeEventListener("mousedown", handleDown);
+        inputElement.removeEventListener("mouseup", handleUpAndLeave);
+        inputElement.removeEventListener("mouseleave", handleUpAndLeave);
+      }
     };
   }, [isChanging]);
+
+  if (formLoading || loading) {
+    return (
+      <div className={classNames(classes.loadingContainer, loadingClassName)} style={loadingStyle}>
+        <div className={classNames(
+          'loadingAnimation',
+          classes.sliderLoading,
+          { [classes.sliderSmallLoading]: sizeVariant === 'small' },
+          { [classes.sliderLargeLoading]: sizeVariant === 'large' },
+        )}/>
+        <div className={classNames(
+          'loadingAnimation',
+          classes.loadingCircle,
+          { [classes.loadingSmallCircle]: sizeVariant === 'small' },
+          { [classes.loadingLargeCircle]: sizeVariant === 'large' },
+        )}/>
+      </div>
+      )
+  }
 
   return <div className={classNames([containerClassName, classes.root, classes[sizeVariant]])}>
     <input

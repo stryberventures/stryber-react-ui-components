@@ -138,5 +138,32 @@ export default (theme: any) => ({
     '& $placeholder': {
       color: theme.inputErrorMessageColor || '#ea3546',
     }
+  },
+  /** Handle loading */
+  loadingContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  labelLoading: {
+    height: 19,
+    margin: [8, 4],
+    width: 120,
+    borderRadius: 5
+  },
+  labelLargeLoading: {
+    height: 22
+  },
+  radioLoading: {
+    height: 22,
+    width: 22,
+    borderRadius: '50%'
+  },
+  radioSmallLoading: {
+    width: 16,
+    height: 16
+  },
+  radioLargeLoading: {
+    width: 28,
+    height: 28
   }
 });

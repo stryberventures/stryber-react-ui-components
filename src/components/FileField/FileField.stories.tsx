@@ -39,4 +39,17 @@ storiesOf('File field', module)
         />
       </Wrapper>
     );
+  })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <FileField
+          name="cv"
+          accept=".svg"
+          placeholder="Single file field"
+          onChange={ (d: any) => console.log('InputField value:', d) }
+          loading={true}
+        />
+      </Wrapper>
+    );
   });

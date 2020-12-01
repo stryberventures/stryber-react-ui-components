@@ -1,5 +1,7 @@
 import * as React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
+import classNames from 'classnames';
+
 import styles from './FileField.styles';
 import { FormContext } from '../Form';
 import { InputFieldLayout } from '../InputFieldLayout';
@@ -21,6 +23,9 @@ export interface IFileFieldProps {
   inputText?: (filesNumber: number) => string;
   appendContent?: (files: any, errorMsg: string, clickFileInput: (e: any) => any, disabled: boolean) => any;
   clearFormValueOnUnmount?: boolean;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -40,6 +45,9 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     value,
     clearFormValueOnUnmount = true,
     appendContent,
+    loading,
+    loadingClassName,
+    loadingStyle = {},
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -50,6 +58,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     formValues,
     formErrors,
     formTouched,
+    loading: formLoading
   } = React.useContext(FormContext);
 
   /** Create input ref and an event to click it */
@@ -140,6 +149,19 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
   /** Default components */
   const appendContentDefault = <UploadButton files={internalValue} errorMsg={errorMsg} onClick={clickFileInput} disabled={disabled} />;
   const inputTextDefault = multiple ? (`${internalValue && internalValue.length} uploaded ${internalValue && internalValue.length > 1 ? 'files' : 'file'}`) : '1 uploaded file';
+
+  if (formLoading || loading) {
+    return (
+      <div
+        className={classNames(
+        'loadingAnimation',
+        classes.inputLoading,
+        loadingClassName
+      )}
+        style={loadingStyle}
+      />
+      )
+  }
 
   return (
     <>

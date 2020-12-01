@@ -37,5 +37,18 @@ export default (theme: any) => ({
   large: {
     padding: '6px 16px 6px 16px',
     fontSize: 12
+  },
+  tagLoading: {
+    height: 24,
+    width: 80,
+    borderRadius: 100
+  },
+  tagSmallLoading: {
+    height: 16,
+    width: 60,
+  },
+  tagLargeLoading: {
+    height: 30,
+    width: 100
   }
 });

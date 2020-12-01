@@ -234,4 +234,35 @@ storiesOf('Multi Select field', module)
         </Form>
       </Wrapper>
     );
+  })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <MultiSelectField
+          label="Label"
+          layout="simple"
+          name="option"
+          choices={CHOICES.slice(0, 8)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          loading={true}
+        />
+        <MultiSelectField
+          name="option"
+          placeholder="Option"
+          choices={CHOICES.slice(0, 5)}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          loading={true}
+        />
+        <MultiSelectField
+          sizeVariant="mini"
+          name="option"
+          showBadgeChoices={false}
+          placeholder="SearchField"
+          search={true}
+          choices={[...CHOICES]}
+          onChange={ (d: any) => console.log('SelectField value:', d) }
+          loading={true}
+        />
+      </Wrapper>
+    );
   });

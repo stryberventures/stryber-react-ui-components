@@ -96,5 +96,29 @@ export default (theme: any) => ({
         textDecoration: 'underline',
       }
     },
+    '.loadingAnimation': {
+      position: 'relative',
+      overflow: 'hidden',
+      background: '#DDDDDD',
+      '&::before': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        left: '-150px',
+        top: '0',
+        height: '100%',
+        width: '150px',
+        background: 'linear-gradient(to right, transparent 0%, #efefef 50%, transparent 100%)',
+        animation: 'load 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
+      }
+    },
+    '@keyframes load': {
+      '0%': {
+        left: -150
+      },
+      '100%': {
+        left: '100%',
+      },
+    },
   },
 });
