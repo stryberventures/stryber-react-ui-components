@@ -29,4 +29,8 @@ export default (theme: any) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  tableLoading: {
+    width: '100%',
+    height: 500,
+  }
 });

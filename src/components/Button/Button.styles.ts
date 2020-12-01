@@ -105,5 +105,19 @@ export default (theme: any) => ({
   },
   circle: {
     borderRadius: 50,
+  },
+  buttonLoading: {
+    height: 56,
+    width: '100%',
+    borderRadius: 4
+  },
+  buttonLargeLoading: {
+    height: 70,
+  },
+  buttonSmallLoading: {
+    height: 44,
+  },
+  buttonMiniLoading: {
+    height: 24,
   }
 });

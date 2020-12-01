@@ -55,5 +55,14 @@ export default (theme: any) => ({
       transform: 'rotate(225deg)',
       marginRight: 2,
     }
+  },
+  paginationLoading: {
+    width: 29,
+    height: 29,
+    margin: 4,
+    borderRadius: 4
+  },
+  loadingContainer: {
+    display: 'flex'
   }
 });

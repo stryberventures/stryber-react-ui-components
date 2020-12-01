@@ -85,4 +85,52 @@ storiesOf('Search Field', module)
         />
       </Wrapper>
     );
+  })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <SearchField
+          collapsiblePlaceholder={false}
+          onChange={(d: any) => console.log('SearchBox value:', d)}
+          onEnter={value => console.log(`onEnter('${value}')`)}
+          loading={true}
+        />
+        <SearchField
+          large
+          placeholder='Search large'
+          collapsiblePlaceholder={false}
+          onChange={(d: any) => console.log('SearchBox small value:', d)}
+          onEnter={value => console.log(`onEnter('${value}')`)}
+          loading={true}
+        />
+        <SearchField
+          layout="simple"
+          placeholder='Search simple'
+          collapsiblePlaceholder={false}
+          onChange={(d: any) => console.log('SearchBox value:', d)}
+          onEnter={value => console.log(`onEnter('${value}')`)}
+          label="Simple search layout"
+          loading={true}
+        />
+        <SearchField
+          large
+          layout="simple"
+          placeholder='Search simple'
+          collapsiblePlaceholder={false}
+          onChange={(d: any) => console.log('SearchBox value:', d)}
+          onEnter={value => console.log(`onEnter('${value}')`)}
+          label="Simple large search layout"
+          loading={true}
+        />
+        <SearchField
+          collapsiblePlaceholder={false}
+          onChange={(d: any) => console.log('SearchBox value:', d)}
+          onEnter={value => console.log(`onEnter('${value}')`)}
+          onClear={value => console.log(`onClear('${value}')`)}
+          sizeVariant="mini"
+          placeholder="Mini defoult search"
+          loading={true}
+        />
+      </Wrapper>
+    );
   });

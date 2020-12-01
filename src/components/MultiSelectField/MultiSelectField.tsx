@@ -37,6 +37,9 @@ export interface IMultiSelectFieldProps {
   search?: boolean;
   layout?: 'default' | 'simple';
   label?: string;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -63,6 +66,9 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     sizeVariant = 'normal',
     layout = 'default',
     label,
+    loading = false,
+    loadingClassName,
+    loadingStyle = {},
   } = props;
 
   /** Getting values from Form context (if the field is wrapped inside a form */
@@ -73,6 +79,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     formErrors,
     formTouched,
     unsetFormValue,
+    loading: formLoading
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
@@ -255,6 +262,20 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     default:
       LayoutComponent = InputFieldLayout;
       break;
+  }
+
+  if (formLoading || loading) {
+    return (<div className={loadingClassName} style={loadingStyle}>
+      {label && <div className={classNames(
+        'loadingAnimation',
+        classes.labelLoading,
+      )}/>}
+      <div className={classNames(
+        'loadingAnimation',
+        classes.inputLoading,
+        { [classes.inputMiniLoading]: sizeVariant === 'mini' }
+      )}/>
+    </div>)
   }
 
   return (

@@ -65,6 +65,36 @@ storiesOf('Selection Controls/Checkbox field', module)
         />
       </Wrapper>
     ))
+  .add('Checkbox loading', () => (
+    <Wrapper>
+      <CheckboxField
+        sizeVariant="small"
+        placeholder="Option A"
+        value="a"
+        checked
+        name="answer"
+        loading={true}
+        onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+      />
+      <CheckboxField
+        sizeVariant="normal"
+        placeholder="Option A"
+        value="a"
+        name="answer"
+        loading={true}
+        onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+      />
+      <CheckboxField
+        sizeVariant="large"
+        placeholder="Option A"
+        value="a"
+        checked
+        name="answer"
+        loading={true}
+        onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+      />
+    </Wrapper>
+  ))
   .add('Switch', () => {
     return (
       <Wrapper>
@@ -126,6 +156,39 @@ storiesOf('Selection Controls/Checkbox field', module)
           sizeVariant="large"
           placeholder="Option A"
           value="a"
+          name="answer"
+          variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
+      </Wrapper>
+    );
+  })
+  .add('Switch loading', () => {
+    return (
+      <Wrapper>
+        <CheckboxField
+          sizeVariant="small"
+          placeholder="Option A"
+          value="a"
+          loading={true}
+          name="answer"
+          variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
+        <CheckboxField
+          sizeVariant="normal"
+          placeholder="Option A"
+          value="a"
+          name="answer"
+          loading={true}
+          variant="switch"
+          onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }
+        />
+        <CheckboxField
+          sizeVariant="large"
+          placeholder="Option A"
+          value="a"
+          loading={true}
           name="answer"
           variant="switch"
           onChange={ (d: any) => console.log('CheckboxField value:', d.target.checked) }

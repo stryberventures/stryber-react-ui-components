@@ -154,4 +154,37 @@ export default (theme: any) => ({
       },
     }
   },
+  sliderLoading: {
+    height: theme.sliderHeight,
+    width: '100%',
+    borderRadius: 4,
+  },
+  loadingContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: [8, 0],
+    margin: 8,
+    position: 'relative'
+  },
+  loadingCircle: {
+    height: theme.sliderThumbSize,
+    width: theme.sliderThumbSize,
+    borderRadius: '50%',
+    position: 'absolute',
+    left: '49%'
+  },
+  sliderSmallLoading: {
+    height: theme.sliderSmallHeight,
+  },
+  loadingSmallCircle: {
+    height: theme.sliderSmallThumbSize,
+    width: theme.sliderSmallThumbSize,
+  },
+  sliderLargeLoading: {
+    height: theme.sliderLargeHeight
+  },
+  loadingLargeCircle: {
+    height: theme.sliderLargeThumbSize,
+    width: theme.sliderLargeThumbSize,
+  }
 });

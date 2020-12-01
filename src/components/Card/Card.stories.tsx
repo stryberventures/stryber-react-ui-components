@@ -58,4 +58,18 @@ storiesOf('Card', module)
           </Body>
         </Card>
       </Wrapper>
-    ));
+    ))
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <Card loading={true}>
+          <Title>
+            Test card
+          </Title>
+          <Body>
+            Body
+          </Body>
+        </Card>
+      </Wrapper>
+    );
+  });

@@ -163,5 +163,19 @@ export default (theme: any) => ({
   },
   badgeChoice: {
     marginBottom: 5,
-  }
+  },
+  inputLoading: {
+    height: 44,
+    width: '100%',
+    borderRadius: 4
+  },
+  inputMiniLoading: {
+    height: 30
+  },
+  labelLoading: {
+    height: 17 ,
+    marginBottom: 8,
+    width: 150,
+    borderRadius: 4
+  },
 });

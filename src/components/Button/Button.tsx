@@ -3,6 +3,7 @@ import withStyles, { WithStyles } from 'react-jss';
 import classNames from 'classnames';
 
 import styles from './Button.styles';
+import { FormContext } from '../Form';
 
 /** Interfaces */
 export interface IButtonProps {
@@ -13,10 +14,14 @@ export interface IButtonProps {
   sizeVariant?: 'normal' | 'mini' | 'small' | 'large';
   shape?: 'flat' | 'round' | 'circle';
   className?: any;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
 const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithStyles<typeof styles>) => {
+
   const {
     classes,
     children,
@@ -26,13 +31,38 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
     variant = 'primary',
     shape = 'round',
     className,
+    loading,
+    loadingStyle = {},
+    loadingClassName,
     ...rest
   } = props;
+
+  /** Getting loading property from Form context (if the field is wrapped inside a form */
+  const {
+    loading: formLoading,
+  } = React.useContext(FormContext);
+
   const BtnComponent = ({ children, ...rest }: any) => (
     variant === 'tertiary'
       ? <a {...rest}>{ children }</a>
       : <button {...rest}>{ children }</button>
   );
+
+  if (formLoading || loading) {
+    return (
+      <div
+        style={loadingStyle}
+        className={classNames(
+        'loadingAnimation',
+        classes.buttonLoading,
+        { [classes.buttonLargeLoading]: sizeVariant === 'large' },
+        { [classes.buttonSmallLoading]: sizeVariant === 'small' },
+        { [classes.buttonMiniLoading]: sizeVariant === 'mini' },
+          loadingClassName
+      )} />
+    )
+  }
+
   return (
     <BtnComponent
       { ...rest }

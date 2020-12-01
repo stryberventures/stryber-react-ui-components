@@ -25,3 +25,12 @@ storiesOf('Selection Controls/Slider', module)
       </Wrapper>
     );
   })
+  .add('loading', () => {
+    return (
+      <Wrapper>
+        <Slider name="large" sizeVariant="large" value={50} style={{width: 'initial'}} loading={true} loadingStyle={{ width: 342 }} />
+        <Slider name="slider" sizeVariant="normal" controlled style={{width: 'initial'}} loading={true} loadingStyle={{ width: 256 }} />
+        <Slider name="small" sizeVariant="small" value={30} style={{width: 'initial'}} loading={true} loadingStyle={{ width: 171 }} />
+      </Wrapper>
+    );
+  });

@@ -21,6 +21,9 @@ interface ITextEditorProps {
   onChange?: (text?: string) => {};
   onFocus?: (e: React.BaseSyntheticEvent) => void;
   onBlur?: (e: React.BaseSyntheticEvent) => void;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const TextEditor: React.FC<ITextEditorProps> = ({
@@ -34,7 +37,10 @@ const TextEditor: React.FC<ITextEditorProps> = ({
   onBlur,
   name = 'unnamed',
   controlled = false,
-  placeholder= ''
+  placeholder= '',
+  loading = false,
+  loadingClassName,
+  loadingStyle = {},
 }) => {
   const classes = useStyles();
 
@@ -44,7 +50,8 @@ const TextEditor: React.FC<ITextEditorProps> = ({
     formValues,
     formErrors,
     formTouched,
-    updateFormTouched
+    updateFormTouched,
+    loading: formLoading
   } = React.useContext(FormContext);
 
 
@@ -83,6 +90,19 @@ const TextEditor: React.FC<ITextEditorProps> = ({
       clearFormValueOnUnmount && formValues && unsetFormValue(name);
     };
   }, []);
+
+  if (formLoading || loading) {
+    return (<div style={loadingStyle} className={loadingClassName}>
+      {label && <div className={classNames(
+        'loadingAnimation',
+        classes.labelLoading,
+      )}/>}
+      <div className={classNames(
+        'loadingAnimation',
+        classes.inputLoading,
+      )}/>
+    </div>)
+  }
 
   return (
     <div className={classNames(classes.editor_content, {[classes.editor_content_error]: errorMsg}, className)}>

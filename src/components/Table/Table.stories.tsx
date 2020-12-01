@@ -70,6 +70,51 @@ storiesOf('Table', module)
       </Wrapper>
     );
   })
+  .add('Loading', () => {
+    const getContent = (id:string, content: string) => {
+      switch(id) {
+        case 'website':
+          return <a href={content} target="_blank">{content}</a>;
+        default:
+          return content;
+      }
+    };
+
+    return (
+      <Wrapper>
+        <div style={{width: '100%', padding: '15px'}}>
+          <Table loading={true}>
+            <TableHead>
+              <TableRow>
+                {
+                  HEAD_ROW.map(({label})=>
+                    <TableCell key={label}>
+                      <b>{label}</b>
+                    </TableCell>
+                  )
+                }
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {
+                ROWS.map((rowItem)=>
+                  <TableRow key={rowItem.id}>
+                    {
+                      HEAD_ROW.map(({id}, index) =>
+                        <TableCell key={index}>
+                          {getContent(id, rowItem[id])}
+                        </TableCell>
+                      )
+                    }
+                  </TableRow>
+                )
+              }
+            </TableBody>
+          </Table>
+        </div>
+      </Wrapper>
+    );
+  })
   .add('with border', () => {
     const getContent = (id:string, content: string) => {
       switch(id) {

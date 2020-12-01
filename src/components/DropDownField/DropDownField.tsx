@@ -5,6 +5,7 @@ import { DownArrow } from '../Icons';
 import classNames from 'classnames';
 import { InputFieldLayout } from '../InputFieldLayout';
 import { SimpleInputLayout } from '../SimpleInputLayout';
+import { FormContext } from '../Form';
 
 interface IDropDownFieldProps {
   placeholder?: string;
@@ -19,6 +20,9 @@ interface IDropDownFieldProps {
   placeholderClassName?: string;
   layout?: 'default' | 'simple';
   label?: string;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) => {
@@ -36,10 +40,16 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     sizeVariant = 'normal',
     layout = 'default',
     label,
+    loading = false,
+    loadingClassName,
+    loadingStyle = {},
   } = props;
 
   const [isDropdownOpen, setDropdownOpen] = React.useState(false);
   const [isFocused, setFocused] = React.useState(false);
+
+  /** Getting values from Form context (if the field is wrapped inside a form */
+  const { loading: formLoading } = React.useContext(FormContext);
 
   const appendContentWithArrow = (
     <>
@@ -74,6 +84,20 @@ const DropDownField = (props: IDropDownFieldProps & WithStyles<typeof styles>) =
     default:
       LayoutComponent = InputFieldLayout;
       break;
+  }
+
+  if (formLoading || loading) {
+    return (<div className={loadingClassName} style={loadingStyle}>
+      {label && <div className={classNames(
+        'loadingAnimation',
+        classes.labelLoading,
+      )}/>}
+      <div className={classNames(
+        'loadingAnimation',
+        classes.inputLoading,
+        { [classes.inputMiniLoading]: sizeVariant === 'mini' }
+      )}/>
+    </div>)
   }
 
   return (

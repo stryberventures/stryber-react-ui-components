@@ -65,7 +65,18 @@ const useStyles = createUseStyles({
     '& .ck.ck-editor__main>.ck-editor__editable.ck-focused': {
       borderColor: '#ea3546'
     }
-  }
+  },
+  inputLoading: {
+    height: 140,
+    width: '100%',
+    borderRadius: 4
+  },
+  labelLoading: {
+    height: 25 ,
+    marginBottom: 20,
+    width: 150,
+    borderRadius: 4
+  },
 });
 
 export default useStyles;

@@ -116,4 +116,9 @@ export default (theme: any) => ({
     fontWeight: theme.fontWeightLight,
     fontSize: 10,
   },
+  inputLoading: {
+    height: 44,
+    width: '100%',
+    borderRadius: 4
+  },
 });

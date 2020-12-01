@@ -11,6 +11,7 @@ export interface IFormContext {
   formErrors: any;
   formTouched: any;
   initialValues?: any;
+  loading: boolean;
 }
 
 /** Creating form context with default values */
@@ -18,6 +19,7 @@ export const defaultFormContextValues = {
   updateFormValue: (name: string, data: any, init?: boolean) => {},
   updateFormTouched: (name: string, data: any) => {},
   unsetFormValue: (name: any) => {},
+  loading: false,
   formValues: undefined,
   formErrors: undefined,
   formTouched: undefined,
@@ -37,6 +39,7 @@ export interface IFormProps {
   children: any;
   initialValues?: any;
   validationSchema?: any;
+  loading?: any;
 }
 
 /** Form component */
@@ -51,6 +54,7 @@ const Form = (props: IFormProps) => {
     onValidateAsync,
     validationSchema,
     initialValues,
+    loading,
     ...rest
   } = props;
 
@@ -162,7 +166,8 @@ const Form = (props: IFormProps) => {
           initialValues,
           formValues,
           formErrors,
-          formTouched
+          formTouched,
+          loading
         }}
       >
         { children }

@@ -105,7 +105,8 @@ storiesOf('DropDownField', module)
         </DropDownField>
       </Wrapper>
     );
-  }).add('mini', () => {
+  })
+  .add('mini', () => {
     return (
       <Wrapper>
         <DropDownField
@@ -150,6 +151,39 @@ storiesOf('DropDownField', module)
             value="d"
             onChange={ (d: any) => console.log('RadioField value:', d.target.value) }
           />
+        </DropDownField>
+      </Wrapper>
+    );
+  })
+  .add('loading', () => {
+    return (
+      <Wrapper>
+        <DropDownField
+          onClose={() => {console.log("Dropdown onClose")}}
+          placeholder={"Dropdown mini custom content custom  placeholder font"}
+          customPlaceholderFont={true}
+          layout="simple"
+          label="Test"
+          loading={true}
+        >
+          Some custom content here
+        </DropDownField>
+        <DropDownField
+          onClose={() => {console.log("Dropdown onClose")}}
+          placeholder={"Dropdown mini custom content custom  placeholder font"}
+          customPlaceholderFont={true}
+          loading={true}
+        >
+          Some custom content here
+        </DropDownField>
+        <DropDownField
+          onClose={() => {console.log("Dropdown onClose")}}
+          placeholder={"Dropdown mini custom content custom  placeholder font"}
+          customPlaceholderFont={true}
+          sizeVariant={'mini'}
+          loading={true}
+        >
+          Some custom content here
         </DropDownField>
       </Wrapper>
     );

@@ -23,6 +23,15 @@ storiesOf('Tag', module)
       </Wrapper>
     );
   })
+  .add('loading', () => {
+    return (
+      <Wrapper>
+        <div style={{margin: 20}}><Tag sizeVariant="small" loading={true}>Option 1</Tag></div>
+        <div style={{margin: 20}}><Tag sizeVariant="normal" loading={true}>Option 1</Tag></div>
+        <div style={{margin: 20}}><Tag sizeVariant="large" loading={true}>Option 1</Tag></div>
+      </Wrapper>
+    );
+  })
   .add('disabled', () => {
     return (
       <Wrapper>

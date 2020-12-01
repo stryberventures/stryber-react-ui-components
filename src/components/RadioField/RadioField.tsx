@@ -15,6 +15,9 @@ export interface IRadioFieldProps {
   sizeVariant?: 'small' | 'normal' | 'large';
   errorMessage?: string;
   textColor?: string;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -30,6 +33,9 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     sizeVariant = 'normal',
     errorMessage,
     textColor,
+    loading = false,
+    loadingClassName,
+    loadingStyle = {},
     ...rest
   } = props;
 
@@ -39,6 +45,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     formValues,
     formTouched,
     formErrors,
+    loading: formLoading,
   } = React.useContext(FormContext);
 
   /** Ref */
@@ -62,7 +69,7 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
     /** Update form with internal value on mount */
     if(formValues) {
 
-    } else {
+    } else if (!formLoading && !loading) {
       /** Set initial checked value when used independently */
       //@ts-ignore
       inputRef.current.checked = checked;
@@ -75,6 +82,22 @@ const RadioField = (props: IRadioFieldProps & React.HTMLProps<HTMLInputElement> 
       /** Clear Form value if needed */
     };
   }, []);
+
+  if (formLoading || loading) {
+    return <div className={classNames(classes.loadingContainer, loadingClassName)} style={loadingStyle}>
+      <div className={classNames(
+        'loadingAnimation',
+        classes.radioLoading,
+        { [classes.radioSmallLoading]: sizeVariant === 'small' },
+        { [classes.radioLargeLoading]: sizeVariant === 'large' },
+      )}/>
+      <div className={classNames(
+        classes.labelLoading,
+        'loadingAnimation',
+        { [classes.labelLargeLoading]: sizeVariant === 'large' }
+      )}/>
+    </div>
+  }
 
   return (
     <div className={errorMsg ? classes.error : undefined}>

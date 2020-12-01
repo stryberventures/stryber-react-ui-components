@@ -44,3 +44,13 @@ storiesOf('Password field', module)
       </Wrapper>
     );
   })
+  .add('Loading', () => {
+    return (
+      <Wrapper>
+        <PasswordField
+          onChange={ (d: any) => console.log('InputField value:', d.target.value) }
+          loading={true}
+        />
+      </Wrapper>
+    );
+  });

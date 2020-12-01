@@ -9,6 +9,9 @@ export interface CardProps {
   className?: any;
   children: any;
   shadow?: 'normal' | 'bold';
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<typeof styles>) => {
@@ -17,8 +20,22 @@ const Card = (props: CardProps & React.HTMLProps<HTMLDivElement> & WithStyles<ty
     className,
     children,
     shadow = 'normal',
+    loading = false,
+    loadingStyle = {},
+    loadingClassName,
     ...rest
   } = props;
+
+  if (loading) {
+    return (
+      <div className={classNames(
+        'loadingAnimation',
+        classes.cardLoading,
+        loadingClassName
+      )} style={loadingStyle} />
+    )
+  }
+
   return (
     <div
       { ...rest }

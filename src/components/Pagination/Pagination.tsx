@@ -9,6 +9,9 @@ interface IPaginationProps {
   onChange: (index: number)=> void;
   collapseFactor?: number;
   className?: string;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Pagination: React.FC<IPaginationProps & WithStyles<typeof styles>> = (props) => {
@@ -18,7 +21,10 @@ const Pagination: React.FC<IPaginationProps & WithStyles<typeof styles>> = (prop
     currPage,
     pageCount,
     className,
-    classes
+    classes,
+    loading,
+    loadingStyle,
+    loadingClassName,
   } = props;
 
   const onClick = (index: number) => {
@@ -67,6 +73,37 @@ const Pagination: React.FC<IPaginationProps & WithStyles<typeof styles>> = (prop
       </>
     )
   };
+
+  if (loading) {
+    return (
+      <div className={classNames(classes.loadingContainer, loadingClassName)} style={loadingStyle}>
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+        <div className={classNames(
+          'loadingAnimation',
+          classes.paginationLoading,
+        )} />
+      </div>
+    );
+  }
 
   if (pageCount <= 1) {
     return getItem(true, 0, 1);

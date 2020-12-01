@@ -17,6 +17,18 @@ storiesOf('Avatar', module)
       </Wrapper>
     );
   })
+  .add('loading', () => {
+    return (
+      <Wrapper>
+        <div>
+          <Avatar sizeVariant="large" loading={true} />
+          <Avatar sizeVariant="normal" loading={true} />
+          <Avatar sizeVariant="small" loading={true} />
+          <Avatar sizeVariant="mini" loading={true} />
+        </div>
+      </Wrapper>
+    );
+  })
   .add('with initials', () => {
     return (
       <Wrapper>

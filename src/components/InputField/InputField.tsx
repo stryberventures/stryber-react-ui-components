@@ -1,8 +1,11 @@
 import * as React from 'react';
+import classNames from 'classnames';
 
 import { FormContext } from '../Form';
 import { TextInput } from './Inputs/TextInput';
 import { Button } from '../Button';
+
+import useStyles from './Input.styles';
 
 /** Interfaces */
 export interface IInputFieldProps {
@@ -19,10 +22,13 @@ export interface IInputFieldProps {
   appendContent?: any;
   errorMessage?: string;
   layout?: 'default' | 'simple' | 'bare';
-  sizeVariant?: 'mini' | "normal"
+  sizeVariant?: 'mini' | "normal";
   label?: string;
   large?: boolean;
   labelClassName?: any;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 /** Main component */
@@ -42,8 +48,14 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
     appendContent,
     controlled,
     errorMessage,
+    loading = false,
+    large,
+    label,
+    loadingClassName,
+    loadingStyle = {},
     ...rest
   } = props;
+  const classes = useStyles();
 
   /** Focus status (needed for styles) */
   const [isFocused, setFocused] = React.useState(false);
@@ -56,6 +68,7 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
     formValues,
     formErrors,
     formTouched,
+    loading: formLoading
   } = React.useContext(FormContext);
 
   /** Getting error message from form errors */
@@ -102,6 +115,22 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
     };
   }, []);
 
+  if (formLoading || loading) {
+    return (<div style={loadingStyle} className={loadingClassName}>
+      {label && <div className={classNames(
+        'loadingAnimation',
+        classes.labelLoading,
+        { [classes.labelLargeLoading]: label && large }
+      )}/>}
+      <div className={classNames(
+      'loadingAnimation',
+      classes.inputLoading,
+      { [classes.inputLargeLoading]: large },
+      { [classes.inputMiniLoading]: sizeVariant === 'mini' }
+    )}/>
+    </div>)
+  }
+
   /** Switch depending on the type of the desired input field */
   switch (type) {
     case 'submit':
@@ -133,6 +162,8 @@ const InputField = (props: IInputFieldProps & React.HTMLProps<HTMLInputElement>)
           appendContent={appendContent}
           layout={layout}
           sizeVariant={sizeVariant}
+          large={large}
+          label={label}
         />
       );
   }

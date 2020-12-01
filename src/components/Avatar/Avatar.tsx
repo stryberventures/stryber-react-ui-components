@@ -11,6 +11,9 @@ interface IAvatarProps {
   initials?: string;
   image?: string;
   onClick?: (e: React.SyntheticEvent) => void;
+  loading?: boolean;
+  loadingStyle?: any;
+  loadingClassName?: string;
 }
 
 const Avatar = (props: IAvatarProps & React.HTMLAttributes<HTMLInputElement>) => {
@@ -20,6 +23,9 @@ const Avatar = (props: IAvatarProps & React.HTMLAttributes<HTMLInputElement>) =>
     image,
     className,
     onClick,
+    loading,
+    loadingClassName,
+    loadingStyle = {},
     ...rest
   } = props;
   const classes = useStyles(image);
@@ -41,7 +47,20 @@ const Avatar = (props: IAvatarProps & React.HTMLAttributes<HTMLInputElement>) =>
         :
         initials
       }
-  </div>)
+  </div>);
+
+  if (loading) {
+    return <div className={classNames(
+      'loadingAnimation',
+      classes.avatarLoading,
+      { [classes.avatarSmallLoading]: sizeVariant === 'small' },
+      { [classes.avatarMiniLoading]: sizeVariant === 'mini' },
+      { [classes.avatarLargeLoading]: sizeVariant === 'large' },
+      loadingClassName
+    )}
+    style={loadingStyle}
+    />
+  }
 
   return (
     <div className={classNames([
