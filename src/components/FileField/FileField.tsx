@@ -83,7 +83,7 @@ const FileField = (props: IFileFieldProps & WithStyles<typeof styles>) => {
     }
 
     return (files && files.length)
-      ? Object.values(files).map((file: any) => file.name)
+      ? Object.values(files)!.map((file: any) => file.name)
       : [];
   };
 
