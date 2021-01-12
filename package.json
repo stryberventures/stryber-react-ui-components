@@ -15,15 +15,16 @@
     "react-jss": "10.0.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@ckeditor/ckeditor5-build-classic": "^19.0.2",
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "@types/classnames": "^2.2.8",
-    "@types/jest": "24.0.15",
     "@types/node": "12.0.8",
     "@types/react-helmet": "^5.0.8",
     "@types/react-router-dom": "^4.3.4",
     "classnames": "^2.2.6",
     "react-helmet": "^5.2.1",
+    "react-hot-loader": "^4.13.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "tslint": "^5.18.0",
@@ -43,7 +44,8 @@
     "build:rollup": "rollup -c",
     "cleanup": "rimraf build",
     "tslint": "tslint --project tsconfig.json",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test:unit": "jest -c jest.unit.config.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,27 +63,39 @@
     ]
   },
   "devDependencies": {
-    "@types/react-dom": "16.8.4",
-    "react-dom": "16.8.4",
-    "@types/react": "16.8.4",
-    "react": "16.8.4",
-    "@types/react-jss": "^8.6.4",
-    "react-jss": "10.0.1",
-    "yup": "^0.27.0",
-    "@types/yup": "^0.26.24",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-flow": "^7.12.1",
+    "@babel/preset-stage-3": "^7.8.3",
     "@storybook/react": "5.1.9",
+    "@types/jest": "^24.0.15",
+    "@types/react": "16.8.4",
+    "@types/react-dom": "16.8.4",
+    "@types/react-jss": "^8.6.4",
     "@types/storybook__react": "4.0.2",
+    "@types/yup": "^0.26.24",
     "awesome-typescript-loader": "5.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint-config-airbnb": "^18.0.1",
     "file-loader": "^4.2.0",
+    "react": "16.8.4",
     "react-docgen-typescript-loader": "3.1.0",
     "react-docgen-typescript-webpack-plugin": "1.1.0",
+    "react-dom": "16.8.4",
+    "react-jss": "10.0.1",
     "rollup": "^1.26.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.24.3",
+    "ts-jest": "^26.4.4",
     "tsc-watch": "^2.2.1",
-    "url-loader": "^2.2.0"
+    "url-loader": "^2.2.0",
+    "yup": "^0.27.0"
   }
 }
