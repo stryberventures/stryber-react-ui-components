@@ -148,6 +148,7 @@
       }
     },
     "componentsDefaultDirectory": "src/components/{name}",
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "defaultScope": "stryber.matterhorn"
   }
 }
