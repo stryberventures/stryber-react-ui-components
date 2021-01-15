@@ -43,7 +43,7 @@ export interface ISidebarNavigationContext {
 }
 
 /** Creating form context with default values */
-export const defaultSidebarNavigationContext = {
+export const defaultSidebarNavigationContext: ISidebarNavigationContext = {
   updateSelectedSection: () => {},
   updateSelectedRoute: () => {},
   updateSectionAndRoute: () => {},

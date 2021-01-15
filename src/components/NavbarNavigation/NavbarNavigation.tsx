@@ -26,7 +26,7 @@ export interface INavbarNavigationContext {
 }
 
 /** Creating form context with default values */
-export const defaultNavbarNavigationContextValues = {
+export const defaultNavbarNavigationContextValues: INavbarNavigationContext = {
   updateSelectedRoute: () => {},
   selectedRoute: undefined,
   variant: 'normal' as 'normal' | 'underlined',
