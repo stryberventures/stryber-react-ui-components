@@ -191,7 +191,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "stryber.matterhorn/file-field@0.0.2": {
+    "stryber.matterhorn/file-field@0.0.3": {
         "files": [
             {
                 "name": "FileField.styles.ts",
