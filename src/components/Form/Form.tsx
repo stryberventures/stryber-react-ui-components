@@ -15,7 +15,7 @@ export interface IFormContext {
 }
 
 /** Creating form context with default values */
-export const defaultFormContextValues = {
+export const defaultFormContextValues: IFormContext = {
   updateFormValue: (name: string, data: any, init?: boolean) => {},
   updateFormTouched: (name: string, data: any) => {},
   unsetFormValue: (name: any) => {},
