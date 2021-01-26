@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallow, configure, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { InputField } from "./InputField";
+import { Wrapper } from '../../storybook/components/Wrapper';
 
 describe('InputField tests', () => {
 
   it('renders without crashing', () => {
-    shallow(<InputField />);
+    shallow(<Wrapper><InputField /></Wrapper>);
   });
 
   it('renders with props', () => {
@@ -20,16 +21,16 @@ describe('InputField tests', () => {
       large: false,
       label: 'testLabel',
     };
-    const component = shallow(<InputField {...props}/>);
-    expect(component.props()).toEqual(expect.objectContaining(props));
+    const component = shallow(<Wrapper><InputField {...props}/></Wrapper>);
+    expect(component.props().children.props).toEqual(expect.objectContaining(props));
   });
 
   it('renders with rest', () => {
     const props = {
       testProp:'testRest'
     };
-    const component = shallow(<InputField {...props}/>);
-    expect(component.props()).toEqual(expect.objectContaining(props));
+    const component = shallow(<Wrapper><InputField {...props}/></Wrapper>);
+    expect(component.props().children.props).toEqual(expect.objectContaining(props));
   });
 
   it('check change event', () => {
@@ -42,8 +43,8 @@ describe('InputField tests', () => {
       preventDefault() {},
       target: { value: 'the-value' }
     };
-    const component = shallow(<InputField {...props}/>);
-    component.simulate('change', event);
+    const component = shallow(<Wrapper><InputField {...props}/></Wrapper>);
+    component.children().simulate('change', event);
     expect(Change).toHaveBeenCalledTimes(1)
   });
 
@@ -52,8 +53,8 @@ describe('InputField tests', () => {
     const props = {
       onFocus:event,
     };
-    const component = shallow(<InputField {...props}/>);
-    component.simulate('focus');
+    const component = shallow(<Wrapper><InputField {...props}/></Wrapper>);
+    component.children().simulate('focus');
     expect(event).toHaveBeenCalledTimes(1)
   });
 });

@@ -1,19 +1,21 @@
 import React from 'react';
-import { shallow, configure, mount } from 'enzyme';
-import Form from "./Form";
+import { shallow } from 'enzyme';
+import { Form } from "./Form";
+import { Wrapper } from '../../storybook/components/Wrapper';
 
 describe('Form tests', () => {
 
   it('renders without crashing', () => {
-    shallow(<Form children="testUI"/>);
+    shallow(<Wrapper><Form children="testUI"/></Wrapper>);
   });
 
   it('renders with rest', () => {
     const props = {
-      testProp:'testRest'
+      testProp:'testRest',
+      children:"testUI"
     };
-    const component = shallow(<Form children="testUI" {...props}/>);
-    expect(component.props()).toEqual(expect.objectContaining(props));
+    const component = shallow(<Wrapper><Form {...props}/></Wrapper>);
+    expect(component.props().children.props).toEqual(expect.objectContaining(props));
   });
 
   it('check submit event', () => {
@@ -26,8 +28,8 @@ describe('Form tests', () => {
       preventDefault() {},
       target: { value: 'the-value' }
     };
-    const component = shallow(<Form {...props}/>);
-    component.simulate('submit', event);
+    const component = shallow(<Wrapper><Form {...props}/></Wrapper>);
+    component.children().simulate('submit', event);
     expect(Submit).toHaveBeenCalledTimes(1)
   });
 
@@ -41,8 +43,8 @@ describe('Form tests', () => {
       preventDefault() {},
       target: { value: 'the-value' }
     };
-    const component = shallow(<Form {...props}/>);
-    component.simulate('reset', event);
+    const component = shallow(<Wrapper><Form {...props}/></Wrapper>);
+    component.children().simulate('reset', event);
     expect(Reset).toHaveBeenCalledTimes(1)
   });
 });

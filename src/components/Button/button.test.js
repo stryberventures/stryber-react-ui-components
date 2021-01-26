@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallow, configure, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from "./Button";
+import { Wrapper } from '../../storybook/components/Wrapper';
 
 describe('Button tests', () => {
 
   it('renders without crashing', () => {
-    shallow(<Button  children="testUI"/>);
+    shallow(<Wrapper><Button  children="testUI"/></Wrapper>);
   });
 
   it('renders with props', () => {
@@ -17,16 +18,16 @@ describe('Button tests', () => {
       loading:false,
       children:'testUI'
     };
-    const component = shallow(<Button {...props}></Button>);
-    expect(component.props()).toEqual(props);
+    const component = shallow(<Wrapper><Button {...props}/></Wrapper>);
+    expect(component.props().children.props).toMatchObject(props);
   });
 
   it('renders with rest', () => {
     const props = {
       testProp:'testRest'
     };
-    const component = shallow(<Button {...props}></Button>);
-    expect(component.props()).toEqual(props);
+    const component = shallow(<Wrapper><Button {...props}/></Wrapper>);
+    expect(component.props().children.props).toMatchObject(props);
   });
 
   it('check click event', () => {
@@ -36,9 +37,9 @@ describe('Button tests', () => {
       children:'testUI'
 
     };
-    const component = shallow(<Button {...props}></Button>);
-    expect(component.props()).toEqual(props);
-    component.simulate("click");
+    const component = shallow(<Wrapper><Button {...props}/></Wrapper>);
+    expect(component.props().children.props).toMatchObject(props);
+    component.children().simulate("click");
     expect(clickEvent).toHaveBeenCalledTimes(1)
   });
 

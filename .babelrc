@@ -13,7 +13,8 @@
       "targets": {
         "node": "current"
       }}],
-    "@babel/preset-flow"
+    "@babel/preset-flow",
+    "@babel/preset-typescript"
   ],
   "plugins": [
     [

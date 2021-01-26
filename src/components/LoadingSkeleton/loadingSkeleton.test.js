@@ -1,22 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import LoadingSkeleton from "./LoadingSkeleton";
+import { Wrapper } from '../../storybook/components/Wrapper';
 
 
 describe('LoadingSkeleton tests', () => {
 
   it('renders without crashing', () => {
-    shallow(<LoadingSkeleton />);
+    shallow(<Wrapper><LoadingSkeleton /></Wrapper>);
   });
 
   it('renders with props', () => {
     const props = {
-      className: 'testUi',
+     className: 'testUi',
      style:'testUI'
     };
-    const component = shallow(<LoadingSkeleton {...props}/>);
-    expect(component.props().className).toMatch(props.className);
-    expect(component.props().style).toMatch(props.style);
+    const component = shallow(<Wrapper><LoadingSkeleton {...props}/></Wrapper>);
+    expect(component.props().children.props.className).toMatch(props.className);
+    expect(component.props().children.props.style).toMatch(props.style);
   });
 
   it('renders with rest', () => {

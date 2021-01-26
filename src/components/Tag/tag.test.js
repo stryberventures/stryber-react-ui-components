@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Tag from "./Tag";
 
 describe('Tag tests', () => {
