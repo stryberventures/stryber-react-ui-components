@@ -1,0 +1,37 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "modules": "commonjs"
+      }
+    ],
+    [
+      "@babel/preset-react", {
+      "targets": {
+        "node": "current"
+      }}],
+    "@babel/preset-flow",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime"
+    ],
+    [
+      "@babel/plugin-transform-regenerator"
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "react-hot-loader/babel"
+  ]
+}

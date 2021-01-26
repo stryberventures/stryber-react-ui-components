@@ -12,7 +12,7 @@
     ],
     "sourceMap": true,
     "allowJs": false,
-    "jsx": "react",
+    "jsx": "preserve",
     "declaration": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -24,8 +24,21 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "build", "**/*.stories.*", "src/storybook"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "**/*.stories.*",
+    "src/storybook"
+  ]
 }
