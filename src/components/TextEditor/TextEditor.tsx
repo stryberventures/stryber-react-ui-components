@@ -1,12 +1,8 @@
 import * as React from 'react';
-//@ts-ignore
-import CKEditor from '@ckeditor/ckeditor5-react';
-//@ts-ignore
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { FormContext } from '../Form';
 import useStyles from "./TextEditor.styles";
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ITextEditorProps {
   className?: any;
@@ -54,6 +50,19 @@ const TextEditor: React.FC<ITextEditorProps> = ({
     loading: formLoading
   } = React.useContext(FormContext);
 
+  const editorRef = useRef()
+  const [ editorLoaded, setEditorLoaded ] = useState( false )
+  // @ts-ignore
+  const { CKEditor, ClassicEditor } = editorRef.current || {}
+
+  useEffect( () => {
+    // @ts-ignore
+    editorRef.current = {
+      CKEditor: require( '@ckeditor/ckeditor5-react' ),
+      ClassicEditor: require( '@ckeditor/ckeditor5-build-classic' )
+    }
+    setEditorLoaded( true )
+  }, [] )
 
   const errorMsg = (name && formTouched && formTouched[name] && formErrors[name]) || errorMessage;
 
@@ -109,8 +118,8 @@ const TextEditor: React.FC<ITextEditorProps> = ({
       <label>
         {label}
       </label>
-      <CKEditor
-        editor={ ClassicEditor }
+      {editorLoaded ? (<CKEditor
+        editor={ClassicEditor}
         data={controlled ? value : internalValue}
         onInit={(editor: any) => {
           setEditorAPI(editor);
@@ -121,7 +130,7 @@ const TextEditor: React.FC<ITextEditorProps> = ({
         config={{
           placeholder,
         }}
-      />
+      />) : null}
       {
         errorMsg
           ? (

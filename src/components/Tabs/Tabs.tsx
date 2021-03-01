@@ -89,11 +89,15 @@ class Tabs extends React.Component<ITabsProps, ITabsState> {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions.bind(this));
+    if (window) {
+      window.addEventListener("resize", this.updateDimensions.bind(this));
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this));
+    if (window) {
+      window.removeEventListener("resize", this.updateDimensions.bind(this));
+    }
   }
 
   render() {
