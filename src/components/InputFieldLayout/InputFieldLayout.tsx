@@ -35,6 +35,7 @@ const InputFieldLayout = (props: IInputFieldLayoutProps & React.HTMLProps<HTMLDi
     customPlaceholderFont = false,
     sizeVariant = 'normal',
     large = false,
+    labelClassName,
     ...rest
   } = props;
   return (

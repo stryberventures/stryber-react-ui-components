@@ -1,6 +1,6 @@
 {
   "name": "@stryberventures/stryber-react-ui-components",
-  "version": "0.0.55",
+  "version": "0.0.56",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "jsnext:main": "build/index.es.js",
@@ -12,7 +12,7 @@
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-jss": "10.0.1"
+    "react-jss": "^10.0.1"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^19.0.2",
@@ -69,6 +69,7 @@
     "awesome-typescript-loader": "5.2.1",
     "eslint-config-airbnb": "^18.0.1",
     "file-loader": "^4.2.0",
+    "global": "^4.4.0",
     "react": "16.8.4",
     "react-docgen-typescript-loader": "3.1.0",
     "react-docgen-typescript-webpack-plugin": "1.1.0",
@@ -76,6 +77,7 @@
     "react-jss": "10.0.1",
     "rollup": "^1.26.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-inject": "^3.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.24.3",
