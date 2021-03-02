@@ -22,6 +22,9 @@ export default (theme: any) => ({
     fill: theme.inputColorHighlight,
   },
   /** Selected values Wrapper */
+  selectLayout: {
+    maxHeight: 'max-content'
+  },
   selectElement: {
     position: 'absolute',
     width: '100%',

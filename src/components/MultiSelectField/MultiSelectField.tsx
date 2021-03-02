@@ -99,6 +99,10 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   /** Search Value State */
   const [searchValue, setSearchValue] = React.useState<string>('');
 
+  React.useEffect(() => {
+    onChangeWrapper(internalValues);
+  }, [internalValues]);
+  
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (values: any[]) => {
     /** Passthrough to form context */
@@ -129,7 +133,6 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     setDropdownOpen(() => false);
     setInternalValues((oiv: any[]) => {
       const newValues = (oiv || []).filter(d => d !== value.toString());
-      onChangeWrapper(newValues);
       return newValues;
     });
   };
@@ -154,7 +157,6 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       } else {
         newValues = (oiv || []).filter((d: any) => d !== name);
       }
-      onChangeWrapper(newValues);
 
       return newValues;
     });
