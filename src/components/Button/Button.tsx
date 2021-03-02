@@ -37,48 +37,45 @@ const Button = (props: IButtonProps & React.HTMLProps<HTMLButtonElement> & WithS
     ...rest
   } = props;
 
-  /** Getting loading property from Form context (if the field is wrapped inside a form */
-  const {
-    loading: formLoading,
-  } = React.useContext(FormContext);
-
   const BtnComponent = ({ children, ...rest }: any) => (
     variant === 'tertiary'
       ? <a {...rest}>{ children }</a>
       : <button {...rest}>{ children }</button>
   );
 
-  if (formLoading || loading) {
-    return (
-      <div
-        style={loadingStyle}
-        className={classNames(
-        'loadingAnimation',
-        classes.buttonLoading,
-        { [classes.buttonLargeLoading]: sizeVariant === 'large' },
-        { [classes.buttonSmallLoading]: sizeVariant === 'small' },
-        { [classes.buttonMiniLoading]: sizeVariant === 'mini' },
-          loadingClassName
-      )} />
-    )
-  }
 
   return (
-    <BtnComponent
-      { ...rest }
-      disabled={disabled}
-      className={ classNames([
-        classes.root,
-        classes[variant],
-        classes[sizeVariant],
-        classes[shape],
-        disabled && classes.disabled,
-        disabled && 'disabled',
-        className,
-      ]) }
-      onClick={ onClick }>
-      { children }
-    </BtnComponent>
+    <FormContext.Consumer>
+      {({loading : formLoading}) => (formLoading || loading) ?
+        (
+            <div
+              style={loadingStyle}
+              className={classNames(
+              'loadingAnimation',
+              classes.buttonLoading,
+              { [classes.buttonLargeLoading]: sizeVariant === 'large' },
+              { [classes.buttonSmallLoading]: sizeVariant === 'small' },
+              { [classes.buttonMiniLoading]: sizeVariant === 'mini' },
+                loadingClassName
+            )} />
+          )
+        :
+        (<BtnComponent
+        {...rest}
+        disabled={disabled}
+        className={classNames([
+          classes.root,
+          classes[variant],
+          classes[sizeVariant],
+          classes[shape],
+          disabled && classes.disabled,
+          disabled && 'disabled',
+          className,
+        ])}
+        onClick={onClick}>
+        {children}
+      </BtnComponent>)}
+    </FormContext.Consumer>
   );
 };
 
