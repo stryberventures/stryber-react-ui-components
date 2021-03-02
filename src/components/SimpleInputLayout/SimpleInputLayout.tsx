@@ -19,6 +19,7 @@ export interface ISimpleInputLayoutProps {
   label?: string;
   large?: boolean;
   labelClassName?: any;
+  className?: string;
 }
 
 /** Main component */
@@ -30,6 +31,7 @@ const SimpleInputLayout = (props: ISimpleInputLayoutProps & React.HTMLProps<HTML
     errorMsg,
     disabled,
     appendContent,
+    showPrependBackground,
     placeholder,
     isPlaceholderCollapsed,
     children,
