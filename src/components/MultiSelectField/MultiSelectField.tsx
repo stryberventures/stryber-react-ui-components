@@ -279,7 +279,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
       )}/>
     </div>)
   }
-
+  const isPlaceholderCollapsed = showBadgeChoices ? selectedChoices.length > 0 : false;
+  
   return (
     <>
       {/** Clickaway element */}
@@ -305,7 +306,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
         {/** Value & Placeholder / Header */}
         <LayoutComponent
           label={label}
-          isPlaceholderCollapsed={showBadgeChoices ? selectedChoices.length > 0 : false}
+          isPlaceholderCollapsed={isPlaceholderCollapsed}
           errorMsg={errorMsg}
           disabled={disabled}
           placeholder={placeholder}
@@ -315,6 +316,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
           customPlaceholderFont={customPlaceholderFont}
           placeholderClassName={placeholderClassName}
           onClick={inputLabelOnClick}
+          className={classes.selectLayout}
         >
           <div
             tabIndex={0}
@@ -328,6 +330,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               disabled ? classes.selectLabelDisabled : null,
             ])}
           >
+            {layout === 'simple' && !isPlaceholderCollapsed && placeholder}
             {showBadgeChoices ? getBadgeChoices() : null}
           </div>
         </LayoutComponent>
