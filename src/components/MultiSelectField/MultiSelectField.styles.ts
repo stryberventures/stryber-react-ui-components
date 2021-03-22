@@ -162,8 +162,12 @@ export default (theme: any) => ({
     },
     '& $selectLabelNormal': {
       paddingTop: 10
+    },
+    '& $large': {
+      paddingTop: 15
     }
   },
+  large: {},
   badgeChoice: {
     marginBottom: 5,
   },
