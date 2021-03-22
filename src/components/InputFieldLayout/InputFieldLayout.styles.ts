@@ -134,7 +134,7 @@ export default (theme: any) => ({
   },
   large: {
     '& $root': {
-      maxHeight: theme.inputLargeMaxHeightIdle,
+      minHeight: theme.inputLargeMaxHeightIdle,
     },
     '& $placeholderNormal': {
       padding: 16

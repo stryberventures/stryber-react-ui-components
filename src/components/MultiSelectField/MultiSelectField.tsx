@@ -37,6 +37,8 @@ export interface IMultiSelectFieldProps {
   search?: boolean;
   layout?: 'default' | 'simple';
   label?: string;
+  labelClassName?: string;
+  large?: boolean;
   loading?: boolean;
   loadingStyle?: any;
   loadingClassName?: string;
@@ -66,6 +68,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     sizeVariant = 'normal',
     layout = 'default',
     label,
+    labelClassName,
+    large = false,
     loading = false,
     loadingClassName,
     loadingStyle = {},
@@ -317,6 +321,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
           placeholderClassName={placeholderClassName}
           onClick={inputLabelOnClick}
           className={classes.selectLayout}
+          large={large}
+          labelClassName={labelClassName}
         >
           <div
             tabIndex={0}
@@ -328,6 +334,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               sizeVariant === 'mini' ? classes.selectLabelMini : classes.selectLabelNormal,
               errorMsg ? classes.selectLabelInvalid : null,
               disabled ? classes.selectLabelDisabled : null,
+              large ? classes.large : null
             ])}
           >
             {layout === 'simple' && !isPlaceholderCollapsed && placeholder}

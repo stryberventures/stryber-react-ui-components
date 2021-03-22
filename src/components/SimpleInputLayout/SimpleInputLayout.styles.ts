@@ -56,7 +56,7 @@ export default (theme: any) => ({
   /* handle size */
   large: {
     '& $root': {
-      maxHeight: theme.inputLargeMaxHeightIdle,
+      minHeight: theme.inputLargeMaxHeightIdle,
     },
     '& $label': {
       fontSize: 16,

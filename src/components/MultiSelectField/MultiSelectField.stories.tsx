@@ -94,6 +94,7 @@ storiesOf('Multi Select field', module)
           label="Label"
           layout="simple"
           name="option"
+          large
           choices={CHOICES.slice(0, 8)}
           onChange={ (d: any) => console.log('SelectField value:', d) }
         />
