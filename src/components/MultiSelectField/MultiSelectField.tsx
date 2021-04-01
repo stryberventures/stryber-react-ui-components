@@ -106,7 +106,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
   React.useEffect(() => {
     onChangeWrapper(internalValues);
   }, [internalValues]);
-  
+
   /** Wrappers to merge form and props methods */
   const onChangeWrapper = (values: any[]) => {
     /** Passthrough to form context */
@@ -284,7 +284,6 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
     </div>)
   }
   const isPlaceholderCollapsed = showBadgeChoices ? selectedChoices.length > 0 : false;
-  
   return (
     <>
       {/** Clickaway element */}
@@ -337,7 +336,8 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
               large ? classes.large : null
             ])}
           >
-            {layout === 'simple' && !isPlaceholderCollapsed && placeholder}
+            {/*span wrapper for correct component view with Google translation*/}
+            {layout === 'simple' && !isPlaceholderCollapsed && <span>placeholder</span>}
             {showBadgeChoices ? getBadgeChoices() : null}
           </div>
         </LayoutComponent>
