@@ -337,7 +337,7 @@ const MultiSelectField = (props: IMultiSelectFieldProps & WithStyles<typeof styl
             ])}
           >
             {/*span wrapper for correct component view with Google translation*/}
-            {layout === 'simple' && !isPlaceholderCollapsed && <span>placeholder</span>}
+            {layout === 'simple' && !isPlaceholderCollapsed && <span>{placeholder}</span>}
             {showBadgeChoices ? getBadgeChoices() : null}
           </div>
         </LayoutComponent>
