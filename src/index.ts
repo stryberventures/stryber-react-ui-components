@@ -68,6 +68,9 @@ import * as ContainerElements from './components/Container'
 import Card from './components/Card';
 import * as CardElements from './components/Card';
 
+import LoadingSkeleton from './components/LoadingSkeleton';
+import * as LoadingSkeletonElements from './components/LoadingSkeleton';
+
 /** Table */
 import Table from './components/Table';
 import * as TableElements from './components/Table';
@@ -159,5 +162,6 @@ export {
   NavBurger, NavBurgerElements,
   TextEditor, TextEditorElements,
   NavbarDropdown, NavbarDropdownElements,
-  Tabs, TabsElements
+  Tabs, TabsElements,
+  LoadingSkeleton, LoadingSkeletonElements
 };
